@@ -287,9 +287,14 @@ class CommonAction extends EmptyAction {
 		$str .= var_export($data,true);
 		$str .= ";";
 
+		if(!is_writable($target))
+		{
+			chmod($filename,0777);
+		}
+
 		if ( file_put_contents($target,$str) )
 		{
-			return true;	
+			return true;
 		}
 		else
 		{
