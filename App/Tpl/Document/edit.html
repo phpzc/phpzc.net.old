@@ -1,0 +1,92 @@
+<include file="Public:doct" />
+
+	<import type="css" file="css.document.create" />
+
+    <include file="Public:head" />{// 头部公共文件 }
+    <div id="container" class="box_shadow box_shadow_inset .border_radius">
+		
+        <div id="article_create">
+            <form action="__URL__/update.html" method="post" id="current_form" enctype="multipart/form-data" >
+			<input type="hidden" name="article_id" value="{$Think.get.id}" />
+            <div id="article_create_category_title">
+            	<div id="article_create_category">分类：
+                	<select name="form_category" id="form_category_select">
+                    <volist name="WebsiteCategory" id="WebsiteCategory">
+                    <option value="{$WebsiteCategory.id}" >{$WebsiteCategory.name}</option>
+                    </volist>
+                	</select>
+ 
+                	</div>
+          		<div id="aticle_create_title">标题 (100个字限制)：<input type="text" name="form_title" value="{$article.title}" id="form_title" /></div>
+  				<div id="aticle_create_author">作者 (100个字限制)：<input type="text" name="form_author" value="{$article.author}" id="form_author" /></div>
+  				<div id="aticle_prev_img" >原资料封面：<img src="{$article.imgurl}"  width=160  height=160 /></div>
+  				<div id="article_upload">上传资料封面(280 X 280[jpg,png,jpeg], &lt;10M )  <input type="file" name="upload"  /></div>
+  				<div id="article_url">网盘地址：<input type="text" name="url"  value="{$article.url}"/>
+  				网盘类型：<select name="urltype" id="form_category_urltype">
+  						<option value="1">百度网盘</option>
+  						<option value="2">360云盘</option>
+  						<option value="3">华为网盘</option>
+  				</select>
+  				资料类型：<select name="doctype" id="form_category_doctype">
+  						<option value="1">Pdf</option>
+  						<option value="2">Word</option>
+  						<option value="3">Excel</option>
+  						<option value="4">Video</option>
+  						<option value="5">Zip</option>
+  				</select>
+  				</div>
+  			</div>
+  			         <script>
+                		$(function(){
+                			var id = "{$categoryid}";
+                			var urltype = "{$article.urltype}";
+                			var doctype = "{$article.doctype}";
+                			$("#form_category_select").val(id);
+                			$("#form_category_urltype").val(urltype);
+                			$("#form_category_doctype").val(doctype);
+                		})
+                	</script>
+  			<div id="article_eidtor_cotent">
+            <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/baidu_editor/editor_config.js"></script>
+            <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/baidu_editor/editor_all_min.js"></script>
+            <textarea id="myEditor" name="content">{$article.content}</textarea>
+            
+            <script type="text/javascript">
+      
+                var editor_a = UE.getEditor('myEditor',{
+                //这里可以选择自己需要的工具按钮名称
+                toolbars:[
+            ['fullscreen', 'source', 'highlightcode','|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch','autotypeset','blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist','selectall', 'cleardoc', '|',
+                'rowspacingtop', 'rowspacingbottom','lineheight','|',
+                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|','touppercase','tolowercase','|',
+                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright','imagecenter', '|',
+                'insertimage', 'emotion',/*'scrawl', 'insertvideo','music',*'attachment',*/ 'map', 'gmap'/*, 'insertframe'*/,/*'webapp',*/'pagebreak','template','background', '|',
+                'horizontal', 'date', 'time', 'spechars',/*'snapscreen',*/ 'wordimage', '|',
+                'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
+                'print', 'preview', 'searchreplace']
+        ],
+                //focus时自动清空初始化时的内容
+                autoClearinitialContent:false,
+                //关闭字数统计
+                //wordCount:false,
+                //关闭elementPath
+                elementPathEnabled:false
+                //更多其他参数，请参考editor_config.js中的配置项
+                })
+
+            </script>
+            </div>
+
+            <div id="article_create_tag">文章标签：{//（添加Tag，你的内容能被更多人看到）}<input type="text" name="form_tag" id="form_tag"  value="{$keyword}" />（最多添加5个标签，多个标签之间用“,”分隔,单个标签最多20个字）</div>
+            <div id="article_create_submit"><a href="javascript:;" id="form_submit" onclick="editor_a.sync(); document.getElementById('current_form').submit()">发布</a></div>
+            
+            </form>
+        </div>
+    </div>
+       
+    <include file="Public:footer" />{// 底部公共文件 }
+</body>
+</html>

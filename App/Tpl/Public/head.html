@@ -1,0 +1,223 @@
+
+<!--<link type="text/css" rel="stylesheet" media="all" href="__PUBLIC__/js/keyboard/css/keyboard.css" />-->
+<import type="js" file="js.core.jquery" />
+<!--<import type="js" file="js.keyboard.keyboard" />-->
+<import type="js" file="js.core.core" />
+<script>
+    VIP.LoadScript("__PUBLIC__/js/core/browser.js");
+    VIP.LoadScript("__PUBLIC__/js/lib/messageBox.js");
+    VIP.LoadScript("__PUBLIC__/js/lib/user.js");
+    VIP.LoadScript("__PUBLIC__/js/lib/form.js");
+</script>
+
+<div class="G_layer"></div>
+{//注册登录显示区域}
+
+<div id="align_top" class="G_box_shadow">
+	<div id="top_container">
+		<div class="logo">
+			<a href="/" target="_self"><img
+				src="__PUBLIC__/img/background/logo.gif" alt="logo" /></a>
+		</div>
+
+		<div class="menu">
+			<ul>
+				<li><a href="__ROOT__/index/index.html">首页</a></li>
+				<li><a href="__ROOT__/article/index.html">文章</a></li>{//各语言文章} {//
+				<li><a href="__ROOT__/software/index.html">软件</a></li>} {//
+				<li><a href="__ROOT__/book/index.html">读书</a></li>}
+				<li><a href="__ROOT__/document/index.html">资料</a></li>{//代码区 和 书区域}
+				<li><a href="javascript:;">其他</a>
+					<ul class="G_hide">
+						<li class="G_border_radius"><a
+							href="javascript:;" >其他</a></li>
+						<li class="G_border_radius"><a
+							href="__ROOT__/album/index.html">截图</a></li>
+						<li class="G_border_radius"><a
+							href="__ROOT__/other/about.html">About</a></li>
+					</ul></li>{// 游戏截图啊 站长介绍 网站介绍 简历等}
+			</ul>
+		</div>
+		<script>
+            $(function(){
+                $('.menu >ul> li').hover(function(){ 
+                    $(this).find("ul").show();
+                    $(this).addClass("menu_selected").addClass("G_border_radius");
+                    $(this).find('a').css({color:"#fff"})
+
+                    },function(){
+                    $(this).find("ul").hide();
+                    $(this).removeClass("menu_selected").removeClass("G_border_radius");
+                    $(this).find('a').css({color:"#333"})
+
+                })
+
+               
+            })
+        </script>
+
+
+		<div class="entrance">
+			<?php
+     	        if(empty($_SESSION["Auth"]['name'])){
+                    echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> | <a href="'.$WEBSITE['url'].'/social/qqAuth.html"  style="top:10px;position:relative;" id="ff"><img src="__PUBLIC__/img/social/Connect_logo_4.png"></a></div>';
+				
+                }else{
+
+                    echo '<div class="entrance_child">
+                    <a href="">'.$_SESSION["Auth"]['name'].'</a> |  <a href="__ROOT__/user/logout.html" target="_self">退出</a>
+                </div>';
+        /*        echo '<div id="user_home" class="G_border_radius">
+                        <ul>
+                            <li><a href="" title="个人主页">主页</a></li>
+                            <li><a href="" title="帐号设置">设置</a></li>
+                            <li><a href="" title="用户消息">消息</a></li>
+                            <li><a href="" title="关注项目">关注</a></li>
+                        </ul>
+                    </div>';        
+		*/    
+            	}
+	
+            ?>
+		</div>
+
+		<script>
+            $(function(){
+                $("#user_home").hover(function(){
+                    $(this).stop();
+                    $(this).animate({width:"150px"},400)
+                    },function(){
+                    $(this).stop();
+                    $(this).animate({width:"100px"},700)
+                })
+            })
+        
+        </script>
+	</div>
+</div>
+
+
+
+<div id="TipBox">
+
+	<div id="userlogin">
+		<div class="G_close">
+			<span></span>
+		</div>
+		<div class="u_title">登录随心网 - Flow Heart Net</div>
+		<div class="formkey">
+			<p>使用邮箱登录帐号</p>
+			<form action="__APP__/user/login.html" method="POST" id="loginform"
+				autocomplete="off">
+				<span class="line1"> <input type="text" id="loginEmail"
+					value="" name="email" /><span> <span class="line1">
+							<input type="text" id="loginPassword" value="" name="password"
+							class="keyboard" /> <input type="hidden" name="logincode"
+							value="{$Think.session.form.code}" />
+					</span> <span class="form_notice"> </span> <span class="line2"> <script>
+                                    function se(){
+                                        document.getElementById("auto_login_checkbox").checked = ! document.getElementById("auto_login_checkbox").checked;
+                                    }
+                                </script> <span class="item_left" onclick="se()"
+							style="display: none;"><input type="checkbox"
+								name="autologin" value="1" checked=true id="auto_login_checkbox" />自动登录
+						</span> <span class="item_right"><a href="">忘记密码</a></span>
+					</span> <span class="line3"> <a href="javascript:void(0);"
+							class="loginbtn">登录</a>
+
+					</span>
+						<p>
+							没有帐号?<a href="javascript:void(0);" id="quickreg">立即注册</a>
+						</p>
+			</form>
+		</div>
+		<div class="loginspace"></div>
+		<div class="otherlogin">
+			<h3>使用社交帐号登录</h3>
+			<div>
+				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
+					target="_self">百度登录</a>
+			</div>
+			<div>
+				<span id="qq"></span><a href='{$WEBSITE.url}/social/qqAuth.html'
+					target="_self">QQ登录</a>
+			</div>
+			<div>
+				<span id="sina"></span><a
+					href='{$WEBSITE.url}/social/sinalogin.html' target="_self">新浪登录</a>
+			</div>
+		</div>
+
+	</div>
+	<div id="userreg">
+		<div class="G_close">
+			<span></span>
+		</div>
+		<div class="u_title">注册随心网帐号 - Flow Heart Net</div>
+		<div class="formkey">
+			<p>使用邮箱注册帐号</p>
+			<form action="__APP__/user/reg.html" method="POST" id="regform"
+				autocomplete="off">
+				<span class="line1"><input type="text" id="regEmail" value=""
+					name="email" /><span> <span class="line1"><input
+							type="text" id="regUsername" value="" name="username" /></span> <span
+						class="line1"><input type="text" id="regPassword" value=""
+							name="password" class="keyboard" /><input type="hidden"
+							name="regcode" value="{$Think.session.form.code}" /> </span> <span
+						class="form_notice"> </span> <span class="line3"> <a
+							href="javascript:void(0);" class="loginbtn2">注册</a>
+					</span>
+						<p>
+							已有帐号<a href="javascript:void(0);" id="quicklogin">立即登录</a>
+						</p>
+			</form>
+		</div>
+		<div class="loginspace"></div>
+		<div class="otherlogin">
+			<h3>使用社交帐号登录</h3>
+			<div>
+				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
+					target="_self">百度登录</a>
+			</div>
+			<div>
+				<span id="qq"></span><a href='{$WEBSITE.url}/social/qqAuth.html'
+					target="_self">QQ登录</a>
+			</div>
+			<div>
+				<span id="sina"></span><a
+					href='{$WEBSITE.url}/social/sinalogin.html' target="_self">新浪登录</a>
+			</div>
+		</div>
+
+	</div>
+</div>
+<script>
+            	$(function(){
+            		$('#login').click(function(){
+            			VIP.User.login();
+            			VIP.Form.inputdefaultValue({obj:$("#loginEmail"),value:"输入邮箱登录"});
+            			VIP.Form.inputdefaultValue({obj:$("#loginPassword"),value:"输入密码登录"});
+            			VIP.User.loginTip();
+            			});
+            		$('#register').click(function(){
+            			VIP.User.reg();
+            			VIP.Form.inputdefaultValue({obj:$("#regEmail"),value:"输入邮箱"});
+            			VIP.Form.inputdefaultValue({obj:$("#regPassword"),value:"输入密码"});
+            			VIP.Form.inputdefaultValue({obj:$("#regUsername"),value:"输入昵称"});
+            			VIP.User.regTip();
+            			});
+            		//	$('.keyboard').keyboard({
+            		//		lang:'en'
+            		//       });
+                    // BUG
+                    HideClose($('.G_close span'));
+                    $('#quicklogin').click(function(){
+                    	$('#userreg').hide();
+                    	$('#login').click();
+                    	});
+                    $('#quickreg').click(function(){
+                    	$('#userlogin').fadeOut();
+                    	$('#register').click();
+                    	});
+            	})
+            </script>

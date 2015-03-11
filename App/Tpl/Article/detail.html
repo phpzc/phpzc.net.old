@@ -1,0 +1,78 @@
+<include file="Public:doct" />
+	{//详情页Css js}
+	<import type="css" file="css.article.detail" />
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/js/baidu_editor/third-party/SyntaxHighlighter/shCore.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/baidu_editor/third-party/SyntaxHighlighter/shCoreDefault.css"/>
+	
+	<include file="Public:head" />{// 头部公共文件 }
+	
+    <div id="container" class="box_shadow box_shadow_inset .border_radius">
+    	  <include file="Article:article_head" />
+    		
+    	  <div id="article_show">
+    			<div id="article_list">
+    				<div class="article_foreach_item">
+							<div class="article_foreach_item_title"><a href="javascript:;" title="{$article.title}">{$article.title} </a></div>
+													<div class="article_foreach_item_bottom">
+							<span class="sp1"><i></i>{$article.name}</span>
+			
+							</div>
+							<div class="article_foreach_item_content">{$article.content}</div>
+							<div class="other_page">
+								<div class="pre_page">上一篇：
+									<if condition="$article_pre.id eq ''">
+										没有了
+									<else/>
+										<a href="__ROOT__/article/detail/id/{$article_pre.id}.html">{$article_pre.title}</a>
+									</if>
+								</div>
+								<div class="next_page">下一篇：
+									<if condition="$article_next.id eq ''">
+										没有了
+									<else/>
+										<a href="__ROOT__/article/detail/id/{$article_next.id}.html">{$article_next.title}</a>
+									</if>
+								</div>
+							</div>
+							<div class="article_date_cp">
+								<img src="__PUBLIC__/img/background/bg_postdate.png" />
+							</div>
+							<div class="article_date_cp2">
+								<p class="p1">{$article.time|date="d",###}</p> 
+							 	<p class="p2">{$article.month} / {$article.year}</p>
+							 </div>
+					</div>
+					{//代码显示插件生效代码}
+					<script>
+						SyntaxHighlighter.highlight();
+					</script>
+					{//评论功能}
+
+					<!-- 多说评论框 start -->
+					<div class="ds-thread" data-thread-key="{$article.id}" data-title="{$article.title}" data-url="http://www.vipmhxy.com/article/detail/id/{$article.id}.html"></div>
+					<!-- 多说评论框 end -->
+					<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+					<script type="text/javascript">
+						var duoshuoQuery = {short_name:"vipmhxy"};
+						(function() {
+							var ds = document.createElement('script');
+								ds.type = 'text/javascript';ds.async = true;
+								ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+								ds.charset = 'UTF-8';
+								(document.getElementsByTagName('head')[0] 
+		 						|| document.getElementsByTagName('body')[0]).appendChild(ds);
+								})();
+					</script>
+					<!-- 多说公共JS代码 end -->
+					
+				</div>
+				
+				<include file="Article:article_category" />
+				
+			</div>
+    </div>
+
+    
+    <include file="Public:footer" />{// 底部公共文件 }
+</body>
+</html>

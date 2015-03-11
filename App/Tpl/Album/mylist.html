@@ -1,0 +1,150 @@
+<include file="Public:doct" />
+	
+	<import type="css" file="css.album.index" />
+	
+    <include file="Public:head" />{// 头部公共文件 }
+
+    <div id="container" class="box_shadow box_shadow_inset .border_radius">
+        
+        <include file="Album:album_head" />
+		<script>
+			//更新框
+			var updateStr = '<div id="updateAlbum" class=" G_border_radius G_box_shadow_inset">\
+				<form method="post">\
+				<div class="G_close" style="background:#b3acc0;height:30px;line-height:30px;font-size:16px;"><div style="float:left;padding-left:20px;color:#555;">更新相册</div><span style="margin-top:5px;" id="aspan2"></span> </div>\
+				<table><tr><td class="formTRight">相册名称：</td><td class="formTLeft"><input type="text" name="title" id="album_title2" class="formInputText"><p>(30个字)</p></td></tr>\
+				<tr><td class="formTRight">相册描述：</td><td class="formTLeft"><textarea name="content" class="formTextarea" id="album_content2"></textarea><p>(200个字)</p></td></tr>\
+				<tr><td class="formTRight">可见性： </td><td class="formTLeft"><input type="radio" name="auth2" value=0 checked>对所有人可见<br /><input type="radio" name="auth2" value=1>仅主人可见</td></tr>\
+				</table></form>\
+				<div class="ensure"><a href="javascript:;" id="ensure11" class="G_border_radius">取消</a><a class="G_border_radius" href="javascript:;" id="ensure22">确定</a> </div>\
+			</div>';
+			
+			var updateId = 0;
+			function postMessage2()
+			{
+				var t = $('#album_title2').val().replace( /^\s+|\s+$/g, "" );
+				var c = $('#album_content2').val().replace( /^\s+|\s+$/g, "" );
+				var a = $("input[name='auth2']:checked").val();
+				
+				var tl = VIP.Form.getStrLength(t);
+				var cl = VIP.Form.getStrLength(c);
+				
+				if(tl > 30){
+					VIP.MessageBox.createBoxAuto("相册名称不能超过30个字")
+					return;
+				}
+				if(cl > 200)
+				{
+					VIP.MessageBox.createBoxAuto("相册内容不能超过200个字")
+					return;
+				}
+				
+				
+		        $.ajax({
+		            type:"POST",
+		            url:VIP.Base()+"/album/dealUpdate",
+		            data:"title="+t+"&content="+c+"&auth="+a+"&id="+updateId,
+		            async:true,
+		            dataType:"json",
+		            success: function(msg)
+		            {
+		                if(msg.success == 1)
+		                {
+		                	VIP.MessageBox.createBoxConfirmCancle("更新成功！",{callback:function(){
+		                		VIP.Jump('/album/mylist.html?r='+Math.random());
+		                	},data:null})
+		                }
+		                else
+		                {
+		                	VIP.MessageBox.createBoxAuto("更新失败")
+		                }
+		            }
+		        });
+			}
+			
+			
+			function UpdateAlbum(id,title,content,auth)
+			{
+				updateId = id;
+				VIPLog(content);
+				if (VIP.User.checkAuth('{$_SESSION["Auth"]["id"]}')){
+					return;
+				}
+
+				
+				var tmp = $("#updateAlbum")
+				
+				VIP.Layer.show();
+				$(document.body).append(updateStr)
+				
+				$("#updateAlbum").css({position:"fixed",background:"#fff",zIndex:302,top:200,width:"500px",minHeight:"200px"})
+				$("#updateAlbum").fadeIn()
+				VIP.Layer.center($("#updateAlbum"))
+				//注册关闭 事件
+				$("#aspan2").click(function(){
+					$("#updateAlbum").fadeOut()
+					$("#updateAlbum").remove()
+					VIP.Layer.hide()
+				})
+				$("#ensure11").click(function(){
+					$("#updateAlbum").fadeOut()
+					$("#updateAlbum").remove()
+					VIP.Layer.hide()
+				})
+				$("#ensure22").click(function(){
+					postMessage2();
+				})
+
+				
+				$('#album_title2').val(title)
+				$('#album_content2').val(content)
+				$("input[name='auth2'][value="+auth+"]").attr("checked","checked")
+			}
+			
+			
+			
+			function localJump(id){
+				VIP.Jump('/album/detail/id/'+id+'.html');
+			}
+			
+			$(function(){
+				$('#article_show > ul >li').hover(function(){
+					$(this).find("div").fadeIn();
+				},function(){
+					$(this).find("div").fadeOut();
+				})
+			})
+			
+			function tmpJump(data)
+			{
+				VIP.MessageBox.createBoxConfirmCancle("确定删除?",{callback:VIP.Jump,data:"/album/del.html?id="+data});
+			}
+			
+
+		</script>
+        <div id="article_show">
+        		<if condition="$album_list eq '' " >
+        			<center><div>还没有相册? </div><a href="javascript:;" onclick="CreateAlbum()">创建相册</a></center>
+
+        		<else />
+				<ul>
+				<volist id="aa" name="album_list">
+					<li class="G_box_shadow G_border_radius">
+						<img alt="相册封面" src="{$aa.face|default='__PUBLIC__/img/pic-none.png'}" width=162 height=162 onclick="localJump('{$aa.realid}')" />
+						<span onclick="localJump('{$aa.realid}')">{$aa.num}</span>
+						<a class="album_title" href="javascript:localJump('{$aa.realid}')" title="{$aa.title}">{$aa.title|cut_str=###,10}</a>
+						<div class="album_action"><a href="javascript:UpdateAlbum('{$aa.realid}','{$aa.title}','{$aa.content}','{$aa.auth}');" class="album_action_a">编辑</a><a class="album_action_a" href="javascript:tmpJump('{$aa.realid}');">删除</a></div>
+					</li>
+				</volist>
+				</ul>
+				</if>
+
+        </div>
+       
+    </div>
+    <include file="Public:footer" />{// 底部公共文件 }  
+    <script>
+    	//展示方式
+    </script>
+</body>
+</html>
