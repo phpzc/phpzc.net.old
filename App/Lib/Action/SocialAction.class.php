@@ -47,7 +47,7 @@ class SocialAction extends CommonAction {
 		
 		$client_id = 'jDdg8eG9Tl6f75YQ5rxiXbwN';
 		$client_secret = '0r5zsH9RTVFylWkXoBcPkR01p1vHmnWd';
-		$redirect_uri = 'http://www.vipmhxy.com/social/baidu.html';
+		$redirect_uri = "http://" . $_SERVER ["SERVER_NAME"].'/social/baidu.html';
 		
 		$baidu = new Baidu ( $client_id, $client_secret, $redirect_uri, new BaiduCookieStore ( $client_id ) );
 		
