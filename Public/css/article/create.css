@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+/*----------------create-----------------------------------*/
+#article_create {
+	width: 100%;
+	min-height: 100px;
+	float: left;
+	font-size: 16px;
+	background-color: #fff;
+	padding-bottom: 10px;
+}
+
+#article_create_category_title {
+	width: 100%;
+	min-height: 20px;
+	float: left;
+	margin-top: 10px;
+}
+
+#article_create_category {
+	min-width: 100px;
+	padding-left: 10px;
+	float: left;
+	min-height: 30px;
+}
+
+#article_create_category select {
+	min-height: 30px;
+	font-size: 16px;
+}
+
+#article_create_category select option {
+	background-color: #fff;
+	min-height: 30px;
+	font-size: 16px;
+}
+
+#aticle_create_title {
+	min-width: 200px;
+	float: left;
+	min-height: 30px;
+	margin-left: 10px;
+}
+
+#aticle_create_title input[type="text"] {
+	padding: 5px;
+	width: 500px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	border: 1px solid #999;
+	box-shadow: 0 2px 2px #ddd;
+	background-color: #eee;
+	margin-bottom: 10px;
+	color: #999;
+}
+
+#article_eidtor_cotent {
+	min-width: 950px;
+	padding: 10px;
+	float: left;
+	min-height: 100px;
+}
+
+#article_create_tag {
+	width: 1014px;
+	min-height: 30px: 
+	line-height:30px;
+	padding-left: 10px;
+}
+
+#article_create_tag input[type="text"] {
+	padding: 5px;
+	width: 300px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+	border: 1px solid #999;
+	box-shadow: 0 2px 2px #ddd;
+	background-color: #eee;
+	margin-bottom: 10px;
+	color: #999;
+}
+
+#article_create_submit {
+	width: 300px;
+	padding-left: 10px;
+	min-height: 30px: 
+	line-height:30px;
+	float: left;
+	margin-top: 10px;
+}
+
+#article_create_submit a {
+	background-image: url("../../img/background/login2_bak.png");
+	background-position: 0px -145px;
+	width: 290px;
+	height: 48px;
+	display: block;
+	text-align: center;
+	line-height: 48px;
+	color: #fff;
+	font-size: 24px;
+	text-decoration: none;
+}

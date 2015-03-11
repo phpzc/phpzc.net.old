@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+.success_result {
+	width: 128px;
+	height: 128px;
+	float: left;
+	margin-top: 75px;
+	margin-left: 200px;
+	background-image: url("../../img/button/ORB_Icons_by_004.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.error_result {
+	width: 128px;
+	height: 128px;
+	float: left;
+	margin-top: 75px;
+	margin-left: 200px;
+	background-image: url("../../img/button/ORB_Icons_by_003.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.form_c_info {
+	width: 500px;
+	min-height: 128px;
+	margin-top: 75px;
+	margin-left: 200px;
+	text-align: left;
+	font-size: 48px;
+}
+
+.success {
+	color: #00cbff;
+	text-decoration: underline;
+}
+
+.error {
+	color: orange;
+	text-decoration: underline;
+}
+
+#form_show_result {
+	width: 100%;
+	min-height: 400px;
+	float: left;
+	margin-top: 10px;
+	border-bottom: 1px solid #ccc;
+	background: #fff;
+}

@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+/*Pdf*/
+.doc_type_span_1 {
+	float: left;
+	background-image: url("../../img/background/doctype.png");
+	background-position: -69px 0;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 20px;
+}
+/*Word*/
+.doc_type_span_2 {
+	float: left;
+	display: inline-block;
+	background-image: url("../../img/background/doctype.png");
+	background-position: -99px 0;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 20px;
+}
+/*Excel*/
+.doc_type_span_3 {
+	float: left;
+	display: inline-block;
+	background-image: url("../../img/background/doctype.png");
+	background-position: -130px 0;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 20px;
+}
+/*Video*/
+.doc_type_span_4 {
+	float: left;
+	display: inline-block;
+	background-image: url("../../img/background/doctype.png");
+	background-position: -34px 0;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 20px;
+}
+/*Zip*/
+.doc_type_span_5 {
+	float: left;
+	display: inline-block;
+	background-image: url("../../img/background/doctype.png");
+	background-position: -355px 0;
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 20px;
+}
+/*---pan-*/
+.doc_pan_span_1 {
+	display: inline-block;
+	float: left;
+	background-image: url("../../img/background/bd.png");
+	width: 65px;
+	height: 65px;
+}
+
+.doc_pan_span_2 {
+	display: inline-block;
+	background-image: url("../../img/background/360.png");
+	width: 65px;
+	height: 65px;
+}
+
+.doc_pan_span_3 {
+	display: inline-block;
+	background-image: url("../../img/background/huawei.png");
+	width: 65px;
+	height: 65px;
+}

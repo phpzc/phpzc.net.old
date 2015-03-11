@@ -1,0 +1,151 @@
+/**/
+#document_show {
+	width: 100%;
+	float: left;
+	min-height: 100px;
+	margin-top: 20px;
+	background: #fff;
+}
+/*
+#article_global_desc
+{
+	width:700px;
+    min-height:15px;
+    float:left;
+    background:#fff;
+    margin-left:50px;
+	font-size:12px;
+	border-bottom:1px solid #ddd;
+
+}
+#article_global_desc span{
+	color:#e4393c;
+}
+#article_global_desc i {
+	color:#999;
+}
+*/
+#document_list {
+	width: 700px;
+	min-height: 100px;
+	float: left;
+	background: #fff;
+	margin-left: 50px;
+}
+
+.document_foreach_item {
+	width: 520px;
+	float: left;
+	padding: 20px 0px 0px 180px;
+	position: relative;
+	overflow: hidden;
+	height: 180px;
+	border-bottom: 1px dotted #ddd;
+}
+
+.document_left {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	width: 160px;
+	height: 160px;
+	padding: 0 20px 0 0;
+}
+
+.document_right {
+	float: left;
+	width: 520px;
+	height: 180px;
+}
+
+.document_right p {
+	float: left;
+	width: 520px;
+	font-size: 12px;
+}
+
+.document_right1 {
+	font-size: 14px;
+	font-weight: 700;
+	border-bottom: 1px dotted #ddd;
+}
+
+.document_right2 {
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.document_right3 {
+	margin-top: 5px;
+	height: 16px;
+	background-image: url("../../img/background/star.png");
+	background-position: 0 -86px;
+	width: 80px;
+	background-repeat: no-repeat;
+}
+
+.document_right4 {
+	margin-top: 10px;
+	height: 20px;
+}
+
+.document_right4 span {
+	float: left;
+	margin-right: 5px;
+}
+
+.document_right4 span a {
+	color: #e73237;
+	text-decoration: underline;
+}
+
+.document_right5 {
+	margin-top: 10px;
+}
+
+.document_right5 span {
+	float: left;
+	margin-right: 5px;
+}
+
+.download {
+	position: absolute;
+	right: 40px;
+	bottom: 20px;
+	background-image: url("../../img/background/login2.png");
+	background-position: 0px -145px;
+	width: 125px;
+	height: 47px;
+	display: block;
+	float: left;
+}
+
+.document_user_action {
+	text-align: center;
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	width: 125px;
+	height: 47px;
+	display: block;
+	float: left;
+	font-size: 12px;
+}
+
+.document_user_action a {
+	color: #ff6f97;
+}
+
+.document_foreach_item_content {
+	width: 650px;
+	float: left;
+	padding-left: 25px;
+	padding-right: 25px;
+	min-height: 30px;
+	line-height: 25px;
+	font-size: 16px;
+	font-family:;
+	font-color: #666 /*#2a00e1*/;
+	word-break: break-all;
+	word-wrap: break-word;
+}

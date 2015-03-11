@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+#article_global_desc {
+	width: 700px;
+	min-height: 15px;
+	float: left;
+	background: #fff;
+	margin-left: 50px;
+	font-size: 12px;
+	border-bottom: 1px solid #ddd;
+}
+
+#article_global_desc span {
+	color: #e4393c;
+}
+
+#article_global_desc i {
+	color: #999;
+}

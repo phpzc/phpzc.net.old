@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+#article_title {
+	width: 100%;
+	float: left;
+	height: 30px;
+	margin-top: 10px;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+#article_title ul {
+	margin-left: 50px;
+	float: left;
+}
+
+#article_title ul li {
+	display: inline;
+	float: left;
+	margin-right: 10px;
+	line-height: 30px;
+	height: 30px;
+}
+
+#article_title ul span {
+	display: block;
+	float: left;
+	width: 2px;
+	height: 20px;
+	background: #ccc;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+#article_title ul li a {
+	color: #7f007f;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 700;
+}
+
+#article_title ul li a:hover {
+	text-decoration: underline;
+	-webkit-transition: 0.5s linear;
+	-moz-transition: 0.5s linear;
+	-o-transition: 0.5s linear;
+	-ms-transition: 0.5s linear;
+	transition: 0.5s linear;
+	font-size: 14px;
+	color: #8f108f;
+}

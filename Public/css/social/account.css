@@ -1,0 +1,146 @@
+.account_box {
+	width: 900px;
+	margin: auto;
+	margin-top: 100px;
+	min-height: 340px;
+	background-color: #fff;
+	display: block;
+}
+
+.account_box div {
+	background-color: #fff;
+}
+
+.account_addmember {
+	padding-left: 30px;
+	margin-top: 10px;
+	width: 870px;
+	font-size: 16px;
+	font-weight: bold;
+	float: left;
+}
+
+.account_header {
+	margin-top: 30px;
+	margin-left: 30px;
+	padding: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	background-color:;
+	width: 500px;
+	min-height: 15px;
+	float: left;
+}
+
+.bind_toggle {
+	margin-top: 10px;
+	width: 900px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+	float: left;
+	border-top: 1px dotted #ccc;
+	border-bottom: 1px dotted #ccc;
+}
+
+.bind_toggle span {
+	width: 250px;
+	height: 30px;
+	float: left;
+	border-right: 1px dotted #ccc;
+}
+
+.selected_class {
+	background: #44e1f9;
+	font-color: #FFF;
+}
+
+#new_user {
+	cursor: pointer;
+}
+
+#old_user {
+	cursor: pointer;
+}
+
+#no_account {
+	display: block;
+}
+
+#has_account {
+	display: none;
+}
+
+.table_box {
+	width: 900px;
+	min-height: 10px;
+	float: left;
+}
+
+.account_tb {
+	min-width: 600px;
+	float: left;
+	min-height: 310px;
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+.account_tb_2 {
+	min-width: 600px;
+	float: left;
+	min-height: 100px;
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+.account_submit {
+	min-width: 900px;
+	float: left;
+	margin-top: 30px;
+	height: 90px;
+	background-color: #F8F8F8;
+}
+
+#error_box_new {
+	font-color: red;
+	float: left;
+	width: 870px;
+	min-height: 1px;
+	line-height: 30px;
+	padding-left: 30px;
+	text-align: left;
+}
+
+#error_box_new p {
+	font-color: red;
+}
+
+#error_box_old {
+	font-color: red;
+	float: left;
+	padding-left: 30px;
+	width: 870px;
+	min-height: 1px;
+	line-height: 30px;
+	text-align: left;
+}
+
+#error_box_old p {
+	font-color: red;
+}
+
+.account_submit a {
+	float: left;
+	margin-top: 23px;
+	margin-left: 120px;
+	width: 120px;
+	height: 45px;
+	border: none;
+	color: #FFF;
+	line-height: 45px;
+	text-align: center;
+	text-decoration: none;
+	background-image: url("../../img/button/button.png");
+	background-position: 110px -300px;
+}

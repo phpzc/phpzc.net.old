@@ -1,0 +1,149 @@
+body {
+	background: #fff;
+	text-align: left;
+}
+
+#content {
+	width: 100%;
+	margin: 0;
+	font-size: 16px;
+	line-height: 30px;
+}
+
+.content-top {
+	width: 1098px;
+	border: 1px dashed #999;
+	background: #eee;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 5px;
+	float: left;
+	text-align: left;
+}
+
+.section-div {
+	width: 1098px;
+	border: 1px dashed #999;
+	background: #f0f0f0;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding: 5px;
+	float: left;
+	text-align: left;
+}
+
+.keyword {
+	height: 30px;
+	line-height: 30px;
+	margin-top: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+	float: left;
+	width: auto;
+	border: 1px solid #999;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: #bcbcbc;
+	color: #000;
+}
+
+.keyword:hover {
+	background: orange;
+}
+/*标签样式*/
+.left {
+	text-align: left;
+	min-height: 50px;
+	float: left;
+}
+
+.right {
+	text-align: right;
+	min-height: 50px;
+	float: left;
+}
+
+.left textarea {
+	width: 400px;
+	height: 150px;
+}
+
+.left .submit {
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	padding: 0px;
+}
+
+.section-div table {
+	width: 95%;
+}
+
+.section-div table tr td {border-bottom; 1px dashed #ccc;
+	
+}
+
+.category {
+	width: 1078px;
+	float: left;
+	background: #fff;
+	border-bottom: 2px dashed #3daa3d;
+	padding: 10px;
+	height: 30px;
+}
+
+.category div {
+	height: 30px;
+	float: left;
+}
+
+.addarticle1 {
+	width: 100px;
+	float: left;
+	height: 30px;
+	min-height: 30px;
+	margin-bottom: 10px;
+}
+
+#addarticle table td {
+	margin-bottom: 5px;
+	position: relative;
+}
+
+#jsbutton {
+	position: absolute;
+	left: 420px;
+	background: pink;
+	top: 10px;
+	z-index: 10;
+	width: 150px;
+}
+
+#jsbutton a {
+	float: left;
+	width: 150px;
+	height: 20px;
+	word-break: keep-all;
+	white-space: nowrap;
+}
+
+#face {
+	position: absolute;
+	left: 600px;
+	top: -300px;
+	z-index: 15;
+	width: 400px;
+}
+
+#face div {
+	cursor: pointer;
+	border: 1px solid #ccc;
+	margin-left: 2px;
+	margin-top: 2px;
+	width: 64px;
+	line-height: 64px;
+	height: 64px;
+	text-align: center;
+	float: left;
+}

@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+#article_show {
+	width: 100%;
+	float: left;
+	min-height: 100px;
+	padding-bottom:10px;
+	background: #fff;
+	background: #f0f0f0;
+}
+.album_desc{
+	width:964px;
+	padding-left:10px;
+	padding-right:30px;
+	min-height:20px;
+	float:left;
+	font-weight:600;
+}
+#album_photo{
+	width:964px;
+	padding-left:30px;
+	padding-right:30px;
+	min-height:20px;
+	float:left;
+	
+}
+.imgstore{
+	width:172px;
+	height:172px;
+	float:left;
+	margin:10px;
+	background:#fff;
+	position:relative;
+}
+.imgstore img{
+	cursor:pointer;
+
+}
+.imgstore span{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:172px;
+	background:#000;
+	opacity:0.8;
+	color:#fff;
+	height:20px;
+	text-align:center;
+}
+.imgstore span a{
+	color:#fff;
+}
