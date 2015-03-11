@@ -1,10 +1,14 @@
 <?php
 
-define("NET_NAME","http://www.localhost.com");
+//define("NET_NAME","http://www.localhost.com");
+define("NET_NAME","http://" . $_SERVER ["SERVER_NAME"] );
 
 function replace_str($source)
 {
-	return str_replace("http://www.vipmhxy.com", NET_NAME, $source);
+	$str = str_replace("http://www.vipmhxy.com", NET_NAME, $source);
+	$str = str_replace("http://www.localhost.com", NET_NAME, $str);
+
+	return $str;
 	 
 }
 
