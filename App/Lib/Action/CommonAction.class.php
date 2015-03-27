@@ -9,9 +9,11 @@ class CommonAction extends EmptyAction {
 	
 	public function _initialize() {
 		// 分配网站名称
-		$_WEBSITE ["url"] = "http://www.vipmhxy.com";
-		$_WEBSITE ["url_short"] = "www.vipmhxy.com";
-		$_WEBSITE ["name"] = "随心网";
+		//$_WEBSITE ["url"] = "http://www.vipmhxy.com";
+		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
+		$_WEBSITE ["url"] = "http://zc.fuxiben.com";
+		$_WEBSITE ["url_short"] = "zc.fuxiben.com";
+		$_WEBSITE ["name"] = "PeakPointer’s website";
 		$this->assign ( "WEBSITE", $_WEBSITE );
 		// form code
 		if (! isset ( $_SESSION ["form"] ['code'] )) {
