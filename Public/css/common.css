@@ -1081,17 +1081,17 @@ contact_me form {
 	float:left;
 	background-color:#fff;
 	width:245px;
-	min-height:30px;
+	height:30px;
 	padding-left:5px;
+	display:block;
+	overflow: hidden;
+    vertical-align: bottom;
 }
 .rankDiv ul li span{
 	width:25px;
 	height:20px;
 	display:inline-block;
-
 	margin-top:5px;
-	
-	
 	text-align:center;
 	line-height:20px;
 	font-size:12px;
@@ -1109,8 +1109,7 @@ contact_me form {
 	line-height:30px;
 	font-size:12px;
 	height:30px;
-	dispaly:block;
-	overflow:hidden;
+	display:inline-block;
 }
 .rankDiv ul li a:hover{
 	color:#45e1f9;
