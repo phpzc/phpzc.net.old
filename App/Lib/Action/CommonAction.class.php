@@ -13,7 +13,7 @@ class CommonAction extends EmptyAction {
 		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
 		$_WEBSITE ["url"] = "http://www.vipzhangcheng.cn";
 		$_WEBSITE ["url_short"] = "www.vipzhangcheng.cn";
-		$_WEBSITE ["name"] = "PeakPointer’s website";
+		$_WEBSITE ["name"] = "PeakPointer";
 		$this->assign ( "WEBSITE", $_WEBSITE );
 		// form code
 		if (! isset ( $_SESSION ["form"] ['code'] )) {
