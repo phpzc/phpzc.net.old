@@ -64,7 +64,7 @@ class CommonAction extends EmptyAction {
 			}else{
 				//不存在
 				$articleModle = M("Article");
-				$res = $articleModle->where("isdel = 0")->field("id,title")->order("visit desc,id desc")->limit(10)->select();
+				$res = $articleModle->where("isdel = 0")->field("id,title")->order("visit desc,id desc")->limit(15)->select();
 				foreach ($res as $k=>$v){
 					$res[$k]["realid"] = $v["id"];
 					$res[$k]["id"] = $this->encodeId($v["id"]);
