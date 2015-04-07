@@ -116,7 +116,7 @@ function VIPLog(msg)
 VIP.Base = function(){
     //获取基础地址
     var Base = window.location.href;
-    var i= Base.indexOf('.com');
+    var i= Base.indexOf('.cn');
     if( i==-1){
         return false;
     }
