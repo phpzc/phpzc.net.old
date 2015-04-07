@@ -11,8 +11,8 @@ class CommonAction extends EmptyAction {
 		// 分配网站名称
 		//$_WEBSITE ["url"] = "http://www.vipmhxy.com";
 		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
-		$_WEBSITE ["url"] = "http://zc.fuxiben.com";
-		$_WEBSITE ["url_short"] = "zc.fuxiben.com";
+		$_WEBSITE ["url"] = "http://www.vipzhangcheng.cn";
+		$_WEBSITE ["url_short"] = "www.vipzhangcheng.cn";
 		$_WEBSITE ["name"] = "PeakPointer’s website";
 		$this->assign ( "WEBSITE", $_WEBSITE );
 		// form code
