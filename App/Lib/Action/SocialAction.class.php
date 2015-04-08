@@ -162,6 +162,9 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['userid'] = $token ['uid'];
 				$_SESSION ['Auth'] ['Social'] ['access_token'] = $token ['access_token'];
 				
+				
+				dump($_SESSION);
+				exit();
 				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html" );
 				// dump($_SESSION);
 			} else {
