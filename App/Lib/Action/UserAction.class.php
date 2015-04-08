@@ -181,6 +181,9 @@ class UserAction extends CommonAction {
 		$data ['regip'] = ip2long ( $_SERVER ["REMOTE_ADDR"] );
 		$data ['regtime'] = time ();
 		
+		//添加 第三方登陆标记
+		$data [$this->_post('type')] = $_SESSION ['Auth'] ['Social'] ['userid'];
+		
 		$r = $User->data ( $data )->add ();
 		
 		if ($r) {
