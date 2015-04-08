@@ -134,6 +134,9 @@ class UserAction extends CommonAction {
 	 * @brief 第三方登录 注册新用户 V1 注册版
 	 */
 	public function accountBindNew() {
+		
+		$_SESSION ['has_login_by_social'] = 0;
+		
 		$error_code = NULL;
 		
 		if ($_POST ["code"] != $_SESSION ["form"] ["code"]) {

@@ -33,7 +33,7 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/baidu.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
 		}
 		
@@ -95,7 +95,7 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/qq.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
 		}
 		
@@ -128,9 +128,10 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/sina.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
 		}
+		$_SESSION ['has_login_by_social'] = 0;
 		
 		require_once ("./sina/Sina.php");
 		$o = new SaeTOAuthV2 ( WB_AKEY, WB_SKEY );
