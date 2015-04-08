@@ -163,8 +163,11 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['access_token'] = $token ['access_token'];
 				
 				
-				//dump($_SESSION);
-				//exit();
+				dump($_SESSION);
+				echo "sina <br>".$_SERVER ["SERVER_NAME"];
+				exit();
+				
+				
 				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=sina" );
 				// dump($_SESSION);
 			} else {
