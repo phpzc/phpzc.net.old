@@ -223,8 +223,7 @@ class SocialAction extends CommonAction {
 				$type = "sina";
 				break;
 		}
-		echo $type;
-		exit();
+
 		// 查询是否已经绑定过帐号
 		
 		$User = M ( "User" );
