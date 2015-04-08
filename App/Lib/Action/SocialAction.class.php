@@ -81,7 +81,7 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['avatar_img'] = "http://tb.himg.baidu.com/sys/portrait/item/" . $profile ['portrait'];
 				
 				$_SESSION ['Auth'] ['Social'] ['type'] = 'baidu';
-				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html" );
+				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=baidu" );
 				exit ();
 			}
 		} else {
@@ -121,7 +121,7 @@ class SocialAction extends CommonAction {
 		$_SESSION ['Auth'] ['Social'] ['type'] = 'qq';
 		
 		// 进入统一跳转
-		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html" );
+		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=qq" );
 	}
 	public function sina() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
@@ -165,7 +165,7 @@ class SocialAction extends CommonAction {
 				
 				//dump($_SESSION);
 				//exit();
-				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html" );
+				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=sina" );
 				// dump($_SESSION);
 			} else {
 				// 授权失败 跳转登录页
@@ -213,9 +213,9 @@ class SocialAction extends CommonAction {
 		
 		// 设置不可返回
 		$_SESSION ['has_login_by_social'] = 1;
-		$type = "";
+		$type = "baidu";
 		// 分配 第三方登录 标识
-		switch ($_SESSION ['Auth'] ['Social'] ['type']) {
+		switch ($_REQUEST["ltype"]) {
 			case 'baidu' :
 				$type = "baidu";
 				break;
@@ -229,10 +229,8 @@ class SocialAction extends CommonAction {
 
 		// 查询是否已经绑定过帐号
 		
-		$User = M ( "User" );
-		$result = $User->where ( array (
-				$type => $_SESSION ["Auth"] ['Social'] ['userid'] 
-		) )->find ();
+		$User = M ("User" );
+		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
 		
 		dump($result);
 		exit();
