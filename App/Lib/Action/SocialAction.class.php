@@ -33,7 +33,7 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/baidu.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/baidu.html?login_time=" . time () );
 			exit ();
 		}
 		
@@ -47,7 +47,7 @@ class SocialAction extends CommonAction {
 		
 		$client_id = 'fgIIRGufGdzh5h0mE0BT4tM1';
 		$client_secret = 'FhawiSi2FlSxIBlvn0i0eeLqut8k1hmE';
-		$redirect_uri = "http://" . $_SERVER ["SERVER_NAME"].'/social/baidu.html';
+		$redirect_uri = "http://www." . $_SERVER ["SERVER_NAME"].'/social/baidu.html';
 		
 		$baidu = new Baidu ( $client_id, $client_secret, $redirect_uri, new BaiduCookieStore ( $client_id ) );
 		
@@ -81,7 +81,7 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['avatar_img'] = "http://tb.himg.baidu.com/sys/portrait/item/" . $profile ['portrait'];
 				
 				$_SESSION ['Auth'] ['Social'] ['type'] = 'baidu';
-				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=baidu" );
+				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=baidu" );
 				exit ();
 			}
 		} else {
@@ -95,7 +95,7 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/qq.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/qq.html?login_time=" . time () );
 			exit ();
 		}
 		
@@ -121,14 +121,14 @@ class SocialAction extends CommonAction {
 		$_SESSION ['Auth'] ['Social'] ['type'] = 'qq';
 		
 		// 进入统一跳转
-		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=qq" );
+		header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=qq" );
 	}
 	public function sina() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
-			header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/sina.html?login_time=" . time () );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/sina.html?login_time=" . time () );
 			exit ();
 		}
 		
@@ -163,16 +163,11 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['access_token'] = $token ['access_token'];
 				
 				
-				dump($_SESSION);
-				echo "sina <br>".$_SERVER ["SERVER_NAME"];
-				exit();
-				
-				
-				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=sina" );
+				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=sina" );
 				// dump($_SESSION);
 			} else {
 				// 授权失败 跳转登录页
-				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/sinalogin.html" );
+				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/sinalogin.html" );
 			}
 		}
 	}
@@ -211,7 +206,7 @@ class SocialAction extends CommonAction {
 		 */
 		
 		// 绑定账号
-		dump($_SESSION);
+		//dump($_SESSION);
 		// dump($_COOKIE);
 		
 		// 设置不可返回
@@ -234,9 +229,7 @@ class SocialAction extends CommonAction {
 		
 		$User = M ("User" );
 		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
-		
-		dump($result);
-		exit();
+
 		if ($result) {
 			// 进行登录操作
 			
@@ -245,7 +238,7 @@ class SocialAction extends CommonAction {
 			$_SESSION ['Auth'] ['username'] = $result ['username'];
 			$_SESSION ['Auth'] ['login_type'] = $type;
 			
-			header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
 			exit ();
 		}
 		
