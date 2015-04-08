@@ -231,7 +231,9 @@ class SocialAction extends CommonAction {
 		$result = $User->where ( array (
 				$type => $_SESSION ["Auth"] ['Social'] ['userid'] 
 		) )->find ();
-		
+		dump($_SESSION);
+		dump($result);
+		exit();
 		if ($result) {
 			// 进行登录操作
 			
