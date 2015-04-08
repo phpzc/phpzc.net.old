@@ -163,8 +163,8 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['access_token'] = $token ['access_token'];
 				
 				
-				dump($_SESSION);
-				exit();
+				//dump($_SESSION);
+				//exit();
 				header ( "location:http://" . $_SERVER ["SERVER_NAME"] . "/social/account.html" );
 				// dump($_SESSION);
 			} else {
@@ -208,12 +208,12 @@ class SocialAction extends CommonAction {
 		 */
 		
 		// 绑定账号
-		// dump($_SESSION);
+		dump($_SESSION);
 		// dump($_COOKIE);
 		
 		// 设置不可返回
 		$_SESSION ['has_login_by_social'] = 1;
-		
+		$type = "";
 		// 分配 第三方登录 标识
 		switch ($_SESSION ['Auth'] ['Social'] ['type']) {
 			case 'baidu' :
@@ -233,7 +233,7 @@ class SocialAction extends CommonAction {
 		$result = $User->where ( array (
 				$type => $_SESSION ["Auth"] ['Social'] ['userid'] 
 		) )->find ();
-		dump($_SESSION);
+		
 		dump($result);
 		exit();
 		if ($result) {
