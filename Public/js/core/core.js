@@ -120,8 +120,8 @@ VIP.Base = function(){
     if( i==-1){
         return false;
     }
-    Base = Base.substring(0,i+4);
-
+    Base = Base.substring(0,i+3);
+    VIPLog(Base);
     return Base;
 }
 //跳转
