@@ -197,7 +197,7 @@ class PhotoAction extends CommonAction {
 			//jsonP("文件上传不成功", 1);
 			
 			 exit();
-			$this->formErrorReferer("文件上传不成功");
+			//$this->formErrorReferer("文件上传不成功");
 		} else { // 上传成功 获取上传文件信息
 			$info = $upload->getUploadFileInfo ();
 			//dump ( $info );
