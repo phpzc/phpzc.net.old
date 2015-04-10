@@ -189,6 +189,13 @@ class PhotoAction extends CommonAction {
 		if (! is_dir ( $dir )) {
 			@mkdir ( $dir );
 		}
+		
+		if(!is_writable($dir))
+		{
+			chmod($dir,0777);
+		}
+		
+		
 		$upload->savePath = $dir; // 设置附件上传目录
 		$info = "";
 		if (! $upload->upload ()) { // 上传错误提示错误信息

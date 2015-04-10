@@ -142,14 +142,14 @@ class CommonAction extends EmptyAction {
 	// 跳转函数
 	public function formSuccess($title, $url, $sec = 3) {
 		$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["SERVER_NAME"] . $url ) . "&sec=" . $sec;
-		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . '/form/success.html' . $string );
+		header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . '/form/success.html' . $string );
 		exit ();
 	}
 	
 	
 	public function formError($title, $url, $sec = 3) {
 		$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["SERVER_NAME"] . $url ) . "&sec=" . $sec;
-		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
+		header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
 		exit ();
 	}
 	public function formErrorReferer($title, $sec = 3) {
@@ -158,13 +158,13 @@ class CommonAction extends EmptyAction {
 		} else {
 			$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["SERVER_NAME"] ) . "&sec=" . $sec;
 		}
-		header ( "location:http://" . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
+		header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
 		exit ();
 	}
 	public function formLoginCheck($sec = 3) {
 		if (empty ( $_SESSION ["Auth"] ["id"] )) {
 			$string = "?title=请登录后操作&url=" . urlencode ( "http://" . $_SERVER ["SERVER_NAME"] ) . "&sec=" . $sec;
-			header ( "location:http://" . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . '/form/error.html' . $string );
 			exit ();
 		}
 	}
