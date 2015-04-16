@@ -40,7 +40,7 @@ class MailAction extends CommonAction {
 		                                              // set email format to HTML
 		                                              // //是否使用HTML格式
 		
-		$mail->Subject = "Vipmhxy.com - ContactMe ： From" . $_POST ["subject"]; // 邮件标题
+		$mail->Subject = "www.vipzhangcheng.cn - ContactMe ： From User" . $_POST ["name"]; // 邮件标题
 		$mail->Body = "发件人：" . $_POST ["name"] . "\n联系邮箱：" . $_POST ["email"] . "\n 主题：" . $_POST ["subject"] . "\n 消息：" . $_POST ["message"]; // 邮件内容
 		                                                                                                                     // $mail->AltBody
 		                                                                                                                     // =
