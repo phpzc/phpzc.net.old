@@ -3,14 +3,22 @@ class MailAction extends CommonAction {
 	/*
 	 * 留言发邮件通知我 姓名 30 邮箱 30 主题 30 消息 200
 	 */
-	public function index() {
+    public function index() {
+        if(empty($_POST ["email"]) || empty($_POST ["subject"]) ||  empty($_POST ["name"]) ||  empty($_POST ["message"])){
+            echo json_encode ( array (
+					"code" => 0,
+					"msg" => "Invalid data"
+			));
+			exit ();
+        }
+
 		if ($_POST ["email"] == "zhang5474jj@163.com") {
 			echo json_encode ( array (
 					"code" => 0,
 					"msg" => "Fuck you!<br/>",
 					"msg2" => "ＳＢ!" 
-			) );
-			exit ();
+			));
+			exit();
 		}
 		import ( "ORG.Util.Phpmailer" );
 		$mail = new PHPMailer (); // 建立邮件发送类
@@ -75,11 +83,11 @@ class MailAction extends CommonAction {
 			
 			// 发送给 留言人 通知接受到了
 			$mail->From = "zhang5474jj@163.com"; // 邮件发送者email地址
-			$mail->FromName = "随心网";
+			$mail->FromName = "www.vipzhangcheng.cn";
 			$mail->AddAddress ( $_POST ["email"], $_POST ["name"] );
 			
-			$mail->Subject = "随心网vipmhxy.com - 收到了您的留言"; // 邮件标题
-			$mail->Body = "随心网 http://www.vipmhxy.com 收到了您的留言！此邮件为自动回复邮件！"; // 邮件内容
+			$mail->Subject = "www.vipzhangcheng.cn - 收到了您的留言"; // 邮件标题
+			$mail->Body = "www.vipzhangcheng.cn 收到了您的留言！此邮件为自动回复邮件！"; // 邮件内容
 			$arr = array (
 					"msg2" => "自动回复邮件已发送" 
 			);
