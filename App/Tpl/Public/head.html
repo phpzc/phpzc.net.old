@@ -60,7 +60,8 @@
 		<div class="entrance">
 			<?php
      	        if(empty($_SESSION["Auth"]['name'])){
-                    echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> | <a href="'.$WEBSITE['url'].'/social/qqAuth.html"  style="top:10px;position:relative;" id="ff"><img src="__PUBLIC__/img/social/Connect_logo_4.png"></a></div>';
+                    //echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> | <a href="'.$WEBSITE['url'].'/social/qqAuth.html"  style="top:10px;position:relative;" id="ff"><img src="__PUBLIC__/img/social/Connect_logo_4.png"></a></div>';
+					echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> </div>';
 				
                 }else{
 
@@ -138,10 +139,12 @@
 				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
 					target="_self">百度登录</a>
 			</div>
+			<!-- 
 			<div>
 				<span id="qq"></span><a href='{$WEBSITE.url}/social/qqAuth.html'
 					target="_self">QQ登录</a>
 			</div>
+			-->
 			<div>
 				<span id="sina"></span><a
 					href='{$WEBSITE.url}/social/sinalogin.html' target="_self">新浪登录</a>
@@ -179,10 +182,12 @@
 				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
 					target="_self">百度登录</a>
 			</div>
+			<!--  
 			<div>
 				<span id="qq"></span><a href='{$WEBSITE.url}/social/qqAuth.html'
 					target="_self">QQ登录</a>
 			</div>
+			-->
 			<div>
 				<span id="sina"></span><a
 					href='{$WEBSITE.url}/social/sinalogin.html' target="_self">新浪登录</a>
