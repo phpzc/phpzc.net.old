@@ -310,6 +310,6 @@ class UserAction extends CommonAction {
 	public function logout() {
 		cookie ( null );
 		session ( null );
-		redirect ( 'http://' . $_SERVER ['SERVER_NAME'] );
+		redirect ( 'http://www.' . $_SERVER ['SERVER_NAME'] );
 	}
 }
