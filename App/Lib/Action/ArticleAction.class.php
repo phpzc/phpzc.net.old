@@ -196,7 +196,10 @@ class ArticleAction extends CommonAction {
 				foreach ( $res as $k => $v ) {
 					$res [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
 					$res [$k] ["imgurl"] = findImageUrl ( $v ['content'] );
-					$res [$k] ["id"] = $this->encodeId ( $v ['id'] );
+                    $res [$k] ["id"] = $this->encodeId ( $v ['id'] );
+                    if ($res [$k] ["imgurl"] == ""){
+				        $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
+			        }
 				}
 				$this->assign ( "website_title", "搜索文章结果-" );
 				$this->assign ( "article_list", $res );
@@ -240,7 +243,10 @@ class ArticleAction extends CommonAction {
 			foreach ( $result as $k => $v ) {
 				$result [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
 				$result [$k] ["imgurl"] = findImageUrl ( $v ['content'] );
-				$result [$k] ["id"] = $this->encodeId ( $v ['id'] );
+                $result [$k] ["id"] = $this->encodeId ( $v ['id'] );
+                if ($res [$k] ["imgurl"] == ""){
+				    $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
+			    }
 			}
 			$this->assign ( "article_list", $result );
 			
