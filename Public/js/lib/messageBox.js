@@ -16,7 +16,7 @@ function VIP_messageBox_createBody()
 	//VIP.LoadStyleString(cssStr)
 	
 	var str = "<div id='VIP_messageBox'>\
-			<div class='VIP_messageBox_close '>随心网 提示<span></span></div>\
+			<div class='VIP_messageBox_close '>"+VIP.WEBSITE_NAME+" 提示<span></span></div>\
 			<div class='VIP_messageBox_content'></div>\
 			<div class='VIP_messageBox_bottom'></div>\
 					</div>";

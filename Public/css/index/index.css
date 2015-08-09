@@ -143,7 +143,7 @@
 
 #article_show_new,#document_show_new {
 	float: left;
-	padding-top: 10px;
+	padding-top: 2px;
 	width: 100%;
 	padding-bottom: 10px;
 	min-height: 10px;
@@ -204,8 +204,9 @@
 }
 
 .index_aside_bottom {
-	width: 1024px;
-	position: fixed;
+	width: 1025px;
+	position:fixed;
+	display:none;
 	bottom: 0px;
 	left: auto;
 	right: auto;

@@ -44,6 +44,7 @@ VIP.browser = {
     language:(navigator.browserLanguage || navigator.language).toLowerCase()
 
 };
+
 function PrintBrowser(obj){
         document.writeln("语言版本: "+obj.browser.language+"<br/>");
         document.writeln(" 是否为移动终端: "+obj.browser.versions.mobile+"<br/>");
@@ -63,11 +64,12 @@ VIP.browser.versions.toString = function()
 //PrintBrowser(VIP);
 function CheckBrowser(){
     //alert(navigator.appVersion+"<br />");
-   // alert(navigator.userAgent+"<br />");
+    //alert(navigator.userAgent+"<br />");
+    VIPLog(navigator.userAgent)
     var s = null
     if(s = VIP.browser.versions.msie){
-        if( s<9)
-            window.location.href="http://www.vipmhxy.com/index.php/help";//退出
+        if( s<9) // 9  10 允许访问
+            window.location.href=VIP.Base()+"/index.php/help";//退出
     }
     if(s = VIP.browser.versions.firefox)
     {

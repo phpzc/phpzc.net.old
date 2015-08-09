@@ -1,4 +1,4 @@
-@charset
+﻿@charset
 utf-8
 /*
  * 公共背景 
@@ -132,7 +132,7 @@ table {
 
 /*背景*/
 body {
-	background: url("../img/background/bg.jpg") repeat;
+	background: #333/*url("../img/background/bg.jpg") repeat*/;
 	font-family: "Microsoft Yahei", Tahoma, Arial, Helvetica,
 		sans-serif !important;
 	_font-family: "Microsoft Yahei", "SimSun" !important
@@ -239,7 +239,7 @@ pre {
 	min-height: 100px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 100px;
+	margin-top: 60px;
 	background: #fff;
 }
 
@@ -433,7 +433,7 @@ contact_me form {
 	top: 0px;
 	left: 0;
 	z-index: 300;
-	opacity: 0.9;
+	opacity: 1;
 }
 
 #top_container {

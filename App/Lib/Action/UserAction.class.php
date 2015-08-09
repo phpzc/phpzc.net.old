@@ -312,4 +312,14 @@ class UserAction extends CommonAction {
 		session ( null );
 		redirect ( 'http://www.' . $_SERVER ['SERVER_NAME'] );
 	}
+	
+	//忘记密码
+	
+	
+	//验证激活码
+	
+	
+	//发邮件发验证码
+	
+	
 }

@@ -13,6 +13,7 @@
  * */
 
 var VIP={};
+VIP.WEBSITE_NAME = 'PeakPointer';
 VIP.namespace = function(str){
     var arr = str.split('.'), o = VIP;
     for(i=(arr[0]=="VIP")?1:0; i<arr.length; i++)
@@ -116,11 +117,18 @@ function VIPLog(msg)
 VIP.Base = function(){
     //获取基础地址
     var Base = window.location.href;
-    var i= Base.indexOf('.cn');
-    if( i==-1){
+    var i= Base.indexOf('.com');
+    var j = Base.indexOf('.cn');
+    if( i==-1 && j == -1){
         return false;
     }
-    Base = Base.substring(0,i+3);
+    if( i != -1){
+        Base = Base.substring(0,i+4);
+    }
+    if( j != -1){
+        Base = Base.substring(0,i+3);
+    }
+
     VIPLog(Base);
     return Base;
 }

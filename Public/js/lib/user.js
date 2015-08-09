@@ -194,7 +194,7 @@ VIP.User = {
             var p = $('#new_password').val().replace( /^\s+|\s+$/g, "" );
             var c = $('#form_code').val();
             var name = $('#new_name').val();
-          
+            
             var t = $('#current_type').val();
        
             if( u.indexOf("请输入邮箱") == 0 )
@@ -254,7 +254,7 @@ VIP.User = {
                     }
                     else
                     {
-                        $("#error_box_new").append("<p>"+msg.error_str+"</p>");
+                        $("#error_box_new").append("<p>"+t+msg.error_str+"</p>");
                         
                     }
                 }
