@@ -154,6 +154,8 @@ VIP.LoadScript = function(url)
 
     script.type = "text/javascript";
     script.src = VIP.Base()+url;
+    
+    VIPLog(script.src);
     document.body.appendChild(script);
 }
 //load script text
