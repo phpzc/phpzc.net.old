@@ -126,7 +126,7 @@ VIP.Base = function(){
         Base = Base.substring(0,i+4);
     }
     if( j != -1){
-        Base = Base.substring(0,i+3);
+        Base = Base.substring(0,j+3);
     }
 
     VIPLog(Base);
@@ -154,7 +154,7 @@ VIP.LoadScript = function(url)
 
     script.type = "text/javascript";
     script.src = VIP.Base()+url;
-    
+
     VIPLog(script.src);
     document.body.appendChild(script);
 }
