@@ -80,7 +80,16 @@ class MailAction extends CommonAction {
 			exit ();
 		} else {
 			$_SESSION ["mail"] ["send_time"] = time ();
-			
+
+            $mail = new PHPMailer (); // 建立邮件发送类
+		    $address = "zhang5474jj@163.com";
+		    $mail->IsSMTP (); // 使用SMTP方式发送
+		    $mail->Host = "smtp.163.com"; // 您的企业邮局域名
+		    $mail->SMTPAuth = true; // 启用SMTP验证功能
+		    $mail->Username = "zhang5474jj@163.com"; // 邮局用户名(请填写完整的email地址)
+		    $mail->Password = "zhangcheng123"; // 邮局密码
+		    $mail->Port = 25;
+
 			// 发送给 留言人 通知接受到了
 			$mail->From = "zhang5474jj@163.com"; // 邮件发送者email地址
 			$mail->FromName = "www.vipzhangcheng.cn";
