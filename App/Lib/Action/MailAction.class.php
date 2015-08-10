@@ -24,6 +24,8 @@ class MailAction extends CommonAction {
 		$mail = new PHPMailer (); // 建立邮件发送类
 		$address = "zhang5474jj@163.com";
 		$mail->IsSMTP (); // 使用SMTP方式发送
+		$mail->CharSet='utf8';
+		//$mail->IsHTML();
 		$mail->Host = "smtp.163.com"; // 您的企业邮局域名
 		$mail->SMTPAuth = true; // 启用SMTP验证功能
 		$mail->Username = "zhang5474jj@163.com"; // 邮局用户名(请填写完整的email地址)
@@ -32,31 +34,15 @@ class MailAction extends CommonAction {
 		$mail->From = "zhang5474jj@163.com"; // 邮件发送者email地址
 		$mail->FromName = "zhang5474jj@163.com";
 		$mail->AddAddress ( "1091796360@qq.com", "zc" ); // 收件人地址，可以替换成任何想要接收邮件的email信箱,格式是AddAddress("收件人email","收件人姓名")
-		                                              // $mail->AddReplyTo("",
-		                                              // "");
-		                                              
+		// $mail->AddReplyTo("",// "");                                         
 		// $mail->AddAttachment("/var/tmp/file.tar.gz"); // 添加附件
-		                                              // $mail->IsHTML(true); //
-		                                              // set email format to HTML
-		                                              // //是否使用HTML格式
+		// $mail->IsHTML(true); //
+		// set email format to HTML
+		// //是否使用HTML格式
 		
 		$mail->Subject = "www.vipzhangcheng.cn - ContactMe ： From User" . $_POST ["name"]; // 邮件标题
 		$mail->Body = "发件人：" . $_POST ["name"] . "\n联系邮箱：" . $_POST ["email"] . "\n 主题：" . $_POST ["subject"] . "\n 消息：" . $_POST ["message"]; // 邮件内容
-		                                                                                                                     // $mail->AltBody
-		                                                                                                                     // =
-		                                                                                                                     // "This
-		                                                                                                                     // is
-		                                                                                                                     // the
-		                                                                                                                     // body
-		                                                                                                                     // in
-		                                                                                                                     // plain
-		                                                                                                                     // text
-		                                                                                                                     // for
-		                                                                                                                     // non-HTML
-		                                                                                                                     // mail
-		                                                                                                                     // clients";
-		                                                                                                                     // //附加信息，可以省略
-		                                                                                                                     
+                                                                                                                // $mail->AltBody                                                                                                                
 		// 时间限制 10m
 		if (! isset ( $_SESSION ["mail"] ["send_time"] )) {
 			$_SESSION ["mail"] ["send_time"] = time ();
@@ -89,7 +75,7 @@ class MailAction extends CommonAction {
 		    $mail->Username = "zhang5474jj@163.com"; // 邮局用户名(请填写完整的email地址)
 		    $mail->Password = "zhangcheng123"; // 邮局密码
 		    $mail->Port = 25;
-
+		    $mail->CharSet='utf8';
 			// 发送给 留言人 通知接受到了
 			$mail->From = "zhang5474jj@163.com"; // 邮件发送者email地址
 			$mail->FromName = "www.vipzhangcheng.cn";
