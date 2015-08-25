@@ -5,16 +5,16 @@
 	<import type="css" file="css.search" />
     <include file="Public:head" />{// 头部公共文件 }
 
-    <div id="container" class="box_shadow box_shadow_inset .border_radius">
+    <div id="container" class="box_shadow box_shadow_inset .border_radius" >
         <include file="Document:document_head" />
 		
-        <div id="article_show">
+        <div id="document_show" >
         	<include file="Document:document_category" />
-        	<div id="article_global_desc" style="margin-left:25px;">
+        	  <div id="article_global_desc" style="margin-left:25px;float:left;">
         		<span>{$Think.get.tag|default=""|getTagNameById=###}{$Think.get.category| default=""|getCategoryNameById=###}</span>  资料筛选结果 <i>(共{$count}条)</i>
         	
         	</div>
-            <div id="article_list">
+            <div id="document_list" >
             		<script>
 					function tmpJump(url)
 					{
@@ -24,7 +24,7 @@
 
 					
 					<volist name="article_list" id="article_list">
-					<div class="document_foreach_item  ">
+					<div class="document_foreach_item  " >
 							<div class="document_left"><a href="javascript:;" title="{$article_list.title}"><img src="{$article_list.imgurl|replace_str=###}" width=160 height=160 /></a></div>
 							<div class="document_right">
 								<p class="document_right1">{$article_list.title}</p>
