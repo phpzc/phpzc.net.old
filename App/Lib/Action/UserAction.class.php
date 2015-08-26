@@ -310,7 +310,7 @@ class UserAction extends CommonAction {
 	public function logout() {
 		cookie ( null );
 		session ( null );
-		redirect ( 'http://www.' . $_SERVER ['SERVER_NAME'] );
+		redirect ( 'http://' . $_SERVER ['HTTP_HOST'] );
 	}
 	
 	//忘记密码
