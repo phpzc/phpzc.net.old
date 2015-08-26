@@ -132,11 +132,13 @@ table {
 
 /*背景*/
 body {
-	background: #333/*url("../img/background/bg.jpg") repeat*/;
+	/*background: url("../img/background/bg.jpg") repeat*/;
+	background:#333;
 	font-family: "Microsoft Yahei", Tahoma, Arial, Helvetica,
 		sans-serif !important;
 	_font-family: "Microsoft Yahei", "SimSun" !important
 }
+
 /*form*/
 input {
 	width: 200px;
@@ -1196,7 +1198,18 @@ background-position:-750px -330px;
 .c_unity{
     background-position:-750px -495px;
 }
-
+.c_android{
+	background-position:-750px -660px;
+}
+.c_ios{
+	background-position:-500px -660px;
+}
+.c_opengl{
+	background-position:-250px -660px;
+}
+.c_nginx{
+	background-position:0px -825px;
+}
 
 /* form  css*/
 .formTLeft{ text-align:left;}

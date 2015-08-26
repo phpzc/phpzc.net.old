@@ -34,6 +34,7 @@
 }
 
 .document_foreach_item {
+
 	width: 520px;
 	float: left;
 	padding: 20px 0px 0px 180px;
@@ -62,6 +63,7 @@
 	float: left;
 	width: 520px;
 	font-size: 12px;
+	
 }
 
 .document_right1 {
