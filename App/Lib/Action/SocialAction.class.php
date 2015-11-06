@@ -261,9 +261,22 @@ class SocialAction extends CommonAction {
 			exit ();
 		}
 
+		dump($_REQUEST);
+	}
+
+	public function github2()
+	{
+				if ($_SESSION ['has_login_by_social'] == 1) {
+			
+			$_SESSION ['has_login_by_social'] = 0;
+			
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			exit ();
+		}
+
 		$url = "https://github.com/login/oauth/authorize?";
 		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
-		$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn");
+		$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn/social/github");
 		$data['scope'] = "user";
 		$data['state'] = "zc";
 		foreach ($data as $key => $value) {
@@ -271,7 +284,7 @@ class SocialAction extends CommonAction {
 		}
 
 		$url = rtrim($url,'&');
-		
+
 		header ( "location:".$url );
 	}
 }
