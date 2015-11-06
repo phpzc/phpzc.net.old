@@ -302,7 +302,7 @@ class SocialAction extends CommonAction {
 			//echo $data;
 			curl_close($ch);
 			
-			$response = json_decode($data);
+			$response = json_decode($data,true);
 				
 			if($response['error'] != false){
 				$this->formErrorReferer('请清除cookie再登陆');
