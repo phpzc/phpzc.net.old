@@ -61,10 +61,12 @@
 			<?php
      	        if(empty($_SESSION["Auth"]['name'])){
                     //echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> | <a href="'.$WEBSITE['url'].'/social/qqAuth.html"  style="top:10px;position:relative;" id="ff"><img src="__PUBLIC__/img/social/Connect_logo_4.png"></a></div>';
-					echo '<div class="entrance_child"><a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> </div>';
-				
+					?>
+                    <div class="entrance_child"><a href="{$WEBSITE.url}/social/github2.html" id="git-login"><img src="__PUBLIC__/img/background/github.png" title="GitHub Login"></a>  |  <a href="javascript:void(0);" id="login">登录</a> | <a href="javascript:void(0);" id="register">注册</a> </div>
+				<?php
                 }else{
-
+?>
+<?php
                     echo '<div class="entrance_child">
                     <a href="">'.$_SESSION["Auth"]['name'].'</a> |  <a href="__ROOT__/user/logout.html" target="_self">退出</a>
                 </div>';
@@ -136,6 +138,12 @@
 		<div class="otherlogin">
 			<h3>使用社交帐号登录</h3>
 			<div>
+                <span id="github"></span><a href='{$WEBSITE.url}/social/github2.html'
+                    target="_self">GitHub</a>
+            </div>
+			
+			
+			<div>
 				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
 					target="_self">百度登录</a>
 			</div>
@@ -178,6 +186,10 @@
 		<div class="loginspace"></div>
 		<div class="otherlogin">
 			<h3>使用社交帐号登录</h3>
+			<div>
+                <span id="github"></span><a href='{$WEBSITE.url}/social/github2.html'
+                    target="_self">GitHub</a>
+            </div>
 			<div>
 				<span id="baidu"></span><a href='{$WEBSITE.url}/social/baidu.html'
 					target="_self">百度登录</a>

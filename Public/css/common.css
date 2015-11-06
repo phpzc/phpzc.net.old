@@ -785,7 +785,14 @@ contact_me form {
 .otherlogin div  #sina {
 	background-image: url("../img/background/sina.png");
 }
+.otherlogin div  #github {
+    background-image: url("../img/background/github.png");
+}
+#git-login{
 
+	position:relative;
+	top:10px;
+}
 .form_notice {
 	display:;
 	width: 330px;
