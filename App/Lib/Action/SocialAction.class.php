@@ -264,11 +264,14 @@ class SocialAction extends CommonAction {
 		$url = "https://github.com/login/oauth/authorize?";
 		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
 		$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn");
-		$data['scope'] = "user,user:email,public_repo";
+		$data['scope'] = "user";
 		$data['state'] = "zc";
 		foreach ($data as $key => $value) {
 			$url .= ($key."=".$value."&");
 		}
+
+		$url = rtrim($url,'&');
+		
 		header ( "location:".$url );
 	}
 }
