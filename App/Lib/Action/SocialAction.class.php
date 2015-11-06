@@ -223,6 +223,8 @@ class SocialAction extends CommonAction {
 				break;
 			case 'sina' :
 				$type = "sina";
+			case 'github':
+				$type = "github";
 				break;
 		}
 
@@ -236,7 +238,7 @@ class SocialAction extends CommonAction {
 			
 			$_SESSION ['Auth'] ['name'] = $result ['name'];
 			$_SESSION ['Auth'] ['id'] = $result ['id'];
-			$_SESSION ['Auth'] ['username'] = $result ['username'];
+			$_SESSION ['Auth'] ['username'] = $result ['username'];//邮箱
 			$_SESSION ['Auth'] ['login_type'] = $type;
 			
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
@@ -297,8 +299,27 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 			$data = curl_exec($ch);
-			echo $data;
+			//echo $data;
 			curl_close($ch);
+			
+			$response = json_decode($data);
+				
+			if($response['error'] != false){
+				$this->formErrorReferer('请清除cookie再登陆');
+				exit;
+			}
+			// 进入统一
+			$_SESSION ['Auth'] ['Social'] ['avatar_img'] = $response ['avatar_url'];
+			
+			$_SESSION ['Auth'] ['Social'] ['type'] = 'github';
+			$_SESSION ['Auth'] ['Social'] ['username'] = $response ['login'];
+			$_SESSION ['Auth'] ['Social'] ['email'] = $response ['email'];
+			$_SESSION ['Auth'] ['Social'] ['userid'] = $response ['id'];
+			$_SESSION ['Auth'] ['Social'] ['access_token'] = $access_token[1];
+			$_SESSION ['Auth'] ['Social'] ['code'] = $_REQUEST['code'];
+			
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=github" );
+
 			exit;
 	    }
 
