@@ -263,7 +263,7 @@ class SocialAction extends CommonAction {
 
 		$url = "https://github.com/login/oauth/authorize?";
 		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
-		$data['redirect_uri']="http://www.vipzhangcheng.cn";
+		$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn");
 		$data['scope'] = "user,user:email,public_repo";
 		$data['state'] = "zc";
 		foreach ($data as $key => $value) {
