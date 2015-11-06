@@ -261,12 +261,40 @@ class SocialAction extends CommonAction {
 			exit ();
 		}
 
+		if($_REQUEST['code']){
+			$url = "https://github.com/login/oauth/access_token";
+			$data['client_id'] = "c1d05cc24f15c5dfb7ce";
+			$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn/social/github");
+			$data['client_secret'] = "086b65793c9e409f8d6464fb1e692703dee2c4fa";
+			$data['code'] = $_REQUEST['code'];
+
+			$curlPost = '';
+
+			foreach ($data as $key => $value) {
+				$curlPost .= ($key.'='.$value.'&');
+			}
+			$curlPost = rtrim($curlPost,'&');
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+			$data = curl_exec($ch);
+
+			dump($data);
+			curl_close($ch);
+
+			dump($_REQUEST);
+			exit;
+	    }
+
 		dump($_REQUEST);
 	}
 
 	public function github2()
 	{
-				if ($_SESSION ['has_login_by_social'] == 1) {
+		if ($_SESSION ['has_login_by_social'] == 1) {
 			
 			$_SESSION ['has_login_by_social'] = 0;
 			
