@@ -252,7 +252,7 @@ class SocialAction extends CommonAction {
 		$this->display ();
 	}
 
-	public function baidu() {
+	public function github() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
 			$_SESSION ['has_login_by_social'] = 0;
