@@ -251,4 +251,24 @@ class SocialAction extends CommonAction {
 		
 		$this->display ();
 	}
+
+	public function baidu() {
+		if ($_SESSION ['has_login_by_social'] == 1) {
+			
+			$_SESSION ['has_login_by_social'] = 0;
+			
+			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			exit ();
+		}
+
+		$url = "https://github.com/login/oauth/authorize?";
+		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
+		$data['redirect_uri']="http://www.vipzhangcheng.cn";
+		$data['scope'] = "user,user:email,public_repo";
+		$data['state'] = "zc";
+		foreach ($data as $key => $value) {
+			$url .= ($key."=".$value."&");
+		}
+		header ( "location:".$url );
+	}
 }
