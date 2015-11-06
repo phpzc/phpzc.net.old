@@ -31,7 +31,9 @@ class SocialAction extends CommonAction {
 	public function baidu() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
-			$_SESSION ['has_login_by_social'] = 0;
+
+			cookie ( null );
+			session ( null );
 			
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
@@ -93,7 +95,9 @@ class SocialAction extends CommonAction {
 	public function qq() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
-			$_SESSION ['has_login_by_social'] = 0;
+
+			cookie ( null );
+			session ( null );
 			
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
@@ -126,7 +130,9 @@ class SocialAction extends CommonAction {
 	public function sina() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
-			$_SESSION ['has_login_by_social'] = 0;
+
+			cookie ( null );
+			session ( null );
 			
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
@@ -247,7 +253,7 @@ class SocialAction extends CommonAction {
 		}
 		
 		// 未绑定
-		
+		dump($_SESSION);
 		$this->assign ( "type", $type );
 		$this->assign ( "username", $_SESSION ['Auth'] ['Social'] ['username'] );
 		$this->assign ( "avatar_img", $_SESSION ['Auth'] ['Social'] ['avatar_img'] );
@@ -258,7 +264,9 @@ class SocialAction extends CommonAction {
 	public function github() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
 			
-			$_SESSION ['has_login_by_social'] = 0;
+
+			cookie ( null );
+			session ( null );
 			
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
@@ -330,9 +338,9 @@ class SocialAction extends CommonAction {
 	public function github2()
 	{
 		if ($_SESSION ['has_login_by_social'] == 1) {
-			
-			$_SESSION ['has_login_by_social'] = 0;
-			
+
+			cookie ( null );
+			session ( null );
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
 			exit ();
 		}
