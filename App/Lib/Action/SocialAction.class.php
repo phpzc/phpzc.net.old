@@ -223,6 +223,7 @@ class SocialAction extends CommonAction {
 				break;
 			case 'sina' :
 				$type = "sina";
+				break;
 			case 'github':
 				$type = "github";
 				break;
