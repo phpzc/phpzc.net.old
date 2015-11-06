@@ -287,8 +287,8 @@ class SocialAction extends CommonAction {
 			if(empty($data)){
 				exit;
 			}
-			$responseData = explode($data, '&');
-			$access_token = explode($responseData[0], '=');
+			$responseData = explode('&',$data);
+			$access_token = explode('=', $responseData[0]);
 
 			$url = "https://api.github.com/user?access_token=".$access_token[1];
 
