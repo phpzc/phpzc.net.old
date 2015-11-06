@@ -253,7 +253,7 @@ class SocialAction extends CommonAction {
 		}
 		
 		// 未绑定
-		dump($_SESSION);
+		//dump($_SESSION);
 		$this->assign ( "type", $type );
 		$this->assign ( "username", $_SESSION ['Auth'] ['Social'] ['username'] );
 		$this->assign ( "avatar_img", $_SESSION ['Auth'] ['Social'] ['avatar_img'] );
