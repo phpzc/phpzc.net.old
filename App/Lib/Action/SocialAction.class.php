@@ -282,10 +282,23 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
 			$data = curl_exec($ch);
 
-			dump($data);
+			//dump($data);
 			curl_close($ch);
+			if(empty($data)){
+				exit;
+			}
+			$responseData = explode($data, '&');
+			$access_token = explode($responseData[0], '=');
 
-			dump($_REQUEST);
+			$url = "https://api.github.com/user?access_token=".$access_token;
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+			$data = curl_exec($ch);
+			echo $data;
+			curl_close($ch);
 			exit;
 	    }
 
