@@ -290,7 +290,7 @@ class SocialAction extends CommonAction {
 			$responseData = explode($data, '&');
 			$access_token = explode($responseData[0], '=');
 
-			$url = "https://api.github.com/user?access_token=".$access_token;
+			$url = "https://api.github.com/user?access_token=".$access_token[1];
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
