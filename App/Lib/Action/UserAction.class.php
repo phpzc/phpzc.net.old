@@ -252,7 +252,8 @@ class UserAction extends CommonAction {
 		$array = array (
 				"qq",
 				"sina",
-				"baidu" 
+				"baidu",
+				"github"
 		);
 		
 		if (! in_array ( $this->_post ( 'type' ), $array )) {
