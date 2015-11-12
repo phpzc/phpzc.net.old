@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 /**
  * 第三方登录
  * 

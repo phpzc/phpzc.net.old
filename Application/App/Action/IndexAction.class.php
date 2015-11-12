@@ -1,5 +1,6 @@
 <?php
-//
+namespace App\Action;
+
 class IndexAction extends CommonAction {
 	public function index() {
 		// $a = parse_ini_file("test.ini",true);

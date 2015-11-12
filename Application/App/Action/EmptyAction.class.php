@@ -1,4 +1,6 @@
 <?php
+namespace App\Action;
+use Think\Action;
 class EmptyAction extends Action {
 	public function _initialize() {
 		// 分配网站名称

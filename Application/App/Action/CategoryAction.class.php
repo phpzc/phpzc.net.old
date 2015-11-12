@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class CategoryAction extends CommonAction {
 	/**
 	 * 只有我能访问这个页面

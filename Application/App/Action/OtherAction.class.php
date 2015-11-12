@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class OtherAction extends CommonAction {
 	public function index() {
 	}

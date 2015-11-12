@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class HelpAction extends CommonAction {
 	/**
 	 * 浏览不支持 说明通知

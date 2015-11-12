@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class KeywordAction extends CommonAction {
 	public function index() {
 	}

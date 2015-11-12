@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class BookAction extends CommonAction {
 	/*
 	 * @brief 设置每一页标题

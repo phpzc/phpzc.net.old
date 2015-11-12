@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class FormAction extends CommonAction {
 	
 	// 处理表单结果显示 页面 成功或者失败

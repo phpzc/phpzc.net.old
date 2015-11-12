@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class MailAction extends CommonAction {
 	/*
 	 * 留言发邮件通知我 姓名 30 邮箱 30 主题 30 消息 200

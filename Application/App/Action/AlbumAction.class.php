@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 /**
  * 
  * 相册 分类 具体的图片 在Photo 里面

@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class PhotoAction extends CommonAction {
 	
 	//删除图片

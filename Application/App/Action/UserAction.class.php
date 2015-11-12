@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 /*
  * 数据库长度限制 username 32 password 32 name 32
  */

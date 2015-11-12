@@ -1,4 +1,6 @@
 <?php
+namespace App\Action;
+use Think\Action;
 class CommonAction extends EmptyAction {
 	
     const CACHE_TIME = 86400; //1天

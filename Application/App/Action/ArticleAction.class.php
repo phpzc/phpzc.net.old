@@ -1,4 +1,5 @@
 <?php
+namespace App\Action;
 class ArticleAction extends CommonAction {
 	// 遍历列表 前20个文章
 	public function index() {
