@@ -68,8 +68,8 @@ class SocialAction extends CommonAction {
 			if ($profile === false) {
 				
 				// get user profile failed
-				// var_dump(var_export(array('errcode' => $baidu->errcode(),
-				// 'errmsg' => $baidu->errmsg()), true));
+				 var_dump(var_export(array('errcode' => $baidu->errcode(),
+				 'errmsg' => $baidu->errmsg()), true));
 				
 				var_dump ( $profile );
 				$user = null;
@@ -239,7 +239,7 @@ class SocialAction extends CommonAction {
 		
 		$User = M ("User" );
 		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
-
+		
 		if ($result) {
 			// 进行登录操作
 			
