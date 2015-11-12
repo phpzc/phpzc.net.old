@@ -1,0 +1,333 @@
+<include file="Public:doct" />
+
+    <include file="Public:head" />{// 头部公共文件 }
+    <import type="css" file="css.index.index" />
+    <import type="css" file="css.article.index" />
+    <import type="css" file="css.document.index" />
+	<import type="css" file="css.document.doc_url_type" />
+	<!--  <script type="text/javascript" src="__PUBLIC__/js/lib/jquery-1.7.2.min.js"></script>-->
+    <!--<script type="text/javascript" src="__PUBLIC__/js/lib/jquery.corner.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/lib/jquery.roundabout.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/lib/jquery.roundabout-shapes.js"></script>-->
+    <script type="text/javascript">
+$(function(){
+		   
+	/*$('.gla_inbox').corner('10px');*/
+	/*
+	$('#gla_box>ul').roundabout({
+		minOpacity:1,
+		btnNext: ".next",
+		duration: 1000,
+		reflect: true,
+		btnPrev: '.prev',
+		autoplay:true,
+		autoplayDuration:5000,
+		tilt:0,
+		shape: 'flurry'
+	});
+	*/
+});
+</script>
+    
+    <div id="container" class="box_shadow box_shadow_inset .border_radius">
+		<div id="container_global_desc">
+		<span id="index_icon"></span>
+		<span>首页 </span>
+		<span id="container_global_desc_notice"></span>
+		<span id="container_global_desc_notice_content">{$WEBSITE.name}开通了！</span>
+		</div>
+		<!--
+		<div id="photo_show_new">
+
+			<div id="gla_box">
+
+				<ul>
+					<volist name="article_list" id="article_photo">
+						<li>
+						<div class="gla_inbox">
+							<if condition="$article_photo.imgurl neq ''">
+					 			<img src="{$article_photo.imgurl}" width=250 height=165 alt="article_img" />
+					 		<else/>
+								<img src="/Public/img/background/logo.gif"  width=100  height=100 />
+							</if>
+							<a href="/article/detail/id/{$article_photo.id}.html"  target="_blank">{$article_photo.title| htmlspecialchars_decode| cut_str=###,20} 
+							</a>
+						</div>
+					</li>
+					</volist>
+
+				</ul>
+			</div>
+			<span class="prev">&nbsp;</span>
+			<span class="next">&nbsp;</span>
+		</div>
+		-->
+		{//最新文章}
+        <div id="article_show_new">
+            {// cocos2d-js 功能模块}
+            <!--
+            <div style="width:1024px;height:576px;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;-khtml-user-select: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <canvas id="gameCanvas" width="1024" height="576"></canvas>
+                <script src="/frameworks/cocos2d-html5/CCBoot.js"></script>
+                <script cocos src="main.js"></script>
+            </div>
+        	-->
+			<div class="index_common_title">
+				<a name="article_anchor"></a>
+				<h3><img src="__PUBLIC__/img/background/dailylists.jpg" width="120" height="37" alt="每日推荐" /></h3>
+			</div>
+            <div id="article_list">
+					<volist name="article_list" id="article_list">
+					<div class="article_foreach_item">
+					 		<div class="article_foreach_item_left">
+					 			<a href="/article/detail/id/{$article_list.id}.html"  target="_blank">
+					 				<if condition="$article_list.imgurl neq ''">
+					 				<img src="{$article_list.imgurl}" width=250 height=165 alt="article_img" />
+					 				<else/>
+					 				<div class="article_foreach_item_left_bg c_category {$article_list.imgurl_class}">
+					 				</div>
+					 				</if>
+					 			</a>
+							 </div>
+							
+							 <div class= "article_foreach_item_right">
+							 		<div class="article_foreach_item_right_title">
+								 		<a href="/article/detail/id/{$article_list.id}.html" 
+								 		title="{$article_list.title | htmlspecialchars_decode}" target="_blank">
+										{$article_list.title| htmlspecialchars_decode| cut_str=###,20} 
+										</a>
+							 		</div>
+							 		<div class="article_foreach_item_right_simple">
+							 			{$article_list.content| cut_str=###,70} 
+							 		</div>
+							 		<div class="article_foreach_item_right_category">				 			
+							 			<span><a href="__ROOT__/article/search.html?category={$article_list.bpath| getCategoryId}"  title="查看该分类下文章">{$article_list.bpath| getCategoryName}</a></span>
+							 		</div>
+							 </div>
+					</div>
+					</volist>
+            </div>
+			
+			{//热门文章}
+			<div class="rankDiv">
+				<div class="rankTitle">
+						<h3>热门文章</h3>
+						<p>&nbsp;</p>	
+				</div>
+				<ul>
+					<volist name="WebsiteCacheArticle"  id="WebsiteCacheArticle">
+					<li><span class='rank{$WebsiteCacheArticle.class}'>{$WebsiteCacheArticle.index}</span>
+					<a href="__ROOT__/article/detail/id/{$WebsiteCacheArticle.id}.html"  target="_blank" title="{$WebsiteCacheArticle.title}">{$WebsiteCacheArticle.title|htmlspecialchars_decode| cut_str=###,50}</a></li>
+					</volist>
+				</ul>
+			</div>			
+		</div>
+		
+				{//最新资料}
+		<div id="document_show_new">
+			<div class="index_common_title">
+				<a name="document_anchor"></a>
+				<h3><img src="__PUBLIC__/img/background/dailylists.jpg" width="120" height="37" alt="每日推荐" />
+			</h3></div>
+			<div id="document_list">
+			        <script>
+			        function tmpDownload(obj)
+			        {
+			        	$.ajax({
+			        		type:"post",
+			        		url:"__APP__/document/addvisit.html",
+			        		data:"id="+obj.id,
+			        		success:function(result){
+			        			VIPLog(result);
+			        		},
+			        		async:true
+			        	});
+			        	VIP.Jump(obj);
+			        };
+			        
+			        
+					function tmpJump(url,id)
+					{
+						VIP.MessageBox.createBoxConfirmCancle("下载地址："+url,{callback:tmpDownload,data:{url:url,islocal:false,id:id}});
+					}
+					</script>
+			<volist name="article_list2" id="article_list2">
+			<div class="document_foreach_item  ">
+					<div class="document_left"><a href="javascript:;" title="{$article_list2.title}"><img src="{$article_list2.imgurl|replace_str=###}" width=160 height=160 /></a></div>
+					<div class="document_right">
+						<p class="document_right1">{$article_list2.title}</p>
+						<p class="document_right2"><a href="javascript:alert('作者关联');">{$article_list2.author}</a>著   | 上传日期 {$article_list2.year}/{$article_list2.month}</p>
+						<p class="document_right3"></p>
+						<p class="document_right4">
+							<span>资料类型：</span><span class="doc_type_span_{$article_list2.doctype}"></span>
+							<span>| 资料分类：<a href="/document/search.html?category={$article_list2.bpath|getCategoryId=###}" title="查看同分类其他资料">{$article_list2.bpath| getCategoryName=###}</a></span>
+						</p>
+						<p class="document_right5">
+							<span>网盘地址类型：</span><span class="doc_pan_span_{$article_list2.urltype}"></span>
+							<a href="javascript:;" class="download" onclick='tmpJump("{$article_list2.url}","{$article_list2.id}")'></a>
+						</p>
+						
+					</div>
+			</div>
+			</volist>
+			</div>
+		
+			{//右侧热门资料}
+			<div class="rankDiv">
+				<div class="rankTitle">
+						<h3>热门资料</h3>
+						<p>&nbsp;</p>	
+				</div>
+				<ul>
+					<volist name="WebsiteCacheDocument"  id="WebsiteCacheDocument">
+					<li>
+						<span class='rank{$WebsiteCacheDocument.class}'>{$WebsiteCacheDocument.index}</span>
+						<a href="javascript:;" onclick='tmpJump("{$WebsiteCacheDocument.url}","{$WebsiteCacheDocument.realid}")' target="_blank"  title="{$WebsiteCacheDocument.title}">{$WebsiteCacheDocument.title| htmlspecialchars_decode| cut_str=###,50}</a>
+					</li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		
+		
+        {//分类大框}
+        {//
+        <div id="category_content">
+       
+        <volist name="category" id="category">
+        <div class="category_block G_border_radius G_box_shadow category_id{$category.id}"  val="category_id{$category.id}">
+            <p><a href="__ROOT__/article/search.html?category={$category.id}" title="随心网分类：{$category.name}">{$category.name}</a></p>
+            
+            <ul class="category_tip G_border_radius">
+            		<li ><a href="__ROOT__/article/search.html?category={$category.id}" title="文章">文章</a></li>
+            		<li><a href="" title="软件">软件</a></li>
+            		<li><a href="" title="读书">读书</a></li>
+            		<li><a href="__ROOT__/document/search.html?category={$category.id}" title="资料">资料</a></li>
+            </ul>
+        </div>
+        </volist>
+        </div>
+        }
+        <div class="index_aside_bottom">
+        	<ul>
+        	<li data="most_active"><a href="javascript:;">最常访问</a></li>
+        	<li data="article_show_new"><a href="#article_anchor">最新文章</a></li>
+        	<li data="document_show_new"><a href="#document_anchor">最新资料</a></li>
+        	{//
+        	<li data="book_show_new"><a href="javascript:;">最新读书</a></li>
+        	<li data="software_show_new"><a href="javascript:;">最新软件</a></li>
+        	<li data="category_content"><a href="javascript:;">系统分类</a></li>
+        	}
+        	</ul>
+        </div>
+        {//各分类下的列表}
+		<script>
+		/*
+			$(function(){
+
+				var len = $('.index_aside_bottom ul li').length;
+				var hidefunc = function(){
+					for(var i=0;i<len;i++){
+						 $('#'+$('.index_aside_bottom ul li').eq(i).attr("data") ).hide();
+					}
+				}
+				
+				var autoTime = 6000*10;
+				var autoInterval = null;
+				var autoTimeout = null;
+				var autoIndex = -1;
+				var autoRun = function(){
+					var arr=[];
+					arr.push($("#article_show_new"))
+					arr.push($("#document_show_new"))
+					arr.push($("#category_content"))
+					//alert(arr.length)
+					autoInterval = setInterval(function(){
+						autoIndex = (autoIndex + 1 >= arr.length) ? 0 :  (autoIndex + 1 );
+						hidefunc();
+						VIPLog(autoIndex);
+						arr[autoIndex].fadeIn();
+						
+					},autoTime)
+				};
+				autoRun();
+
+				for(var i=0;i<len;i++)
+				{
+					$('.index_aside_bottom ul li').eq(i).click(function(){
+						
+						hidefunc();
+						autoInterval = null;
+						autoTimeout = null;
+						$('#'+$(this).attr("data")).fadeIn();
+						autoTimeout = setTimeout(function(){
+							autoRun()
+						},autoTime*3);
+					})
+				}
+
+			})
+		*/
+		</script>
+		
+        {//友情链接}
+        <div id="friend_link">
+            <div id="friend_link_title"><p>友情链接</p></div>
+            <div id="friend_content">
+                <a href="http://www.cocos2d-x.org/" target="_blank">cocos2dx</a> <a href="http://cn.cocos2d-x.org/" target="_blank">cocos2dx中文网</a>
+                <script type="text/javascript" src="http://links.webscan.360.cn/index/index/10da9fd74a4caed78a86053aa30828e1"></script>
+            </div>
+        </div>
+    </div>
+		
+
+		
+    	<include file="Public:footer" />{// 底部公共文件 }
+</body>
+</html>
+
+<script>
+//分类特效
+    $(function(){
+        $(".category_block > p > a").hover(
+        function(){
+            $(this).stop();
+            //$(this).css("font-style","italic");
+            $(this).animate({fontSize:"65px"},300);
+   
+        },function(){
+            $(this).stop();
+            //$(this).css("font-style","normal");
+            $(this).animate({fontSize:"54px"},200);
+  
+        });
+        
+    	$(".category_block").hover(
+    	function(){
+    		$(this).find("ul").stop().fadeIn();
+    	},function(){
+    		$(this).find("ul").stop().fadeOut();
+    	});
+    	
+    	$.fn.getHexBackgroundColor = function() { 
+    		var rgb = $(this).css('background-color'); 
+    		rgb = rgb.match(/^rgb((d+),s*(d+),s*(d+))$/); 
+    		function hex(x) {return ("0" + parseInt(x).toString(16)).slice(-2);} 
+    		return rgb= "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]); 
+    		}
+
+    	$(".category_block > ul > li").hover(
+    	function(){
+    		var s1= $(this).parent().parent().css("background-color") || $(this).parent().parent().css("background")
+
+    		$(this).css("background-color","#fff");
+    		$(this).find("a").css("color",s1);
+    	},
+    	function(){
+
+    		$(this).css("background-color","#000");
+    		$(this).find("a").css("color","#fff");
+    	});
+    })
+
+</script>

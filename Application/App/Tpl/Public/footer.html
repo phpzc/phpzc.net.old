@@ -1,0 +1,64 @@
+
+<import type="js" file="js.lib.mail" />
+<script type="text/javascript" src="__PUBLIC__/js/lib/scrolltop.js"></script>
+<div id="toTop" style="width:54px;height:54px;background:url(__PUBLIC__/img/background/top.png);display:block;position:fixed;right:10px;bottom:10px;cursor:pointer;z-index:10;" title="回到顶部@Top"></div>
+<script>
+
+function inputdefaultValue(object)
+{
+        var obj = object.obj;
+        var val = object.value;
+        if(obj.val() == ''){
+         obj.val(val);
+        }
+        
+        obj.click(function(){
+            if($(this).val()  == val){
+                $(this).val('');
+            }
+        });
+
+        obj.blur(function(){
+            if($(this).val() == ''){
+                $(this).val(val)
+            }
+        });
+};
+	function contactMe_form()
+	{
+			VIP.Email.contactMe();
+	}
+	$(function(){
+		var str = '<div id="footer">\
+		<div class="contact_me">\
+			<h3>Contact me</h3>\
+			<p>In order to get in touch use the contact form below:</h4>\
+			<form method="post" action="__ROOT__/contact/index.html"">\
+				<input type="text" value="" id="contact1">\
+				<input type="text" value="" id="contact2">\
+				<input type="text" value="" id="contact3">\
+				<textarea id="contact4"></textarea>\
+				<span class="pull-right"><a href="javascript:contactMe_form();">Submit</a></span>\
+			</form>\
+		</div>\
+		<div width="250" height="550" style=""><iframe width="250" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=250&height=550&fansRow=2&ptype=1&speed=0&skin=10&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2712339911&verifier=ddfc65b1&dpc=1"></iframe></div>\
+		<dl>\
+		<!--  <dd>Connect：PeakPointer</dd>-->\
+		<!--<dd>Email：<font color="blue">zhang5474jj@163.com</font></dd>-->\
+		<!--<dd>&#169; All rights reserved</dd>-->\
+		<dd><i>&#169;2015-2023 {$WEBSITE.url_short} 京ICP备14007760-2号</i></dd>\
+		   </dl>\
+	</div>';
+
+		$("#container").append(str);
+		inputdefaultValue({obj:$("#contact1"),value:"Your Name"});
+		inputdefaultValue({obj:$("#contact2"),value:"Your Email"});
+		inputdefaultValue({obj:$("#contact3"),value:"Subject"});
+		inputdefaultValue({obj:$("#contact4"),value:"Your Message here...."});
+		//左右添加 黑色背景div
+		$("#toTop").scrollToTop();
+	})
+</script>
+
+{//百度分享}
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"2","bdPos":"right","bdTop":"242"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
