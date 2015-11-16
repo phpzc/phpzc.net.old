@@ -20,6 +20,12 @@ define('APP_DEBUG',True);
 // 定义应用目录
 define('APP_PATH','./Application/');
 
+// 定义绑定模块
+define('BIND_MODULE','App');
+
+//引入公共的常量文件
+
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

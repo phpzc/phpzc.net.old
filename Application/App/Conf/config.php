@@ -25,9 +25,10 @@ return array(
 	//'SHOW_PAGE_TRACE'        =>true,
     'URL_HTML_SUFFIX'=>'.html',
     'TMPL_PARSE_STRING'  =>array(
-     '__JS__' => '/Public/js', // 增加新的JS类库路径替换规则
-     '__UPLOAD__' => '/Public/upload', // 增加新的上传路径替换规则
-     '__CSS__'=>'/Public/css',
+		'__JS__' => '/Public/js', // 增加新的JS类库路径替换规则
+		'__UPLOAD__' => '/Public/Uploads', // 增加新的上传路径替换规则
+		'__CSS__'=>'/Public/css',
+		'__CUBE__' => '/Public/cube',
 	)
    
 );

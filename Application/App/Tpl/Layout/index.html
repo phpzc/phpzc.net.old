@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <block name="title"><title>{$title|default='测试'}</title></block>
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/bootstrap/bootstrap.min.css" />
+
+    <!-- RTL support - for demo only -->
+    <script src="__CUBE__/js/demo-rtl.js"></script>
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/nanoscroller.css" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/compiled/theme_styles.css" />
+
+
+    <!-- Favicon -->
+    <link type="image/x-icon" href="favicon.png" rel="shortcut icon" />
+
+
+    <!--[if lt IE 9]>
+    <script src="__CUBE__/js/html5shiv.js"></script>
+    <script src="__CUBE__/js/respond.min.js"></script>
+    <![endif]-->
+
+    <block name="head"></block>
+</head>
+<body>
+<div id="theme-wrapper">
+    <header class="navbar" id="header-navbar">
+        <div class="container">
+            <a href="index.html" id="logo" class="navbar-brand">
+                <img src="__CUBE__/img/logo.png" alt="" class="normal-logo logo-white"/>
+                <img src="__CUBE__/img/logo-black.png" alt="" class="normal-logo logo-black"/>
+                <img src="__CUBE__/img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
+            </a>
+
+            <div class="clearfix">
+                <button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+
+                <div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
+                    <ul class="nav navbar-nav pull-left">
+                        <li>
+                            <a class="btn" id="make-small-nav">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </li>
+                        <!--
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell"></i>
+                                <span class="count">8</span>
+                            </a>
+                            <ul class="dropdown-menu notifications-list">
+                                <li class="pointer">
+                                    <div class="pointer-inner">
+                                        <div class="arrow"></div>
+                                    </div>
+                                </li>
+                                <li class="item-header">You have 6 new notifications</li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-comment"></i>
+                                        <span class="content">New comment on 窶連wesome P...</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-plus"></i>
+                                        <span class="content">New user registration</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-envelope"></i>
+                                        <span class="content">New Message from George</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="content">New purchase</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-eye"></i>
+                                        <span class="content">New order</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item-footer">
+                                    <a href="#">
+                                        View all notifications
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="count">16</span>
+                            </a>
+                            <ul class="dropdown-menu notifications-list messages-list">
+                                <li class="pointer">
+                                    <div class="pointer-inner">
+                                        <div class="arrow"></div>
+                                    </div>
+                                </li>
+                                <li class="item first-item">
+                                    <a href="#">
+                                        <img src="__CUBE__/img/samples/messages-photo-1.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												George Clooney
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <img src="__CUBE__/img/samples/messages-photo-2.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												Emma Watson
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <img src="__CUBE__/img/samples/messages-photo-3.png" alt=""/>
+										<span class="content">
+											<span class="content-headline">
+												Robert Downey Jr.
+											</span>
+											<span class="content-text">
+												Look, just because I don't be givin' no man a foot massage don't make it
+												right for Marsellus to throw...
+											</span>
+										</span>
+                                        <span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+                                    </a>
+                                </li>
+                                <li class="item-footer">
+                                    <a href="#">
+                                        View all messages
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                New Item
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-archive"></i>
+                                        New Product
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        New Order
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-sitemap"></i>
+                                        New Category
+                                    </a>
+                                </li>
+                                <li class="item">
+                                    <a href="#">
+                                        <i class="fa fa-file-text"></i>
+                                        New Page
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+-->
+                    </ul>
+                </div>
+
+                <div class="nav-no-collapse pull-right" id="header-nav">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="mobile-search">
+                            <a class="btn">
+                                <i class="fa fa-search"></i>
+                            </a>
+
+                            <div class="drowdown-search">
+                                <form role="search">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search...">
+                                        <i class="fa fa-search nav-search-icon"></i>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </li>
+                        <li class="dropdown profile-dropdown">
+
+                            <empty name="Think.session.Auth.id">{//未登陆}
+                                <a href="#" class="dropdown-toggle">
+                                    <span class="hidden-xs" onclick="window.location='/user/login_page';">Sign up/Sign in</span>
+                                </a>
+                            <else/>{//已登陆}
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <if condition="$Think.session.Auth.id == 1">
+                                <img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" alt=""/>
+                                    <else/>
+                                <img src="__CUBE__/img/samples/scarlet-159.png">
+                                    </if>
+                                <span class="hidden-xs">{$Think.session.Auth.name|default='游客'}</span> <b class="caret"></b>
+                                </a>
+                            </empty>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <!--<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+                                <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>-->
+                                <li><a href="/user/logout"><i class="fa fa-power-off"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="hidden-xxs">
+                            <a class="btn">
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="page-wrapper" class="container">
+        <div class="row">
+            <div id="nav-col">
+                <section id="col-left" class="col-left-nano">
+                    <div id="col-left-inner" class="col-left-nano-content">
+                        <if condition="$Think.session.Auth.id neq '' ">
+                        <div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
+                            <if condition="$Think.session.Auth.id == 1">
+                                <img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" alt=""/>
+                            <else/>
+                                <img src="__CUBE__/img/samples/scarlett-300.jpg">
+                            </if>
+                            <div class="user-box">
+									<span class="name">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            {$Think.session.Auth.name|default='游客'}
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+										<ul class="dropdown-menu">
+                                            <!--
+                                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+                                            <li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+                                            <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>-->
+                                            <li><a href="/user/logout"><i class="fa fa-power-off"></i>Logout</a></li>
+                                        </ul>
+									</span>
+									<span class="status">
+										<i class="fa fa-circle"></i> Online
+									</span>
+                            </div>
+                        </div>
+                        </if>
+                        <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li class="nav-header nav-header-first hidden-sm hidden-xs">
+                                    Navigation
+                                </li>
+                                <li >
+                                    <a href="/">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span>Index</span>
+                                        <!--<span class="label label-primary label-circle pull-right">28</span>-->
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-file-text-o"></i>
+                                        <span>Articles</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="/" class="active">
+                                                All Articles
+                                            </a>
+                                            <a href="/" >
+                                                @Add Article
+                                            </a>
+                                            <a href="/" >
+                                                @My Articles
+                                            </a>
+                                            <volist name="WebsiteCategory" id="WebsiteCategory">
+                                            <a href="#" title="Articles——{$WebsiteCategory.name}">
+                                                <b>{$WebsiteCategory.name}</b>
+                                            </a>
+                                            </volist>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-copy"></i>
+                                        <span>Documents</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-bar-chart-o"></i>
+                                        <span>Images</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-file-text-o"></i>
+                                        <span>About</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="fa fa-bar-chart-o"></i>
+                                        <span>Web Metrics</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div id="nav-col-submenu"></div>
+            </div>
+            <div id="content-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div id="content-header" class="clearfix">
+                            <div class="pull-left">
+                                <ol class="breadcrumb">
+                                    <li><a href="/">Home</a></li>
+                                    <li class="active"><span>当前页面的说明 无地址{$action}</span></li>
+                                </ol>
+
+                                <h1>当前页面的说明{$action}</h1>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <block name="content">
+                    {//接下来每个页面内容}
+                </block>
+                <footer id="footer-bar" class="row">
+                    <p id="footer-copyright" class="col-xs-12">
+                        Powered by ZhangCheng - <?php echo date('Y');?>.
+                    </p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="config-tool" class="closed">
+    <a id="config-tool-cog">
+        <i class="fa fa-cog"></i>
+    </a>
+
+    <div id="config-tool-options">
+        <h4>Layout Options</h4>
+        <ul>
+            <li>
+                <div class="checkbox-nice">
+                    <input type="checkbox" id="config-fixed-header" />
+                    <label for="config-fixed-header">
+                        Fixed Header
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox-nice">
+                    <input type="checkbox" id="config-fixed-sidebar" />
+                    <label for="config-fixed-sidebar">
+                        Fixed Left Menu
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox-nice">
+                    <input type="checkbox" id="config-fixed-footer" />
+                    <label for="config-fixed-footer">
+                        Fixed Footer
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox-nice">
+                    <input type="checkbox" id="config-boxed-layout" />
+                    <label for="config-boxed-layout">
+                        Boxed Layout
+                    </label>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox-nice">
+                    <input type="checkbox" id="config-rtl-layout" />
+                    <label for="config-rtl-layout">
+                        Right-to-Left
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <br/>
+        <h4>Skin Color</h4>
+        <ul id="skin-colors" class="clearfix">
+            <li>
+                <a class="skin-changer" data-skin="" data-toggle="tooltip" title="Default" style="background-color: #34495e;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-white" data-toggle="tooltip" title="White/Green" style="background-color: #2ecc71;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer blue-gradient" data-skin="theme-blue-gradient" data-toggle="tooltip" title="Gradient">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-turquoise" data-toggle="tooltip" title="Green Sea" style="background-color: #1abc9c;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-amethyst" data-toggle="tooltip" title="Amethyst" style="background-color: #9b59b6;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-blue" data-toggle="tooltip" title="Blue" style="background-color: #2980b9;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-red" data-toggle="tooltip" title="Red" style="background-color: #e74c3c;">
+                </a>
+            </li>
+            <li>
+                <a class="skin-changer" data-skin="theme-whbl" data-toggle="tooltip" title="White/Blue" style="background-color: #3498db;">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<!-- global scripts -->
+<script src="__CUBE__/js/demo-skin-changer.js"></script> <!-- only for demo -->
+
+<script src="__CUBE__/js/jquery.js"></script>
+<script src="__CUBE__/js/bootstrap.js"></script>
+<script src="__CUBE__/js/jquery.nanoscroller.min.js"></script>
+<script src="__CUBE__/js/demo.js"></script>
+<!-- theme scripts -->
+<script src="__CUBE__/js/scripts.js"></script>
+<script src="__CUBE__/js/pace.min.js"></script>
+
+<block name="after"></block>
+
+</body>
+</html>

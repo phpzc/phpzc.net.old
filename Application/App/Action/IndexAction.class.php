@@ -30,6 +30,11 @@ class IndexAction extends CommonAction {
 		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 3)->select ();
 		
 		$this->assign ( "article_list2", $all );
+
+		/*$this->assign('data',array(
+			'id'=>1,
+			'username'=>'peak',
+		));*/
 		$this->display ();
 	}
 }

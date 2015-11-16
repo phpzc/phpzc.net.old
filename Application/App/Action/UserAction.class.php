@@ -9,7 +9,8 @@ class UserAction extends CommonAction {
 	 */
 	public function login() {
 		$error_code = array ();
-		
+
+		/*
 		if ($_POST ["code"] != $_SESSION ["form"] ["code"]) {
 			$error_code = array (
 					"error_code" => 3,
@@ -18,15 +19,22 @@ class UserAction extends CommonAction {
 			echo json_encode ( $error_code );
 			exit ();
 		}
-		
-		$User = D ( "User" );
-		$email = $this->_post ( "email" );
-		$password = $this->_post ( "password" );
+		*/
+
+		$User = D ( 'User' );
+		$email = I('post.email','string');
+		$password = I( 'post.password','string' );
 		
 		$res = $User->where ( array (
-				"username" => $email 
+				'username' => $email
 		) )->find ();
 		if (! $res) {
+
+			if(!IS_AJAX){
+				redirect('/user/login_page');
+				exit;
+			}
+
 			$error_code = array (
 					"error_code" => 1,
 					"error_str" => "账号不存在" 
@@ -42,10 +50,21 @@ class UserAction extends CommonAction {
 				// cookie
 				// setCookie("",);
 				// }
+				if(!IS_AJAX){
+					redirect('/');
+					exit;
+				}
+
 				$error_code = array (
 						"success" => "1" 
 				);
 			} else {
+				if(!IS_AJAX){
+					redirect('/user/login_page');
+					exit;
+				}
+
+
 				$error_code = array (
 						"error_code" => 2,
 						"error_str" => "密码不正确" 
@@ -60,7 +79,8 @@ class UserAction extends CommonAction {
 	 */
 	public function reg() {
 		$error_code = array ();
-		
+
+		/*
 		if ($_POST ["code"] != $_SESSION ["form"] ["code"]) {
 			$error_code = array (
 					"error_code" => 3,
@@ -69,17 +89,35 @@ class UserAction extends CommonAction {
 			echo json_encode ( $error_code );
 			exit ();
 		}
-		
+		*/
+
 		$User = D ( "User" );
-		$email = $this->_post ( "email" );
-		$password = md5 ( $this->_post ( "password" ) );
-		$name = htmlspecialchars ( $this->_post ( "name" ) );
+		$email = I('post.email','string');
+		$password = md5 ( I('post.password','string') );
+		$name = htmlspecialchars ( I( 'post.name','string' ) );
+		if(empty($email) OR empty($password)){
+			if(!IS_AJAX){
+				redirect('/user/register_page');
+				exit;
+			}
+			$error_code = array (
+					"error_code" => 3,
+					"error_str" => "数据不存在"
+			);
+			echo json_encode ( $error_code );
+			exit ();
+		}
 		// 长度
 		
 		$res = $User->where ( array (
 				"username" => $email 
 		) )->field ( 'id' )->find ();
 		if ($res) {
+			if(!IS_AJAX){
+				redirect('/user/register_page');
+				exit;
+			}
+
 			$error_code = array (
 					"error_code" => 1,
 					"error_str" => "账号已存在" 
@@ -89,10 +127,15 @@ class UserAction extends CommonAction {
 		}
 		
 		$res2 = $User->where ( array (
-				"name" => $name 
+				"name" => $name
 		) )->field ( 'id' )->find ();
 		
 		if ($res2) {
+			if(!IS_AJAX){
+				redirect('/user/register_page');
+				exit;
+			}
+
 			$error_code = array (
 					"error_code" => 2,
 					"error_str" => "昵称重复" 
@@ -116,12 +159,23 @@ class UserAction extends CommonAction {
 			// 登录操作初始化session、
 			$_SESSION ['Auth'] ['name'] = $name;
 			$_SESSION ['Auth'] ['id'] = $r;
-			$_SESSION ['Auth'] ['username'] = $username;
-			
+			$_SESSION ['Auth'] ['username'] = $name;
+
+			if(!IS_AJAX){
+				redirect('/');
+				exit;
+			}
+
 			$error_code = array (
 					"success" => "1" 
 			);
 		} else {
+
+			if(!IS_AJAX){
+				redirect('/user/register_page');
+				exit;
+			}
+
 			$error_code = array (
 					"error_code" => 4,
 					"error_str" => "数据添加失败" 
@@ -314,7 +368,20 @@ class UserAction extends CommonAction {
 		session ( null );
 		redirect ( 'http://' . $_SERVER ['HTTP_HOST'] );
 	}
-	
+
+	/*
+	 *
+	 *
+	 */
+	public function login_page()
+	{
+		$this->display('user/login');
+	}
+
+	public function register_page()
+	{
+		$this->display('user/register');
+	}
 	//忘记密码
 	
 	

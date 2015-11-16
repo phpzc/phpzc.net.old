@@ -11,13 +11,13 @@ class EmptyAction extends Action {
 	}
 	public function _empty() {
 		header ( "HTTP/1.0 404 Not Found" );
-		$this->display ( 'Public:404' );
+		$this->display ( 'Public:error-404' );
 		exit ();
 	}
 	
 	// 404
 	public function index() {
 		header ( "HTTP/1.0 404 Not Found" );
-		$this->display ( 'Public:404' );
+		$this->display ( 'Public:error-404' );
 	}
 }
