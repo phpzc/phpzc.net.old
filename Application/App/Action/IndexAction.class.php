@@ -12,7 +12,7 @@ class IndexAction extends CommonAction {
 		$r = $c->where ( "pid=0" )->select ();
 		
 		$article = M ( "Article" );
-		$res = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 3 )->select ();
+		$res = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 5 )->select ();
 		
 		foreach ( $res as $k => $v ) {
 			$res [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
@@ -27,7 +27,7 @@ class IndexAction extends CommonAction {
 		$this->assign ( 'category', $r );
 		
 		$article = M ( "Document" );
-		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 3)->select ();
+		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 5)->select ();
 		
 		$this->assign ( "article_list2", $all );
 

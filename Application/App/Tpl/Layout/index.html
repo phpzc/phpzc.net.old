@@ -35,7 +35,7 @@
 <div id="theme-wrapper">
     <header class="navbar" id="header-navbar">
         <div class="container">
-            <a href="index.html" id="logo" class="navbar-brand">
+            <a href="/index.html" id="logo" class="navbar-brand">
                 <img src="__CUBE__/img/logo.png" alt="" class="normal-logo logo-white"/>
                 <img src="__CUBE__/img/logo-black.png" alt="" class="normal-logo logo-black"/>
                 <img src="__CUBE__/img/logo-small.png" alt="" class="small-logo hidden-xs hidden-sm hidden"/>
@@ -324,9 +324,9 @@
                                             <a href="/" >
                                                 @My Articles
                                             </a>
-                                            <volist name="WebsiteCategory" id="WebsiteCategory">
-                                            <a href="#" title="Articles——{$WebsiteCategory.name}">
-                                                <b>{$WebsiteCategory.name}</b>
+                                            <volist name="WebsiteCategory" id="WebCategory">
+                                            <a href="#" title="Articles——{$WebCategory.name}">
+                                                <b>{$WebCategory.name}</b>
                                             </a>
                                             </volist>
                                         </li>

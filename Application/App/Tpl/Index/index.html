@@ -43,7 +43,7 @@
 
                     <div class="project-box-ultrafooter clearfix">
                         <img class="project-img-owner" alt="" src="__CUBE__/img/samples/scarlet-159.png" data-toggle="tooltip" title="Scarlett Johansson"/>
-                        <a href="/articles/index.html" class="link pull-right">
+                        <a href="/article/index.html" class="link pull-right">
                             <i class="fa fa-arrow-circle-right fa-lg"></i>
                         </a>
                     </div>
@@ -146,6 +146,7 @@
             <div class="main-box clearfix">
                 <header class="main-box-header clearfix">
                     <h1>Latest Articles</h1>
+                    <hr>
                 </header>
                 <div class="row">
                     <div class="col-lg-12">
@@ -180,44 +181,61 @@
         </div>
     </div>
 
+    {// doc}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box">
+                <header class="main-box-header">
+                    <h1>Latest Document</h1>
+                    <hr>
+                </header>
+
+                <div class="main-box-body">
+                    <div id="gallery-photos-lightbox">
+                        <ul class="clearfix gallery-photos">
+                            <volist name="article_list2" id="document_data">
+                            <li style="float:left;width:160px;height:160px;position:relative;margin:30px;">
+                                <a href="{$document_data.url}" target="_blank" title="Download:{$document_data.title}">
+                                <img src="{$document_data.imgurl|replace_str=###}" width=160 height=160 style="position:relative;z-index:1;border:1px solid #333">
+                               <span style="text-align:center;position: absolute;bottom: 0;left: 0;width:160px;height: auto;line-height: 20px;font-size: 16px;background-color: #444;color: #fff;z-index:3;opacity: 0.7;">{$document_data.title} </span>
+                                </a>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     {//modal form div}
     <div class="md-modal md-effect-4" id="modal-4">
         <div class="md-content">
             <div class="modal-header">
                 <button class="md-close close">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Apply for link</h4>
             </div>
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
+                        <label for="exampleInputEmail1">Your Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleTextarea">Textarea</label>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <label for="exampleInputPassword1">Your site url</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter url">
                     </div>
 
-                    <div class="form-inline form-inline-box">
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option>Active</option>
-                                <option>Inactive</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-link"><i class="fa fa-eye"></i> Preview</button>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Your site name</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter site name">
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -227,7 +245,8 @@
         <div class="col-lg-12">
             <div class="main-box clearfix">
                 <header class="main-box-header clearfix">
-                    <h2>Links</h2>
+                    <h1>Links</h1>
+                    <hr>
                 </header>
                 <div class="main-box-body clearfix">
                     <a href="http://pecl.php.net/index.php"><button type="button" class="btn btn-info">PECL</button></a>
@@ -235,7 +254,7 @@
                     <a href="http://www.phpcomposer.com/"><button type="button" class="btn btn-info">phpcomposer</button></a>
                 </div>
                 <div class="main-box-body clearfix">
-                    <button class="md-trigger btn btn-primary mrg-b-lg" data-modal="modal-4">Add Link</button>
+                    <button class="md-trigger btn btn-danger mrg-b-lg" data-modal="modal-4">Add Link</button>
 
                 </div>
             </div>

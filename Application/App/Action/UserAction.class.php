@@ -51,6 +51,16 @@ class UserAction extends CommonAction {
 				// setCookie("",);
 				// }
 				if(!IS_AJAX){
+
+					if($_POST['remember'] == '1')
+					{
+						cookie('email',$res ['username']);
+						cookie('password',$password);
+					}else{
+						cookie('email',null);
+						cookie('password',null);
+					}
+
 					redirect('/');
 					exit;
 				}
@@ -364,7 +374,7 @@ class UserAction extends CommonAction {
 	 * @brief 退出
 	 */
 	public function logout() {
-		cookie ( null );
+		//cookie ( null );
 		session ( null );
 		redirect ( 'http://' . $_SERVER ['HTTP_HOST'] );
 	}

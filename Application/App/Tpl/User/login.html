@@ -52,17 +52,17 @@
                                     <form role="form" action="/user/login" method="post">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input class="form-control" type="email" placeholder="Email address" name="email" />
+                                            <input class="form-control" type="email" placeholder="Email address" name="email" value="{$Think.cookie.email}"/>
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password" name="password" />
+                                            <input type="password" class="form-control" placeholder="Password" name="password" value="{$Think.cookie.password}"/>
                                         </div>
                                         <div id="remember-me-wrapper">
                                             <div class="row">
                                                 <div class="col-xs-6">
                                                     <div class="checkbox-nice">
-                                                        <input type="checkbox" id="remember-me" checked="checked" name="remember" />
+                                                        <input type="checkbox" id="remember-me" checked="checked" name="remember" value="1"/>
                                                         <label for="remember-me">
                                                             Remember me
                                                         </label>

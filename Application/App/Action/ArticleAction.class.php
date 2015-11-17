@@ -45,7 +45,7 @@ class ArticleAction extends CommonAction {
 	public function create() {
 		// 登录检测
 		$this->formLoginCheck ();
-		
+		//dump($_SESSION ["website"] ["category"]);
 		$this->display ();
 	}
 	
@@ -54,8 +54,6 @@ class ArticleAction extends CommonAction {
 		$this->formLoginCheck ();
 		// 组织数据
 
-		dump($_REQUEST);
-		exit;
 
 		$data ["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
 		$data ["content"] = htmlspecialchars ( $_REQUEST ["form_article"] );
