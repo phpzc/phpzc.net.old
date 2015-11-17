@@ -34,7 +34,7 @@ class DocumentAction extends CommonAction {
 		// order by id desc limit 20) a inner join vip_user u on a.uid = u.id");
 		$all = $article->where ( "isdel=0" )->count ();
 		import ( "ORG.Util.Page" ); // 导入分页类
-		$page = new Page ( $all, 8 );
+		$page = new \Think\Page ( $all, 8 );
 		$page->setConfig ( 'header', '篇资料' );
 		$page->setConfig ( 'prev', 'Prev Page' );
 		$page->setConfig ( 'next', 'Next Page' );
