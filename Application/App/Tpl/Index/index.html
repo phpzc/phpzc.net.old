@@ -1,1 +1,274 @@
 <extend name="Layout/index" />
+<block name="head">
+    <!--timeline-->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/timeline.css">
+    <!--modal -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/nifty-component.css"/>
+</block>
+<block name="content">
+    {//}
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box emerald-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header emerald-bg">
+                        <div class="name">
+                            <a href="#">
+                                The Articles
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="39">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">completed</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">12</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">1</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">82</span>
+                            <span class="label">Messages</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/scarlet-159.png" data-toggle="tooltip" title="Scarlett Johansson"/>
+                        <a href="/articles/index.html" class="link pull-right">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box green-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header green-bg">
+                        <div class="name">
+                            <a href="#">
+                                The Documents
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="86" data-bar-color="#2ecc71">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">completed</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">12</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">1</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">82</span>
+                            <span class="label">Messages</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/lima-300.jpg" data-toggle="tooltip" title="Adriana Lima"/>
+
+                        <a href="#" class="link pull-right">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box red-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header red-bg">
+                        <div class="name">
+                            <a href="#">
+                                The Pictures
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="79" data-bar-color="#e74c3c">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">completed</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">12</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">1</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">82</span>
+                            <span class="label">Messages</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/robert-300.jpg" data-toggle="tooltip" title="Robert Downey Jr."/>
+
+                        <a href="#" class="link pull-right">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {//}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h1>Latest Articles</h1>
+                </header>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section id="cd-timeline" class="cd-container">
+
+                        <volist name="article_list" id="article_list">
+                            <div class="cd-timeline-block">
+                                <div class="cd-timeline-img cd-location">
+                                    <i class="fa fa-map-marker fa-2x"></i>
+                                </div>
+
+                                <div class="cd-timeline-content">
+                                    <h2>{$article_list.title| htmlspecialchars_decode| cut_str=###,20}</h2>
+                                    <p>{$article_list.content| cut_str=###,70} </p>
+                                    <div class="clearfix">
+                                        <a class="btn btn-primary pull-right"
+                                           href="/article/detail/id/{$article_list.id}.html"
+                                           target="_blank">
+                                            Read more
+                                        </a>
+                                    </div>
+                                <span class="cd-date">
+                                    {$article_list.time|date="Y/m/d",###}
+                                </span>
+                                </div>
+                            </div>
+                        </volist>
+                        </section>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {//modal form div}
+    <div class="md-modal md-effect-4" id="modal-4">
+        <div class="md-content">
+            <div class="modal-header">
+                <button class="md-close close">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleTextarea">Textarea</label>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-inline form-inline-box">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-link"><i class="fa fa-eye"></i> Preview</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+
+    {//modal link}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h2>Links</h2>
+                </header>
+                <div class="main-box-body clearfix">
+                    <a href="http://pecl.php.net/index.php"><button type="button" class="btn btn-info">PECL</button></a>
+                    <a href="https://launchpad.net/gearmand"><button type="button" class="btn btn-info">Gearmand</button></a>
+                    <a href="http://www.phpcomposer.com/"><button type="button" class="btn btn-info">phpcomposer</button></a>
+                </div>
+                <div class="main-box-body clearfix">
+                    <button class="md-trigger btn btn-primary mrg-b-lg" data-modal="modal-4">Add Link</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-overlay"></div><!-- the overlay element -->
+</block>
+<block name="after">
+    <script src="__CUBE__/js/jquery.easypiechart.min.js"></script>
+
+    <!--modal -->
+    <script src="__CUBE__/js/modernizr.custom.js"></script>
+    <script src="__CUBE__/js/classie.js"></script>
+    <script src="__CUBE__/js/modalEffects.js"></script>
+    <!--timeline -->
+    <script src="__CUBE__/js/modernizr.js"></script>
+    <script src="__CUBE__/js/timeline.js"></script>
+    <!-- this page specific inline scripts -->
+    <script>
+        $(function() {
+            $('.chart').easyPieChart({
+                easing: 'easeOutBounce',
+                onStep: function(from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                },
+                barColor: '#3498db',
+                trackColor: '#f2f2f2',
+                scaleColor: false,
+                lineWidth: 8,
+                size: 130,
+                animate: 1500
+            });
+        });
+    </script>
+</block>

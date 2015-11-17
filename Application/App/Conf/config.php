@@ -3,7 +3,7 @@ return array(
     //'配置项'=>'配置值'
  	'DB_TYPE'               => 'mysql',     // 数据库类型
 	'DB_HOST'               => '127.0.0.1', // 服务器地址
-	'DB_NAME'               => 'sq_vipmhxy',          // 数据库名
+	'DB_NAME'               => 'sql_vipmhxy',          // 数据库名
 	'DB_USER'               => 'root',      // 用户名
 	'DB_PWD'                => 'root',          // 密码
 	'DB_PORT'               => '3306',        // 端口
@@ -25,10 +25,12 @@ return array(
 	//'SHOW_PAGE_TRACE'        =>true,
     'URL_HTML_SUFFIX'=>'.html',
     'TMPL_PARSE_STRING'  =>array(
-		'__JS__' => '/Public/js', // 增加新的JS类库路径替换规则
-		'__UPLOAD__' => '/Public/Uploads', // 增加新的上传路径替换规则
-		'__CSS__'=>'/Public/css',
-		'__CUBE__' => '/Public/cube',
-	)
-   
+			'__JS__' => '/Public/js', // 增加新的JS类库路径替换规则
+			'__UPLOAD__' => '/Public/Uploads', // 增加新的上传路径替换规则
+			'__CSS__'=>'/Public/css',
+			'__CUBE__' => '/Public/cube',
+			'__PHPJS__' => '/Public/phpjs/functions',
+			'__UEDITOR__' => '/Public/baidu/UEditor',
+	),
+
 );

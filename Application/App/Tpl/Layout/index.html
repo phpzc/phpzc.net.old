@@ -31,7 +31,7 @@
 
     <block name="head"></block>
 </head>
-<body>
+<body class="boxedLayout">
 <div id="theme-wrapper">
     <header class="navbar" id="header-navbar">
         <div class="container">
@@ -249,11 +249,15 @@
                                 <li><a href="/user/logout"><i class="fa fa-power-off"></i>Logout</a></li>
                             </ul>
                         </li>
+                        <empty name="Think.session.Auth.id">
+
+
                         <li class="hidden-xxs">
-                            <a class="btn">
+                            <a class="btn" title="Logout">
                                 <i class="fa fa-power-off"></i>
                             </a>
                         </li>
+                        </empty>
                     </ul>
                 </div>
             </div>
@@ -311,10 +315,10 @@
                                     </a>
                                     <ul class="submenu">
                                         <li>
-                                            <a href="/" class="active">
+                                            <a href="/article/index" class="active">
                                                 All Articles
                                             </a>
-                                            <a href="/" >
+                                            <a href="/article/create" >
                                                 @Add Article
                                             </a>
                                             <a href="/" >
@@ -371,10 +375,10 @@
                             <div class="pull-left">
                                 <ol class="breadcrumb">
                                     <li><a href="/">Home</a></li>
-                                    <li class="active"><span>当前页面的说明 无地址{$action}</span></li>
+                                    <li class="active"><span>{$WEBSITE.CONTROLLER_NAME}</span></li>
                                 </ol>
 
-                                <h1>当前页面的说明{$action}</h1>
+                                <h1>{$bread_crumbs}</h1>
                             </div>
 
                         </div>
@@ -385,7 +389,7 @@
                 </block>
                 <footer id="footer-bar" class="row">
                     <p id="footer-copyright" class="col-xs-12">
-                        Powered by ZhangCheng - <?php echo date('Y');?>.
+                        Powered by ZhangCheng - <?php echo date('Y');?>.京ICP备14007760-2号
                     </p>
                 </footer>
             </div>

@@ -61,7 +61,7 @@ class AlbumAction extends CommonAction {
 	
 	//查询相册信息 及相关照片信息 返回json  
 	public function detail() {
-		$id = $this->_get ( "id" );
+		$id = I("get.id",'integer' );
 		if (empty ( $id )) {
 			$this->_empty ();
 		}

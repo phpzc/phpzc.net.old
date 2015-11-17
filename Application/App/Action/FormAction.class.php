@@ -7,10 +7,10 @@ class FormAction extends CommonAction {
 	}
 	public function success() {
 		// 标题
-		$title = $this->_get ( "title" );
+		$title = I( "get.title" );
 		// 跳转页面
-		$url = $this->_get ( "url" );
-		$sec = $this->_get ( "sec" );
+		$url = I( "get.url" );
+		$sec = I( "get.sec" );
 		$this->assign ( "title", $title );
 		$this->assign ( "url", $url );
 		$this->assign ( "sec", $sec );
@@ -18,10 +18,10 @@ class FormAction extends CommonAction {
 	}
 	public function error() {
 		// 标题
-		$title = $this->_get ( "title" );
+		$title = I( "get.title" );
 		// 跳转页面
-		$url = $this->_get ( "url" );
-		$sec = $this->_get ( "sec" );
+		$url = I( "get.url" );
+		$sec = I( "get.sec" );
 		$this->assign ( "title", $title );
 		$this->assign ( "url", $url );
 		$this->assign ( "sec", $sec );

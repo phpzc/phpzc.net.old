@@ -204,7 +204,7 @@ class UserAction extends CommonAction {
 		}
 		
 		// 检测帐号
-		$username = $this->_post ( "username" );
+		$username = I( "post.username" );
 		$User = D ( "User" );
 		$result = $User->where ( array (
 				"username" => $username 
@@ -219,9 +219,9 @@ class UserAction extends CommonAction {
 			exit ();
 		}
 		
-		$data ["username"] = $this->_post ( "username" );
-		$data ["password"] = md5 ( $this->_post ( "password" ) );
-		$data ["name"] = htmlspecialchars ( $this->_post ( "name" ) );
+		$data ["username"] = I( "post.username" );
+		$data ["password"] = md5 ( I( "post.password" ) );
+		$data ["name"] = htmlspecialchars ( I( "post.name" ) );
 		
 		$res2 = $User->where ( array (
 				"name" => $data ["name"] 
@@ -240,7 +240,7 @@ class UserAction extends CommonAction {
 		$data ['regtime'] = time ();
 		
 		//添加 第三方登陆标记
-		$data [$this->_post('type')] = $_SESSION ['Auth'] ['Social'] ['userid'];
+		$data [I( 'post.type')] = $_SESSION ['Auth'] ['Social'] ['userid'];
 		
 		$r = $User->data ( $data )->add ();
 		
@@ -249,7 +249,7 @@ class UserAction extends CommonAction {
 			$_SESSION ['Auth'] ['name'] = $name;
 			$_SESSION ['Auth'] ['id'] = $r;
 			$_SESSION ['Auth'] ['username'] = $username;
-			$_SESSION ['Auth'] ['login_type'] = $this->_post ( "type" );
+			$_SESSION ['Auth'] ['login_type'] = I( "post.type" );
 			
 			$error_code = array (
 					"success" => "1" 
@@ -270,7 +270,7 @@ class UserAction extends CommonAction {
 	public function accountBindOld() {
 		$error_code = NULL;
 		
-		if ($this->_post ( 'code' ) != $_SESSION ["form"] ["code"]) {
+		if (I( 'post.code' ) != $_SESSION ["form"] ["code"]) {
 			$error_code = array (
 					"error_code" => 1,
 					"error_str" => "非法操作code" 
@@ -280,7 +280,7 @@ class UserAction extends CommonAction {
 		}
 		
 		// 检测帐号
-		$username = $this->_post ( "username" );
+		$username = I( "post.username" );
 		$User = D ( "User" );
 		$result = $User->where ( array (
 				"username" => $username 
@@ -295,7 +295,7 @@ class UserAction extends CommonAction {
 			exit ();
 		}
 		
-		if ($result ["password"] != md5 ( $this->_post ( "password" ) )) {
+		if ($result ["password"] != md5 ( I( "post.password" ) )) {
 			$error_code = array (
 					"error_code" => 3,
 					"error_str" => "密码不正确" 
@@ -311,14 +311,14 @@ class UserAction extends CommonAction {
 				"github"
 		);
 		
-		if (! in_array ( $this->_post ( 'type' ), $array )) {
+		if (! in_array ( I( 'post.type' ), $array )) {
 			$error_code = array (
 					"error_code" => 5,
 					"error_str" => "非法操作" 
 			);
 		}
 		
-		if (! empty ( $result [$this->_post ( 'type' )] )) {
+		if (! empty ( $result [I( 'post.type' )] )) {
 			$error_code = array (
 					"error_code" => 4,
 					"error_str" => "不能绑定已经绑定的帐号" 
@@ -332,7 +332,7 @@ class UserAction extends CommonAction {
 		
 		// 绑定第三方登录标识 跳转登录 首页
 		$data ["id"] = $result ["id"];
-		$data [$this->_post ( "type" )] = $_SESSION ['Auth'] ['Social'] ['userid'];
+		$data [I( 'post.type' )] = $_SESSION ['Auth'] ['Social'] ['userid'];
 		$res = $User->where ( array (
 				"id" => $data ["id"] 
 		) )->save ( $data );
@@ -347,7 +347,7 @@ class UserAction extends CommonAction {
 			$_SESSION ['Auth'] ['name'] = $result ['name'];
 			$_SESSION ['Auth'] ['id'] = $result ['id'];
 			$_SESSION ['Auth'] ['username'] = $result ['username'];
-			$_SESSION ['Auth'] ['login_type'] = $this->_post ( "type" );
+			$_SESSION ['Auth'] ['login_type'] = I( "post.type" );
 			
 			exit ();
 		} else {

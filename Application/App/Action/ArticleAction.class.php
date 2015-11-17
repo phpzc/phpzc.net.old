@@ -1,17 +1,31 @@
 <?php
 namespace App\Action;
 class ArticleAction extends CommonAction {
+	public function _initialize() {
+		parent::_initialize();
+		$action_name = strtolower ( ACTION_NAME );
+		switch ($action_name) {
+			case 'index' :
+				$this->assign ( 'bread_crumbs','All Articles' );
+				break;
+			case 'create' :
+				$this->assign ( 'bread_crumbs', 'Create Article' );
+				break;
+		}
+	}
+
 	// 遍历列表 前20个文章
 	public function index() {
 		$article = M ( "Article" );
 		$all = $article->where ( "isdel=0" )->count ();
-		import ( "ORG.Util.Page" ); // 导入分页类
-		$page = new Page ( $all, 8 );
+		//import ( "ORG.Util.Page" ); // 导入分页类
+		$page = new \Think\Page( $all, 8);
 		$page->setConfig ( 'header', '篇文章' );
 		$page->setConfig ( 'prev', 'Prev Page' );
 		$page->setConfig ( 'next', 'Next Page' );
 		$show = $page->show ();
-		
+
+
 		$res = $article->query ( "select a.id,a.title,a.content,a.bpath,a.time,a.month,a.year,u.name from vip_article as a,vip_user as u where a.isdel = 0 and a.uid = u.id order by a.id desc limit {$page->firstRow},{$page->listRows}" );
 		foreach ( $res as $k => $v ) {
 			$res [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
@@ -39,7 +53,10 @@ class ArticleAction extends CommonAction {
 	public function dealCreate() {
 		$this->formLoginCheck ();
 		// 组织数据
-		
+
+		dump($_REQUEST);
+		exit;
+
 		$data ["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
 		$data ["content"] = htmlspecialchars ( $_REQUEST ["form_article"] );
 		
@@ -76,7 +93,7 @@ class ArticleAction extends CommonAction {
 	public function edit() {
 		$this->formLoginCheck ();
 		$article = M ( "Article" );
-		$id = $this->_get ( "id" );
+		$id = I('get.id','integer');
 		$id = $this->decodeId ( $id );
 		$res = $article->where ( array (
 				"id" => $id 
@@ -151,7 +168,7 @@ class ArticleAction extends CommonAction {
 		// 删除标签数量
 		// 删除文章
 		
-		$id = ( int ) $this->_get ( "id" );
+		$id = I('get.id','integer');
 		$id = $this->decodeId ( $id );
 		
 		$article = M ( 'Article' );
@@ -261,12 +278,15 @@ class ArticleAction extends CommonAction {
 	
 	// 详情页
 	public function detail() {
-		$id = $this->_get ( "id" );
+		$id = I('get.id');
+
 		if (empty ( $id )) {
 			$this->_empty ();
 		}
 		
 		$id = $this->decodeId ( $id );
+
+
 		// 搜索文章
 		$article = M ( "Article" );
 		

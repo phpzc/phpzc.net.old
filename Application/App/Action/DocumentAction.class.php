@@ -271,7 +271,7 @@ class DocumentAction extends CommonAction {
 		$this->formLoginCheck ();
 		$article = M ( "Document" );
 		$res = $article->where ( array (
-				"id" => $this->_get ( "id" ) 
+				"id" => I( "get.id",'integer' )
 		) )->find ();
 		
 		if (! $res || $res ["uid"] != $_SESSION ["Auth"] ["id"]) {
@@ -294,7 +294,7 @@ class DocumentAction extends CommonAction {
 	public function del() {
 		$this->formLoginCheck ();
 		
-		$id = ( int ) $this->_get ( "id" );
+		$id = ( int ) I ( "get.id" );
 		$article = M ( 'Document' );
 		$res = $article->where ( "id={$id} and uid={$_SESSION["Auth"]["id"]}" )->field ( "id" )->find ();
 		
