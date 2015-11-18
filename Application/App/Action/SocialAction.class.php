@@ -237,7 +237,7 @@ class SocialAction extends CommonAction {
 		}
 
 		// 查询是否已经绑定过帐号
-		
+		/*
 		$User = M ("User" );
 		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
 		
@@ -252,7 +252,7 @@ class SocialAction extends CommonAction {
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
 			exit ();
 		}
-		
+		*/
 		// 未绑定
 		//dump($_SESSION);
 		$this->assign ( "type", $type );

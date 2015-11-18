@@ -50,5 +50,9 @@ VIP.Form = {
     checkLength:function(str,len){
         return this.getStrLength(str) <= len;
     },
+    checkLengthEx:function(str,min,max) {
+
+        return this.getStrLength(str) >= min && this.getStrLength(str) <= max
+    },
 };
 //alert(typeof(VIP.Form.inputdefaultValue));
