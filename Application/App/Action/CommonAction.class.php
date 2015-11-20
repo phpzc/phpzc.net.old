@@ -140,7 +140,10 @@ class CommonAction extends EmptyAction {
 		if(!empty($_SESSION ["Auth"] ["id"])){
 			$this->_userId = $_SESSION ["Auth"] ["id"];
 		}
-		 
+
+		//分配一些变量
+
+		$this->assignSomeDatas();
 	}
 	
 	// 跳转函数
@@ -308,5 +311,14 @@ class CommonAction extends EmptyAction {
 		}
 		
 		
+	}
+
+	/**
+	 * 分配一些模板变量
+	 */
+	protected function assignSomeDatas()
+	{
+		//dump(CONTROLLER_NAME);
+		$this->assign('THIS_CONTROLLER',CONTROLLER_NAME);
 	}
 }

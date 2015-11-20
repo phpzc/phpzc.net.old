@@ -25,16 +25,31 @@ class IndexAction extends CommonAction {
 		$this->assign ( "article_list", $res );
 		
 		$this->assign ( 'category', $r );
-		
+
+		$article_num = $article->where("isdel=0" )->count();
+		$article_view = $article->sum('visit');
+
+
 		$article = M ( "Document" );
 		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 5)->select ();
 		
 		$this->assign ( "article_list2", $all );
 
+		$document_num = $article->count();
+		$document_view = $article->sum('visit');
 		/*$this->assign('data',array(
 			'id'=>1,
 			'username'=>'peak',
 		));*/
+
+		//分配 文章 文档 图片的数量
+		$photo = M("Photo");
+		$photo_num = $photo->count();
+		$photo_view = $photo->sum('visit');
+		$this->assign('site_count',array('article'=>$article_num,'article_view'=>$article_view,
+				'document'=>$document_num,'document_view'=>$document_view,
+				'photo'=>$photo_num,'photo_view'=>$photo_view));
+
 		$this->display ();
 	}
 }

@@ -301,14 +301,14 @@
                                 <li class="nav-header nav-header-first hidden-sm hidden-xs">
                                     Navigation
                                 </li>
-                                <li >
+                                <li <eq name="THIS_CONTROLLER" value="Index">class="active"</eq> >
                                     <a href="/">
                                         <i class="fa fa-dashboard"></i>
                                         <span>Index</span>
                                         <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                     </a>
                                 </li>
-                                <li class="active">
+                                <li <eq name="THIS_CONTROLLER" value="Article">class="active"</eq> >
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-file-text-o"></i>
                                         <span>Articles</span>
@@ -316,7 +316,7 @@
                                     </a>
                                     <ul class="submenu">
                                         <li>
-                                            <a href="/article/index" class="active">
+                                            <a href="/article/index">
                                                 All Articles
                                             </a>
                                             <a href="/article/create" >
@@ -335,21 +335,22 @@
                                     </ul>
 
                                 </li>
-                                <li>
+                                <!--
+                                <li <eq name="THIS_CONTROLLER" value="Document">class="active"</eq>>
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-copy"></i>
                                         <span>Documents</span>
                                         <i class="fa fa-angle-right drop-icon"></i>
                                     </a>
                                 </li>
-                                <li>
+                                <li <eq name="THIS_CONTROLLER" value="Album">class="active"</eq> >
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-bar-chart-o"></i>
                                         <span>Images</span>
                                         <i class="fa fa-angle-right drop-icon"></i>
                                     </a>
                                 </li>
-                                <li>
+                                <li <eq name="THIS_CONTROLLER" value="About">class="active"</eq> >
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-file-text-o"></i>
                                         <span>About</span>
@@ -363,6 +364,7 @@
                                         <i class="fa fa-angle-right drop-icon"></i>
                                     </a>
                                 </li>
+                                -->
                             </ul>
                         </div>
                     </div>
@@ -404,6 +406,7 @@
     </a>
 
     <div id="config-tool-options">
+        <!--
         <h4>Layout Options</h4>
         <ul>
             <li>
@@ -448,6 +451,7 @@
             </li>
         </ul>
         <br/>
+        -->
         <h4>Skin Color</h4>
         <ul id="skin-colors" class="clearfix">
             <li>
@@ -497,7 +501,22 @@
 <!-- theme scripts -->
 <script src="__CUBE__/js/scripts.js"></script>
 <script src="__CUBE__/js/pace.min.js"></script>
+<script>
+    $('body').addClass('boxed-layout');
+    try{
+        var storage = window.localStorage
 
+        var boxedLayout = localStorage.getItem('config-boxed-layout');
+
+        if (boxedLayout != 'boxed-layout') {
+            writeStorage(storage, 'config-boxed-layout', 'boxed-layout');
+        }
+
+    }catch (e){
+
+    }
+
+</script>
 <block name="after"></block>
 
 </body>

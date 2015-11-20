@@ -3,6 +3,28 @@
 //define("NET_NAME","http://www.localhost.com");
 define("NET_NAME","http://" . $_SERVER ["SERVER_NAME"] );
 
+function percent_func($all,$view)
+{
+	if($view ==0){
+		echo 0;
+		return;
+	}
+
+	$n = $view /$all;
+	if($n > 1){
+		echo 100;
+	}else if($n < 0.02){
+		echo 1;
+	}else{
+		$n *= 100;
+		$n = (int)($n);
+		$n %= 100;
+
+		echo $n;
+	}
+
+}
+
 function replace_str($source)
 {
 	$str = str_replace("http://www.vipmhxy.com", NET_NAME, $source);

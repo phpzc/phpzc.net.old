@@ -13,37 +13,37 @@
                 <div class="main-box-body clearfix">
                     <div class="project-box-header emerald-bg">
                         <div class="name">
-                            <a href="#">
+                            <a href="javascript:;">
                                 The Articles
                             </a>
                         </div>
                     </div>
 
                     <div class="project-box-content">
-												<span class="chart" data-percent="39">
+												<span class="chart" data-percent="<?php percent_func($site_count['article'],$site_count['article_view']);?>">
 													<span class="percent"></span>%<br/>
-													<span class="lbl">completed</span>
+													<span class="lbl">ViewPercent</span>
 												</span>
                     </div>
 
                     <div class="project-box-footer clearfix">
                         <a href="#">
-                            <span class="value">12</span>
+                            <span class="value">{$site_count.article}</span>
                             <span class="label">Numbers</span>
                         </a>
                         <a href="#">
-                            <span class="value">1</span>
+                            <span class="value">{$site_count.article_view}</span>
                             <span class="label">Views</span>
                         </a>
                         <a href="#">
-                            <span class="value">82</span>
-                            <span class="label">Messages</span>
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
                         </a>
                     </div>
 
                     <div class="project-box-ultrafooter clearfix">
-                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/scarlet-159.png" data-toggle="tooltip" title="Scarlett Johansson"/>
-                        <a href="/article/index.html" class="link pull-right">
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="Scarlett Johansson"/>
+                        <a href="/article/index.html" class="link pull-right" target="_blank">
                             <i class="fa fa-arrow-circle-right fa-lg"></i>
                         </a>
                     </div>
@@ -56,38 +56,38 @@
                 <div class="main-box-body clearfix">
                     <div class="project-box-header green-bg">
                         <div class="name">
-                            <a href="#">
+                            <a href="javascript:;">
                                 The Documents
                             </a>
                         </div>
                     </div>
 
                     <div class="project-box-content">
-												<span class="chart" data-percent="86" data-bar-color="#2ecc71">
+												<span class="chart" data-percent="<?php percent_func($site_count['document'],$site_count['document_view']);?>" data-bar-color="#2ecc71">
 													<span class="percent"></span>%<br/>
-													<span class="lbl">completed</span>
+													<span class="lbl">ViewPercent</span>
 												</span>
                     </div>
 
                     <div class="project-box-footer clearfix">
                         <a href="#">
-                            <span class="value">12</span>
+                            <span class="value">{$site_count.document}</span>
                             <span class="label">Numbers</span>
                         </a>
                         <a href="#">
-                            <span class="value">1</span>
+                            <span class="value">{$site_count.document_view}</span>
                             <span class="label">Views</span>
                         </a>
                         <a href="#">
-                            <span class="value">82</span>
-                            <span class="label">Messages</span>
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
                         </a>
                     </div>
 
                     <div class="project-box-ultrafooter clearfix">
-                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/lima-300.jpg" data-toggle="tooltip" title="Adriana Lima"/>
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="Adriana Lima"/>
 
-                        <a href="/document/index" class="link pull-right">
+                        <a href="/document/index" class="link pull-right" target="_blank">
                             <i class="fa fa-arrow-circle-right fa-lg"></i>
                         </a>
                     </div>
@@ -100,38 +100,38 @@
                 <div class="main-box-body clearfix">
                     <div class="project-box-header red-bg">
                         <div class="name">
-                            <a href="#">
+                            <a href="javascript:;">
                                 The Pictures
                             </a>
                         </div>
                     </div>
 
                     <div class="project-box-content">
-												<span class="chart" data-percent="79" data-bar-color="#e74c3c">
+												<span class="chart" data-percent="<?php percent_func($site_count['photo'],$site_count['photo_view']);?>" data-bar-color="#e74c3c">
 													<span class="percent"></span>%<br/>
-													<span class="lbl">completed</span>
+													<span class="lbl">ViewPercent</span>
 												</span>
                     </div>
 
                     <div class="project-box-footer clearfix">
                         <a href="#">
-                            <span class="value">12</span>
+                            <span class="value">{$site_count.photo}</span>
                             <span class="label">Numbers</span>
                         </a>
                         <a href="#">
-                            <span class="value">1</span>
+                            <span class="value">{$site_count.photo_view}</span>
                             <span class="label">Views</span>
                         </a>
                         <a href="#">
-                            <span class="value">82</span>
-                            <span class="label">Messages</span>
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
                         </a>
                     </div>
 
                     <div class="project-box-ultrafooter clearfix">
-                        <img class="project-img-owner" alt="" src="__CUBE__/img/samples/robert-300.jpg" data-toggle="tooltip" title="Robert Downey Jr."/>
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="Robert Downey Jr."/>
 
-                        <a href="/album/index" class="link pull-right">
+                        <a href="/album/index" class="link pull-right" target="_blank">
                             <i class="fa fa-arrow-circle-right fa-lg"></i>
                         </a>
                     </div>
@@ -160,7 +160,7 @@
 
                                 <div class="cd-timeline-content">
                                     <h2>{$article_list.title| htmlspecialchars_decode| cut_str=###,20}</h2>
-                                    <p>{$article_list.content| cut_str=###,70} </p>
+                                    <p>{$article_list.content| cut_str=###,300} </p>
                                     <div class="clearfix">
                                         <a class="btn btn-primary pull-right"
                                            href="/article/detail/id/{$article_list.id}.html"
@@ -249,9 +249,9 @@
                     <hr>
                 </header>
                 <div class="main-box-body clearfix">
-                    <a href="http://pecl.php.net/index.php"><button type="button" class="btn btn-info">PECL</button></a>
-                    <a href="https://launchpad.net/gearmand"><button type="button" class="btn btn-info">Gearmand</button></a>
-                    <a href="http://www.phpcomposer.com/"><button type="button" class="btn btn-info">phpcomposer</button></a>
+                    <a href="http://pecl.php.net/index.php" target="_blank"><button type="button" class="btn btn-info">PECL</button></a>
+                    <a href="https://launchpad.net/gearmand" target="_blank"><button type="button" class="btn btn-info">Gearmand</button></a>
+                    <a href="http://www.phpcomposer.com/" target="_blank"><button type="button" class="btn btn-info">phpcomposer</button></a>
                 </div>
                 <div class="main-box-body clearfix">
                     <button class="md-trigger btn btn-danger mrg-b-lg" data-modal="modal-4">Add Link</button>
