@@ -4,9 +4,9 @@ use Think\Action;
 class EmptyAction extends Action {
 	public function _initialize() {
 		// 分配网站名称
-		$_WEBSITE ["url"] = "http://www.vipmhxy.com";
-		$_WEBSITE ["url_short"] = "www.vipmhxy.com";
-		$_WEBSITE ["name"] = "随心网";
+		$_WEBSITE ["url"] = "http://www.vipzhangcheng.cn";
+		$_WEBSITE ["url_short"] = "www.vipzhangcheng.cn";
+		$_WEBSITE ["name"] = "PeakPointer";
 		$this->assign ( "WEBSITE", $_WEBSITE );
 	}
 	public function _empty() {

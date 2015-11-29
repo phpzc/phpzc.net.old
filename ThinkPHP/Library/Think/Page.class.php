@@ -142,6 +142,7 @@ class Page{
 			}else{
 				$page = $this->nowPage - $now_cool_page_ceil + $i;
 			}
+
             if($page > 0 && $page != $this->nowPage){
 
                 if($page <= $this->totalPages){
@@ -157,6 +158,7 @@ class Page{
                 }
             }
         }
+
 
         //替换分页内容
         $page_str = str_replace(

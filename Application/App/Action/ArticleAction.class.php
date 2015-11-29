@@ -184,47 +184,110 @@ class ArticleAction extends CommonAction {
 	
 	// 查找文章
 	public function search() {
-		$category = ( int ) $_GET ["category"]; // id
+
+		$begin = microtime(true);
+		$category =  $_GET ["category"]; // id
 		$tag = ( int ) $_GET ["tag"];
-		if ($category > 0) {
-			$CT = M ( "Category" );
-			$res = $CT->where ( array (
-					"id" => $category 
-			) )->field ( "path" )->find ();
-			
+
+		if ( preg_match('/^\d(.*?)/',$category)!=false and $category > 0) {
+			$CT = M("Category");
+			$res = $CT->where(array(
+					"id" => $category
+			))->field("id,path,name")->find();
+
 			$path = $res ["path"] . "-" . $category;
-			
-			$article = M ( "Article" );
-			$count = $article->where ( "isdel = 0 and bpath like '" . $path . "%' " )->count ();
+			$search_name = $res['name'];
+			$article = M("Article");
+			$count = $article->where("isdel = 0 and bpath like '" . $path . "%' ")->count();
 			if ($count > 0) {
-				import ( "ORG.Util.Page" ); // 导入分页类
-				$page = new Page ( $count, 8 );
-				$page->setConfig ( 'header', '篇文章' );
-				$page->setConfig ( 'prev', 'Prev Page' );
-				$page->setConfig ( 'next', 'Next Page' );
-				$show = $page->show ();
-				
-				$res = $article->query ( "select a.id,a.title,a.content,a.time,a.month,a.bpath,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.isdel = 0 and  a.bpath like '" . $path . "%' order by a.time desc limit {$page->firstRow},{$page->listRows}" );
-				
-				if (! $res) {
-					$this->formErrorReferer ( "没有搜索到文章" );
+				//import ( "ORG.Util.Page" ); // 导入分页类
+				$page = new \Think\Page($count, 10);
+				$page->setConfig('header', '篇文章');
+				$page->setConfig('prev', 'Prev Page');
+				$page->setConfig('next', 'Next Page');
+				$show = $page->show();
+
+				$res = $article->query("select a.id,a.title,a.content,a.time,a.month,a.bpath,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.isdel = 0 and  a.bpath like '" . $path . "%' order by a.time desc limit {$page->firstRow},{$page->listRows}");
+
+				if (!$res) {
+					$this->formErrorReferer("没有搜索到文章");
 				}
-				foreach ( $res as $k => $v ) {
-					$res [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
-					$res [$k] ["imgurl"] = findImageUrl ( $v ['content'] );
-                    $res [$k] ["id"] = $this->encodeId ( $v ['id'] );
-                    if ($res [$k] ["imgurl"] == ""){
-				        $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
-			        }
+				foreach ($res as $k => $v) {
+					$res [$k] ["content"] = strip_tags(htmlspecialchars_decode($v ['content']));
+					//$res [$k] ["imgurl"] = findImageUrl ( $v ['content'] );
+					$res [$k] ["id"] = $this->encodeId($v ['id']);
+					//if ($res [$k] ["imgurl"] == ""){
+					//    $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
+					//}
 				}
-				$this->assign ( "website_title", "搜索文章结果-" );
-				$this->assign ( "article_list", $res );
-				$this->assign ( "article_page", $show );
-				$this->assign ( "count", $count );
-				$this->display ();
+				$this->assign("website_title", "搜索文章结果-");
+				$this->assign("article_list", $res);
+				$this->assign("article_page", $show);
+				$this->assign("count", $count);
+				$this->assign('search_name', $search_name);
+
+				$need_time = microtime(true) - $begin;
+
+				$need_time = sprintf("%4.f", $need_time);
+
+				$this->assign('need_time', $need_time);
+				$this->assign('this_category', $category);
+				$this->display();
+
 			} else {
-				$this->formErrorReferer ( "没有搜索到文章" );
+				$this->formErrorReferer("没有搜索到文章");
+
 			}
+			exit;
+		}elseif(is_string($category)){
+			$CT = M("Category");
+			$res = $CT->where(array(
+					"name" => $category
+			))->field("id,path,name")->find();
+
+			$path = $res ["path"] . "-" . $res['id'];
+			$search_name = $res['name'];
+			$article = M("Article");
+			$count = $article->where("isdel = 0 and bpath like '" . $path . "%' ")->count();
+			if ($count > 0) {
+				//import ( "ORG.Util.Page" ); // 导入分页类
+				$page = new \Think\Page($count, 10);
+				$page->setConfig('header', '篇文章');
+				$page->setConfig('prev', 'Prev Page');
+				$page->setConfig('next', 'Next Page');
+				$show = $page->show();
+
+				$res = $article->query("select a.id,a.title,a.content,a.time,a.month,a.bpath,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.isdel = 0 and  a.bpath like '" . $path . "%' order by a.time desc limit {$page->firstRow},{$page->listRows}");
+
+				if (!$res) {
+					$this->formErrorReferer("没有搜索到文章");
+				}
+				foreach ($res as $k => $v) {
+					$res [$k] ["content"] = strip_tags(htmlspecialchars_decode($v ['content']));
+					//$res [$k] ["imgurl"] = findImageUrl ( $v ['content'] );
+					$res [$k] ["id"] = $this->encodeId($v ['id']);
+					//if ($res [$k] ["imgurl"] == ""){
+					//    $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
+					//}
+				}
+				$this->assign("website_title", "搜索文章结果-");
+				$this->assign("article_list", $res);
+				$this->assign("article_page", $show);
+				$this->assign("count", $count);
+				$this->assign('search_name', $search_name);
+
+				$need_time = microtime(true) - $begin;
+
+				$need_time = sprintf("%4.f", $need_time);
+
+				$this->assign('need_time', $need_time);
+				$this->assign('this_category', $category);
+				$this->display();
+			} else {
+				$this->formErrorReferer("没有搜索到文章");
+			}
+
+			exit;
 		} elseif ($tag > 0) {
 			$CT = M ( "Articlekeyword" );
 			$res = $CT->where ( array (
@@ -281,14 +344,14 @@ class ArticleAction extends CommonAction {
 		if (empty ( $id )) {
 			$this->_empty ();
 		}
-		
+
 		$id = $this->decodeId ( $id );
 
 
 		// 搜索文章
 		$article = M ( "Article" );
 		
-		$res = $article->query ( "select a.id,a.title,a.content,a.time,a.month,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
+		$res = $article->query ( "select a.id,a.bpath,a.title,a.content,a.time,a.month,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
 		
 		$res = $res [0];
 		if ($res) {
@@ -297,7 +360,11 @@ class ArticleAction extends CommonAction {
 			$this->assign ( 'article', $res );
 			$this->assign ( 'article_pre', $this->predata ( $id ) );
 			$this->assign ( 'article_next', $this->nextdata ( $id ) );
-			
+
+			//更新文章访问量
+			$article->where('id='.$id)->setInc('visit');
+			$cid = explode('-',$res['bpath']);
+			$this->assign('this_category', $cid[1]);
 			$this->display ();
 		} else {
 			$this->_empty ();
@@ -341,14 +408,10 @@ class ArticleAction extends CommonAction {
 	//访问量增加
 	public function addvisit()
 	{
-		$id = $this->_post("id");
+		$id = I('post.id',0,'int');
 		$article = M ( "Article" );
-		$res = $article->where(array("id"=>$id))->field("id,visit")->find();
-		if($res){
-			$data["id"] = $id;
-			$data["visit"] = $res["visit"] + 1;
-			$article->data($data)->save();
-		}		
+		$article->where(array("id"=>$id))->setInc('visit');
+
 	}
 	
 	

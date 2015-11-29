@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <block name="title"><title>{$title|default='测试'}</title></block>
+    <block name="title"><title>{$website_title|default=""} {$WEBSITE.name}- Technical
+        achievement dream </title></block>
 
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="__CUBE__/css/bootstrap/bootstrap.min.css" />
@@ -32,7 +33,7 @@
     <import type="js" file="js.lib.form" />
     <block name="head"></block>
 </head>
-<body class="boxedLayout">
+<body class="boxed-layout">
 <div id="theme-wrapper">
     <header class="navbar" id="header-navbar">
         <div class="container">
@@ -206,6 +207,23 @@
                             </ul>
                         </li>
 -->
+                        <empty name="Think.session.Auth.id" >
+                            <else/>
+                        <li class="dropdown hidden-xs">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown">
+                                UserCenter
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="item">
+                                    <a href="#">My Articles</a>
+                                </li>
+                                <li class="item">
+                                    <a href="/article/create" >Add Article</a>
+                                </li>
+                            </ul>
+                        </li>
+                        </empty>
                     </ul>
                 </div>
 
@@ -249,12 +267,14 @@
                                 <li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>-->
                                 <li><a href="/user/logout"><i class="fa fa-power-off"></i>Logout</a></li>
                             </ul>
+
+
                         </li>
                         <empty name="Think.session.Auth.id">
 
-
+                        <else/>
                         <li class="hidden-xxs">
-                            <a class="btn" title="Logout">
+                            <a class="btn" title="Logout" href="/user/logout">
                                 <i class="fa fa-power-off"></i>
                             </a>
                         </li>
@@ -319,14 +339,10 @@
                                             <a href="/article/index">
                                                 All Articles
                                             </a>
-                                            <a href="/article/create" >
-                                                @Add Article
-                                            </a>
-                                            <a href="/" >
-                                                @My Articles
-                                            </a>
+
+                                            {//  分配类别是当前活动的 使用变量$this_category}
                                             <volist name="WebsiteCategory" id="WebCategory">
-                                            <a href="#" title="Articles——{$WebCategory.name}">
+                                            <a href="/Article/search/category/{$WebCategory.id}" title="Articles——{$WebCategory.name}" <eq name="WebCategory.id" value="$this_category">class="active"</eq>  >
                                                 <b>{$WebCategory.name}</b>
                                             </a>
                                             </volist>
@@ -365,6 +381,8 @@
                                     </a>
                                 </li>
                                 -->
+
+
                             </ul>
                         </div>
                     </div>

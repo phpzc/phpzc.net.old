@@ -385,12 +385,12 @@ class UserAction extends CommonAction {
 	 */
 	public function login_page()
 	{
-		$this->display('user/login');
+		$this->display('User/login');
 	}
 
 	public function register_page()
 	{
-		$this->display('user/register');
+		$this->display('User/register');
 	}
 	//忘记密码
 	

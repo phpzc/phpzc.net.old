@@ -34,7 +34,7 @@ $(function($) {
 				$('#skin-colors .skin-changer').removeClass('active');
 				$('#skin-colors .skin-changer[data-skin="'+usedSkin+'"]').addClass('active');
 			}
-			
+			/*
 			var fixedHeader = localStorage.getItem('config-fixed-header');
 			if (fixedHeader == 'fixed-header') {
 				$('body').addClass(fixedHeader);
@@ -78,6 +78,7 @@ $(function($) {
 			    	contentClass: 'col-left-nano-content'
 			    });
 			}
+			*/
 		}
 		catch (e) {console.log(e); }
 	}

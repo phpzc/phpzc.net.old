@@ -343,3 +343,11 @@ function jsonError($data)
 	//dump($arr);
 	exit();
 }
+
+function encodeId($id) {
+	$mid = md5 ( $id );
+	$str = substr ( $mid, 0, 16 );
+	$str .= $id;
+	$str .= substr ( $mid, 16, 16 );
+	return $str;
+}

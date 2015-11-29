@@ -24,7 +24,10 @@ define('APP_PATH','./Application/');
 define('BIND_MODULE','App');
 
 //引入公共的常量文件
+define('ROOT_PATH',realpath(dirname(__FILE__)));
 
+
+require ROOT_PATH."/sina/Sina.php";
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

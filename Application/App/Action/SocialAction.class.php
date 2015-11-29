@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Action;
 /**
  * 第三方登录
@@ -140,8 +141,8 @@ class SocialAction extends CommonAction {
 		}
 		$_SESSION ['has_login_by_social'] = 0;
 		
-		require_once ("./sina/Sina.php");
-		$o = new SaeTOAuthV2 ( WB_AKEY, WB_SKEY );
+
+		$o = new \SaeTOAuthV2 ( WB_AKEY, WB_SKEY );
 		if (isset ( $_REQUEST ['code'] )) {
 			$keys = array ();
 			$keys ['code'] = $_REQUEST ['code'];
@@ -156,7 +157,7 @@ class SocialAction extends CommonAction {
 				setcookie ( 'weibojs_' . $o->client_id, http_build_query ( $token ) );
 				// 获取用户信息
 				//
-				$c = new SaeTClientV2 ( WB_AKEY, WB_SKEY, $_SESSION ['token'] ['access_token'] );
+				$c = new \SaeTClientV2 ( WB_AKEY, WB_SKEY, $_SESSION ['token'] ['access_token'] );
 				$ms = $c->home_timeline (); // done
 				$uid_get = $c->get_uid ();
 				$uid = $uid_get ['uid'];
@@ -182,9 +183,8 @@ class SocialAction extends CommonAction {
 	
 	/* 新浪登录页url获取与跳转 */
 	public function sinalogin() {
-		require_once ("./sina/Sina.php");
-		
-		$o = new SaeTOAuthV2 ( WB_AKEY, WB_SKEY );
+
+		$o = new \SaeTOAuthV2 ( WB_AKEY, WB_SKEY );
 		$code_url = $o->getAuthorizeURL ( WB_CALLBACK_URL );
 		
 		header ( "location:" . $code_url . "&forcelogin=true" );
@@ -237,7 +237,7 @@ class SocialAction extends CommonAction {
 		}
 
 		// 查询是否已经绑定过帐号
-		/*
+
 		$User = M ("User" );
 		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
 		
@@ -252,7 +252,7 @@ class SocialAction extends CommonAction {
 			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
 			exit ();
 		}
-		*/
+
 		// 未绑定
 		//dump($_SESSION);
 		$this->assign ( "type", $type );
