@@ -1,48 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>随心网 - 跳转提示</title>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common.css?a=<?php echo time()?>" />
-</head>
+<extend name="Layout/index" />
+<block name="content">
 
-<body>
-        
-        
-    <include file="Public:head" />{// 头部公共文件 }
-    
-    {//当前页面的CSS}
-    <import type="css" file="css.form.success" />
-    <div id="container" class="box_shadow box_shadow_inset .border_radius">
-        {//
-        <div id="navigate">
-            <span id="navigate_img"></span>
-            <span id="navigate_title">提示信息</span>
-        </div>
-        }
         {//成功失败的图标 及文字说明}
-        <div id="form_show_result"  > 
-                <div class="error_result"></div>
-				<div class="form_c_info">
-					<p>{$title} Failed!</p>
-					<p><a href="{$url}" id="target_url" class="error">立即跳转至目标页</a></p>
-				</div>
-
+        <div class="row" id="form_show_result"  >
+            <div class="alert alert-danger">
+                <i class="fa fa-times-circle fa-fw fa-lg"></i>
+                <strong>{$title} Failed!</strong>  <a href="{$url}" id="target_url" class="alert-link">立即跳转至目标页</a>.
+            </div>
         </div>
-        <include file="Public:footer" />{// 底部公共文件 }
 
-    </div>
-		<script>
-		(function(){
-			var wait = {$sec},href = $("#target_url").attr("href");
-			var interval = setInterval(function(){
-				var time = --wait;
-				if(time <= 0) {
-					location.href = href;
-					clearInterval(interval);
-				};
-			}, 1000);
-			})();
-		</script>
-</body>
-</html>
+
+</block>
+
+<block name="after">
+    <script>
+        (function(){
+            var wait = {$sec},href = $("#target_url").attr("href");
+            var interval = setInterval(function(){
+                var time = --wait;
+                if(time <= 0) {
+                    location.href = href;
+                    clearInterval(interval);
+                };
+            }, 1000);
+        })();
+    </script>
+</block>
