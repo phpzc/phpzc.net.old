@@ -159,7 +159,7 @@
                                 </div>
 
                                 <div class="cd-timeline-content">
-                                    <h2>{$article_list.title| htmlspecialchars_decode| cut_str=###,20}</h2>
+                                    <h2>{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</h2>
                                     <p style="word-break:break-all;word-wrap:break-word ;">{$article_list.content| cut_str=###,300} </p>
                                     <div class="clearfix">
                                         <a class="btn btn-primary pull-right"
@@ -213,29 +213,33 @@
     <div class="md-modal md-effect-4" id="modal-4">
         <div class="md-content">
             <div class="modal-header">
-                <button class="md-close close">&times;</button>
+                <button class="md-close close" >&times;</button>
                 <h4 class="modal-title">Apply for link</h4>
             </div>
             <div class="modal-body">
                 <form role="form">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Your Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                        <label for="exampleEmail">Your Email address</label>
+                        <input type="email" class="form-control" id="exampleEmail" placeholder="Enter email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Your site url</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter url">
+                        <label for="exampleUrl">Your site url</label>
+                        <input type="text" class="form-control" id="exampleUrl" placeholder="Enter url">
                     </div>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Your site name</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter site name">
+                        <label for="exampleName">Your site name</label>
+                        <input type="text" class="form-control" id="exampleName" placeholder="Enter site name">
                     </div>
 
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Submit</button>
+                <div class="alert alert-success" style="display: none" id="links_submit_tip">
+                    <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                    <strong>Submit Success!</strong>
+                </div>
+                <button type="button" id="links_submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
@@ -252,6 +256,14 @@
                     <a href="http://pecl.php.net/index.php" target="_blank"><button type="button" class="btn btn-info">PECL</button></a>
                     <a href="https://launchpad.net/gearmand" target="_blank"><button type="button" class="btn btn-info">Gearmand</button></a>
                     <a href="http://www.phpcomposer.com/" target="_blank"><button type="button" class="btn btn-info">phpcomposer</button></a>
+
+                    <volist id="links" name="links">
+                        <a href="{$links.url}" target="_blank">
+                            <button type="button" class="btn btn-info">{$links.name}</button>
+                        </a>
+
+                    </volist>
+
                 </div>
                 <div class="main-box-body clearfix">
                     <button class="md-trigger btn btn-danger mrg-b-lg" data-modal="modal-4">Add Link</button>
@@ -274,6 +286,8 @@
     <script src="__CUBE__/js/modernizr.js"></script>
     <script src="__CUBE__/js/timeline.js"></script>
     <!-- this page specific inline scripts -->
+
+
     <script>
         $(function() {
             $('.chart').easyPieChart({
@@ -288,6 +302,39 @@
                 size: 130,
                 animate: 1500
             });
+
+
+
+            //links
+            $('#links_submit').click(function() {
+                var email = $('#exampleEmail').val();
+                var url = $('#exampleUrl').val();
+                var name = $('#exampleName').val();
+                $.ajax({
+                    type:"POST",
+                    url:VIP.Base()+"/links/add",
+                    data:"email="+email+"&url="+url+"&name="+name,
+                    async:true,
+
+                    success: function(data)
+                    {
+                        if(data == '1'){
+                            $('#links_submit_tip').show();
+                            setTimeout(function(){
+                                $('#links_submit_tip').hide();
+                                $('.md-close').click();
+                                $('#exampleEmail').val('');
+                                $('#exampleUrl').val('');
+                                $('#exampleName').val('');
+                            },2000);
+
+                        }else{
+                            alert('Apply Fail!');
+                        }
+
+                    }
+                });
+            })
         });
     </script>
 </block>

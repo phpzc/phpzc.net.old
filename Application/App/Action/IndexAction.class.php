@@ -50,6 +50,12 @@ class IndexAction extends CommonAction {
 				'document'=>$document_num,'document_view'=>$document_view,
 				'photo'=>$photo_num,'photo_view'=>$photo_view));
 
+
+		//分配友情链接
+		$link = M('Links');
+		$links = $link->where('status!=0')->select();
+		$this->assign('links',$links);
+
 		$this->display ();
 	}
 }
