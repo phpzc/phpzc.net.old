@@ -21,6 +21,7 @@ define('APP_DEBUG',True);
 define('APP_PATH','./Application/');
 
 // 定义绑定模块
+//define('BIND_MODULE','Admin');
 define('BIND_MODULE','App');
 
 //引入公共的常量文件
