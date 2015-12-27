@@ -1,3 +1,60 @@
+<extend name="Layout/index" />
+<block name="head">
+	<link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/dropzone.css">
+	<link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/magnific-popup.css">
+</block>
+<block name="content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="main-box">
+				<header class="main-box-header">
+					<h2>Images with Lightbox</h2>
+				</header>
+
+				<div class="main-box-body">
+					<div id="gallery-photos-lightbox">
+						<ul class=" clearfix gallery-photos">
+							<volist name="photo" id="photo">
+
+								<li class="col-md-3 col-sm-3 col-xs-6">
+
+									<a href="{$photo.imgurl}" class="photo-box image-link" style="background-image: url('{$photo.imgurl}');"></a>
+									<span class="thumb-meta-time"><i class="fa fa-clock-o"></i> 23 minutes ago</span>
+								</li>
+
+							</volist>
+						</ul>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</block>
+
+<block name="after">
+
+	<script src="__CUBE__/js/jquery-ui.custom.min.js"></script>
+	<script src="__CUBE__/js/dropzone.js"></script>
+	<script src="__CUBE__/js/jquery.magnific-popup.min.js"></script>
+	<script>
+		$(function() {
+
+			$(document).ready(function() {
+				$('#gallery-photos-lightbox').magnificPopup({
+					type: 'image',
+					delegate: 'a',
+					gallery: {
+						enabled: true
+					}
+				});
+			});
+		});
+	</script>
+</block>
+
+
 <include file="Public:doct" />
 	{//详情页Css js}
 	<import type="css" file="css.album.detail" />

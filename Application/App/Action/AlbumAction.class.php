@@ -183,5 +183,10 @@ class AlbumAction extends CommonAction {
 			$this->formErrorReferer ( "删除失败" );
 		}
 	}
-	
+
+	public function gallerySsortimages()
+	{
+
+	}
+
 }

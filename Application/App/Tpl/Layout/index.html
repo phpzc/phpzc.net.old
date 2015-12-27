@@ -318,9 +318,11 @@
                         </if>
                         <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                             <ul class="nav nav-pills nav-stacked">
+                                <!--
                                 <li class="nav-header nav-header-first hidden-sm hidden-xs">
                                     Navigation
                                 </li>
+                                -->
                                 <li <eq name="THIS_CONTROLLER" value="Index">class="active"</eq> >
                                     <a href="/">
                                         <i class="fa fa-dashboard"></i>
@@ -351,6 +353,23 @@
                                     </ul>
 
                                 </li>
+
+                                <li <eq name="THIS_CONTROLLER" value="Document">class="active"</eq> >
+                                <a href="/document">
+                                    <i class="fa fa-copy"></i>
+                                    <span>Documents</span>
+                                    <!--<span class="label label-primary label-circle pull-right">28</span>-->
+                                </a>
+                                </li>
+
+                                <li <eq name="THIS_CONTROLLER" value="Album">class="active"</eq> >
+                                <a href="/album">
+                                    <i class="fa fa-image"></i>
+                                    <span>Pictures</span>
+                                    <!--<span class="label label-primary label-circle pull-right">28</span>-->
+                                </a>
+                                </li>
+
                                 <!--
                                 <li <eq name="THIS_CONTROLLER" value="Document">class="active"</eq>>
                                     <a href="#" class="dropdown-toggle">

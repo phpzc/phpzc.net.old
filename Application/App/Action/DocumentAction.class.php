@@ -40,7 +40,7 @@ class DocumentAction extends CommonAction {
 		$page->setConfig ( 'next', 'Next Page' );
 		$show = $page->show ();
 		
-		$res = $article->query ( "select a.id,a.title,a.author,a.imgurl,a.url,a.bpath,a.urltype,a.doctype,a.content,a.time,a.month,a.year,u.name from vip_document as a,vip_user as u where a.isdel = 0 and a.uid = u.id order by a.id desc limit {$page->firstRow},{$page->listRows}" );
+		$res = $article->query ( "select a.id,a.visit,a.title,a.author,a.imgurl,a.url,a.bpath,a.urltype,a.doctype,a.content,a.time,a.month,a.year,u.name from vip_document as a,vip_user as u where a.isdel = 0 and a.uid = u.id order by a.id desc limit {$page->firstRow},{$page->listRows}" );
 		
 		$this->assign ( "article_list", $res );
 		$this->assign ( "article_page", $show );
