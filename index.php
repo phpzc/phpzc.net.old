@@ -27,6 +27,7 @@ define('BIND_MODULE','App');
 //引入公共的常量文件
 define('ROOT_PATH',realpath(dirname(__FILE__)));
 
+//
 
 require ROOT_PATH."/sina/Sina.php";
 
