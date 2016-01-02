@@ -31,7 +31,7 @@ class IndexAction extends CommonAction {
 
 
 		$article = M ( "Document" );
-		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit ( 5)->select ();
+		$all = $article->where ( "isdel=0" )->order ( "id desc" )->limit (4)->select ();
 		
 		$this->assign ( "article_list2", $all );
 
@@ -58,4 +58,5 @@ class IndexAction extends CommonAction {
 
 		$this->display ();
 	}
+
 }
