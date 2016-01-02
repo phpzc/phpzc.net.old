@@ -13,8 +13,8 @@ class CommonAction extends EmptyAction {
 		// 分配网站名称
 		//$_WEBSITE ["url"] = "http://www.vipmhxy.com";
 		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
-		$_WEBSITE ["url"] = "http://www.vipzhangcheng.cn";
-		$_WEBSITE ["url_short"] = "www.vipzhangcheng.cn";
+		$_WEBSITE ["url"] = "http://".$_SERVER['HTTP_HOST'];
+		$_WEBSITE ["url_short"] = $_SERVER['HTTP_HOST'];
 		$_WEBSITE ["name"] = "PeakPointer";
 		$_WEBSITE['CONTROLLER_NAME'] = CONTROLLER_NAME;
 		$_WEBSITE['ACTION_NAME'] =ACTION_NAME;

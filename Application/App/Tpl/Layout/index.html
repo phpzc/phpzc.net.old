@@ -237,8 +237,8 @@
                             <div class="drowdown-search">
                                 <form role="search">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Search...">
-                                        <i class="fa fa-search nav-search-icon"></i>
+                                        <input type="text" class="form-control" placeholder="Search..." name="search_word">
+                                        <i class="fa fa-search nav-search-icon" onclick="search_word()"></i>
                                     </div>
                                 </form>
                             </div>
@@ -551,6 +551,14 @@
 
     }catch (e){
 
+    }
+
+
+    function search_word()
+    {
+        var s = $('input[name=search_word]').val();
+
+        window.open ('{$WEBSITE.url}/article/search?category='+s,'newwindow','height=600,width=800,top=100,left=200,toolbar=no,menubar=no,scrollbars=yes,resizable=yes,location=no,status=no')
     }
 
 </script>
