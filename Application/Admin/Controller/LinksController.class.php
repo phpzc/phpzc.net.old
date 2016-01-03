@@ -8,7 +8,7 @@
 
 namespace Admin\Controller;
 
-class LinksController extends IndexController
+class LinksController extends CommonController
 {
 
     public function index()

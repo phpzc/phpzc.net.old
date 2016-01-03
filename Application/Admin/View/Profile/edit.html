@@ -1,0 +1,142 @@
+<extend name="Layout/index" />
+
+<block name="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="widget">
+                <div class="widget-header"> <i class="icon-file-alt"></i>
+                    <h3>Edit Profile</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="panel-body">
+
+                        <form action="__URL__/edit" class="form-horizontal row-border" data-validate="parsley" id="validate-form" />
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">中文名</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.name}" name="name" data-rangelength="[1,30]" placeholder="中文名" required class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">英文名</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.foreign_name}" name="foreign_name" data-rangelength="[1,30]" placeholder="英文名" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">编程开始时间</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.begin_time|date='Y-m-d',###}" name="begin_time" data-rangelength="[1,30]" data-type="dateIso" placeholder="YYYY-MM-DD" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">QQ</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.qq}" name="qq" data-rangelength="[1,11]" placeholder="QQ" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">Email</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.mail}" name="mail" data-type="email" data-rangelength="[1,30]" placeholder="Email" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">GitHub</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.github}" name="github" data-type="url" data-rangelength="[1,150]" placeholder="GitHub" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">Weibo</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.weibo}" name="weibo" data-type="url" data-rangelength="[1,250]" placeholder="Weibo" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">头像</label>
+                            <div class="col-sm-6">
+                                <input type="text" value="{$info.avator_url}" name="avator_url" data-type="url" data-rangelength="[1,150]" placeholder="Required Field" required class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group lable-padd">
+                            <label class="col-sm-3">个人介绍</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" value="{$info.description}" name="description" rows="3" id="description"></textarea>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <div class="btn-toolbar">
+                                    <button class="btn-primary btn" onclick="">Submit</button>
+                                    <button class="btn-default btn">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+
+<block name="after">
+    <script>
+        $(function(){
+            $('#validate-form')
+                    .bootstrapValidator({
+                        fields: {
+                            name: {
+                                validators: {
+                                    notEmpty: {
+                                        message: '中文名称不能为空'
+                                    },
+                                    stringLength: {
+                                        min: 1,
+                                        max: 30,
+                                        message: '插件名称必须是1-30位'
+                                    }
+                                }
+                            },
+                        }
+
+                    })
+                    .on('success.form.bv', function(e) {
+
+                        // Prevent form submission
+                        e.preventDefault();
+                        // Get the form instance
+                        var $form = $(e.target);
+
+                        // Get the BootstrapValidator instance
+                        var bv = $form.data('bootstrapValidator');
+                        // Use Ajax to submit form data
+                        $.post($form.attr('action'), $form.serialize(), function(result) {
+                            if(result.status == 1){
+                                window.location = result.url;
+                            }else{
+                                alert(result.msg);
+                            }
+                        }, 'json');
+                    }).on('error.form.bv', function (e){
+                e.preventDefault();
+
+            });
+
+        });
+    </script>
+</block>

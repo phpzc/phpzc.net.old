@@ -1,9 +1,15 @@
 <li class="current"> <a href="/index/index"> <i class="icon-dashboard"></i> 总览 </a> </li>
-<li> <a href="#"> <i class="icon-desktop"></i> 网站数据统计 <span class="label label-info pull-right">7</span> <i class="arrow icon-angle-left"></i></a>
-    <ul class="sub-menu">
-        <li> <a href="#"> <i class="icon-angle-right"></i> IP记录图表 </a> </li>
-        <li> <a href="#"> <i class="icon-angle-right"></i> 访问量图表 </a> </li>
-        <li> <a href="/Links/index"> <i class="icon-angle-right"></i> 友情链接管理 </a> </li>
+<li> <a href="#"> <i class="icon-desktop"></i> 友情链接统计 <span class="label label-info pull-right">7</span> <i class="arrow icon-angle-left"></i></a>
+    <ul class="sub-menu <eq name="THIS_CONTROLLER" value="Links">opened</eq>">
+        <li class="<eq name='THIS_ACTION' value='index'>current</eq>"> <a href="/Links/index"> <i class="icon-angle-right"></i> 友情链接管理 </a> </li>
+
+    </ul>
+</li>
+<li> <a href="#"> <i class="icon-desktop"></i> 个人介绍 <span class="label label-info pull-right">7</span> <i class="arrow icon-angle-left"></i></a>
+    <ul class="sub-menu <eq name="THIS_CONTROLLER" value="Profile">opened</eq>">
+        <li class="<eq name='THIS_ACTION' value='create'>current</eq>"> <a href="/Profile/create"> <i class="icon-angle-right"></i>创建个人介绍 </a> </li>
+        <li class="<eq name='THIS_ACTION' value='index'>current</eq>"> <a href="/Profile/index"> <i class="icon-angle-right"></i>个人介绍 </a> </li>
+        <li class="<eq name='THIS_ACTION' value='edit'>current</eq>"> <a href="/Profile/edit"> <i class="icon-angle-right"></i>修改个人介绍 </a> </li>
 
     </ul>
 </li>

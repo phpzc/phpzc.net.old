@@ -1,3 +1,192 @@
+<extend name="Layout/index" />
+<block name="head">
+	<link rel="stylesheet" type="text/css" href="__CUBE__/libs/magnific-popup.css">
+
+</block>
+
+<block name="content">
+	<div class="row" id="user-profile">
+		<div class="col-lg-5 col-md-4 col-sm-4">
+			<div class="main-box clearfix">
+				<header class="main-box-header clearfix">
+					<h2>About Me</h2>
+				</header>
+
+				<div class="main-box-body clearfix">
+
+					<img src="{$info.avator_url}" alt="" class="profile-img img-responsive center-block" />
+
+					<div class="profile-label">
+						<span class="label label-danger">{$info.name}</span>
+					</div>
+
+					<div class="profile-stars">
+						<span>{$info.foreign_name}</span>
+					</div>
+
+					<div class="profile-since">
+						Begin Coding: Mar 2012
+					</div>
+
+					<div class="profile-details">
+						<ul class="fa-ul">
+							<li><i class="fa-li fa fa-qq"></i>QQ: <span>{$info.qq}</span></li>
+							<li><i class="fa-li fa fa-envelope"></i>Email: <span>{$info.mail}</span></li>
+							<li><i class="fa-li fa fa-github"></i>GitHub: <span><a href="{$info.github}" target="_blank">{$info.github}</a></span></li>
+							<li><i class="fa-li fa fa-weibo"></i>Weibo: <span><a href="{$info.weibo}" target="_blank">{$info.weibo}</a></span></li>
+						</ul>
+					</div>
+
+					<div class="profile-message-btn center-block text-center">
+						<a href="#" class="btn btn-success">
+							<i class="fa fa-envelope"></i>
+							Send message
+						</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col-lg-7 col-md-8 col-sm-8">
+			<div class="main-box clearfix">
+				<div class="tabs-wrapper profile-tabs">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#tab-newsfeed" data-toggle="tab">Descriotion</a></li>
+						<li><a href="#tab-activity" data-toggle="tab">Activity</a></li>
+						<li><a href="#tab-friends" data-toggle="tab">Friends</a></li>
+						<li><a href="#tab-chat" data-toggle="tab">Chat</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div class="tab-pane fade in active" id="tab-newsfeed">
+
+							<div id="newsfeed">
+								<div class="story">
+									<div class="story-user">
+										<a href="#">
+											<img src="{$info.avator_url}" alt=""/>
+										</a>
+									</div>
+
+									<div class="story-content">
+										<header class="story-header">
+											<div class="story-author">
+												<a href="#" class="story-author-link">
+
+												</a>
+												Description of me.
+											</div>
+
+										</header>
+										<div class="">
+											{$info.description}
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="tab-pane fade" id="tab-activity">
+
+							<div class="table-responsive">
+								<table class="table">
+									<tbody>
+									<tr>
+										<td class="text-center">
+											<i class="fa fa-comment"></i>
+										</td>
+										<td>
+											Scarlett Johansson posted a comment in <a href="#">Avengers Initiative</a> project.
+										</td>
+										<td>
+											2014/08/08 12:08
+										</td>
+									</tr>
+
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+
+						<div class="tab-pane clearfix fade" id="tab-friends">
+							<ul class="widget-users row">
+								<li class="col-md-6">
+									<div class="img">
+										<img src="img/samples/scarlet.png" alt=""/>
+									</div>
+									<div class="details">
+										<div class="name">
+											<a href="#">Scarlett Johansson</a>
+										</div>
+										<div class="time">
+											<i class="fa fa-clock-o"></i> Last online: 5 minutes ago
+										</div>
+										<div class="type">
+											<span class="label label-danger">Admin</span>
+										</div>
+									</div>
+								</li>
+
+							</ul>
+							<br/>
+							<a href="#" class="btn btn-success pull-right">View all users</a>
+						</div>
+
+						<div class="tab-pane fade" id="tab-chat">
+							<div class="conversation-wrapper">
+								<div class="conversation-content">
+									<div class="conversation-inner">
+
+										<div class="conversation-item item-left clearfix">
+											<div class="conversation-user">
+												<img src="img/samples/ryan.png" alt=""/>
+											</div>
+											<div class="conversation-body">
+												<div class="name">
+													Ryan Gossling
+												</div>
+												<div class="time hidden-xs">
+													September 21, 2013 18:28
+												</div>
+												<div class="text">
+													I don't think they tried to market it to the billionaire, spelunking,
+													base-jumping crowd.
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="conversation-new-message">
+									<form>
+										<div class="form-group">
+											<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
+										</div>
+
+										<div class="clearfix">
+											<button type="submit" class="btn btn-success pull-right">Send message</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</block>
+<block name="after">
+
+</block>
+
+
+
 <include file="Public:doct" />
 	
     <include file="Public:head" />{// 头部公共文件 }
