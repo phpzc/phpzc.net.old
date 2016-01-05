@@ -159,7 +159,7 @@
                                 </div>
 
                                 <div class="cd-timeline-content">
-                                    <h2>{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</h2>
+                                    <h2><a href="/article/detail/id/{$article_list.id}.html">{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</a></h2>
                                     <p style="word-break:break-all;word-wrap:break-word ;">{$article_list.content| cut_str=###,300} </p>
                                     <div class="clearfix">
                                         <a class="btn btn-primary pull-right"
@@ -294,7 +294,7 @@
                     <a style="margin:0.5em;display: inline-block" href="http://pecl.php.net/index.php" target="_blank"><button type="button" class="btn btn-info">PECL</button></a>
                     <a style="margin:0.5em;display: inline-block" href="https://launchpad.net/gearmand" target="_blank"><button type="button" class="btn btn-info">Gearmand</button></a>
                     <a style="margin:0.5em;display: inline-block" href="http://www.phpcomposer.com/" target="_blank"><button type="button" class="btn btn-info">phpcomposer</button></a>
-                    
+
                     <volist id="links" name="links">
                         <a href="{$links.url}" target="_blank" style="margin:0.5em;display: inline-block">
                             <button type="button" class="btn btn-info">{$links.name}</button>
