@@ -348,6 +348,22 @@
                 var email = $('#exampleEmail').val();
                 var url = $('#exampleUrl').val();
                 var name = $('#exampleName').val();
+                var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                if (!pattern.test(email)) {
+                    alert("Error email");
+                    return false;
+                }
+                var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+                var objExp=new RegExp(Expression);
+                if(objExp.test(url)!=true){
+                    alert("Error url");
+                    return false;
+                }
+
+                if(name == ''){
+                    alert('Error name');
+                    return false;
+                }
                 $.ajax({
                     type:"POST",
                     url:VIP.Base()+"/links/add",
