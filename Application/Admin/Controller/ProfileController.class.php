@@ -53,6 +53,16 @@ class ProfileController extends CommonController
             $this->display();
         }else{
 
+            $data = I('post.');
+            $model = M('profile');
+            $data['begin_time'] = strtotime($data['begin_time']);
+            $res = $model->save($data);
+            if($res === false){
+                $this->error('保存失败','/Links/index');
+            }else{
+                $this->success('保存成功','/Links/index');
+            }
+
         }
     }
 }
