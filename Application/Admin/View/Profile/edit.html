@@ -10,11 +10,12 @@
                 <div class="widget-content">
                     <div class="panel-body">
 
-                        <form action="__URL__/edit" class="form-horizontal row-border" data-validate="parsley" id="validate-form" />
+                        <form action="__URL__/edit" class="form-horizontal row-border" data-validate="parsley" id="validate-form" method="post">
 
                         <div class="form-group lable-padd">
                             <label class="col-sm-3">中文名</label>
                             <div class="col-sm-6">
+                                <input type="hidden" value="{$info.id}" name="id" />
                                 <input type="text" value="{$info.name}" name="name" data-rangelength="[1,30]" placeholder="中文名" required class="form-control" />
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
                                 <div class="btn-toolbar">
-                                    <button class="btn-primary btn" onclick="">Submit</button>
+                                    <button class="btn-primary btn" type="submit">Submit</button>
                                     <button class="btn-default btn">Cancel</button>
                                 </div>
                             </div>
@@ -96,47 +97,47 @@
 
 <block name="after">
     <script>
-        $(function(){
-            $('#validate-form')
-                    .bootstrapValidator({
-                        fields: {
-                            name: {
-                                validators: {
-                                    notEmpty: {
-                                        message: '中文名称不能为空'
-                                    },
-                                    stringLength: {
-                                        min: 1,
-                                        max: 30,
-                                        message: '插件名称必须是1-30位'
-                                    }
-                                }
-                            },
-                        }
-
-                    })
-                    .on('success.form.bv', function(e) {
-
-                        // Prevent form submission
-                        e.preventDefault();
-                        // Get the form instance
-                        var $form = $(e.target);
-
-                        // Get the BootstrapValidator instance
-                        var bv = $form.data('bootstrapValidator');
-                        // Use Ajax to submit form data
-                        $.post($form.attr('action'), $form.serialize(), function(result) {
-                            if(result.status == 1){
-                                window.location = result.url;
-                            }else{
-                                alert(result.msg);
-                            }
-                        }, 'json');
-                    }).on('error.form.bv', function (e){
-                e.preventDefault();
-
-            });
-
-        });
+//        $(function(){
+//            $('#validate-form')
+//                    .bootstrapValidator({
+//                        fields: {
+//                            name: {
+//                                validators: {
+//                                    notEmpty: {
+//                                        message: '中文名称不能为空'
+//                                    },
+//                                    stringLength: {
+//                                        min: 1,
+//                                        max: 30,
+//                                        message: '插件名称必须是1-30位'
+//                                    }
+//                                }
+//                            },
+//                        }
+//
+//                    })
+//                    .on('success.form.bv', function(e) {
+//
+//                        // Prevent form submission
+//                        e.preventDefault();
+//                        // Get the form instance
+//                        var $form = $(e.target);
+//
+//                        // Get the BootstrapValidator instance
+//                        var bv = $form.data('bootstrapValidator');
+//                        // Use Ajax to submit form data
+//                        $.post($form.attr('action'), $form.serialize(), function(result) {
+//                            if(result.status == 1){
+//                                window.location = result.url;
+//                            }else{
+//                                alert(result.msg);
+//                            }
+//                        }, 'json');
+//                    }).on('error.form.bv', function (e){
+//                e.preventDefault();
+//
+//            });
+//
+//        });
     </script>
 </block>
