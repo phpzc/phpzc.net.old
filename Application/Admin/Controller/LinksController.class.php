@@ -52,6 +52,7 @@ class LinksController extends CommonController
 
             $data = I('post.');
             $model = M('Links');
+            $data['begin_time'] = strtotime($data['begin_time']);
             $res = $model->save($data);
             if($res === false){
                 $this->error('保存失败','/Links/index');
