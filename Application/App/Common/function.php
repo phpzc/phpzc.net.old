@@ -2,7 +2,8 @@
 
 //define("NET_NAME","http://www.localhost.com");
 define("NET_NAME","http://" . $_SERVER ["SERVER_NAME"] );
-
+define('ACTION_SUCCESS',1);
+define('ACTION_ERROR',0);
 function percent_func($all,$view)
 {
 	if($view ==0){

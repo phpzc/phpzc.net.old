@@ -321,4 +321,22 @@ class CommonAction extends EmptyAction {
 		//dump(CONTROLLER_NAME);
 		$this->assign('THIS_CONTROLLER',CONTROLLER_NAME);
 	}
+
+
+	public function actionReturn($status,$msg='',$urlOrdata='')
+	{
+		$data['status'] = $status;
+		$data['content'] = $msg;
+		if($urlOrdata != ''){
+			if(is_string($urlOrdata)){
+				$data['url'] = $urlOrdata;
+			}elseif(is_array($urlOrdata)){
+				$data['data'] = $urlOrdata;
+			}
+		}
+
+		$this->ajaxReturn($data);
+
+
+	}
 }
