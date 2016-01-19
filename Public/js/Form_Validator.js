@@ -102,7 +102,10 @@ var __form_tools = {
             return v;
         }
     },
-
+    isEmail:function(str){
+        var myreg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return myreg.test(str);
+    },
     isLoading:false,
     lock:function(){this.isLoading = true},
     unLock:function(){this.isLoading = false},

@@ -248,7 +248,9 @@
 				){
 					return;
 				}
-
+				if(!Form_Validator.isEmail(email)){
+					return alert('error mail');
+				}
 				if(Form_Validator.isLocked()){return}
 				Form_Validator.lock();
 
