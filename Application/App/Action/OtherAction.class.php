@@ -23,7 +23,7 @@ class OtherAction extends CommonAction {
 		if(!empty($number) && $number > 100 ){
 			$this->actionReturn(ACTION_ERROR,' Too fast');
 		}
-		if($time > 0 && $time - time() < 60){
+		if($time > 0 && time() - $time  < 60){
 			$this->actionReturn(ACTION_ERROR,' One minute one message');
 		}
 		session('send_message_number',$number + 1);
