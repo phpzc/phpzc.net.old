@@ -1,7 +1,12 @@
 <?php
 
 //define("NET_NAME","http://www.localhost.com");
-define("NET_NAME","http://" . $_SERVER ["SERVER_NAME"] );
+if(is_ssl()){
+	define("NET_NAME","https://" . $_SERVER ["HTTP_HOST"] );
+}else{
+	define("NET_NAME","http://" . $_SERVER ["HTTP_HOST"] );
+}
+
 define('ACTION_SUCCESS',1);
 define('ACTION_ERROR',0);
 function percent_func($all,$view)
