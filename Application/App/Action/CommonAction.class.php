@@ -13,7 +13,7 @@ class CommonAction extends EmptyAction {
 		// 分配网站名称
 		//$_WEBSITE ["url"] = "http://www.vipmhxy.com";
 		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
-		$_WEBSITE ["url"] = "http://".$_SERVER['HTTP_HOST'];
+		$_WEBSITE ["url"] = NET_NAME;
 		$_WEBSITE ["url_short"] = $_SERVER['HTTP_HOST'];
 		$_WEBSITE ["name"] = "PeakPointer";
 		$_WEBSITE['CONTROLLER_NAME'] = CONTROLLER_NAME;
@@ -298,7 +298,7 @@ class CommonAction extends EmptyAction {
 
 		if(!is_writable($target))
 		{
-			chmod($filename,0777);
+			chmod($fpath,0777);
 		}
 
 		if ( file_put_contents($target,$str) )

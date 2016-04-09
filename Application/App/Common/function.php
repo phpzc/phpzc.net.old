@@ -1,6 +1,8 @@
 <?php
+use App\Common\Language;
 
-//define("NET_NAME","http://www.localhost.com");
+
+
 if(is_ssl()){
 	define("NET_NAME","https://" . $_SERVER ["HTTP_HOST"] );
 }else{
@@ -9,6 +11,28 @@ if(is_ssl()){
 
 define('ACTION_SUCCESS',1);
 define('ACTION_ERROR',0);
+
+/**
+ * 取得语言对象
+ *
+ * @return Language|null
+ */
+function Lang()
+{
+	static $lan = null;
+	if($lan == null){
+		$lan = new Language();
+		if(session('language') != null){
+			session('language','zh');
+		}
+		$lan->setLanguage(session('language'));
+		$lan->load();
+	}
+	return $lan;
+}
+
+
+
 function percent_func($all,$view)
 {
 	if($view ==0){
@@ -357,3 +381,5 @@ function encodeId($id) {
 	$str .= substr ( $mid, 16, 16 );
 	return $str;
 }
+
+

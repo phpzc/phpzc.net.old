@@ -269,14 +269,14 @@ class SocialAction extends CommonAction {
 			cookie ( null );
 			session ( null );
 			
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 
 		if($_REQUEST['code']){
 			$url = "https://github.com/login/oauth/access_token";
 			$data['client_id'] = "c1d05cc24f15c5dfb7ce";
-			$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn/social/github");
+			$data['redirect_uri']=urlencode(NET_NAME."/social/github");
 			$data['client_secret'] = "086b65793c9e409f8d6464fb1e692703dee2c4fa";
 			$data['code'] = $_REQUEST['code'];
 
@@ -328,7 +328,7 @@ class SocialAction extends CommonAction {
 			$_SESSION ['Auth'] ['Social'] ['access_token'] = $access_token[1];
 			$_SESSION ['Auth'] ['Social'] ['code'] = $_REQUEST['code'];
 			
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=github" );
+			header ( "location:".NET_NAME. "/social/account.html?ltype=github" );
 
 			exit;
 	    }
@@ -348,7 +348,7 @@ class SocialAction extends CommonAction {
 
 		$url = "https://github.com/login/oauth/authorize?";
 		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
-		$data['redirect_uri']=urlencode("http://www.vipzhangcheng.cn/social/github");
+		$data['redirect_uri']=urlencode(NET_NAME."/social/github");
 		$data['scope'] = "user,user:email,public_repo";
 		$data['state'] = "zc";
 		foreach ($data as $key => $value) {
