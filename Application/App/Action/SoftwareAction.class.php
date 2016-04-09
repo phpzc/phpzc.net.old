@@ -76,13 +76,33 @@ class SoftwareAction extends CommonAction {
 
 	public function gui()
 	{
+		$page = I('get.page',1,'int');
 
+		$limit = 10;
+		$result = M('software')->page($page,$limit)->select();
+		$count = M('software')->count();
+		$page = new \Think\Page($count,$limit);
+		$show = $page->show();
+		$this->assign('page',$show);
+		$this->assign('result',$result);
+		$this->assign('soft_type','gui');
+		$this->display ();
 	}
 
 
 	public function game()
 	{
+		$page = I('get.page',1,'int');
 
+		$limit = 10;
+		$result = M('software')->page($page,$limit)->select();
+		$count = M('software')->count();
+		$page = new \Think\Page($count,$limit);
+		$show = $page->show();
+		$this->assign('page',$show);
+		$this->assign('result',$result);
+		$this->assign('soft_type','game');
+		$this->display ();
 	}
 }
 
