@@ -22,7 +22,7 @@ function Lang()
 	static $lan = null;
 	if($lan == null){
 		$lan = new Language();
-		if(session('language') != null){
+		if(session('language') == null){
 			session('language','zh');
 		}
 		$lan->setLanguage(session('language'));

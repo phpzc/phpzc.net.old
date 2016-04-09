@@ -19,29 +19,29 @@ class Language
     /**
      * @var string 语言种类 zh 和 en
      */
-    private static $language = 'zh';
+    private  $language = 'zh';
 
     /**
      * @var array 语言词组
      */
-    private static $words = array();
+    private  $words = array();
 
 
     /**
      * 设置语言
      * @param $language
      */
-    public static function setLanguage($language)
+    public function setLanguage($language)
     {
-        self::$language = $language;
+        $this->language = $language;
     }
 
     /**
      * 载入词组
      */
-    public static function load()
+    public function load()
     {
-        self::$words[self::$language] = require dirname(__FILE__).'/'.self::$language.'/word.php';
+        $this->words[$this->language] = require APP_PATH.'App/Common/'.$this->language.'/word.php';
 
     }
 
@@ -51,11 +51,11 @@ class Language
      * @param string $language
      * @return mixed
      */
-    public static function R($name,$language = ''){
+    public function R($name,$language = ''){
         if(empty($language)){
-            $language = self::$language;
+            $language = $this->language;
         }
-        return self::$words[$language][$name];
+        return $this->words[$language][$name];
     }
 
 
@@ -66,12 +66,12 @@ class Language
      * @param $value
      * @param string $language
      */
-    public static function W($name,$value,$language = '')
+    public function W($name,$value,$language = '')
     {
         if(empty($language)){
-            $language = self::$language;
+            $language = $this->language;
         }
-        self::$words[$language][$name] = $value;
+        $this->words[$language][$name] = $value;
     }
 
 
