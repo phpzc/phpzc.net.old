@@ -362,13 +362,15 @@
                                 </a>
                                 </li>
 
+                                <!--
                                 <li <eq name="THIS_CONTROLLER" value="Album">class="active"</eq> >
                                 <a href="/album">
                                     <i class="fa fa-image"></i>
                                     <span>Pictures</span>
-                                    <!--<span class="label label-primary label-circle pull-right">28</span>-->
+                                    
                                 </a>
                                 </li>
+                                -->
 
                                 <li <eq name="THIS_CONTROLLER" value="Software">class="active"</eq> >
 
@@ -378,11 +380,11 @@
                                     <i class="fa fa-angle-right drop-icon"></i>
                                     <ul class="submenu">
                                         <li>
-                                            <a href="/software/gui">
+                                            <a href="/software/gui" <eq name="soft_type" value="gui">class="active"</eq>>
                                                 GUI
                                             </a>
 
-                                            <a href="/software/game">
+                                            <a href="/software/game" <eq name="soft_type" value="game">class="active"</eq>>
                                                 Game
                                             </a>
                                         </li>
