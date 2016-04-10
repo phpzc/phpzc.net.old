@@ -1,6 +1,10 @@
 <?php
 namespace App\Action;
 class SoftwareAction extends CommonAction {
+
+	const TYPE_GUI = 1;
+	const TYPE_GAME = 2;
+
 	/*
 	 * @brief 设置每一页标题
 	 */
@@ -38,7 +42,18 @@ class SoftwareAction extends CommonAction {
 		if(IS_GET){
 			$this->display();
 		}else{
+			$data = I('post.');
 
+			$model =  M('software');
+			if( $model->create($data) ){
+				if($model->add()){
+					$this->formSuccess('添加成功');
+				}else{
+					$this->formError('添加失败');
+				}
+			}else{
+				$this->formError($model->getError());
+			}
 		}
 
 	}
@@ -47,7 +62,16 @@ class SoftwareAction extends CommonAction {
 		if(IS_GET){
 			$this->display();
 		}else{
+			$data = I('post.');
 
+			$model =  M('software');
+			if( false === $model->where(array('id'=>$data['id']))->save($data) ){
+
+				$this->formSuccess('更新成功');
+
+			}else{
+				$this->formError('更新失败');
+			}
 		}
 
 	}
@@ -67,11 +91,9 @@ class SoftwareAction extends CommonAction {
 		}
 	}
 	
-	// 查找软件
-	//
-	//
-	public function search() {
-	}
+
+//	public function search() {
+//	}
 
 
 	public function gui()
@@ -79,8 +101,8 @@ class SoftwareAction extends CommonAction {
 		$page = I('get.page',1,'int');
 
 		$limit = 10;
-		$result = M('software')->page($page,$limit)->select();
-		$count = M('software')->count();
+		$result = M('software')->where(array('type'=>self::TYPE_GUI))->page($page,$limit)->select();
+		$count = M('software')->where(array('type'=>self::TYPE_GUI))->count();
 		$page = new \Think\Page($count,$limit);
 		$show = $page->show();
 		$this->assign('page',$show);
@@ -95,8 +117,8 @@ class SoftwareAction extends CommonAction {
 		$page = I('get.page',1,'int');
 
 		$limit = 10;
-		$result = M('software')->page($page,$limit)->select();
-		$count = M('software')->count();
+		$result = M('software')->where(array('type'=>self::TYPE_GAME))->page($page,$limit)->select();
+		$count = M('software')->where(array('type'=>self::TYPE_GAME))->count();
 		$page = new \Think\Page($count,$limit);
 		$show = $page->show();
 		$this->assign('page',$show);
