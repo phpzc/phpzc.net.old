@@ -1,7 +1,5 @@
 <extend name="Layout/index" />
 <block name="head">
-    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/dropzone.css">
-    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/magnific-popup.css">
 
 </block>
 <block name="content">
@@ -13,113 +11,83 @@
             </header>
         </div>
 
-
-
         <div class="row">
             <div class="col-lg-12">
-                <div class="main-box clearfix">
-                    <header class="main-box-header clearfix">
-                        <h2>游戏简介-Game Description</h2>
-                    </header>
-
+                <div class="main-box no-header clearfix">
                     <div class="main-box-body clearfix">
-                        <p class="lead">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
-                            Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
-                            Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                            lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                            placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit
-                            felis. Vestibulum convallis turpis lectus, a porta est facilisis id
-                            <abbr title="attribute">ends</abbr>.
-                        </p>
-
-                        <h5>游戏截图 -H5</h5>
-
-                        <div id="gallery-photos-lightbox">
-                            <ul class="clearfix gallery-photos">
-                                <li class="col-md-3 col-sm-3 col-xs-6">
-                                    <a href="img/samples/hdr/img_8.jpg" class="photo-box image-link" style="background-image: url('');"></a>
-
-                                </li>
-                            </ul>
+                        <div class="table-responsive">
+                            <table class="table user-list table-hover">
+                                <thead>
+                                <tr>
+                                    <th><span>GUI程序名称GUI name</span></th>
+                                    <th><span>发布时间 time</span></th>
+                                    <th class="text-center"><span>Status</span></th>
+                                    <th><span>更新时间</span></th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="img/samples/scarlet-159.png" alt=""/>
+                                        <a href="/software/guidetail/id/" class="user-link">游戏名称</a>
+                                        <span class="user-subhead">发布人姓名</span>
+                                    </td>
+                                    <td>
+                                        2013/08/08
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="label label-default">Inactive</span>
+                                    </td>
+                                    <td>
+                                        2013/08/08
+                                    </td>
+                                    <td>
+                                        <a href="/software/guidetail/id/" class="table-link">
+																	<span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+																	</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="img/samples/robert-300.jpg" alt=""/>
+                                        <a href="/software/guidetail/id/" class="user-link">Robert Downey Jr.</a>
+                                        <span class="user-subhead">Member</span>
+                                    </td>
+                                    <td>
+                                        2013/08/12
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="label label-success">Active</span>
+                                    </td>
+                                    <td>
+                                        2013/08/08
+                                    </td>
+                                    <td>
+                                        <a href="/software/guidetail/id/" class="table-link">
+																	<span class="fa-stack">
+																		<i class="fa fa-square fa-stack-2x"></i>
+																		<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
+																	</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-
-
-                        <h3><span>游戏详情介绍-Heading 3 (h3)</span></h3>
-
-                        <h5>Heading 5 (h5)</h5>
-
-                        <p>
-                            <small>
-                                SMALL - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet odio.
-                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                                placerat. Vivamus suscipit vulputate lacinia.
-                            </small>
-                        </p>
-                        <br/>
-
-
-
-
-
-                        <blockquote>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
-                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                                placerat. Vivamus suscipit vulputate lacinia.
-                            </p>
-                            <small>
-                                <cite title="Source Title">Source Samuel L Ipsum</cite>
-                            </small>
-                        </blockquote>
-
-                        <h5>功能支持定义——Definition List</h5>
-
-                        <dl class="dl-horizontal">
-                            <dt>系统支持</dt>
-                            <dd>Windows,Linux,Mac</dd>
-
-                            <dt>Description lists</dt>
-                            <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
-
-                        </dl>
-
                     </div>
-
-
                 </div>
             </div>
-
-
-
         </div>
+
 
     </div>
 </block>
 
 <block name="after">
-    <script src="__CUBE__/js/jquery-ui.custom.min.js"></script>
-    <script src="__CUBE__/js/dropzone.js"></script>
-    <script src="__CUBE__/js/jquery.magnific-popup.min.js"></script>
 
-    <script>
-        $(function() {
-
-            $(document).ready(function() {
-                $('#gallery-photos-lightbox').magnificPopup({
-                    type: 'image',
-                    delegate: 'a',
-                    gallery: {
-                        enabled: true
-                    }
-                });
-            });
-        });
-    </script>
 
 </block>
