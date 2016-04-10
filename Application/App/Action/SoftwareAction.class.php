@@ -130,12 +130,14 @@ class SoftwareAction extends CommonAction {
 
 	public function guidetail()
 	{
-
+		$this->assign('soft_type','gui');
 		$this->display();
 	}
 
 	public function gamedetail()
 	{
+
+		$this->assign('soft_type','game');
 		$this->display();
 	}
 }
