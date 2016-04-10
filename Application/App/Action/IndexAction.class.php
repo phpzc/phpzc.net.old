@@ -3,12 +3,8 @@ namespace App\Action;
 
 class IndexAction extends CommonAction {
 	public function index() {
+		
 
-		// $a = parse_ini_file("test.ini",true);
-		// dump($a);
-		//
-		//
-		// dump($_SERVER);
 		$c = M ( 'Category' );
 		$r = $c->where ( "pid=0" )->select ();
 		
