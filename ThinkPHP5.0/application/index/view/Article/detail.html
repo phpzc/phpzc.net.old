@@ -1,0 +1,86 @@
+<extend name="Layout/index" />
+<block name="head">
+	<script type="text/javascript" charset="utf-8" src="__UEDITOR__/third-party/SyntaxHighlighter/shCore.js"></script>
+	<link rel="stylesheet" type="text/css" href="__UEDITOR__/third-party/SyntaxHighlighter/shCoreDefault.css"/>
+	<link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/magnific-popup.css">
+</block>
+<block name="content">
+	<div class="row" id="article_show">
+		<div class="col-lg-12" id="article_list" >
+			<div class="main-box clearfix">
+
+				<header class="main-box-header" >
+					<h2>{$article.title}</h2>
+				</header>
+				<div class="story-content clearfix">
+					<div class="story-author" style="float:left;padding-left:20px">
+						<a href="#">{$article.name}</a>
+					</div>
+					<div class="story-time" style="float:right;padding-right:20px">
+						<i class="fa fa-clock-o"></i> {$article.year}/{$article.month}
+					</div>
+
+				</div>
+				<style>
+					.main-box-body img{
+						max-width: 100%;
+					}
+
+				</style>
+				<div class="main-box-body ">
+					<hr>
+					{$article.content}
+
+				</div>
+				<div class="main-box-body ">
+					<hr>
+					<div class="pre_page">上一篇：
+						<if condition="$article_pre.id eq ''">
+							没有了
+							<else/>
+							<a href="__ROOT__/article/detail/id/{$article_pre.id}.html"><button type="button" class="btn btn-success">{$article_pre.title}</button></a>
+						</if>
+					</div>
+					<hr>
+					<div class="next_page">下一篇：
+						<if condition="$article_next.id eq ''">
+							没有了
+							<else/>
+							<a href="__ROOT__/article/detail/id/{$article_next.id}.html"><button type="button" class="btn btn-success">{$article_next.title}</button></a>
+						</if>
+					</div>
+				</div>
+
+			</div>
+			{//代码显示插件生效代码}
+			<script>
+				SyntaxHighlighter.highlight();
+			</script>
+			{//评论功能}
+
+			<!-- 多说评论框 start -->
+			<div class="ds-thread" data-thread-key="{$article.id}" data-title="{$article.title}" data-url="http://www.vipmhxy.com/article/detail/id/{$article.id}.html">
+
+			</div>
+			<!-- 多说评论框 end -->
+			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+			<script type="text/javascript">
+				var duoshuoQuery = {short_name:"peakpointer"};
+				(function() {
+					var ds = document.createElement('script');
+					ds.type = 'text/javascript';ds.async = true;
+					ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+					ds.charset = 'UTF-8';
+					(document.getElementsByTagName('head')[0]
+					|| document.getElementsByTagName('body')[0]).appendChild(ds);
+				})();
+			</script>
+			<!-- 多说公共JS代码 end -->
+
+		</div>
+
+
+	</div>
+</block>
+<block name="after">
+</block>

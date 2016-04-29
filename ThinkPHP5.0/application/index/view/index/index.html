@@ -1,0 +1,393 @@
+<block name="head">
+    <!--timeline-->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/timeline.css">
+    <!--modal -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/nifty-component.css"/>
+</block>
+<block name="content">
+    {//}
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box emerald-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header emerald-bg">
+                        <div class="name">
+                            <a href="javascript:;">
+                                The Articles
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="<?php percent_func($site_count['article'],$site_count['article_view']);?>">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">ViewPercent</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">{$site_count.article}</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">{$site_count.article_view}</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="zhangcheng"/>
+                        <a href="/article/index.html" class="link pull-right" target="_blank">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box green-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header green-bg">
+                        <div class="name">
+                            <a href="javascript:;">
+                                The Documents
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="<?php percent_func($site_count['document'],$site_count['document_view']);?>" data-bar-color="#2ecc71">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">ViewPercent</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">{$site_count.document}</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">{$site_count.document_view}</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="zhangcheng"/>
+
+                        <a href="/document/index" class="link pull-right" target="_blank">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="main-box clearfix project-box red-box">
+                <div class="main-box-body clearfix">
+                    <div class="project-box-header red-bg">
+                        <div class="name">
+                            <a href="javascript:;">
+                                The Pictures
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-box-content">
+												<span class="chart" data-percent="<?php percent_func($site_count['photo'],$site_count['photo_view']);?>" data-bar-color="#e74c3c">
+													<span class="percent"></span>%<br/>
+													<span class="lbl">ViewPercent</span>
+												</span>
+                    </div>
+
+                    <div class="project-box-footer clearfix">
+                        <a href="#">
+                            <span class="value">{$site_count.photo}</span>
+                            <span class="label">Numbers</span>
+                        </a>
+                        <a href="#">
+                            <span class="value">{$site_count.photo_view}</span>
+                            <span class="label">Views</span>
+                        </a>
+                        <a href="#">
+                            <span class="value"><?php echo date('m/d');?></span>
+                            <span class="label">Date</span>
+                        </a>
+                    </div>
+
+                    <div class="project-box-ultrafooter clearfix">
+                        <img class="project-img-owner" alt="" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" data-toggle="tooltip" title="zhangcheng"/>
+
+                        <a href="/album/index" class="link pull-right" target="_blank">
+                            <i class="fa fa-arrow-circle-right fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {//}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h1>Latest Articles</h1>
+                    <hr>
+                </header>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <section id="cd-timeline" class="cd-container">
+
+                            <volist name="article_list" id="article_list">
+                                <div class="cd-timeline-block">
+                                    <div class="cd-timeline-img cd-location">
+                                        <i class="fa fa-map-marker fa-2x"></i>
+                                    </div>
+
+                                    <div class="cd-timeline-content">
+                                        <h2><a href="/article/detail/id/{$article_list.id}.html">{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</a></h2>
+                                        <p style="word-break:break-all;word-wrap:break-word ;">{$article_list.content| cut_str=###,300} </p>
+                                        <div class="clearfix">
+                                            <a class="btn btn-primary pull-right"
+                                               href="/article/detail/id/{$article_list.id}.html"
+                                               target="_blank">
+                                                Read more
+                                            </a>
+                                        </div>
+                                <span class="cd-date">
+                                    {$article_list.time|date="Y/m/d",###}
+                                </span>
+                                    </div>
+                                </div>
+                            </volist>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {// doc}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box">
+                <header class="main-box-header">
+                    <h1>Latest Document</h1>
+                    <hr>
+                </header>
+
+                <div class="row" id="user-profile">
+                    <style>
+                        img:hover{opacity:0.75;}
+                    </style>
+                    <volist name="article_list2" id="article_list">
+                        <div class="col-lg-3 col-md-4 col-sm-4">
+                            <div class="main-box clearfix">
+                                <header class="main-box-header clearfix">
+                                    <div class="row" style="height:2em;">{$article_list.title}</div>
+                                </header>
+
+                                <div class="main-box-body clearfix">
+
+                                    <img src="{$article_list.imgurl|replace_str=###}" style="cursor: pointer" title="{$article_list.title}" alt="" class=" img-responsive center-block" />
+
+                                    <div class="profile-label" >
+                                        <span  class="label label-danger" style="display:inline-block;max-width:80%;cursor: pointer" title="{$article_list.author}">{$article_list.author}</span>
+                                    </div>
+
+                                    <div class="profile-stars">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <span>4 Star</span>
+                                    </div>
+
+                                    <div class="profile-since">
+                                        Publish Time: {$article_list.year}/{$article_list.month}
+                                    </div>
+
+                                    <div class="profile-details">
+                                        <ul class="fa-ul">
+                                            <li><i class="fa-li fa fa-download"></i>Downloads: <span>{$article_list.visit}</span></li>
+                                            <li><i class="fa-li fa fa-smile-o"></i>Views: <span>{$article_list.visit}</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="profile-message-btn center-block text-center">
+                                        <a href="/download/index?url={$article_list.url|urlencode=###}&type=document&id={$article_list.id}" class="btn btn-success" target="_blank">
+                                            <i class="fa fa-download"></i>
+                                            Download
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </volist>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {//modal form div}
+    <div class="md-modal md-effect-4" id="modal-4">
+        <div class="md-content">
+            <div class="modal-header">
+                <button class="md-close close" >&times;</button>
+                <h4 class="modal-title">Apply for link</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="exampleEmail">Your Email address</label>
+                        <input type="email" class="form-control" id="exampleEmail" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleUrl">Your site url</label>
+                        <input type="text" class="form-control" id="exampleUrl" placeholder="Enter url">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleName">Your site name</label>
+                        <input type="text" class="form-control" id="exampleName" placeholder="Enter site name">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success" style="display: none" id="links_submit_tip">
+                    <i class="fa fa-check-circle fa-fw fa-lg"></i>
+                    <strong>Submit Success!</strong>
+                </div>
+                <button type="button" id="links_submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    {//modal link}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box clearfix">
+                <header class="main-box-header clearfix">
+                    <h1>Links</h1>
+                    <hr>
+                </header>
+                <div class="main-box-body clearfix">
+                    <a style="margin:0.5em;display: inline-block" href="http://pecl.php.net/index.php" target="_blank"><button type="button" class="btn btn-info">PECL</button></a>
+                    <a style="margin:0.5em;display: inline-block" href="https://launchpad.net/gearmand" target="_blank"><button type="button" class="btn btn-info">Gearmand</button></a>
+                    <a style="margin:0.5em;display: inline-block" href="http://www.phpcomposer.com/" target="_blank"><button type="button" class="btn btn-info">phpcomposer</button></a>
+
+                    <volist id="links" name="links">
+                        <a href="{$links.url}" target="_blank" style="margin:0.5em;display: inline-block">
+                            <button type="button" class="btn btn-info">{$links.name}</button>
+                        </a>
+
+                    </volist>
+
+                </div>
+                <div class="main-box-body clearfix">
+                    <button class="md-trigger btn btn-danger mrg-b-lg" data-modal="modal-4">Add Link</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-overlay"></div><!-- the overlay element -->
+</block>
+<block name="after">
+    <script src="__CUBE__/js/jquery.easypiechart.min.js"></script>
+
+    <!--modal -->
+    <script src="__CUBE__/js/modernizr.custom.js"></script>
+    <script src="__CUBE__/js/classie.js"></script>
+    <script src="__CUBE__/js/modalEffects.js"></script>
+    <!--timeline -->
+    <script src="__CUBE__/js/modernizr.js"></script>
+    <script src="__CUBE__/js/timeline.js"></script>
+    <!-- this page specific inline scripts -->
+
+
+    <script>
+        $(function() {
+            $('.chart').easyPieChart({
+                easing: 'easeOutBounce',
+                onStep: function(from, to, percent) {
+                    $(this.el).find('.percent').text(Math.round(percent));
+                },
+                barColor: '#3498db',
+                trackColor: '#f2f2f2',
+                scaleColor: false,
+                lineWidth: 8,
+                size: 130,
+                animate: 1500
+            });
+
+
+
+            //links
+            $('#links_submit').click(function() {
+                var email = $('#exampleEmail').val();
+                var url = $('#exampleUrl').val();
+                var name = $('#exampleName').val();
+                var pattern = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                if (!pattern.test(email)) {
+                    alert("Error email");
+                    return false;
+                }
+                var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+                var objExp=new RegExp(Expression);
+                if(objExp.test(url)!=true){
+                    alert("Error url");
+                    return false;
+                }
+
+                if(name == ''){
+                    alert('Error name');
+                    return false;
+                }
+                $.ajax({
+                    type:"POST",
+                    url:VIP.Base()+"/links/add",
+                    data:"email="+email+"&url="+url+"&name="+name,
+                    async:true,
+
+                    success: function(data)
+                    {
+                        if(data == '1'){
+                            $('#links_submit_tip').show();
+                            setTimeout(function(){
+                                $('#links_submit_tip').hide();
+                                $('.md-close').click();
+                                $('#exampleEmail').val('');
+                                $('#exampleUrl').val('');
+                                $('#exampleName').val('');
+                            },2000);
+
+                        }else{
+                            alert('Apply Fail!');
+                        }
+
+                    }
+                });
+            })
+        });
+    </script>
+</block>

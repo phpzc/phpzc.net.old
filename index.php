@@ -10,28 +10,56 @@
 // +----------------------------------------------------------------------
 
 // 应用入口文件
+$access_site_name = $_SERVER['HTTP_HOST'];
 
-// 检测PHP环境
-if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
+if (stripos($access_site_name,'newblog') === false) {
 
-// 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
-define('APP_DEBUG',True);
+    // 3.2启动环境
 
-// 定义应用目录
-define('APP_PATH','./Application/');
+    // 检测PHP环境
+    if (version_compare(PHP_VERSION, '5.3.0', '<')) die('require PHP > 5.3.0 !');
 
-// 定义绑定模块
-//define('BIND_MODULE','Admin');
-define('BIND_MODULE','App');
+    // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
+    define('APP_DEBUG', True);
 
-//引入公共的常量文件
-define('ROOT_PATH',realpath(dirname(__FILE__)));
+    // 定义应用目录
+    define('APP_PATH', './Application/');
 
-//
+    // 定义绑定模块
+    //define('BIND_MODULE','Admin');
+    define('BIND_MODULE', 'App');
 
-require ROOT_PATH."/sina/Sina.php";
+    //引入公共的常量文件
+    define('ROOT_PATH', realpath(dirname(__FILE__)));
 
-// 引入ThinkPHP入口文件
-require './ThinkPHP/ThinkPHP.php';
+    //
 
-// 亲^_^ 后面不需要任何代码了 就是如此简单
+    require ROOT_PATH . "/sina/Sina.php";
+
+    // 引入ThinkPHP入口文件
+    require './ThinkPHP/ThinkPHP.php';
+
+    // 亲^_^ 后面不需要任何代码了 就是如此简单
+
+
+} else {
+//================================================
+
+    /* TP5.0*/
+    // 检测PHP环境
+    if (version_compare(PHP_VERSION, '5.4.0', '<')) die('require PHP > 5.4.0 !');
+
+
+    //引入公共的常量文件
+    define('ROOT_PATH', realpath(dirname(__FILE__)));
+
+    require ROOT_PATH . "/sina/Sina.php";
+
+    // 定义应用目录
+    define('APP_PATH', __DIR__ . '/ThinkPHP5.0/application/');
+    // 开启调试模式
+    define('APP_DEBUG', false);
+
+    // 加载框架引导文件
+    require __DIR__ . '/ThinkPHP5.0/thinkphp/start.php';
+}

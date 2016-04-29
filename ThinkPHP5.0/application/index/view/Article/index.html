@@ -1,0 +1,56 @@
+<extend name="Layout/index" />
+<block name="head">
+	<link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/timeline.css">
+</block>
+<block name="content">
+	<div class="row">
+
+		<div class="col-lg-12">
+			<div class="main-box clearfix">
+				<header class="main-box-header clearfix">
+					<h2>All Articles</h2>
+				</header>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<section id="cd-timeline" class="cd-container">
+
+							<volist name="article_list" id="article_list">
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
+
+								<div class="cd-timeline-content">
+									<h2><a href="/article/detail/id/{$article_list.id}.html">{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</a></h2>
+									<p style="word-break:break-all;word-wrap:break-word ;">{$article_list.content| cut_str=###,300} </p>
+									<div class="clearfix">
+										<a class="btn btn-primary pull-right"
+										   href="/article/detail/id/{$article_list.id}.html"
+										   target="_blank">
+											Read more
+										</a>
+									</div>
+									<span class="cd-date">
+										{$article_list.time|date="Y/m/d",###}
+									</span>
+								</div>
+							</div>
+							</volist>
+						</section>
+					</div>
+				</div>
+				<div class="main-box-body clearfix">
+				<div style="float:right">{$article_page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</block>
+<block name="after">
+	<!-- this page specific scripts -->
+	<script src="__CUBE__/js/modernizr.js"></script>
+	<script src="__CUBE__/js/timeline.js"></script>
+</block>
+
