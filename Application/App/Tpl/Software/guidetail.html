@@ -123,3 +123,151 @@
     </script>
 
 </block>
+<extend name="Layout/index" />
+<block name="head">
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/magnific-popup.css">
+
+</block>
+<block name="content">
+    <div class="row">
+        <div class="main-box clearfix">
+
+            <header class="main-box-header clearfix">
+                <h2>All Gui-[Graphical User Interface] Programs</h2>
+            </header>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box clearfix">
+                    <header class="main-box-header clearfix">
+                        <h2>程序简介</h2>
+                    </header>
+
+                    <div class="main-box-body clearfix">
+                        <p class="lead">
+                            {$data.description_simple}
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
+                            Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
+                            lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
+                            placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit
+                            felis. Vestibulum convallis turpis lectus, a porta est facilisis id
+                            <abbr title="attribute">ends</abbr>.
+                        </p>
+
+                        <h5>程序截图</h5>
+
+                        <div id="gallery-photos-lightbox">
+                            <ul class="clearfix gallery-photos">
+                                <?php
+                                foreach($data['soft_image'] as $v){ ?>
+                                <li class="col-md-3 col-sm-3 col-xs-6">
+                                    <a href="<?php echo $v;?>" class="photo-box image-link" style="background-image: url('<?php echo $v;?>');"></a>
+                                </li>
+
+                                <?php
+                                }
+                                ?>
+                            </ul>
+                        </div>
+
+
+                        <h3><span>程序详情介绍</span></h3>
+
+
+                        <p>
+
+                                SMALL - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet odio.
+                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
+                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
+                                placerat. Vivamus suscipit vulputate lacinia.
+
+                        </p>
+
+                        <h3><span>开发日志</span></h3>
+
+                        <p>
+                            {$data.develop_log}
+                        </p>
+                        <!--
+                        <blockquote>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
+                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
+                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
+                                placerat. Vivamus suscipit vulputate lacinia.
+                            </p>
+                            <small>
+                                <cite title="Source Title">Source Samuel L Ipsum</cite>
+                            </small>
+                        </blockquote>
+                        -->
+
+                        <h3><span>功能支持</span></h3>
+
+                        <dl class="dl-horizontal">
+                            <dt>系统支持</dt>
+                            <dd>Windows,Linux,Mac</dd>
+
+                        </dl>
+
+                        {//评论功能}
+
+                        <!-- 多说评论框 start -->
+                        <div class="ds-thread" data-thread-key="{$data.id}" data-title="{$data.title}" data-url="<?php echo $_SERVER['HTTP_HOST'];?>/software/guidetail/id/{$data.id}.html">
+
+                        </div>
+                        <!-- 多说评论框 end -->
+                        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+                        <script type="text/javascript">
+                            var duoshuoQuery = {short_name:"peakpointer"};
+                            (function() {
+                                var ds = document.createElement('script');
+                                ds.type = 'text/javascript';ds.async = true;
+                                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                                ds.charset = 'UTF-8';
+                                (document.getElementsByTagName('head')[0]
+                                || document.getElementsByTagName('body')[0]).appendChild(ds);
+                            })();
+                        </script>
+                        <!-- 多说公共JS代码 end -->
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</block>
+
+<block name="after">
+    <script src="__CUBE__/js/jquery-ui.custom.min.js"></script>
+    <script src="__CUBE__/js/dropzone.js"></script>
+    <script src="__CUBE__/js/jquery.magnific-popup.min.js"></script>
+
+    <script>
+        $(function() {
+
+            $(document).ready(function() {
+                $('#gallery-photos-lightbox').magnificPopup({
+                    type: 'image',
+                    delegate: 'a',
+                    gallery: {
+                        enabled: true
+                    }
+                });
+            });
+        });
+    </script>
+
+</block>
