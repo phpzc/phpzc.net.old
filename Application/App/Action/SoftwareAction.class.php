@@ -2,8 +2,8 @@
 namespace App\Action;
 class SoftwareAction extends CommonAction {
 
-	const TYPE_GUI = 1;
-	const TYPE_GAME = 2;
+	const TYPE_GUI = 0;
+	const TYPE_GAME = 1;
 
 	/*
 	 * @brief 设置每一页标题
@@ -43,13 +43,16 @@ class SoftwareAction extends CommonAction {
 			$this->display();
 		}else{
 			$data = I('post.');
+			$data['soft_image'] = json_encode($data['mortgaged-img-url'],true);
 
 			$model =  M('software');
 			if( $model->create($data) ){
 				if($model->add()){
-					$this->formSuccess('添加成功');
+					$type = $data['type'] == 0 ? 'gui':'game';
+
+					$this->formSuccess('添加成功','/software/'.$type);
 				}else{
-					$this->formError('添加失败');
+					$this->formErrorReferer('添加失败');
 				}
 			}else{
 				$this->formError($model->getError());
@@ -63,14 +66,15 @@ class SoftwareAction extends CommonAction {
 			$this->display();
 		}else{
 			$data = I('post.');
-
+			$data['soft_image'] = json_encode($data['mortgaged-img-url'],true);
+			//var_dump($data);
 			$model =  M('software');
 			if( false === $model->where(array('id'=>$data['id']))->save($data) ){
-
-				$this->formSuccess('更新成功');
+				$type = $data['type'] == 0 ? 'gui':'game';
+				$this->formSuccess('更新成功','/software/'.$type.'/id/'.$data['id']);
 
 			}else{
-				$this->formError('更新失败');
+				$this->formErrorReferer('更新失败');
 			}
 		}
 
@@ -107,6 +111,7 @@ class SoftwareAction extends CommonAction {
 		$show = $page->show();
 		$this->assign('page',$show);
 		$this->assign('result',$result);
+
 		$this->assign('soft_type','gui');
 		$this->display ();
 	}
@@ -130,14 +135,37 @@ class SoftwareAction extends CommonAction {
 
 	public function guidetail()
 	{
+		$id = I('get.id',0,'int');
+
+		$data = $result = M('software')->where(array(
+			'id'=>$id
+		))->find();
+
+		if(empty($data)){
+			$this->_empty();
+		}
 		$this->assign('soft_type','gui');
+		$data['soft_image'] = json_decode($data['soft_image']);
+
+		$this->assign('data',$data);
 		$this->display();
 	}
 
 	public function gamedetail()
 	{
+		$id = I('get.id',0,'int');
+
+		$data = $result = M('software')->where(array(
+			'id'=>$id
+		))->find();
+
+		if(empty($data)){
+			$this->_empty();
+		}
+		$data['soft_image'] = json_decode($data['soft_image']);
 
 		$this->assign('soft_type','game');
+		$this->assign('data',$data);
 		$this->display();
 	}
 }
