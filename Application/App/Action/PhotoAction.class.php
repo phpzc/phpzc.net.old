@@ -217,5 +217,5 @@ class PhotoAction extends CommonAction {
 		return $info;
 	}
 	
-	
+
 }

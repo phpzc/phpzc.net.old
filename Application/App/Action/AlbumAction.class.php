@@ -189,4 +189,82 @@ class AlbumAction extends CommonAction {
 
 	}
 
+
+	public function create_album()
+	{
+		if(IS_GET){
+			$this->display();
+		}else{
+			$data ["title"] = htmlspecialchars ( $_REQUEST ["title"] );
+			if ($this->jsonLengthCheck( $data ["title"], 30 )){
+				$this->formErrorReferer("相册名称长度不正确");
+			}
+			$data ["content"] = htmlspecialchars ( $_REQUEST ["content"] );
+			if ($this->jsonLengthCheck( $data ["content"], 200 )){
+				$this->formErrorReferer("相册描述长度不正确",1);
+			}
+			$data ["auth"] = (int) ( $_REQUEST ["auth"] );
+
+			$data ["time"] = time ();
+			$data ["uid"] = $_SESSION ["Auth"] ["id"];
+
+			$data ['year'] = date ( 'Y', $data ['time'] );
+			$data ['month'] = date ( 'm', $data ['time'] );
+			$data ['ip'] = ip2long ( $_SERVER ["REMOTE_ADDR"] );
+			$album = M ( 'Album' );
+			$res = $album->add ( $data );
+
+			if ($res) {
+				$this->formSuccess('');
+			} else {
+				$this->formErrorReferer("数据库添加失败",1);
+			}
+		}
+
+	}
+
+	public function create_page()
+	{
+		$this->formLoginCheck();
+		if(IS_GET){
+			$album = M ( 'Album' );
+			$res = $album->field ( 'id,title,num,content,auth,face' )->where ( array (
+				"isdel" => 0,"uid"=>$_SESSION["Auth"]["id"]
+			) )->select ();
+
+			foreach ( $res as $k => $v ) {
+				$res[$k]["title"] = strip_tags ( htmlspecialchars_decode ( $v ['title'] ) );
+				$res[$k]["id"] = $v ['id'];
+			}
+
+			$this->assign ( "album_list", $res );
+
+			$this->display();
+		}else{
+			$data = I('post.');
+			$data['images'] = $data['mortgaged-img-url'];
+			$model =  M('photo');
+
+			$newdata=[];
+			$time = time();
+			$y=date ( 'Y', $time );
+			$m=date ( 'm', $time );
+			$ip =ip2long ( $_SERVER ["REMOTE_ADDR"] );
+			foreach ($data['images'] as $k=>$v){
+				$newdata[$k]['imgurl'] = NET_NAME.$v;
+				$newdata[$k]['uid'] = $data['uid'];
+				$newdata[$k]["time"] = $time;
+				$newdata[$k]['year'] = $y;
+				$newdata[$k]['month'] = $m;
+				$newdata[$k]['ip'] = $ip;
+			}
+			$res = $model->addAll($newdata);
+			if($res){
+				$this->actionReturn(1,'上传成功','/album');
+			}else{
+				$this->actionReturn(0,'上传失败');
+			}
+		}
+
+	}
 }
