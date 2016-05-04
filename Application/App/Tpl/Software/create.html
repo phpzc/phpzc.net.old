@@ -36,6 +36,13 @@
     <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-attached.css"/>
     <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-other.css"/>
     <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-theme.css"/>
+
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/lang/zh-cn/zh-cn.js"></script>
+
 </block>
 <block name="content">
     <div class="row">
@@ -51,15 +58,21 @@
                     </div>
                     <div class="form-group form-inline">
                         <label for="description—simple">description simple-软件简单说明</label>
-                        <textarea id="description—simple" rows="5" name="description_simple" class="form-control"></textarea>
+                        <script id="myEditor3" name="description_simple" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="description—simple" rows="5" name="description_simple" class="form-control"></textarea>-->
                     </div>
                     <div class="form-group form-inline">
                         <label for="description">description 软件详细说明</label>
-                        <textarea id="description" rows="5" name="description" class="form-control"></textarea>
+                        <script id="myEditor2" name="description" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="description" rows="5" name="description" class="form-control"></textarea>-->
                     </div>
                     <div class="form-group form-inline">
-                        <label for="develop">develop - 开发日志</label>
-                        <textarea id="develop" rows="5" name="develop_log" class="form-control"></textarea>
+                        <label >develop - 开发日志</label>
+                        <script id="myEditor" name="develop_log" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="develop" rows="5" name="develop_log" class="form-control"></textarea>-->
                     </div>
                     <div class="form-group form-inline">
                         <div id="mortgaged-img-list"></div>
@@ -212,43 +225,25 @@
             }
         }
 
-        $(function() {
-            $("#plugin_submit_button").click(function(){
-                $("button[type='submit']").prop("disabled",false);
-                if(true){
-                    $("button[type='submit']").click();
-                }
-            })
-            $('#user_form')
-                    .bootstrapValidator({
-                        fields: {
-                            title: {
-                                message: 'title不为空',
-                                validators: {
-                                    notEmpty: {
-                                        message: 'title不为空'
-                                    }
-                                }
-                            },
-                        }
-                    })
-                    .on('success.form.bv', function(e) {
+        var ue = UE.getEditor('myEditor',{
+            autoClearinitialContent:true,
+            elementPathEnabled:false
 
-                        // Prevent form submission
-                        e.preventDefault();
-                        // Get the form instance
-                        var $form = $(e.target);
-
-                        // Get the BootstrapValidator instance
-                        var bv = $form.data('bootstrapValidator');
-
-                        // Use Ajax to submit form data
-                        $.post($form.attr('action'), $form.serialize(), function(result) {
-                            //tipmsg(result.status,result.content,result.url);
-                        }, 'json');
-                    });
         });
+        var ue2 = UE.getEditor('myEditor2',{
+            wordCount:true,          //是否开启字数统计
+            maximumWords:65535,      //允许的最大字符数
+            autoClearinitialContent:true,
+            elementPathEnabled:false
 
+        });
+        var ue3 = UE.getEditor('myEditor3',{
+            wordCount:true,          //是否开启字数统计
+            maximumWords:255,      //允许的最大字符数
+            autoClearinitialContent:true,
+            elementPathEnabled:false
+
+        });
 
     </script>
 </block>

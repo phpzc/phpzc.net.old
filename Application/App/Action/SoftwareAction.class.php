@@ -44,7 +44,10 @@ class SoftwareAction extends CommonAction {
 		}else{
 			$data = I('post.');
 			$data['soft_image'] = json_encode($data['mortgaged-img-url'],true);
-
+			$data['develop_log'] = htmlspecialchars_decode($data['develop_log']);
+			$data['description_simple'] = htmlspecialchars_decode($data['description_simple']);
+			$data['description'] = htmlspecialchars_decode($data['description']);
+			$data['create_time'] = date('Y-m-d H:i:s');
 			$model =  M('software');
 			if( $model->create($data) ){
 				if($model->add()){
@@ -67,6 +70,10 @@ class SoftwareAction extends CommonAction {
 		}else{
 			$data = I('post.');
 			$data['soft_image'] = json_encode($data['mortgaged-img-url'],true);
+			$data['develop_log'] = htmlspecialchars_decode($data['develop_log']);
+			$data['description_simple'] = htmlspecialchars_decode($data['description_simple']);
+			$data['description'] = htmlspecialchars_decode($data['description']);
+			$data['update_time'] = date('Y-m-d H:i:s');
 			//var_dump($data);
 			$model =  M('software');
 			if( false === $model->where(array('id'=>$data['id']))->save($data) ){

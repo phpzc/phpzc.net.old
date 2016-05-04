@@ -221,6 +221,20 @@
                                 <li class="item">
                                     <a href="/article/create" >Add Article</a>
                                 </li>
+                                <if condition="$Think.session.Auth.id == 1">
+                                <li class="item">
+                                    <a href="/software/create" >Add software</a>
+                                </li>
+
+                                <li class="item">
+                                    <a href="/album/create_album" >Add Album</a>
+                                </li>
+
+                                <li class="item">
+                                    <a href="/album/create_page" >Add Photo</a>
+                                </li>
+
+                                </if>
                             </ul>
                         </li>
                         </empty>
