@@ -382,4 +382,19 @@ function encodeId($id) {
 	return $str;
 }
 
+function base_encode($url)
+{
+	$url = base64_encode($url);
 
+	$url = strtr($url,'+/=','-!_');
+
+	return $url;
+}
+function base_decode($url)
+{
+	$url = base64_decode($url);
+
+	$url = strtr($url,'-!_','+/=');
+
+	return $url;
+}

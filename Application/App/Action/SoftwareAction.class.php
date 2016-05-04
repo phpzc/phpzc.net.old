@@ -91,14 +91,16 @@ class SoftwareAction extends CommonAction {
 	public function del() {
 
 		$id = I('get.id',0,'int');
-
+		$data = M('software')->where(array('id'=>$id))->find();
 		$res = M('software')->where(array('id'=>$id))->delete();
 
+		$type = $data['type'] == 0 ? 'gui':'game';
+
 		if($res){
-			$this->formSuccess('删除成功');
+			$this->formSuccess('删除成功','/software/'.$type);
 
 		}else{
-			$this->formError('删除失败');
+			$this->formError('删除失败','/software/'.$type);
 		}
 	}
 	
@@ -175,5 +177,7 @@ class SoftwareAction extends CommonAction {
 		$this->assign('data',$data);
 		$this->display();
 	}
+
+
 }
 

@@ -6,13 +6,14 @@ class FormAction extends CommonAction {
 	public function index() {
 	}
 	public function success() {
+		
 		// 标题
 		$title = I( "get.title" );
 		// 跳转页面
 		$url = I( "get.url" );
 		$sec = I( "get.sec" );
 		$this->assign ( "title", $title );
-		$this->assign ( "url", $url );
+		$this->assign ( "url", base_decode($url) );
 		$this->assign ( "sec", $sec );
 		$this->display ();
 	}
@@ -23,7 +24,7 @@ class FormAction extends CommonAction {
 		$url = I( "get.url" );
 		$sec = I( "get.sec" );
 		$this->assign ( "title", $title );
-		$this->assign ( "url", $url );
+		$this->assign ( "url", base_decode($url) );
 		$this->assign ( "sec", $sec );
 		$this->display ();
 	}

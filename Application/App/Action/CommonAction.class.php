@@ -148,30 +148,34 @@ class CommonAction extends EmptyAction {
 	
 	// 跳转函数
 	public function formSuccess($title, $url, $sec = 3) {
-		$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "&sec=" . $sec;
-		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/success.html' . $string );
+		$url = trim('/');
+		$url = '/'.$url;
+		$string = "/title/" . $title . "/url/" . base_encode( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "/sec/" . $sec;
+		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/success' . $string );
 		exit ();
 	}
 	
 	
 	public function formError($title, $url, $sec = 3) {
-		$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "&sec=" . $sec;
-		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error.html' . $string );
+		$url = trim('/');
+		$url = '/'.$url;
+		$string = "/title/" . $title . "/url/" . base_encode ( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "/sec/" . $sec;
+		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string );
 		exit ();
 	}
 	public function formErrorReferer($title, $sec = 3) {
 		if (! empty ( $_SERVER ["HTTP_REFERER"] )) {
-			$string = "?title=" . $title . "&url=" . urlencode ( $_SERVER ["HTTP_REFERER"] ) . "&sec=" . $sec;
+			$string = "/title/" . $title . "/url/" . base_encode ( $_SERVER ["HTTP_REFERER"] ) . "/sec/" . $sec;
 		} else {
-			$string = "?title=" . $title . "&url=" . urlencode ( "http://" . $_SERVER ["HTTP_HOST"] ) . "&sec=" . $sec;
+			$string = "/title/" . $title . "/url/" . base_encode ( "http://" . $_SERVER ["HTTP_HOST"] ) . "/sec/" . $sec;
 		}
-		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error.html' . $string );
+		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string );
 		exit ();
 	}
 	public function formLoginCheck($sec = 3) {
 		if (empty ( $_SESSION ["Auth"] ["id"] )) {
-			$string = "?title=请登录后操作&url=" . urlencode ( "http://" . $_SERVER ["HTTP_HOST"] ) . "&sec=" . $sec;
-			header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error.html' . $string );
+			$string = "/title/请登录后操作/url/" . base_encode ( "http://" . $_SERVER ["HTTP_HOST"] ) . "/sec/" . $sec;
+			header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string );
 			exit ();
 		}
 	}
