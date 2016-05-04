@@ -42,42 +42,46 @@
         <div class="main-box">
             <div class="main-box-body clearfix">
                 <header class="main-box-header clearfix">
-                    <h3>Create Software</h3>
+                    <h3>create software</h3>
                 </header>
                 <form action="/software/create" method="post">
                     <div class="form-group form-inline">
-                        <label for="title">Title：</label>
-                        <input type="text" placeholder="Title" class="form-control" value="{$list.username}" name="title" id="title">
+                        <label for="title">title：</label>
+                        <input type="text" placeholder="title" class="form-control" value="{$list.username}" name="title" id="title">
                     </div>
                     <div class="form-group form-inline">
-                        <label for="description">description</label>
+                        <label for="description—simple">description simple-软件简单说明</label>
+                        <textarea id="description—simple" rows="5" name="description_simple" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="description">description 软件详细说明</label>
                         <textarea id="description" rows="5" name="description" class="form-control"></textarea>
                     </div>
                     <div class="form-group form-inline">
-                        <label for="develop">develop</label>
+                        <label for="develop">develop - 开发日志</label>
                         <textarea id="develop" rows="5" name="develop_log" class="form-control"></textarea>
                     </div>
                     <div class="form-group form-inline">
                         <div id="mortgaged-img-list"></div>
                         <button type="button" class="btn btn-primary up-mortgaged" style="margin-left:50px;">
-                            <span class=""></span> Upload Image
+                            <span class=""></span> upload image
                         </button>
-                        {:W('Kindeditor/uploadOneImgMode',array('mortgaged-img','up-mortgaged','mortgaged'))}
+                        {:w('kindeditor/uploadoneimgmode',array('mortgaged-img','up-mortgaged','mortgaged'))}
                     </div>
                     <div class="form-group form-inline">
-                        <label >TYPE：</label>
+                        <label >type：</label>
                         <div class="radio">
                             <input id="borrow_status_1" type="radio" name="type" checked value="0">
-                            <label for="borrow_status_1">GUI</label>
+                            <label for="borrow_status_1">gui</label>
                         </div>
                         <div class="radio">
                             <input id="borrow_status_2" type="radio" name="type" value="1">
-                            <label for="borrow_status_2">GAME</label>
+                            <label for="borrow_status_2">game</label>
                         </div>
 
                     </div>
                     <div class="form-actions" style="text-align:center;margin-top:10px;">
-                        <button type="button" class="btn btn-info" id="plugin_submit_button">Submit</button>
+                        <button type="submit" class="btn btn-info" id="plugin_submit_button">submit</button>
                     </div>
                     <input id="notification-trigger-slide-on-top" class="hidden">
                 </form>
@@ -87,7 +91,7 @@
 
     <div class="hidden" id="hidden">
         <div>
-            <a class="example-image-link" href="" title=""> <img class="example-image" src="" alt="Plants: image 1 0f 4 thumb" width="150px" height="100px"/></a><input name="" type="text" class="hidden" value="">
+            <a class="example-image-link" href="" title=""> <img class="example-image" src="" alt="plants: image 1 0f 4 thumb" width="150px" height="100px"/></a><input name="" type="text" class="hidden" value="">
             <div class="">
                 <i class="fa fa-eye"></i>
                 <i class="fa fa-trash-o"></i>
@@ -240,7 +244,7 @@
 
                         // Use Ajax to submit form data
                         $.post($form.attr('action'), $form.serialize(), function(result) {
-                            tipmsg(result.status,result.content,result.url);
+                            //tipmsg(result.status,result.content,result.url);
                         }, 'json');
                     });
         });
