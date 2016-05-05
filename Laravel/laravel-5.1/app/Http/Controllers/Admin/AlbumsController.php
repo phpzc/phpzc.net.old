@@ -1,36 +1,34 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: zc
- * Date: 2016/5/5
- * Time: 16:52
+ * User: zhangcheng
+ * Date: 16/5/5
+ * Time: 下午11:07
  */
-
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Article;
 use Illuminate\Http\Request;
-
-class ArticlesController extends CommonController
+use App\Model\Album;
+class AlbumsController extends CommonController
 {
     public function getIndex()
     {
         view()->share('MENU_ELEMENT',true);
-        $articles = Article::where('isdel','!=',1)->paginate(10);
+        $albums = Album::where('isdel','!=',1)->paginate(10);
 
-        return view('admin.articles.index',['articles'=>$articles]);
+        return view('admin.albums.index',['albums'=>$albums]);
     }
 
     public function getDel(Request $request)
     {
         $id = $request->input('id',0);
 
-        $del = Article::where('id',$id)->update(
+        $del = Album::where('id',$id)->update(
             array('isdel'=>1)
         );
 
         if($del){
-            return redirect('/admin/articles/index');
+            return redirect('/admin/albums/index');
         }else{
             return back();
         }

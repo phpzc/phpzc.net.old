@@ -18,12 +18,16 @@ class AppServiceProvider extends ServiceProvider
         view()->share('SITE_URL','SITE_URL');
         view()->share('SITE_NAME','SITE_NAME');
 
+        view()->share('MENU_ELEMENT',false);
+
         //添加DB sql查询监控
+        /*
         DB::listen(function($sql, $bindings, $time){
             $f = fopen('sql.txt','a+');
             fwrite($f,$sql);
             fclose($f);
         });
+        */
     }
 
     /**

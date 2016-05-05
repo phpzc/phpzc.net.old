@@ -29,23 +29,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($articles as $article)
-                            {{ $article->name }}
+                        @foreach ($albums as $album)
+                            {{ $album->name }}
 
-                        <tr>
-                            <td><label class="checkbox ">
-                                    <input type="checkbox">
-                                </label></td>
-                            <td class="to_hide_phone"> {{ $article->title }} </td>
+                            <tr>
+                                <td><label class="checkbox ">
+                                        <input type="checkbox">
+                                    </label></td>
+                                <td class="to_hide_phone"> {{ $album->title }} </td>
 
-                            <td> {{ $article->title }} </td>
-                            <td class="to_hide_phone"> {{ $article->visit }} </td>
+                                <td> {{ $album->title }} </td>
+                                <td class="to_hide_phone"> {{ $album->visit }} </td>
 
-                            <td class="ms"><div class="btn-group">
-                                    <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
-                                    <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View" ><i class="gicon-eye-open"></i></a>
-                                    <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $article->id }}"><i class="gicon-remove "></i></a> </div></td>
-                        </tr>
+                                <td class="ms"><div class="btn-group">
+                                        <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
+                                        <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View" ><i class="gicon-eye-open"></i></a>
+                                        <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $album->id }}"><i class="gicon-remove "></i></a> </div></td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -67,10 +67,10 @@
                         <div class="span4">
                             <div class="pagination pull-right ">
                                 <ul>
-                                    <li><a href="{!! $articles->previousPageUrl() !!}">Prev</a></li>
-                                    <li><a href="#">{!! $articles->currentPage() !!}</a></li>
-                                    <li><a href="{!! $articles->nextPageUrl() !!}">Next</a></li>
-                                    <li><a href="#">Total {!! $articles->count() !!}</a></li>
+                                    <li><a href="{!! $albums->previousPageUrl() !!}">Prev</a></li>
+                                    <li><a href="#">{!! $albums->currentPage() !!}</a></li>
+                                    <li><a href="{!! $albums->nextPageUrl() !!}">Next</a></li>
+                                    <li><a href="#">Total {!! $albums->count() !!}</a></li>
                                 </ul>
                             </div >
                         </div>
@@ -102,7 +102,7 @@
                     return;
                 }
                 var id = $(this).data('id');
-                window.location.href = '/admin/articles/del?id='+id;
+                window.location.href = '/admin/albums/del?id='+id;
             })
         });
     </script>

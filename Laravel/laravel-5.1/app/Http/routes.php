@@ -11,7 +11,7 @@
 |
 */
 
-if(ROUTE_MODE_ENV == 2){
+if(defined('ROUTE_MODE_ENV') &&  ROUTE_MODE_ENV== 2){
     Route::get('/', function () {
         return view('welcome');
     });
@@ -29,6 +29,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
 
     Route::controller('index', 'IndexController');
     Route::controller('articles', 'ArticlesController');
+    Route::controller('albums','AlbumsController');
 });
 
 //前台

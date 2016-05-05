@@ -43,7 +43,7 @@
                 <ul class="nav nav_menu">
                     <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
                             <div class="title"><span class="name">PeakPointer</span><span class="subtitle">Administrator</span></div>
-                            <span class="icon"><img src="{{ WIN8('img/thumbnail_george.jpg') }}"></span></a>
+                            <span class="icon"><img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=73" /></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li><a href="javascript:;"><i class=" icon-user"></i> My Profile</a></li>
                             <li><a href="javascript:;"><i class=" icon-cog"></i>Settings</a></li>
@@ -60,6 +60,7 @@
 
             @yield('content')
 
+            <div style="with:100%;height:100px;"></div>
         </div>
         <div class="background_changer dropdown">
             <div class="dropdown" id="colors_pallete"> <a data-toggle="dropdown" data-target="drop4" class="change_color"></a>
