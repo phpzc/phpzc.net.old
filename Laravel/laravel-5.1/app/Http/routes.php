@@ -28,6 +28,7 @@ Route::any('/test/any','IndexController@index')->name('testroute');
 Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
 
     Route::controller('index', 'IndexController');
+    Route::controller('articles', 'ArticlesController');
 });
 
 //前台

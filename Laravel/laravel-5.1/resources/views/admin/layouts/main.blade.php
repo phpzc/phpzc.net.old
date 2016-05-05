@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    @yield('before_head')
     <link rel="shortcut icon" href="{{ WIN8('css/images/favicon.png') }}">
     <!-- Le styles -->
     <link href="{{ WIN8('css/twitter/bootstrap.css') }}" rel="stylesheet">
@@ -18,7 +19,7 @@
     <script src="{{ WIN8('js/google/html5.js') }}"></script>
     <![endif]-->
 
-    @yield('before')
+    @yield('before_tail')
 </head>
 
 <body>
