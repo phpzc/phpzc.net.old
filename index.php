@@ -11,6 +11,17 @@
 
 // 应用入口文件
 
+
+$host = $_SERVER['HTTP_HOST'];
+
+if( strpos($host,'admin') === 0){
+
+    require './Laravel/laravel-5.1/public/index.php';
+
+    exit;
+}
+
+
 // 检测PHP环境
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
