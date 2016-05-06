@@ -376,7 +376,7 @@ class SocialAction extends CommonAction {
 		$url = "https://www.battlenet.com.cn/oauth/authorize?";
 		$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
 		$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
-		$data['scope'] = "wow.profile";
+		$data['scope[]'] = "wow.profile";
 		$data['state'] = "zc";
 		foreach ($data as $key => $value) {
 			$url .= ($key."=".$value."&");
