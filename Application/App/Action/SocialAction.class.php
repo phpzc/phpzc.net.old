@@ -414,7 +414,7 @@ class SocialAction extends CommonAction {
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
 			$data['scope'] = "wow.profile";
 			$data['code'] = $_REQUEST['code'];
-			$data['grant_type'] = 'authorization_code';
+			$data['grant_type'] = $_REQUEST['code'];
 			$curlPost = '';
 
 			foreach ($data as $key => $value) {
@@ -430,9 +430,11 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
 			$data = curl_exec($ch);
+			$info = curl_getinfo($ch);
 
 
 			curl_close($ch);
+			dump($info);
 			dump(json_decode($data,true));
 			exit;
 			if(empty($data)){
