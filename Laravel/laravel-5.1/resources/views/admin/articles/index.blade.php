@@ -30,7 +30,7 @@
                         </thead>
                         <tbody>
                         @foreach ($articles as $article)
-                            {{ $article->name }}
+
 
                         <tr>
                             <td><label class="checkbox ">

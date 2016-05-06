@@ -22,29 +22,37 @@
                             </th>
                             <th class="no_sort to_hide_phone"> Title </th>
 
-                            <th class="no_sort"> Time </th>
-                            <th class="to_hide_phone ue no_sort"> Views </th>
+                            <th class="no_sort"> Type </th>
+
+
 
                             <th class="ms no_sort "> Actions </th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($albums as $album)
+                        @foreach ($softwares as $software)
 
-                            <tr>
-                                <td><label class="checkbox ">
-                                        <input type="checkbox">
-                                    </label></td>
-                                <td class="to_hide_phone"> {{ $album->title }} </td>
+                        <tr>
+                            <td><label class="checkbox ">
+                                    <input type="checkbox">
+                                </label></td>
+                            <td class="to_hide_phone"> {{ $software->title }} </td>
 
-                                <td> {{ $album->title }} </td>
-                                <td class="to_hide_phone"> {{ $album->visit }} </td>
+                            <td>
+                                @if ($software->type == 0)
+                                    <button class="btn btn-success">Gui</button>
+                                @else
+                                    <button class="btn btn-warning">Game</button>
+                                @endif
 
-                                <td class="ms"><div class="btn-group">
-                                        <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
-                                        <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View" ><i class="gicon-eye-open"></i></a>
-                                        <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $album->id }}"><i class="gicon-remove "></i></a> </div></td>
-                            </tr>
+                            </td>
+
+
+                            <td class="ms"><div class="btn-group">
+                                    <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
+                                    <a class="btn btn-small" rel="tooltip" data-placement="top" data-original-title="View" ><i class="gicon-eye-open"></i></a>
+                                    <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $software->id }}"><i class="gicon-remove "></i></a> </div></td>
+                        </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -66,10 +74,10 @@
                         <div class="span4">
                             <div class="pagination pull-right ">
                                 <ul>
-                                    <li><a href="{!! $albums->previousPageUrl() !!}">Prev</a></li>
-                                    <li><a href="#">{!! $albums->currentPage() !!}</a></li>
-                                    <li><a href="{!! $albums->nextPageUrl() !!}">Next</a></li>
-                                    <li><a href="#">Total {!! $albums->count() !!}</a></li>
+                                    <li><a href="{!! $softwares->previousPageUrl() !!}">Prev</a></li>
+                                    <li><a href="#">{!! $softwares->currentPage() !!}</a></li>
+                                    <li><a href="{!! $softwares->nextPageUrl() !!}">Next</a></li>
+                                    <li><a href="#">Total {!! $softwares->count() !!}</a></li>
                                 </ul>
                             </div >
                         </div>
@@ -101,7 +109,7 @@
                     return;
                 }
                 var id = $(this).data('id');
-                window.location.href = '/admin/albums/del?id='+id;
+                window.location.href = '/admin/softwares/del?id='+id;
             })
         });
     </script>

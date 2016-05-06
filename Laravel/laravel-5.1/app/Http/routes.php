@@ -30,6 +30,8 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
     Route::controller('index', 'IndexController');
     Route::controller('articles', 'ArticlesController');
     Route::controller('albums','AlbumsController');
+    Route::controller('photos','PhotosController');
+    Route::controller('softwares','SoftwaresController');
 });
 
 //前台
