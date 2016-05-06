@@ -414,7 +414,7 @@ class SocialAction extends CommonAction {
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
 			$data['scope'] = "wow.profile";
 			$data['code'] = $_REQUEST['code'];
-			$data['grant_type'] = $_REQUEST['code'];
+			$data['grant_type'] = 'authorization_code';
 			$curlPost = '';
 
 			foreach ($data as $key => $value) {
