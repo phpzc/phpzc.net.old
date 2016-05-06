@@ -359,4 +359,113 @@ class SocialAction extends CommonAction {
 
 		header ( "location:".$url );
 	}
+
+	/**
+	 * 战网登陆
+	 */
+	public function battle()
+	{
+		if ($_SESSION ['has_login_by_social'] == 1) {
+
+			cookie ( null );
+			session ( null );
+			header ( "location:https://" . $_SERVER ["HTTP_HOST"] );
+			exit ();
+		}
+
+		$url = "https://www.battlenet.com.cn/oauth/authorize?";
+		$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
+		$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
+		$data['scope'] = "wow.profile,sc2.profile";
+		$data['state'] = "zc";
+		foreach ($data as $key => $value) {
+			$url .= ($key."=".$value."&");
+		}
+
+		$url = rtrim($url,'&');
+
+		header ( "location:".$url );
+	}
+
+
+	/**
+	 * battle token
+	 * https://www.battlenet.com.cn/oauth/token
+	 */
+	public function battle_callback()
+	{
+		if ($_SESSION ['has_login_by_social'] == 1) {
+
+
+			cookie ( null );
+			session ( null );
+
+			header ( "location:https://" . $_SERVER ["HTTP_HOST"] );
+			exit ();
+		}
+		dump($_REQUEST);
+		exit;
+		
+		if($_REQUEST['code']){
+			$url = "https://www.battlenet.com.cn/oauth/token";
+			$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
+			$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
+			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
+			$data['code'] = $_REQUEST['code'];
+
+			$curlPost = '';
+
+			foreach ($data as $key => $value) {
+				$curlPost .= ($key.'='.$value.'&');
+			}
+			$curlPost = rtrim($curlPost,'&');
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+			$data = curl_exec($ch);
+
+			//dump($data);
+			curl_close($ch);
+			if(empty($data)){
+				exit;
+			}
+			$responseData = explode('&',$data);
+			$access_token = explode('=', $responseData[0]);
+
+			$url = "https://api.github.com/user?access_token=".$access_token[1];
+
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+			$data = curl_exec($ch);
+			//echo $data;
+			curl_close($ch);
+
+			$response = json_decode($data,true);
+
+			if($response['error'] != false){
+				$this->formErrorReferer('请清除cookie再登陆');
+				exit;
+			}
+			// 进入统一
+			$_SESSION ['Auth'] ['Social'] ['avatar_img'] = $response ['avatar_url'];
+
+			$_SESSION ['Auth'] ['Social'] ['type'] = 'github';
+			$_SESSION ['Auth'] ['Social'] ['username'] = $response ['login'];
+			$_SESSION ['Auth'] ['Social'] ['email'] = $response ['email'];
+			$_SESSION ['Auth'] ['Social'] ['userid'] = $response ['id'];
+			$_SESSION ['Auth'] ['Social'] ['access_token'] = $access_token[1];
+			$_SESSION ['Auth'] ['Social'] ['code'] = $_REQUEST['code'];
+
+			header ( "location:".NET_NAME. "/social/account.html?ltype=github" );
+
+			exit;
+		}
+
+		dump($_REQUEST);
+	}
 }
