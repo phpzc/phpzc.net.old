@@ -404,8 +404,8 @@ class SocialAction extends CommonAction {
 			header ( "location:https://" . $_SERVER ["HTTP_HOST"] );
 			exit ();
 		}
-		dump($_REQUEST);
-		exit;
+		//dump($_REQUEST);// code state
+		//exit;
 
 		if($_REQUEST['code']){
 			$url = "https://www.battlenet.com.cn/oauth/token";
@@ -413,7 +413,7 @@ class SocialAction extends CommonAction {
 			$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
 			$data['code'] = $_REQUEST['code'];
-
+			$data['grant_type'] = 'authorization_code';
 			$curlPost = '';
 
 			foreach ($data as $key => $value) {
@@ -428,8 +428,10 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
 			$data = curl_exec($ch);
 
-			//dump($data);
+
 			curl_close($ch);
+			dump(json_decode($data,true));
+			exit;
 			if(empty($data)){
 				exit;
 			}
