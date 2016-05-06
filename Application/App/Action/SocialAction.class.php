@@ -378,6 +378,7 @@ class SocialAction extends CommonAction {
 		$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
 		$data['scope[]'] = "wow.profile";
 		$data['state'] = "zc";
+		$data['response_type'] = 'json';
 		foreach ($data as $key => $value) {
 			$url .= ($key."=".$value."&");
 		}
