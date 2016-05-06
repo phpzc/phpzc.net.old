@@ -376,7 +376,7 @@ class SocialAction extends CommonAction {
 		$url = "https://www.battlenet.com.cn/oauth/authorize?";
 		$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
 		$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
-		$data['scope[]'] = "wow.profile";
+		$data['scope'] = "wow.profile";
 		$data['state'] = "zc";
 		$data['response_type'] = 'code';
 		foreach ($data as $key => $value) {
@@ -412,7 +412,7 @@ class SocialAction extends CommonAction {
 			$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
 			$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
-			$data['scope[]'] = "wow.profile";
+			$data['scope'] = "wow.profile";
 			$data['code'] = $_REQUEST['code'];
 			$data['grant_type'] = 'authorization_code';
 			$curlPost = '';
@@ -426,6 +426,8 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,1);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
 			$data = curl_exec($ch);
 
