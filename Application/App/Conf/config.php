@@ -2,10 +2,10 @@
 return array(
     //'配置项'=>'配置值'
  	'DB_TYPE'               => 'mysql',     // 数据库类型
-	'DB_HOST'               => '127.0.0.1', // 服务器地址
+	'DB_HOST'               => 'localhost', // 服务器地址
 	'DB_NAME'               => 'sq_vipmhxy',          // 数据库名
 	'DB_USER'               => 'root',      // 用户名
-	'DB_PWD'                => 'ZhuowenJi&2953137', 
+	'DB_PWD'                => '',//Zhuowenji&2953137
 	'DB_PORT'               => '3306',        // 端口
 	'DB_PREFIX'             => 'vip_',    // 数据库表前缀
 	'DB_FIELDTYPE_CHECK'    => false,       // 是否进行  字段类型检查
@@ -31,6 +31,7 @@ return array(
 			'__CUBE__' => '/Public/cube',
 			'__PHPJS__' => '/Public/phpjs/functions',
 			'__UEDITOR__' => '/Public/baidu/UEditor',
-	),
+			'__KINDEDITOR__'=>'/Public/kindeditor',
+		),
 
 );
