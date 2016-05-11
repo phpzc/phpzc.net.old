@@ -215,7 +215,7 @@ class AlbumAction extends CommonAction {
 			$res = $album->add ( $data );
 
 			if ($res) {
-				$this->formSuccess('');
+				$this->formSuccess('添加成功');
 			} else {
 				$this->formErrorReferer("数据库添加失败",1);
 			}

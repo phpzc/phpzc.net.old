@@ -18,7 +18,9 @@
 
 								<li class="col-md-3 col-sm-3 col-xs-6">
 
-									<a href="{$photo.imgurl}" class="photo-box image-link" style="background-image: url('{$photo.imgurl}');"></a>
+									<a href="{$photo.imgurl}" class="photo-box image-link" style="background-image: url('{$photo.imgurl}');">
+										<img class="lazy col-md-3 col-sm-3 col-xs-6" data-original="{$photo.imgurl}" />
+									</a>
 									<span class="thumb-meta-time" style="color:green"><i class="fa fa-clock-o"></i> {$photo.year}/{$photo.month}</span>
 								</li>
 
@@ -38,6 +40,15 @@
 	<script src="__CUBE__/js/jquery-ui.custom.min.js"></script>
 	<script src="__CUBE__/js/dropzone.js"></script>
 	<script src="__CUBE__/js/jquery.magnific-popup.min.js"></script>
+
+
+	<script src="__JS__/jquery.lazyload.js?v=1.9.1"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		$(function() {
+			$("img.lazy").lazyload({effect: "fadeIn"});
+		});
+	</script>
 	<script>
 		$(function() {
 
