@@ -45,8 +45,9 @@ class IndexAction extends CommonAction {
 		$this->assign('site_count',array('article'=>$article_num,'article_view'=>$article_view,
 				'document'=>$document_num,'document_view'=>$document_view,
 				'photo'=>$photo_num,'photo_view'=>$photo_view));
-
-
+		//分配图片信息
+		$lunbo = $photo->where('isdel=0')->order('id desc')->limit(3)->select();
+		$this->assign('lunbo',$lunbo);
 		//分配友情链接
 		$link = M('Links');
 		$links = $link->where('status!=0')->select();
