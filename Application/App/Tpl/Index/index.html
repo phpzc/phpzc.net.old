@@ -47,7 +47,7 @@
                     }else{
                         echo '<div class="item">';
                     }
-                    echo '<img class="row" src="'.$v['imgurl'].'" />
+                    echo '<img class="row lazy" data-original="'.$v['imgurl'].'" />
                     <div class="carousel-caption">
                         <h4>最新更新</h4>
                         <p><a href="'.$v['imgurl'].'" target="_blank">'.$v['imgurl'].'</a></p>
@@ -382,7 +382,13 @@
     <script src="__CUBE__/js/timeline.js"></script>
     <!-- this page specific inline scripts -->
 
+    <script src="__JS__/jquery.lazyload.js?v=1.9.1"></script>
 
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+            $("img.lazy").lazyload({effect: "fadeIn"});
+        });
+    </script>
     <script>
         $(function() {
             $('.carousel').carousel();
