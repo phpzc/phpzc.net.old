@@ -9,7 +9,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Model\Album;
-class AlbumsController extends CommonController
+class AlbumsController extends AuthController
 {
     public function getIndex()
     {

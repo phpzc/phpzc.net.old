@@ -12,5 +12,10 @@ use App\Http\Controllers\CommonController as AhcCommonController;
 
 class CommonController extends AhcCommonController
 {
+    function __construct()
+    {
+        parent::__construct();
+    }
 
+    
 }

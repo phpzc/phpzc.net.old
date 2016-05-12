@@ -25,6 +25,7 @@
                     in
                     @endif
                     collapse">
+                        <li><a href="/admin/carousel/index">Carousel</a></li>
                         <li><a href="/admin/articles/index">Article</a></li>
                         <li><a href="/admin/albums/index">Album</a></li>
                         <li><a href="/admin/photos/index">Photo</a></li>

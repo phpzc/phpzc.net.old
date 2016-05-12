@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Article;
 use Illuminate\Http\Request;
 
-class ArticlesController extends CommonController
+class ArticlesController extends AuthController
 {
     public function getIndex()
     {

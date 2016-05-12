@@ -9,7 +9,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Model\Software;
-class SoftwaresController extends CommonController
+class SoftwaresController extends AuthController
 {
     public function getIndex()
     {

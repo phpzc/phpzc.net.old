@@ -32,6 +32,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
     Route::controller('albums','AlbumsController');
     Route::controller('photos','PhotosController');
     Route::controller('softwares','SoftwaresController');
+    Route::controller('carousel','CarouselController');
 });
 
 //前台

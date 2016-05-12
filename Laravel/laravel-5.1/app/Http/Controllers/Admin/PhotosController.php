@@ -9,7 +9,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Model\Photo;
-class PhotosController extends CommonController
+class PhotosController extends AuthController
 {
     public function getIndex()
     {
