@@ -47,7 +47,7 @@
                     }else{
                         echo '<div class="item">';
                     }
-                    echo '<img class="row" src="'.$v['imgurl'].'" />
+                    echo '<img class="row" data-src="'.$v['imgurl'].'" id="lunbo_'.$k.'"  />
                     <div class="carousel-caption">
                         <h4>最新更新</h4>
                         <p><a href="'.$v['imgurl'].'" target="_blank">'.$v['imgurl'].'</a></p>
@@ -382,11 +382,18 @@
     <script src="__CUBE__/js/timeline.js"></script>
     <!-- this page specific inline scripts -->
 
-    <script src="__JS__/jquery.lazyload.js?v=1.9.1"></script>
 
+    <script src="__JS__/load_image.js"></script>
     <script>
         $(function() {
             $('.carousel').carousel();
+
+            var imgArr = [$('#lunbo_0'),$('#lunbo_1'),$('#lunbo_2')];
+
+            load_image(imgArr,function(imgObj,thisObj){
+                thisObj.src = thisObj.data('src');
+            });
+
             $("img.lazy").lazyload({effect: "fadeIn"});
             $('.chart').easyPieChart({
                 easing: 'easeOutBounce',
