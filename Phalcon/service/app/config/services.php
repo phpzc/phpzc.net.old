@@ -38,6 +38,7 @@ $di->setShared('view', function () use ($config) {
     $view->setViewsDir($config->application->viewsDir);
 
     $view->registerEngines(array(
+        //注册2种模板引擎 volt 优先
         '.volt' => function ($view, $di) use ($config) {
 
             $volt = new VoltEngine($view, $di);
@@ -77,6 +78,8 @@ $di->setShared('modelsMetadata', function () {
 
 /**
  * Register the session flash service with the Twitter Bootstrap classes
+ *
+ * 提示信息css 设置 
  */
 $di->set('flash', function () {
     return new Flash(array(
