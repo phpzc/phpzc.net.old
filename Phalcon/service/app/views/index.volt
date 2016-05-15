@@ -4,12 +4,17 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+        {# 标题 #}
+        {{  tag.getTitle() }}
 
+        {# 头部 css js加载 #}
         {% block head %}
 
         {% endblock %}
-        </head>
+
+        {{ javascript_include('213') }}
+        {{ stylesheetLink('2131') }}
+    </head>
     <body>
         <div class="container">
             {{ content() }}

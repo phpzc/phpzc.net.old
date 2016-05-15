@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-define('APP_PATH', realpath('..'));
+define('APP_PATH', realpath(dirname(__DIR__)));
 
 try {
 
@@ -10,6 +10,9 @@ try {
      * Read the configuration
      */
     $config = include APP_PATH . "/app/config/config.php";
+
+    //load Constants class
+    include APP_PATH."/app/config/constants.php";
 
     /**
      * Read auto-loader

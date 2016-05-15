@@ -48,6 +48,32 @@ $di->setShared('view', function () use ($config) {
                 'compiledSeparator' => '_'
             ));
 
+            //设置模板函数
+            $compiler = $volt->getCompiler();
+            $compiler->addFunction('JS',function(){
+                return '"/Public/js"';
+            });
+
+            $compiler->addFunction('CSS',function(){
+                return '"/Public/css"';
+            });
+
+            $compiler->addFunction('CUBE',function(){
+                return '"/Public/cube"';
+            });
+
+            $compiler->addFunction('KINDEDITOR',function(){
+                return '"/Public/kindeditor"';
+            });
+
+            $compiler->addFunction('PHPJS',function(){
+                return '"Public/phpjs/functions"';
+            });
+
+            $compiler->addFunction('UEDITOR',function(){
+                return '"/Public/baidu/UEditor"';
+            });
+
             return $volt;
         },
         '.phtml' => 'Phalcon\Mvc\View\Engine\Php'
