@@ -347,25 +347,25 @@
                                     <li {% if THIS_CONTROLLER == "Index" %}class="active" {% endif %} >
                                     <a href="/">
                                         <i class="fa fa-dashboard"></i>
-                                        <span>Index</span>
+                                        <span>{{ L._('menu_index') }}</span>
                                         <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                     </a>
                                     </li>
                                     <li {% if THIS_CONTROLLER == "Article" %}class="active" {% endif %} >
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-file-text-o"></i>
-                                        <span>Articles</span>
+                                        <span>{{ L._('menu_articles') }}</span>
                                         <i class="fa fa-angle-right drop-icon"></i>
                                     </a>
                                     <ul class="submenu">
                                         <li>
                                             <a href="/article/index">
-                                                All Articles
+                                                {{ L._('menu_all_articles') }}
                                             </a>
 
                                             {% for WebCategory in WebsiteCategory %}
-                                                <a href="/Article/search/category/{{ WebCategory.id }}" title="Articles——{{ WebCategory.name }}" {% if WebCategory.id == this_category %} class="active" {% endif %}  >
-                                                <b>{{ WebCategory.name }}</b>
+                                                <a href="/Article/search/category/{{ WebCategory['id'] }}" title="Articles——{{ WebCategory['name'] }}" {% if WebCategory['id'] == this_category %} class="active" {% endif %}  >
+                                                <b>{{ WebCategory['name'] }}</b>
                                                 </a>
                                             {% endfor %}
                                         </li>
@@ -377,7 +377,7 @@
                                     <li  {% if THIS_CONTROLLER == "Document" %}class="active" {% endif %} >
                                     <a href="/document">
                                         <i class="fa fa-copy"></i>
-                                        <span>Documents</span>
+                                        <span>{{ L._('menu_documents') }}</span>
                                         <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                     </a>
                                     </li>
@@ -386,7 +386,7 @@
                                     <li {% if THIS_CONTROLLER == "Album" %}class="active" {% endif %} >
                                     <a href="/album">
                                         <i class="fa fa-image"></i>
-                                        <span>Pictures</span>
+                                        <span>{{ L._('menu_pictures') }}</span>
 
                                     </a>
                                     </li>
@@ -396,7 +396,7 @@
 
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-desktop"></i>
-                                        <span>My Software</span>
+                                        <span>{{ L._('menu_software') }}</span>
                                         <i class="fa fa-angle-right drop-icon"></i>
                                         <ul class="submenu">
                                             <li>
@@ -415,7 +415,7 @@
                                 <li {% if THIS_CONTROLLER == "Other" %}class="active" {% endif %} >
                                 <a href="/Other/about">
                                     <i class="fa fa-copy"></i>
-                                    <span>About Me</span>
+                                    <span>{{ L._('menu_about') }}</span>
                                 </a>
                                 </li>
 

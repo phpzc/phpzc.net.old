@@ -72,7 +72,7 @@ class ControllerBase extends Controller
     {
 
         $this->tag->prependTitle(Constants::SITE_TITLE);
-        $this->view->t = $this->_language;
+        $this->view->L = $this->_language;
 
         $this->view->THIS_CONTROLLER = '';
         $this->view->WebsiteCategory = array();
@@ -190,7 +190,7 @@ class ControllerBase extends Controller
     protected function _initApp()
     {
         // 分配网站名称
-        $_WEBSITE ["url"] = NET_NAME;
+        $_WEBSITE ["url"] = '';
         $_WEBSITE ["url_short"] = $_SERVER['HTTP_HOST'];
         $_WEBSITE ["name"] = "PeakPointer";
         $_WEBSITE['CONTROLLER_NAME'] = '';
@@ -212,6 +212,7 @@ class ControllerBase extends Controller
                 //不存在
 
                 $r = Category::find("pid=0");
+                $r = $r->toArray();
                 $flag = $this->saveCacheArray("category", "category", $r );
                 if($flag){
                     $this->session->set("website.category",$r) ;
