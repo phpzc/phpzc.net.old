@@ -10,6 +10,12 @@ class ControllerBase extends Controller
     const CACHE_CATEGORY_TIME = 604800;// 7天
     public $_userId = 0;
 
+    /**
+     * @var 语言对象
+     */
+    protected $_language;
+
+
     public function setId($id)
     {
         $this->_userId = $id;
@@ -19,12 +25,7 @@ class ControllerBase extends Controller
     {
         return $this->_userId;
     }
-
-    /**
-     * @var 语言对象
-     */
-    protected $_language;
-
+    
     /**
      * 执行项目初始化工作
      *
@@ -76,7 +77,7 @@ class ControllerBase extends Controller
 
         $this->view->THIS_CONTROLLER = '';
         $this->view->WebsiteCategory = array();
-        $this->view->this_category = '';
+        $this->view->this_category = '';//article category id   for active class
         $this->view->soft_type = '';
         $this->view->WEBSITE = array('CONTROLLER_NAME' => '', 'url' => '');
         $this->view->bread_crumbs = '';
@@ -191,12 +192,12 @@ class ControllerBase extends Controller
     protected function _initApp()
     {
         // 分配网站名称
-        $_WEBSITE ["url"] = '';
+        $_WEBSITE ["url"] = NET_NAME;
         $_WEBSITE ["url_short"] = $_SERVER['HTTP_HOST'];
         $_WEBSITE ["name"] = "PeakPointer";
         $_WEBSITE['CONTROLLER_NAME'] = '';
         $_WEBSITE['ACTION_NAME'] ='';
-        $this->assign ( "WEBSITE", $_WEBSITE );
+        $this->assign ("WEBSITE", $_WEBSITE );
         // form code
         if (! $this->session->has('form.code') ) {
             $this->session->set('form.code',md5 ( microtime(true).rand() )) ;

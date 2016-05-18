@@ -4,3 +4,7 @@ if(is_ssl()){
 }else{
     define("NET_NAME","http://" . $_SERVER ["HTTP_HOST"] );
 }
+
+
+include __DIR__.'/ApiUrl.php';
+?>

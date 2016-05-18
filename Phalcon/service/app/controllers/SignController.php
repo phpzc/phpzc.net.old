@@ -1,5 +1,5 @@
 <?php
-
+use Phalcon\Mvc\View;
 class SignController extends ControllerBase
 {
 
@@ -36,7 +36,7 @@ class SignController extends ControllerBase
 
     public function loginAction()
     {
-
+        $this->view->disableLevel(View::LEVEL_MAIN_LAYOUT);
     }
 
 }
