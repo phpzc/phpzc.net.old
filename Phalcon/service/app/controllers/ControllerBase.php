@@ -66,7 +66,7 @@ class ControllerBase extends Controller
      *
      * 设置语言包到模板变量
      *
-     *
+     *   this action after event —— beforeExecuteRoute
      */
     protected function initialize()
     {
@@ -82,6 +82,7 @@ class ControllerBase extends Controller
         $this->view->bread_crumbs = '';
 
         $this->_initApp();
+        
     }
 
     /**
@@ -212,7 +213,9 @@ class ControllerBase extends Controller
                 //不存在
 
                 $r = Category::find("pid=0");
+
                 $r = $r->toArray();
+
                 $flag = $this->saveCacheArray("category", "category", $r );
                 if($flag){
                     $this->session->set("website.category",$r) ;

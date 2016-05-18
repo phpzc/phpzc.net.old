@@ -19,6 +19,11 @@ try {
      */
     include APP_PATH . "/app/config/loader.php";
 
+    //load self files
+    include APP_PATH . "/app/common/functions.php";
+    include APP_PATH . "/app/common/define.php";
+
+
     /**
      * Read services
      */

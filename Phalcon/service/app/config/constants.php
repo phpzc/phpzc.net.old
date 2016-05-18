@@ -8,6 +8,10 @@
  */
 class Constants
 {
+    public static function NET_NAME(){
+        
+    }
+
     const SITE_TITLE = 'PeakPointer | ';
     const SITE_URL = 'phpzc.net';
     const SITE_NAME = '张成的个人网站——[一个C++/PHP程序员]';

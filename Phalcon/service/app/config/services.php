@@ -13,7 +13,7 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 //use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Session\Adapter\Redis as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
-
+use Phalcon\Security;
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
@@ -134,3 +134,14 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+
+$di->set('security', function () {
+
+    $security = new Security();
+
+    // Set the password hashing factor to 12 rounds
+    $security->setWorkFactor(12);
+
+    return $security;
+}, true);

@@ -585,6 +585,9 @@
 
         {% block after %}
         {% endblock %}
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="g-recaptcha" data-sitekey="6LftISATAAAAAIfSbCBowMT-lq-vGBRlqPOwuyuw"></div>
     </body>
 </html>
 
