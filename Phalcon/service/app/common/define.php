@@ -7,4 +7,9 @@ if(is_ssl()){
 
 
 include __DIR__.'/ApiUrl.php';
+include __DIR__.'/ApiCode.php';
+include __DIR__.'/ApiAuth.php';
+include __DIR__.'/ApiClient.php';
+
+
 ?>

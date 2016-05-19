@@ -29,5 +29,33 @@ class ApiController extends RpcController
         }
         $this->dispatcher->forward($parse);
     }
+
+
+    public function access_tokenAction()
+    {
+        $app_id = $this->request->get('app_id');
+        $app_secret = $this->request->get('app_secret');
+
+        if($this->getIdentity($app_id,$app_secret))
+        {
+            $this->rpcReturn(array(
+                'error_code'=>'',
+                'error_message'=>'',
+            ));
+        }
+    }
+
+
+    /**
+     * 获取身份
+     * @param $app_id
+     * @param $app_secret
+     * @todo
+     * @return bool
+     */
+    protected function getIdentity($app_id,$app_secret)
+    {
+        return in_array(sha1($app_id.'-'.$app_secret),ApiUrl::ALL_API);
+    }
 }
 
