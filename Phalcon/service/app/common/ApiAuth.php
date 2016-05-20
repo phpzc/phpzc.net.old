@@ -6,8 +6,8 @@
  */
 class ApiAuth
 {
-    public $api_key;
-    public $api_secret;
+    public $app_key;
+    public $app_secret;
     public $access_token;
     public $refresh_token;// 没用上
     public $token_expire_time = 0;
@@ -27,13 +27,13 @@ class ApiAuth
     function authorizeURL(){ return '';}
 
     //刷新access token 刷新token
-    function refreshTokenURL() { return NET_NAME.'/api/refreshToken';}
+    function refreshTokenURL() { return NET_NAME.'/api/refresh_token';}
     /**
      * construct OAuth object
      */
-    function __construct($api_key, $api_secret, $access_token = NULL, $refresh_token = NULL) {
-        $this->api_key = $api_key;
-        $this->api_secret = $api_secret;
+    function __construct($app_key, $app_secret, $access_token = NULL, $refresh_token = NULL) {
+        $this->app_key = $app_key;
+        $this->app_secret = $app_secret;
         $this->access_token = $access_token;
         $this->refresh_token = $refresh_token;
 
@@ -53,7 +53,7 @@ class ApiAuth
     function getAuthorizeURL($response_type = 'token')
     {
         $params = array();
-        $params['api_key'] = $this->api_key;
+        $params['app_key'] = $this->api_key;
         $params['response_type'] = $response_type;
 
         return $this->authorizeURL().'?'.http_build_query($params);
@@ -68,8 +68,8 @@ class ApiAuth
     function getAccessToken($type = 'token')
     {
         $params = array();
-        $params['api_key'] = $this->api_key;
-        $params['api_secret'] = $this->api_secret;
+        $params['app_key'] = $this->app_key;
+        $params['app_secret'] = $this->app_secret;
         $params['ip'] = $_SERVER['REMOTE_ADDR'];
         if($this->access_token!=null){
             $params['old_access_token'] = $this->access_token;
@@ -80,11 +80,14 @@ class ApiAuth
             throw new \Exception('wrong auth type');
         }
 
-        $response = $this->OAuthRequest($this->accessTokenURL(),'POST',$params);
+        $response = $this->OAuthRequest($this->accessTokenURL(),'GET',$params);
+
 
         $token = json_decode($response,true);
 
+
         if ( is_array($token) && !isset($token['error']) ) {
+            
             $this->access_token = $token['access_token'];
             $this->token_expire_time = $token['expire_time'];
         } else {
@@ -97,11 +100,11 @@ class ApiAuth
     function refreshToken()
     {
         $params = array();
-        $params['api_key'] = $this->api_key;
-        $params['api_secret'] = $this->api_secret;
+        $params['app_key'] = $this->app_key;
+        $params['app_secret'] = $this->app_secret;
         $params['ip'] = $_SERVER['REMOTE_ADDR'];
-        $params['old_access_token'] = $this->access_token;
-        $response = $this->OAuthRequest($this->refreshTokenURL(),'POST',$params);
+        $params['access_token'] = $this->access_token;
+        $response = $this->OAuthRequest($this->refreshTokenURL(),'GET',$params);
 
         $token = json_decode($response,true);
 
@@ -124,18 +127,18 @@ class ApiAuth
      *
      * @return mixed
      */
-    function OAuthRequest($url,$method,$params,$debug = false)
+    function OAuthRequest($url,$method,$params,$headers= array(),$debug = false)
     {
 
         if ( isset($this->access_token) && $this->access_token )
             $params['access_token'] = $this->access_token;
 
+        $method = strtoupper($method);
         switch($method){
             case 'GET':
                 $url = $url.'?'.http_build_query($params);
-                return $this->http($url,'GET',NULL,NULL,$debug);
+                return $this->http($url,'GET',NULL,$headers,$debug);
             default:
-                $headers = array();
                 $body = $params;
                 return $this->http($url, $method, http_build_query($body), $headers,$debug);
 
@@ -180,17 +183,16 @@ class ApiAuth
 
 
         if ($this->debug || $debug) {
-            echo "=====post data======\r\n";
-            var_dump($postfields);
+            $debug_data = array(
+                'debug->request_params'=>$postfields,
+                'debug->request_headers'=>$headers,
+                'debug->return_info'=>curl_getinfo($ci),
+                'debug->return_response'=>$response,
+            );
 
-            echo "=====headers======\r\n";
-            print_r($headers);
-
-            echo '=====request info====='."\r\n";
-            print_r( curl_getinfo($ci) );
-
-            echo '=====response====='."\r\n";
-            print_r( $response );
+            echo "<pre>";
+            var_dump($debug_data);
+            echo "</pre>";
         }
         curl_close ($ci);
 

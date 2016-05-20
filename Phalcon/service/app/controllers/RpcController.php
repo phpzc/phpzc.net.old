@@ -9,6 +9,8 @@ class RpcController extends ControllerBase
     public function beforeExecuteRoute($dispatcher)
     {
         $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+
+        
     }
 
     /**
@@ -17,7 +19,7 @@ class RpcController extends ControllerBase
      */
     public function afterExecuteRoute($dispatcher)
     {
-
+        $this->session->destroy();
     }
 
     public function indexAction()
@@ -34,13 +36,23 @@ class RpcController extends ControllerBase
         if(strpos($accept,'json') !== false){
             echo json_encode($data,true);
         }else{
-            echo $this->xml_encode($data);
+            //echo $this->xml_encode($data);
+            echo json_encode($data,true);
         }
 
         $this->afterExecuteRoute($this->dispatcher);
         exit;
     }
 
+    protected function errorReturn($code,$message,$data = null)
+    {
+        $response = array('error_code'=>$code,'error_message'=>$message);
+        if(!empty($data)){
+            $response['data'] =$data;
+        }
+
+        $this->rpcReturn($response);
+    }
 
     protected function getControllerAction()
     {

@@ -39,5 +39,12 @@ class SignController extends ControllerBase
         $this->view->disableLevel(View::LEVEL_MAIN_LAYOUT);
     }
 
+    public function testAction()
+    {
+
+        $arr = API()->test_index();
+
+        var_dump($arr);
+    }
 }
 

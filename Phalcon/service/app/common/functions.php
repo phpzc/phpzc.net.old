@@ -16,4 +16,34 @@ if(!function_exists('is_ssl')){
 
 }
 
+if(!function_exists('RC'))
+{
+    /**
+     * redis client
+     * @return null|Redis
+     * @throws Exception
+     */
+    function RC()
+    {
+        static $redis = null;
+
+        if($redis == null){
+            $config = include APP_PATH . "/app/config/config.php";
+            $redis = new Redis();
+            if(!$redis->connect($config->redis->host,$config->redis->port,3))
+            {
+                throw new Exception('connect redis fail');
+            }
+
+            if($config->redis->auth){
+                $redis->auth($config->redis->auth);
+            }
+
+            $redis->select($config->redis->db_num);
+        }
+
+        return $redis;
+    }
+    
+}
 ?>

@@ -15,4 +15,10 @@ class Constants
     const SITE_TITLE = 'PeakPointer | ';
     const SITE_URL = 'phpzc.net';
     const SITE_NAME = '张成的个人网站——[一个C++/PHP程序员]';
+
+    //key
+    const TOKEN_KEY_PREFIX = 'api_token_';
+
+    //expire time
+    const TOKEN_EXPIRE_TIME = 600;
 }

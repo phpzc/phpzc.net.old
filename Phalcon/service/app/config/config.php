@@ -22,4 +22,16 @@ return new \Phalcon\Config(array(
         'baseUri'        => '/',
     ),
 
+    'redis'=>array(
+        'host'=>'127.0.0.1',
+        'port'=>6379,
+        'auth'=>'',
+        'db_num'=>0,
+    ),
+
+    'api'=>array(
+        'app_key'=>'phpzc',
+        'app_secret'=>'phpzc',
+    ),
+
 ));
