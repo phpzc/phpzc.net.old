@@ -35,4 +35,26 @@ class ArticlesController extends AuthController
             return back();
         }
     }
+
+    public function getMonth(Request $request)
+    {
+        $start = $request->input('start',0);
+        $end = $request->input('end',0);
+
+        if(empty($start)){
+            $start = strtotime(date('Y-m-01'));
+            $end = strtotime(date('Y-m-t'));
+        }
+
+        $result = Article::whereBetween('time',[$start,$end])->get();
+
+        $newArray = [];
+        foreach ($result as $v){
+            $v = $v->toArray();
+            $v['day'] = date('d',$v['time']);
+            $newArray[] = $v;
+        }
+
+        return json_encode(['data'=>$newArray],true);
+    }
 }

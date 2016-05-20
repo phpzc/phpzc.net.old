@@ -15,7 +15,7 @@ class IndexController extends CommonController
     public function getIndex(Request $request)
     {
         //$request->session()->set('id',1);
-        if($request->session()->has('id')){
+        if($request->session()->has('id') && $request->session()->get('id') == 1){
             return view('admin.index.index');
         }else{
 

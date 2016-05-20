@@ -41,7 +41,7 @@
                         <li><a href="ui_accordion.html">Accordion</a></li>
                     </ul>
                 </li>-->
-                <li class="color_13"> <a class="widgets" href="calendar2.html"> <img src="{{ WIN8('img/menu_icons/calendar.png') }}"><span>Calendar</span></a> </li>
+                <li class="color_13"> <a class="widgets" href="/admin/calendar/index"> <img src="{{ WIN8('img/menu_icons/calendar.png') }}"><span>Calendar</span></a> </li>
                 <!--<li class="color_10"> <a class="widgets"data-parent="#sidebar_menu" href="maps.html"> <img src="{{ WIN8('img/menu_icons/maps.png') }}"><span>Maps</span></a> </li>-->
                 <!--<li class="accordion-group color_12"> <a class="accordion-toggle widgets collapsed" data-toggle="collapse" data-parent="#sidebar_menu" href="#collapse3"> <img src="{{ WIN8('img/menu_icons/tables.png') }}"><span>Tables</span></a>
                     <ul id="collapse3" class="accordion-body collapse">
