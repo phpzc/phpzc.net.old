@@ -156,7 +156,12 @@ class ApiAuth
         curl_setopt($ci, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($ci, CURLOPT_ENCODING, "");
-        curl_setopt($ci, CURLOPT_HEADER, FALSE);
+        curl_setopt($ci, CURLOPT_HEADER, 1);
+
+        $old_cookie = RC()->get('cookie_'.$_SERVER['REMOTE_ADDR']);
+        if(!empty($old_cookie)){
+            curl_setopt($ci,CURLOPT_COOKIE,$old_cookie);
+        }
 
         switch($method){
             case 'POST':
@@ -194,9 +199,16 @@ class ApiAuth
             var_dump($debug_data);
             echo "</pre>";
         }
-        curl_close ($ci);
 
-        return $response;
+        //复用上次的cookie
+        preg_match('/Set-Cookie:(.*);/iU',$response,$str);
+
+        if(isset($str[1])){
+            RC()->set('cookie_'.$_SERVER['REMOTE_ADDR'],$str[1],3600);
+        }
+        curl_close ($ci);
+        $response = explode("\r\n",$response);
+        return array_pop($response);
     }
 
 

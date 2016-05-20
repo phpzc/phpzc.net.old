@@ -21,13 +21,19 @@ class ControllerApi extends RpcController
     {
         $access_token = $this->getToken();
 
+
         if(empty($access_token)){
             $this->errorReturn(Api::SYS_INVALID_TOKEN,AM(Api::SYS_INVALID_TOKEN).'--Base');
         }
 
+        if(!$this->valideToken($access_token) ){
+            $this->errorReturn(Api::SYS_INVALID_TOKEN,AM(Api::SYS_INVALID_TOKEN));
+        }
+
         $ttl = RC()->ttl(Constants::TOKEN_KEY_PREFIX.$access_token);
+
         if($ttl < 60){
-            $this->errorReturn(Api::SYS_INFO_WILE_EXPIRE,AM(Api::SYS_INFO_WILE_EXPIRE));
+            $this->errorReturn(Api::SYS_INFO_WILE_EXPIRE,AM(Api::SYS_INFO_WILE_EXPIRE).$access_token);
         }
     }
 
@@ -39,6 +45,16 @@ class ControllerApi extends RpcController
         }else {
 
             return $this->request->getPost('access_token');
+        }
+    }
+
+    protected function valideToken($token)
+    {
+        $old = RC()->get(Constants::TOKEN_KEY_PREFIX.$token);
+        if($old){
+            return true;
+        }else{
+            return false;
         }
     }
 }

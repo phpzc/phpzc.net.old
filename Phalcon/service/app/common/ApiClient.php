@@ -63,11 +63,27 @@ class ApiClient
 
         } else {
             //判断token即将过期的情况 重新获取token
-            if(isset($responseResult['error_code']) &&  ($responseResult['error_code'] == Api::SYS_INFO_WILE_EXPIRE) ){
-                if($token = $this->oauth->refreshToken()){
-                    $_SESSION['api_access_token'] = $token;
-                    return $this->call_api($url, $method, $params,$headers);
+            if(isset($responseResult['error_code']) ){
+
+                switch($responseResult['error_code'] ){
+                    case Api::SYS_INFO_WILE_EXPIRE:
+
+                        RC()->del('cookie_'.$_SERVER['REMOTE_ADDR']);
+
+                        if($token = $this->oauth->refreshToken()){
+                            $_SESSION['api_access_token'] = $token;
+                            return $this->call_api($url, $method, $params,$headers);
+                        }
+                    break;
+                    case Api::SYS_INVALID_TOKEN:
+                        RC()->del('cookie_'.$_SERVER['REMOTE_ADDR']);
+                        $token = $this->oauth->getAccessToken();
+                        $_SESSION['api_access_token'] = $token;
+                        return $this->call_api($url, $method, $params,$headers);
+                        break;
                 }
+
+
             }
             return $responseResult;
         }
