@@ -16,7 +16,7 @@ class PhotosController extends AuthController
         view()->share('MENU_ELEMENT',true);
         $photos = Photo::where('isdel','!=',1)->paginate(10);
 
-        return view('admin.photos.index',['photos'=>$photos]);
+        return view('admin.photos.index',['photos'=>$photos,'active'=>'photos']);
     }
 
     public function getDel(Request $request)

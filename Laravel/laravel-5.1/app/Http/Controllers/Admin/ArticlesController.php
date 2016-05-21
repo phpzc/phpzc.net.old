@@ -18,7 +18,8 @@ class ArticlesController extends AuthController
         view()->share('MENU_ELEMENT',true);
         $articles = Article::where('isdel','!=',1)->paginate(10);
 
-        return view('admin.articles.index',['articles'=>$articles]);
+        return view('admin.articles.index',['articles'=>$articles,
+        'active'=>'articles']);
     }
 
     public function getDel(Request $request)
@@ -41,6 +42,8 @@ class ArticlesController extends AuthController
         $start = $request->input('start',0);
         $end = $request->input('end',0);
 
+        $start /= 1000;
+        $end /= 1000;
         if(empty($start)){
             $start = strtotime(date('Y-m-01'));
             $end = strtotime(date('Y-m-t'));
@@ -51,7 +54,10 @@ class ArticlesController extends AuthController
         $newArray = [];
         foreach ($result as $v){
             $v = $v->toArray();
-            $v['day'] = date('d',$v['time']);
+            $v['day'] = (int)date('d',$v['time']);
+            $v['month'] = (int)$v['month'];
+            $v['url'] = 'http://'.$_SERVER['HTTP_HOST'];
+
             $newArray[] = $v;
         }
 

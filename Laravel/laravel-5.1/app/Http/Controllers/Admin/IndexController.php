@@ -15,12 +15,13 @@ class IndexController extends CommonController
     public function getIndex(Request $request)
     {
         //$request->session()->set('id',1);
-        if($request->session()->has('id') && $request->session()->get('id') == 1){
-            return view('admin.index.index');
-        }else{
-
-            return view('admin.index.login');
+        if($request->session()->has('id') ){
+            $id = $request->session()->get('id');
+            if($id == 1)
+                return view('admin.index.index');
         }
+
+        return view('admin.index.login');
 
     }
 

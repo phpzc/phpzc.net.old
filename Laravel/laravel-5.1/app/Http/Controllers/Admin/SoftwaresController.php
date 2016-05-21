@@ -16,7 +16,7 @@ class SoftwaresController extends AuthController
         view()->share('MENU_ELEMENT',true);
         $softwares = Software::where('isdel','!=',1)->paginate(10);
         //dump($softwares);
-        return view('admin.softwares.index',['softwares'=>$softwares]);
+        return view('admin.softwares.index',['softwares'=>$softwares,'active'=>'softwares']);
     }
 
     public function getDel(Request $request)

@@ -16,7 +16,7 @@ class AlbumsController extends AuthController
         view()->share('MENU_ELEMENT',true);
         $albums = Album::where('isdel','!=',1)->paginate(10);
 
-        return view('admin.albums.index',['albums'=>$albums]);
+        return view('admin.albums.index',['albums'=>$albums,'active'=>'albums']);
     }
 
     public function getDel(Request $request)

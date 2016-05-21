@@ -34,6 +34,7 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
     Route::controller('softwares','SoftwaresController');
     Route::controller('carousel','CarouselController');
     Route::controller('calendar','CalendarController');
+    Route::controller('charts','ChartsController');
 });
 
 //前台
