@@ -18,7 +18,11 @@ class AppServiceProvider extends ServiceProvider
         view()->share('SITE_URL','SITE_URL');
         view()->share('SITE_NAME','SITE_NAME');
 
+        //for menu active class
         view()->share('MENU_ELEMENT',false);
+        view()->share('active','');
+
+
 
         //添加DB sql查询监控
         /*

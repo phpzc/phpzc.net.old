@@ -56,7 +56,7 @@ class ArticlesController extends AuthController
             $v = $v->toArray();
             $v['day'] = (int)date('d',$v['time']);
             $v['month'] = (int)$v['month'];
-            $v['url'] = 'http://'.$_SERVER['HTTP_HOST'];
+            $v['url'] = NET_NAME.'/article/detail/id/'.$this->encodeId($v['id']).'.html';
 
             $newArray[] = $v;
         }

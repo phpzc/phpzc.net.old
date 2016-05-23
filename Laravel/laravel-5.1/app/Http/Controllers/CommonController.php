@@ -32,4 +32,23 @@ class CommonController extends Controller
 
     }
 
+
+    /*
+    * 加密id
+    */
+    protected function encodeId($id) {
+        $mid = md5 ( $id );
+        $str = substr ( $mid, 0, 16 );
+        $str .= $id;
+        $str .= substr ( $mid, 16, 16 );
+        return $str;
+    }
+    /*
+     * 解密id
+     */
+    protected function decodeId($id) {
+        $len = strlen ( $id );
+        $str = substr ( $id, 16, $len - 32 );
+        return $str;
+    }
 }

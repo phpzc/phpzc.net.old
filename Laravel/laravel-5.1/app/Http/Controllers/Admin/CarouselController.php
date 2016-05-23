@@ -30,6 +30,7 @@ class CarouselController extends AuthController
     public function getAdd(Request $request)
     {
 
+        return view('admin.carousel.add',['active'=>'carousels']);
     }
 
     public function getDel(Request $request)
