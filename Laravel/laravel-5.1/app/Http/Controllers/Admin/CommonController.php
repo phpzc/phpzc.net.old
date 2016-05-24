@@ -18,5 +18,9 @@ class CommonController extends AhcCommonController
         
     }
 
-    
+
+    protected function jump($message,$url)
+    {
+        return view('admin.jump.index',['message'=>$message,'url'=>$url]);
+    }
 }

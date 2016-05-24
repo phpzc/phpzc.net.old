@@ -53,10 +53,12 @@
         <div class="row">
             <div class="box paint color_7">
                 <div class="title">
-                    <h4> <i class="icon-book"></i><span>Add Carousel</span> </h4>
+                    <h4> <i class="icon-book"></i><span>Add Carousel</span>
+
+                         </h4>
                 </div>
                 <div class="content">
-                    <form class="form-horizontal row-fluid" action="" method="post" enctype="multipart/form-data" >
+                    <form class="form-horizontal row-fluid" action="/admin/carousel/add" method="post" enctype="multipart/form-data" >
 
                         <div class="form-row control-group row-fluid">
                             <label class="control-label span3" for="with-placeholder">Title</label>
@@ -68,6 +70,19 @@
                             <label class="control-label span3" for="with-placeholder2">Href</label>
                             <div class="controls span9">
                                 <input type="text" id="with-placeholder2" name="href" placeholder="Href" class="row-fluid">
+                            </div>
+                        </div>
+                        <div class="form-row control-group row-fluid">
+                            <label class="control-label span3">type</label>
+                            <div class="controls span9">
+                                <input type="text" name="type" placeholder="Href" class="row-fluid" />
+                            </div>
+                        </div>
+                        <div class="form-row control-group row-fluid">
+                            <label class="control-label span3" for="with-placeholder3">Description</label>
+
+                            <div class="controls span9">
+                                <textarea rows="3" class="row-fluid" id="with-placeholder3" name="description" placeholder="Description"></textarea>
                             </div>
                         </div>
                         <div class="form-row control-group row-fluid">

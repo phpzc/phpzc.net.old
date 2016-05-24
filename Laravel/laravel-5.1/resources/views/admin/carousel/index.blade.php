@@ -49,7 +49,7 @@
 
                                 </td>
                                 <td class="ms"><div class="btn-group">
-                                        <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
+                                        <a class="btn btn-small" rel="tooltip" data-placement="left" data-original-title=" edit " href="/admin/carousel/update?id={{ $item->id }}"><i class="gicon-edit"></i></a>
                                         <a class="btn btn-small active_item" rel="tooltip" data-placement="top" data-original-title="Active" data-id="{{ $item->id }}" ><i class="gicon-eye-open"></i></a>
                                         <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $item->id }}"><i class="gicon-remove "></i></a> </div></td>
                             </tr>
