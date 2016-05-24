@@ -391,7 +391,7 @@
             var imgArr = [$('#lunbo_0'),$('#lunbo_1'),$('#lunbo_2')];
 
             load_image(imgArr,function(imgObj,thisObj){
-                thisObj.src = thisObj.data('src');
+                thisObj.attr('src' , thisObj.data('src'));
             });
 
             //$("img.lazy").lazyload({effect: "fadeIn"});
