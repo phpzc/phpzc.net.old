@@ -7,7 +7,7 @@
 </block>
 <block name="content">
 
-    <div class="row">
+    <div class="row" style="margin-bottom:3em;">
         <style >
             .carousel-inner .item img{
                 width:100%;
@@ -47,10 +47,15 @@
                     }else{
                         echo '<div class="item">';
                     }
-                    echo '<img class="row" data-src="'.$v['imgurl'].'" id="lunbo_'.$k.'"  />
+                    if(empty($v['title'])){
+                        $title = '最新更新';
+                    }else{
+                        $title = $v['title'];
+                    }
+                    echo '<a href="'.$v["href"].'"><img class="row" data-src="'.$v['imgurl'].'" id="lunbo_'.$k.'"  /></a>
                     <div class="carousel-caption">
-                        <h4>最新更新</h4>
-                        <p><a href="'.$v['imgurl'].'" target="_blank">'.$v['imgurl'].'</a></p>
+                        <h4>'.$title.'</h4>
+                        <p>'.$v['description'].'</p>
                     </div>
                 </div>';
                 }

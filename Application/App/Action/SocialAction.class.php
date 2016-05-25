@@ -411,7 +411,7 @@ class SocialAction extends CommonAction {
 		if($_REQUEST['code']){
 			$url = "https://www.battlenet.com.cn/oauth/token";
 			$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
-			$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
+			$data['redirect_uri']= NET_NAME."/social/battle_callback";
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
 			$data['scope'] = "wow.profile";
 			$data['code'] = $_REQUEST['code'];
@@ -428,7 +428,7 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,1);
+			curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
 			curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 			$data = curl_exec($ch);
@@ -438,6 +438,7 @@ class SocialAction extends CommonAction {
 			curl_close($ch);
 			dump($info);
 			dump(json_decode($data,true));
+            //qj64g7amth6m79kzax8tf76kuq35tfzn
 			exit;
 			if(empty($data)){
 				exit;
@@ -453,6 +454,8 @@ class SocialAction extends CommonAction {
 			curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 			$data = curl_exec($ch);
 			//echo $data;
+            //test api
+            //https://api.battlenet.com.cn/wow/character/%E4%BC%8A%E6%A3%AE%E5%88%A9%E6%81%A9/%E7%81%AD%E4%B8%96%E7%8B%82%E7%A5%9E?locale=zh_CN&apikey=qj64g7amth6m79kzax8tf76kuq35tfzn&fields=items,titles
 			curl_close($ch);
 
 			$response = json_decode($data,true);
