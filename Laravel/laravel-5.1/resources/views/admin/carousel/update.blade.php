@@ -12,11 +12,12 @@
                     </h4>
                 </div>
                 <div class="content">
-                    <form class="form-horizontal row-fluid" action="/admin/carousel/add" method="post" enctype="multipart/form-data" >
+                    <form class="form-horizontal row-fluid" action="/admin/carousel/update" method="post" enctype="multipart/form-data" >
 
                         <div class="form-row control-group row-fluid">
                             <label class="control-label span3" for="with-placeholder">Title</label>
                             <div class="controls span9">
+                                <input type="hidden" name="id" value="{{ $data->id }}" />
                                 <input type="text" id="with-placeholder" name="title" placeholder="Title" class="row-fluid" value="{{ $data->title }}" />
                             </div>
                         </div>
@@ -46,6 +47,13 @@
                                     <input type="text" name="imgurl" placeholder="imgurl" class="row-fluid" value="{{ $data->imgurl }}"/>
                                 </div>
 
+                            </div>
+                        </div>
+
+                        <div class="form-row control-group row-fluid">
+                            <label class="control-label span3">Sort</label>
+                            <div class="controls span9">
+                                <input type="text" name="sort" placeholder="sort num" class="row-fluid" value="{{ $data->sort }}"/>
                             </div>
                         </div>
 

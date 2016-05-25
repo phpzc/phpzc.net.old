@@ -46,7 +46,7 @@ class IndexAction extends CommonAction {
 				'document'=>$document_num,'document_view'=>$document_view,
 				'photo'=>$photo_num,'photo_view'=>$photo_view));
 		//分配图片信息
-		$lunbo = M('index')->where('status=1')->order('id desc')->limit(3)->select();
+		$lunbo = M('index')->where('status=1')->order('sort desc,id desc')->limit(3)->select();
 		$this->assign('lunbo',$lunbo);
 
 		//分配友情链接

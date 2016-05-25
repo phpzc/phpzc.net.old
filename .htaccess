@@ -1,4 +1,4 @@
-#.htaccess, 当然也可以写在httpd.conf
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule (.*)  index.php/$1
+#.htaccess, 锟斤拷然也锟斤拷锟斤拷写锟斤拷httpd.conf
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule (.*)  index.php/$1

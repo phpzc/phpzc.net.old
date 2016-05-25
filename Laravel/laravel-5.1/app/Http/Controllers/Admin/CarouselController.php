@@ -102,14 +102,16 @@ class CarouselController extends AuthController
 
     public function postUpdate(Request $request)
     {
-        $index = Index::where('id', $request->input('id'))->get();
+        $index = Index::where('id', $request->input('id'))->find(1);
         if (empty($index)) {
-            return 0;
+            return $this->jump('The data not exists!', '/admin/carousel/index');;
         }
         $index->description = $request->input('description', '');
         $index->type = $request->input('type');
         $index->imgurl = $request->input('imgurl');
         $index->href = $request->input('href');
+        $index->sort = $request->input('sort');
+
 
         if ($index->save())
             return $this->jump('Update Success', '/admin/carousel/index');
