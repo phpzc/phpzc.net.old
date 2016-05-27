@@ -18,7 +18,7 @@ if( strpos($host,'admin') === 0){
     if(strpos($host,'admin.new') === 0){
         define('NET_NAME','http://zcweb.com');
     }else{
-
+        define('NET_NAME','http://'.$host);
     }
     require './Laravel/laravel-5.1/public/index.php';
 
