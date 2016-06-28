@@ -16,7 +16,8 @@ class ArticlesController extends AuthController
     public function getIndex()
     {
         view()->share('MENU_ELEMENT',true);
-        $articles = Article::where('isdel','!=',1)->paginate(10);
+        $articles = Article::where('isdel','!=',1)
+            ->orderBy('id','desc')->paginate(10);
 
         return view('admin.articles.index',['articles'=>$articles,
         'active'=>'articles']);
