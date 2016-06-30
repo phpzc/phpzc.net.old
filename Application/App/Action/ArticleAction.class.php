@@ -48,7 +48,13 @@ class ArticleAction extends CommonAction {
 		//dump($_SESSION ["website"] ["category"]);
 		$this->display ();
 	}
-	
+
+	public function create_markdown()
+	{
+		$this->formLoginCheck();
+		$this->display();
+	}
+
 	// 处理新增
 	public function dealCreate() {
 		$this->formLoginCheck ();
@@ -88,6 +94,49 @@ class ArticleAction extends CommonAction {
 			$this->formErrorReferer ( "创建文章" );
 		}
 	}
+
+    public function dealCreateMarkdown()
+    {
+
+        $this->formLoginCheck ();
+
+        $data["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
+        $data["content"] = $_POST["id-html-code"];
+        $data['markdown'] = $_POST['id-markdown-doc'];
+        $data['type'] = 1;
+
+        $this->fieldLengthCheck ( $data ["title"], "文章标题", 100 );
+        //$this->fieldLengthCheck ( $data ["content"], "文章内容", 10000 );
+
+        $data ["time"] = time ();
+        $data ["uid"] = $_SESSION ["Auth"] ["id"];
+        $pid = $_REQUEST ["form_category"];
+        $category = M ( 'Category' );
+        $info = $category->where ( array (
+            "id" => $pid
+        ) )->field ( 'path' )->find ();
+        if (! $info) {
+            $this->formErrorReferer ( "非法操作" );
+        }
+
+        $data ['bpath'] = $info ['path'] . '-' . $pid;
+        $data ['year'] = date ( 'Y', $data ['time'] );
+        $data ['month'] = date ( 'm', $data ['time'] );
+        $data ['ip'] = ip2long ( $_SERVER ["REMOTE_ADDR"] );
+        $article = M ( 'Article' );
+        $res = $article->add ( $data );
+
+        if ($res) {
+            // 标签管理添加
+            $key = A ( 'Keyword' );
+            $key->automake ( $res, $_REQUEST ["form_tag"], 'article' );
+            $this->formSuccess ( "创建文章", "/article/create.html" );
+        } else {
+            $this->formErrorReferer ( "创建文章" );
+        }
+    }
+
+
 	public function edit() {
 		$this->formLoginCheck ();
 		$article = M ( "Article" );
@@ -351,7 +400,7 @@ class ArticleAction extends CommonAction {
 		// 搜索文章
 		$article = M ( "Article" );
 		
-		$res = $article->query ( "select a.id,a.bpath,a.title,a.content,a.time,a.month,a.year,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
+		$res = $article->query ( "select a.id,a.bpath,a.title,a.content,a.time,a.month,a.year,a.markdown,a.type,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
 		
 		$res = $res [0];
 		if ($res) {

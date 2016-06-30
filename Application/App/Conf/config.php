@@ -5,7 +5,7 @@ return array(
 	'DB_HOST'               => 'localhost', // 服务器地址
 	'DB_NAME'               => 'sq_vipmhxy',          // 数据库名
 	'DB_USER'               => 'root',      // 用户名
-	'DB_PWD'                => 'root',//ZhuowenJi&2953137
+	'DB_PWD'                => '',
 	'DB_PORT'               => '3306',        // 端口
 	'DB_PREFIX'             => 'vip_',    // 数据库表前缀
 	'DB_FIELDTYPE_CHECK'    => false,       // 是否进行  字段类型检查
@@ -32,6 +32,7 @@ return array(
 			'__PHPJS__' => '/Public/phpjs/functions',
 			'__UEDITOR__' => '/Public/baidu/UEditor',
 			'__KINDEDITOR__'=>'/Public/kindeditor',
+			'__MD__' => '/Public/editor.md-master',
 		),
 
 );

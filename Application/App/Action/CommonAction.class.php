@@ -1,5 +1,6 @@
 <?php
 namespace App\Action;
+use Mockery\Exception;
 use Think\Action;
 class CommonAction extends EmptyAction {
 	
@@ -33,7 +34,6 @@ class CommonAction extends EmptyAction {
 				$_SESSION["website"]["category"] = $tmpArr;
 				
 			}else{
-				//不存在
 				$c = M ( 'Category' );
 				$r = $c->where ( "pid=0" )->select ();
 				$flag = $this->saveCacheArray("category", "category", $r );
