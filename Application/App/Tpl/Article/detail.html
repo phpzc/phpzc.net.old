@@ -21,6 +21,12 @@
 					<div class="story-author" style="float:left;padding-left:20px">
 						<a href="#">{$article.name}</a>
 					</div>
+					<?php if($_SESSION['Auth']['id'] == $article['uid']){ ?>
+					<div class="story-time" style="float:right;padding-right:20px">
+						<a href="__URL__/edit/id/{$article.id|encodeId}.html">修改</a>
+					</div>
+					<?php } ?>
+
 					<div class="story-time" style="float:right;padding-right:20px">
 						<i class="fa fa-clock-o"></i> {$article.year}/{$article.month}
 					</div>

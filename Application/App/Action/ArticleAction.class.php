@@ -157,9 +157,19 @@ class ArticleAction extends CommonAction {
 		// 标签
 		$key = A ( 'Keyword' );
 		$this->assign ( "keyword", $key->getCategoryString ( "article", $res ["id"] ) );
-		$res ["content"] = htmlspecialchars_decode ( $res ["content"] );
-		$this->assign ( "article", $res );
-		$this->display ();
+
+		//根据文章类型 输出2种修改界面
+		if($res['type'] == 1){
+
+			$this->assign ( "article", $res );
+			$this->display ('article/edit_markdown');
+		}else{
+			$res ["content"] = htmlspecialchars_decode ( $res ["content"] );
+			$this->assign ( "article", $res );
+			$this->display ();
+		}
+
+
 	}
 	
 	/**
@@ -175,17 +185,27 @@ class ArticleAction extends CommonAction {
 		$id = $this->decodeId($_REQUEST ["article_id"]);
 		$res1 = $article->where ( array (
 				"id" => $id 
-		) )->field ( "uid" )->find ();
+		) )->find ();
 		if (! $res1 || $res1 ["uid"] != $data ["uid"]) {
 			$this->formError ( "非法操作", "/index/index.html" );
 		}
 		
 		$data ["id"] = $id;
-		$data ["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
-		$data ["content"] = htmlspecialchars ( $_REQUEST ["form_article"] );
-		
+
+		if($res1['type'] == 1){
+
+			$data ["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
+			$data["content"] = $_POST["id-html-code"];
+			$data['markdown'] = $_POST['id-markdown-doc'];
+		}else{
+
+			$data ["title"] = htmlspecialchars ( $_REQUEST ["form_title"] );
+			$data ["content"] = htmlspecialchars ( $_REQUEST ["form_article"] );
+
+		}
+
+
 		$this->fieldLengthCheck ( $data ["title"], "标题", 100 );
-		//$this->fieldLengthCheck ( $data ["content"], "文章内容", 10000 );
 
 		$pid = $_REQUEST ["form_category"];
 		$category = M ( 'Category' );
@@ -196,7 +216,7 @@ class ArticleAction extends CommonAction {
 			$this->formErrorReferer ( "非法操作" );
 		}
 		$data ['bpath'] = $info ['path'] . '-' . $pid;
-		
+
 		$res = $article->data ( $data )->save ();
 		
 		if ($res) {
@@ -400,7 +420,7 @@ class ArticleAction extends CommonAction {
 		// 搜索文章
 		$article = M ( "Article" );
 		
-		$res = $article->query ( "select a.id,a.bpath,a.title,a.content,a.time,a.month,a.year,a.markdown,a.type,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
+		$res = $article->query ( "select a.*,u.name from vip_article as a,vip_user as u where a.uid = u.id and a.id={$id}" );
 		
 		$res = $res [0];
 		if ($res) {
