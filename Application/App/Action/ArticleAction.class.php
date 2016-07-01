@@ -162,7 +162,7 @@ class ArticleAction extends CommonAction {
 		if($res['type'] == 1){
 
 			$this->assign ( "article", $res );
-			$this->display ('article/edit_markdown');
+			$this->display ('Article/edit_markdown');
 		}else{
 			$res ["content"] = htmlspecialchars_decode ( $res ["content"] );
 			$this->assign ( "article", $res );
