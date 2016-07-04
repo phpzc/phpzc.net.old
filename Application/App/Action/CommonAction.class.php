@@ -343,4 +343,13 @@ class CommonAction extends EmptyAction {
 
 
 	}
+	
+	
+	public function formRootLoginCheck($sec = 3) {
+		if (empty ( $_SESSION ["Auth"] ["id"] ) || $_SESSION ["Auth"] ["id"] != 1) {
+			$string = "/title/请管理员登录后操作/url/" . base_encode ( "http://" . $_SERVER ["HTTP_HOST"] ) . "/sec/" . $sec;
+			header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string );
+			exit ();
+		}
+	}
 }

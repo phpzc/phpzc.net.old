@@ -1,0 +1,140 @@
+<extend name="Layout/index_for_project" />
+<block name="head">
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/third-party/SyntaxHighlighter/shCore.js"></script>
+
+    <?php if($article['type'] == 0){ ?>
+
+    <link rel="stylesheet" type="text/css" href="__UEDITOR__/third-party/SyntaxHighlighter/shCoreDefault.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/magnific-popup.css">
+    <?php } ?>
+    <link rel="stylesheet" href="__MD__/css/editormd.preview.css" />
+</block>
+<block name="content">
+    <div class="row" id="article_show">
+        <div class="col-lg-12" id="article_list" >
+            <div class="main-box clearfix">
+
+                <header class="main-box-header" >
+                    <h2>{$article.title}</h2>
+                </header>
+                <div class="story-content clearfix">
+                    <div class="story-author" style="float:left;padding-left:20px">
+                        <a href="#">{$article.name}</a>
+                    </div>
+                    <?php if($_SESSION['Auth']['id'] == $article['uid']){ ?>
+                    <div class="story-time" style="float:right;padding-right:20px">
+                        <a href="__URL__/edit/id/{$article.id|encodeId}.html">修改</a>
+                    </div>
+                    <?php } ?>
+
+                    <div class="story-time" style="float:right;padding-right:20px">
+                        <i class="fa fa-clock-o"></i> {$article.year}/{$article.month}
+                    </div>
+
+                </div>
+                <style>
+                    .main-box-body img{
+                        max-width: 100%;
+                    }
+
+                </style>
+                <hr>
+                <div class="main-box-body " id="test-editormd">
+                    <?php if($article['type'] == 1){ ?>
+
+                    <textarea id="append-test" style="display:none;">{$article.markdown}</textarea>
+                    <?php }else{ ?>
+                    {$article.content}
+                    <?php }?>
+                </div>
+
+                <div class="row" style="text-align:right;min-height:30px;">
+                    <!-- JiaThis Button BEGIN -->
+                    <div class="jiathis_style_24x24" style="float:right;margin-right: 5em">
+                        <a class="jiathis_button_qzone"></a>
+                        <a class="jiathis_button_tsina"></a>
+                        <a class="jiathis_button_tqq"></a>
+                        <a class="jiathis_button_weixin"></a>
+                        <a class="jiathis_button_renren"></a>
+                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                        <a class="jiathis_counter_style"></a>
+                    </div>
+                    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+                    <!-- JiaThis Button END -->
+                </div>
+
+
+            </div>
+            {//代码显示插件生效代码}
+            <script>
+                SyntaxHighlighter.highlight();
+            </script>
+            {//评论功能}
+
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="{$article.id}" data-title="{$article.title}" data-url="<?php echo NET_NAME;?>/project/detail/id/{$article.id}.html">
+
+            </div>
+            <!-- 多说评论框 end -->
+            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"peakpointer"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- 多说公共JS代码 end -->
+
+        </div>
+
+
+    </div>
+</block>
+<block name="after">
+    <?php if($article['type'] == 1){ ?>
+
+    <script src="__MD__/examples/js/jquery.min.js"></script>
+
+    <script src="__MD__/lib/marked.min.js"></script>
+    <script src="__MD__/lib/prettify.min.js"></script>
+
+    <script src="__MD__/lib/raphael.min.js"></script>
+    <script src="__MD__/lib/underscore.min.js"></script>
+    <script src="__MD__/lib/sequence-diagram.min.js"></script>
+    <script src="__MD__/lib/flowchart.min.js"></script>
+    <script src="__MD__/lib/jquery.flowchart.min.js"></script>
+
+    <script src="__MD__/editormd.js"></script>
+    <script>
+
+        var  testEditormdView2;
+
+        $(function() {
+            testEditormdView2 = editormd.markdownToHTML("test-editormd", {
+                //markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                //toc             : false,
+                tocm            : true,    // Using [TOCM]
+                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                //gfm             : false,
+                //tocDropdown     : true,
+                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji           : true,
+                taskList        : true,
+                tex             : true,  // 默认不解析
+                flowChart       : true,  // 默认不解析
+                sequenceDiagram : true,  // 默认不解析
+            });
+        });
+
+
+    </script>
+
+    <?php } ?>
+</block>
