@@ -392,9 +392,10 @@ function base_encode($url)
 }
 function base_decode($url)
 {
-	$url = base64_decode($url);
 
 	$url = strtr($url,'-!_','+/=');
 
+	$url = base64_decode($url);
+	
 	return $url;
 }

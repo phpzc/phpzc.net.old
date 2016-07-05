@@ -148,7 +148,7 @@ class CommonAction extends EmptyAction {
 	
 	// 跳转函数
 	public function formSuccess($title, $url, $sec = 3) {
-		$url = trim('/');
+		$url = trim($url,'/');
 		$url = '/'.$url;
 		$string = "/title/" . $title . "/url/" . base_encode( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "/sec/" . $sec;
 		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/success' . $string );
@@ -157,7 +157,7 @@ class CommonAction extends EmptyAction {
 	
 	
 	public function formError($title, $url, $sec = 3) {
-		$url = trim('/');
+		$url = trim($url,'/');
 		$url = '/'.$url;
 		$string = "/title/" . $title . "/url/" . base_encode ( "http://" . $_SERVER ["HTTP_HOST"] . $url ) . "/sec/" . $sec;
 		header ( "location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string );

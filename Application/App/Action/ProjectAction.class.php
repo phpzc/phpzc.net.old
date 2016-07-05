@@ -46,7 +46,7 @@ class ProjectAction extends CommonAction
 
             if(empty($project))
             {
-                $this->formError('Data not found');
+                $this->formErrorReferer('Data not found');
             }
 
             $add = M('project_summary')->add($data);
@@ -54,7 +54,7 @@ class ProjectAction extends CommonAction
             {
                 $this->formSuccess('Data Save Success','project/index');
             }else{
-                $this->formError('Data Save Fail');
+                $this->formErrorReferer('Data Save Fail');
             }
         }else{
             $project_id = I('get.id');
@@ -74,7 +74,7 @@ class ProjectAction extends CommonAction
 
         $summary = M('project_summary')->where("project_id={$id}")->find();
         if(!$summary){
-            $this->formError('Data no found');
+            $this->_empty();
         }
 
         $data = explode(',',$summary['article_id_data']);
@@ -92,9 +92,9 @@ class ProjectAction extends CommonAction
 
         if($save ===false)
         {
-            $this->formError('Data no save');
+            $this->formErrorReferer('Data no save');
         }else{
-            $this->formSuccess('save success');
+            $this->formSuccess('save success','project/project_index/id/'.$summary['project_id']);
         }
     }
 
@@ -227,6 +227,48 @@ class ProjectAction extends CommonAction
             $this->display ();
         } else {
             $this->_empty ();
+        }
+    }
+
+
+    public function add_article()
+    {
+        $this->formRootLoginCheck();
+        $porject_id = I('request.project_id');
+        $id = I('request.id');
+        if(IS_POST)
+        {
+            $summary = M('project_summary')->where("id={$id}")->find();
+            if(empty($summary)){
+                $this->_empty();
+            }
+
+            $arr = explode(',',$summary['article_id_data']);
+            if(empty($arr) or empty($arr[0]))
+            {
+                $arr = array();
+            }
+
+            array_push($arr,I('post.article_id'));
+            $arr = array_unique($arr);
+            $summary['article_id_data'] = join(',',$arr);
+
+            $update = M('project_summary')->where("id={$id}")->save($summary);
+
+            if($update!==false)
+            {
+                $this->formSuccess('update success','project/project_index/id/'.$porject_id);
+            }else{
+                $this->formErrorReferer('update error');
+            }
+        }
+        else
+        {
+            $articles = M('article')->where(
+                array('is_del'=>0,'project_id'=>array('eq',0))
+            )->field('id,title')->select();
+            $this->assign('article',$articles);
+            $this->display();
         }
     }
 }
