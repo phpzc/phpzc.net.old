@@ -1,0 +1,57 @@
+<extend name="Layout/index" />
+<block name="head">
+
+</block>
+<block name="content">
+    <div class="row">
+        <div class="main-box clearfix">
+
+            <header class="main-box-header clearfix">
+                <h2>Search Book Menu</h2>
+            </header>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list table-hover">
+                                <thead>
+                                <tr>
+                                    <th><span>链接</span></th>
+                                    <th><span>章节</span></th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach($book['menu'] as $k=>$v){ ?>
+                                    <tr>
+                                        <td>
+
+                                            <a href="/book/getContent/bid/<?=$book['id']?>/url/<?=$v['url']?>/" class="user-link"><?=$v['url']?></a>
+
+                                        </td>
+
+                                        <td>
+                                            <?=$v['title']?>
+                                        </td>
+
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</block>
+
+<block name="after">
+
+
+</block>
