@@ -9,9 +9,11 @@
             <header class="main-box-header clearfix">
                 <h2>Search Book Menu</h2>
                 <div class="row form-inline-box">
-                <form action="/book/search/" method="get">
+                <form action="/book/search" method="post">
                         <input type="text" name="word" value="{$Think.get.word|urldecode}" class="form-control form-inline"/>
                         <input type="submit" value="Search Book" class="btn btn-success form-inline"/>
+
+                        <a href="/book/search/clear/1" class="btn btn-danger form-inline">Clear Cache</a>
                 </form>
                 </div>
             </header>

@@ -41,8 +41,16 @@ class BookAction extends CommonAction {
 	//
 	public function search() {
 
-		$searchword = I('request.word');
+		($searchword = I('request.word') )|| ($searchword = $_POST['word']);
+		//var_dump($searchword);
 		$menuData = [];
+		
+		if(I('request.clear') == 1)
+		{
+			//echo 'clear';
+			session(null);
+		}
+		
 
 		if(!session('book_'.$searchword)) {
 
