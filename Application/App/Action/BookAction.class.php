@@ -52,6 +52,7 @@ class BookAction extends CommonAction {
 			if (empty($data)) {
 				goto show;
 			}
+			$searchword = urldecode($searchword);
 			//搜索记录是否存在
 			$preg = "/<a cpos=\"title\" href=\"http:\/\/www.biquge.la\/book\/(\d+)\/\" title=\"{$searchword}\" class=\"result-game-item-title-link\" target=\"_blank\">/s";
 
@@ -120,8 +121,10 @@ show:
 		preg_match($preg,$data,$match);
 
 		$content = iconv("GB2312//IGNORE","UTF-8",$match[1]) ;
-		echo $content;
 
+		echo "<style>div{font-size:3em;}</style><div>";
+		echo $content;
+		echo "</div>";
 	}
 
 
