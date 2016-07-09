@@ -8,6 +8,12 @@
 
             <header class="main-box-header clearfix">
                 <h2>Search Book Menu</h2>
+                <div class="row form-inline-box">
+                <form action="/book/search/" method="get">
+                        <input type="text" name="word" value="{$Think.get.word}" class="form-control form-inline"/>
+                        <input type="submit" value="Search Book" class="btn btn-success form-inline"/>
+                </form>
+                </div>
             </header>
         </div>
 
@@ -29,7 +35,7 @@
                                     <tr>
                                         <td>
 
-                                            <a href="/book/getContent/bid/<?=$book['id']?>/url/<?=$v['url']?>/" class="user-link"><?=$v['url']?></a>
+                                            <a href="/book/getContent/bid/<?=$book['id']?>/url/<?=$v['url']?>/word/{$Think.get.word}" class="user-link"><?=$v['url']?></a>
 
                                         </td>
 

@@ -112,7 +112,7 @@ show:
 	{
 		$bid =  I('request.bid');//书的id
 		$ourl = I('request.url');//章节的id
-
+		$word = urldecode(I('request.word'));
 		$url = 'http://www.biquge.la/book/'.$bid.'/'.$ourl.'.html';
 
 		$data = $this->request($url);
@@ -125,9 +125,41 @@ show:
 		echo "<style>div{font-size:3em;}</style><div>";
 		echo $content;
 		echo "</div>";
+
+		echo $this->getOtherChap($bid,$word,$ourl);
 	}
 
+	/**
+	 * 取得上一个 下一个
+	 *
+	 * @param $bid
+	 * @param $word
+	 * @param $this_url 当前章节url id
+	 */
+	protected function getOtherChap($bid,$word,$this_url)
+	{
+		$prev = '';
+		$next = '';
+		$title = '';
+		$data = session('book_'.$word);
+		$prev_title = 'prev';
+		$next_title = 'next';
+		foreach ($data['menu'] as $k=>$v)
+		{
+			if($v['url'] == $this_url)
+			{
+				$title = $v['title'];
+				$prev = $data['menu'][$k+1]['url'];
+				$next = $data['menu'][$k-1]['url'];
+				$prev_title = $data['menu'][$k+1]['title'];
+				$next_title = $data['menu'][$k-1]['title'];
+				break;
+			}
+		}
 
+
+		return '<p style="font-size: 3em"><a href="/book/search/word/'.urlencode($word).'">首页</a> | <a href="/book/getContent/bid/'.$bid.'/url/'.$prev.'/word/'.urlencode($word).'">'.$prev_title.'</a> |'.$title.'| <a href="/book/getContent/bid/'.$bid.'/url/'.$next.'/word/'.urlencode($word).'">'.$next_title.'</a></p>';
+	}
 
 
 	protected function request($url)
