@@ -10,7 +10,7 @@
                 <h2>Search Book Menu</h2>
                 <div class="row form-inline-box">
                 <form action="/book/search/" method="get">
-                        <input type="text" name="word" value="{$Think.get.word|urldecode|default=''}" class="form-control form-inline"/>
+                        <input type="text" name="word" value="{$Think.get.word|urldecode}" class="form-control form-inline"/>
                         <input type="submit" value="Search Book" class="btn btn-success form-inline"/>
                 </form>
                 </div>
