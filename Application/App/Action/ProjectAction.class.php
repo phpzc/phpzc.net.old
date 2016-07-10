@@ -257,6 +257,10 @@ class ProjectAction extends CommonAction
 
             if($update!==false)
             {
+                //设置文章的project id
+                $update_article_pid = M('article')->where(array('id'=>I('post.article_id')))
+                    ->save(array('project_id'=>$porject_id));
+
                 $this->formSuccess('update success','project/project_index/id/'.$porject_id);
             }else{
                 $this->formErrorReferer('update error');
