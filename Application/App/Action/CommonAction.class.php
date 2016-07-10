@@ -134,8 +134,38 @@ class CommonAction extends EmptyAction {
 		
 		$this->assign ( "WebsiteCacheDocument", $_SESSION["website"]["cache"]["document_rank"]);
 		
-		
-		
+		//分配project
+		//assign project menu
+		if(!isset($_SESSION ["website"]['menu_project'])) {
+			$allProject = M('project')->select();
+			$article = M('article');
+			foreach ($allProject as &$v2) {
+				$summary = M('project_summary')->where("project_id={$v2['project_id']}")->select();
+
+				foreach ($summary as &$v) {
+					if (!$v['article_id_data']) {
+						$v['sub_data'] = [];
+						continue;
+					}
+
+					$tmp = explode(',', $v['article_id_data']);
+
+					$subData = $article->where('id in (' . $v['article_id_data'] . ')')->field('id,title')->select();
+					$v['sub_data'] = $subData;
+				}
+
+				$v2['summary'] = $summary;
+
+			}
+
+			$_SESSION['website']['menu_project'] = $allProject;
+		}
+		//dump($allProject);
+		$this->assign('MENU_PROJECT',$_SESSION['website']['menu_project']);
+
+
+
+
 		//分配 用户id
 		if(!empty($_SESSION ["Auth"] ["id"])){
 			$this->_userId = $_SESSION ["Auth"] ["id"];

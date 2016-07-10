@@ -198,7 +198,7 @@ class ProjectAction extends CommonAction
             $v2['summary'] = $summary;
         }
         //dump($allProject);
-        $this->assign('menu_project',$allProject);
+        $this->assign('MENU_PROJECT',$allProject);
 
         //assign this project id
         $this->assign('THIS_PROJECT_ID',$article_data['project_id']);
