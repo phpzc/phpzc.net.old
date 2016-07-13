@@ -16,7 +16,7 @@ class CommonAction extends EmptyAction {
 		//$_WEBSITE ["url_short"] = "www.vipmhxy.com";
 		$_WEBSITE ["url"] = NET_NAME;
 		$_WEBSITE ["url_short"] = $_SERVER['HTTP_HOST'];
-		$_WEBSITE ["name"] = "PeakPointer";
+		$_WEBSITE ["name"] = "张成的官方网站";
 		$_WEBSITE['CONTROLLER_NAME'] = CONTROLLER_NAME;
 		$_WEBSITE['ACTION_NAME'] =ACTION_NAME;
 		$this->assign ( "WEBSITE", $_WEBSITE );

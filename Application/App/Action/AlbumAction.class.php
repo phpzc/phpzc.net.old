@@ -12,10 +12,10 @@ class AlbumAction extends CommonAction {
 		$action_name = strtolower ( ACTION_NAME );
 		switch ($action_name) {
 			case 'index' :
-				$this->assign ( "website_title", "相册 -" );
+				$this->assign ( "website_title", "相册" );
 				break;
 			case 'mylist' :
-				$this->assign ( "website_title", "相册列表 -" );
+				$this->assign ( "website_title", "相册列表" );
 				break;
 		}
 	}
@@ -85,6 +85,9 @@ class AlbumAction extends CommonAction {
 			$this->assign ( 'photo', $res );
 			
 		}
+
+		$this->assign ( "website_title", "相册详情" );
+		
 		$this->display ();
 	}
 	

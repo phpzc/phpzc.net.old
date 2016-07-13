@@ -53,7 +53,7 @@ class IndexAction extends CommonAction {
 		$link = M('Links');
 		$links = $link->where('status!=0')->select();
 		$this->assign('links',$links);
-
+		$this->assign('website_title','首页');
 		$this->display ();
 	}
 

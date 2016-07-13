@@ -17,6 +17,7 @@ class ProjectAction extends CommonAction
         switch ($action_name) {
             case 'index' :
                 $this->assign ( 'bread_crumbs', 'List Project' );
+                $this->assign('website_title','Project List');
                 break;
             case 'create' :
                 $this->assign ( 'bread_crumbs', 'Create Project' );
@@ -224,6 +225,8 @@ class ProjectAction extends CommonAction
             $article->where('id='.$article_id)->setInc('visit');
             $cid = explode('-',$res['bpath']);
             $this->assign('this_category', $cid[1]);
+
+            $this->assign('website_title',$res ["title"]);
             $this->display ();
         } else {
             $this->_empty ();

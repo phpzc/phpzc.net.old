@@ -11,6 +11,9 @@ class ArticleAction extends CommonAction {
 			case 'create' :
 				$this->assign ( 'bread_crumbs', 'Create Article' );
 				break;
+			case 'search':
+				$this->assign('website_title','搜索文章结果');
+				break;
 		}
 	}
 
@@ -37,7 +40,7 @@ class ArticleAction extends CommonAction {
 		}
 		$this->assign ( "article_list", $res );
 		$this->assign ( "article_page", $show );
-		$this->assign ( "website_title", "所有文章" );
+		$this->assign ( "website_title", "文章" );
 		$this->display ();
 	}
 	
@@ -434,6 +437,7 @@ class ArticleAction extends CommonAction {
 			$article->where('id='.$id)->setInc('visit');
 			$cid = explode('-',$res['bpath']);
 			$this->assign('this_category', $cid[1]);
+			$this->assign('website_title',$res ["title"]);
 			$this->display ();
 		} else {
 			$this->_empty ();

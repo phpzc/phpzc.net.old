@@ -9,7 +9,7 @@ class DocumentAction extends CommonAction {
 		$action_name = strtolower ( ACTION_NAME );
 		switch ($action_name) {
 			case 'index' :
-				$this->assign ( "website_title", "所有资料-" );
+				$this->assign ( "website_title", "文档" );
 				break;
 			case 'create' :
 				$this->assign ( "website_title", "新增资料-" );
@@ -21,7 +21,7 @@ class DocumentAction extends CommonAction {
 				$this->assign ( "website_title", "我的资料-" );
 				break;
 			case 'search' :
-				$this->assign ( "website_title", "搜索资料结果-" );
+				$this->assign ( "website_title", "搜索文档结果-" );
 				break;
 		}
 	}

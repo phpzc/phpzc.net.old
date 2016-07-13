@@ -13,7 +13,7 @@ class SoftwareAction extends CommonAction {
 		$action_name = strtolower ( ACTION_NAME );
 		switch ($action_name) {
 			case 'index' :
-				$this->assign ( "website_title", "软件首页" );
+				$this->assign ( "website_title", "软件" );
 				break;
 			case 'create' :
 				$this->assign ( "website_title", "发布软件" );
@@ -122,6 +122,9 @@ class SoftwareAction extends CommonAction {
 		$this->assign('result',$result);
 
 		$this->assign('soft_type','gui');
+
+		$this->assign ( "website_title", "桌面程序" );
+
 		$this->display ();
 	}
 
@@ -138,6 +141,7 @@ class SoftwareAction extends CommonAction {
 		$this->assign('page',$show);
 		$this->assign('result',$result);
 		$this->assign('soft_type','game');
+		$this->assign ( "website_title", "游戏程序" );
 		$this->display ();
 	}
 
@@ -157,6 +161,7 @@ class SoftwareAction extends CommonAction {
 		$data['soft_image'] = json_decode($data['soft_image']);
 
 		$this->assign('data',$data);
+		$this->assign ( "website_title", '[GUI]'.$data['title'] );
 		$this->display();
 	}
 
@@ -175,6 +180,7 @@ class SoftwareAction extends CommonAction {
 
 		$this->assign('soft_type','game');
 		$this->assign('data',$data);
+		$this->assign ( "website_title", '[GAME]'.$data['title'] );
 		$this->display();
 	}
 
