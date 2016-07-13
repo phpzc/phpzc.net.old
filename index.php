@@ -14,6 +14,13 @@
 
 $host = $_SERVER['HTTP_HOST'];
 
+if( strpos($host,'www.vipzhangcheng.cn') === 0 || strpos($host,'vipzhangcheng.cn') > 0 )
+{
+    header('location:http://www.phpzc.net');
+    exit;
+}
+
+
 if( strpos($host,'admin') === 0){
     if(strpos($host,'admin.new') === 0){
         define('NET_NAME','http://zcweb.com');
