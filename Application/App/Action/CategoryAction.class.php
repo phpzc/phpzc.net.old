@@ -72,7 +72,7 @@ class CategoryAction extends CommonAction {
 		}
 	}
 	public function del() {
-		$id = I ( 'get.id','integer' );
+		$id = I ( 'get.id',0,'integer' );
 		$c = M ( 'Category' );
 		try {
 			$r = $c->where ( 'id=' . $id )->find ();
