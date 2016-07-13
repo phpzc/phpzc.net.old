@@ -292,7 +292,7 @@ class ArticleAction extends CommonAction {
 					//    $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
 					//}
 				}
-				$this->assign("website_title", "搜索文章结果-");
+				$this->assign("website_title", "搜索文章结果");
 				$this->assign("article_list", $res);
 				$this->assign("article_page", $show);
 				$this->assign("count", $count);
@@ -342,7 +342,7 @@ class ArticleAction extends CommonAction {
 					//    $res [$k] ["imgurl_class"] = getCategoryClassName($res [$k] ["bpath"]);
 					//}
 				}
-				$this->assign("website_title", "搜索文章结果-");
+				$this->assign("website_title", "搜索文章结果");
 				$this->assign("article_list", $res);
 				$this->assign("article_page", $show);
 				$this->assign("count", $count);

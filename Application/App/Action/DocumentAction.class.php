@@ -12,16 +12,16 @@ class DocumentAction extends CommonAction {
 				$this->assign ( "website_title", "文档" );
 				break;
 			case 'create' :
-				$this->assign ( "website_title", "新增资料-" );
+				$this->assign ( "website_title", "新增资料" );
 				break;
 			case 'edit' :
-				$this->assign ( "website_title", "更新资料-" );
+				$this->assign ( "website_title", "更新资料" );
 				break;
 			case 'mylist' :
-				$this->assign ( "website_title", "我的资料-" );
+				$this->assign ( "website_title", "我的资料" );
 				break;
 			case 'search' :
-				$this->assign ( "website_title", "搜索文档结果-" );
+				$this->assign ( "website_title", "搜索文档结果" );
 				break;
 		}
 	}
