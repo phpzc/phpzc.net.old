@@ -119,7 +119,8 @@ VIP.Base = function(){
     var Base = window.location.href;
     var i= Base.indexOf('.com');
     var j = Base.indexOf('.cn');
-    if( i==-1 && j == -1){
+    var k = Base.indexOf('.net');
+    if( i==-1 && j == -1 && k == -1){
         return false;
     }
     if( i != -1){
@@ -127,6 +128,9 @@ VIP.Base = function(){
     }
     if( j != -1){
         Base = Base.substring(0,j+3);
+    }
+    if( k != -1){
+        Base = Base.substring(0,i+4);
     }
 
     VIPLog(Base);
