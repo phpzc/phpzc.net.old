@@ -256,7 +256,7 @@ class UserAction extends CommonAction {
 		
 		if ($r) {
 			// 登录操作初始化session、
-			$_SESSION ['Auth'] ['name'] = $name;
+			$_SESSION ['Auth'] ['name'] = $data ["name"];
 			$_SESSION ['Auth'] ['id'] = $r;
 			$_SESSION ['Auth'] ['username'] = $username;
 			$_SESSION ['Auth'] ['login_type'] = I( "post.type" );
