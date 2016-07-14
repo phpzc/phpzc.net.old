@@ -105,12 +105,12 @@ class SocialAction extends CommonAction {
 			exit ();
 		}
 
-		require_once ("./qq/qqConnectAPI.php");
-		$qc = new QC ();
+		require ROOT_PATH."/qq/qqConnectAPI.php";
+		$qc = new \QC ();
 
 		$access_token = $qc->qq_callback ();
 		$openid = $qc->get_openid ();
-		$qc = new QC ( $access_token, $openid );
+		$qc = new \QC ( $access_token, $openid );
 
 		$arr = $qc->get_user_info ();
 
@@ -192,8 +192,8 @@ class SocialAction extends CommonAction {
 
 	/* qq登录页 获取与跳转 */
 	public function qqAuth() {
-		require_once ("./qq/qqConnectAPI.php");
-		$qc = new QC ();
+		require ROOT_PATH."/qq/qqConnectAPI.php";
+		$qc = new \QC ();
 		$qc->qq_login ();
 	}
 	/**
