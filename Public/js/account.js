@@ -133,7 +133,7 @@ $(function(){
                 if(msg.success == 1)
                 {
                     //跳到首页
-                    window.location.href = VIP.Base()+"/index/index.html";
+                    window.location.href = "/index/index.html";
                     //window.location.reload();
                 }
                 else
