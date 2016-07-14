@@ -239,7 +239,8 @@ class SocialAction extends CommonAction {
 		// 查询是否已经绑定过帐号
 
 		$User = M ("User" );
-		$result = $User->where("{$type}={$_SESSION['Auth']['Social']['userid']}")->find();
+		$where = array($type=>$_SESSION['Auth']['Social']['userid']);
+		$result = $User->where($where)->find();
 
 		if ($result) {
 			// 进行登录操作
