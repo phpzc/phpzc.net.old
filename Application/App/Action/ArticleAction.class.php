@@ -49,12 +49,14 @@ class ArticleAction extends CommonAction {
 		// 登录检测
 		$this->formLoginCheck ();
 		//dump($_SESSION ["website"] ["category"]);
+		$this->assign('website_title','添加文章');
 		$this->display ();
 	}
 
 	public function create_markdown()
 	{
 		$this->formLoginCheck();
+		$this->assign('website_title','添加文章');
 		$this->display();
 	}
 
@@ -161,6 +163,7 @@ class ArticleAction extends CommonAction {
 		$key = A ( 'Keyword' );
 		$this->assign ( "keyword", $key->getCategoryString ( "article", $res ["id"] ) );
 
+		$this->assign('website_title','修改文章');
 		//根据文章类型 输出2种修改界面
 		if($res['type'] == 1){
 
