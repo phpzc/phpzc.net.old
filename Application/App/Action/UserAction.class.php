@@ -393,12 +393,90 @@ class UserAction extends CommonAction {
 		$this->display('User/register');
 	}
 	//忘记密码
+	public function forgot_password_page()
+	{
+        $this->display();
+	}
 	
-	
-	//验证激活码
-	
-	
+	//验证并修改密码
+	public function verify_code()
+	{
+		//修改密码页和提交页
+
+        if(IS_POST)
+        {
+            $email =  I('post.username');
+            $new_pwd = I('post.password');
+            $code = I('post.code');
+            $user=M('user')->where(array('username'=>$email))->find();
+            if(empty($user)){
+                $this->formError('用户不存在','user/login_page');
+            }
+            $verify_code = md5($user['password']);
+            $codeArr = explode('_',$code);
+            if(time() > $codeArr[1])
+            {
+                $this->formError('修改邮件超时','user/login_page');
+            }
+            if($codeArr[0] != $verify_code)
+            {
+                $this->formError('验证码失败','user/login_page');
+            }
+
+            $update=M('user')->where(array('username'=>$email))->save(array(
+                'username'=>$email,
+                'password'=>md5($new_pwd),
+            ));
+
+            if($update !== false)
+            {
+                $this->formSuccess('修改成功','user/login_page');
+            }else{
+                $this->formError('修改失败','user/login_page');
+            }
+
+        }else{
+            $email = base_decode(I('get.username'));
+            $user=M('user')->where(array('username'=>$email))->find();
+            if(empty($user)){
+                $this->formError('用户不存在','user/login_page');
+            }
+
+            $this->assign('username',$email);
+            $this->assign('code',I('get.code','0_0'));
+            $this->display();
+        }
+
+
+
+	}
+
 	//发邮件发验证码
-	
+	public function forgot_password_send_mail()
+	{
+		$email = I('post.email');
+
+		$time = (int) session('send_email_number');
+		if($time > 20){
+			die("can not send too many emails");
+		}
+		session('send_email_number', $time + 1);
+
+		//查询用户是否存在
+		$user=M('user')->where(array('username'=>$email))->find();
+		if(empty($user)){
+			$this->formError('用户不存在','user/login_page');
+		}else{
+			$verify_code = md5($user['password']).'_'.(time()+3600);
+			$body = '密码找回地址'.NET_NAME.'/user/verify_code/code/'.$verify_code.'/username/'.base_encode($email);
+			$send = send_email($email,$user['name'],'忘记密码——找回密码邮件',$body);
+
+			$this->assign('send_result',$send?"发送成功":"发送失败");
+			//todo 找回密码发送邮件 成功失败模板需要写
+			$this->display();
+		}
+
+
+	}
 	
 }

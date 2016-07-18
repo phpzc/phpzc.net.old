@@ -399,3 +399,29 @@ function base_decode($url)
 	
 	return $url;
 }
+
+function send_email($toAddress,$toName,$subject='',$body='')
+{
+	import ( "ORG.Util.Phpmailer" );
+	$mail = new PHPMailer (); // 建立邮件发送类
+	$address = C("EMAIL_USER");
+	$mail->IsSMTP (); // 使用SMTP方式发送
+	$mail->CharSet='utf8';
+	//$mail->IsHTML();
+	$mail->Host = C('EMAIL_HOST'); // 您的企业邮局域名
+	$mail->SMTPAuth = true; // 启用SMTP验证功能
+	$mail->Username = C("EMAIL_USER"); // 邮局用户名(请填写完整的email地址)
+	$mail->Password = C("EMAIL_PWD"); // 邮局密码
+	$mail->Port = C('EMAIL_PORT');
+	$mail->From = C("EMAIL_USER"); // 邮件发送者email地址
+	$mail->FromName = C("EMAIL_USERNAME");
+	$mail->AddAddress ( $toAddress, $toName ); // 收件人地址，可以替换成任何想要接收邮件的email信箱,格式是AddAddress("收件人email","收件人姓名")
+
+	$mail->IsHTML(true);
+
+
+	$mail->Subject = $subject; // 邮件标题
+	$mail->Body = $body; // 邮件内容
+	
+	return $mail->Send();
+}

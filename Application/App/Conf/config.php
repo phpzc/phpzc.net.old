@@ -5,7 +5,7 @@ return array(
 	'DB_HOST'               => 'localhost', // 服务器地址
 	'DB_NAME'               => 'sq_vipmhxy',          // 数据库名
 	'DB_USER'               => 'root',      // 用户名
-	'DB_PWD'                => 'lampzhangcheng',
+	'DB_PWD'                => '',
 	'DB_PORT'               => '3306',        // 端口
 	'DB_PREFIX'             => 'vip_',    // 数据库表前缀
 	'DB_FIELDTYPE_CHECK'    => false,       // 是否进行  字段类型检查
@@ -34,5 +34,9 @@ return array(
 			'__KINDEDITOR__'=>'/Public/kindeditor',
 			'__MD__' => '/Public/editor.md-master',
 		),
-
+	'EMAIL_USER'=>'zhang5474jj@163.com',
+	'EMAIL_PWD'=>'',
+	'EMAIL_HOST'=>'smtp.163.com',
+	'EMAIL_PORT'=>25,
+	'EMAIL_USERNAME'=>$_SERVER['HTTP_HOST'].'站长张成',
 );
