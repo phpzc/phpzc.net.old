@@ -402,8 +402,9 @@ function base_decode($url)
 
 function send_email($toAddress,$toName,$subject='',$body='')
 {
-	import ( "ORG.Util.PHPMailer" );
-	$mail = new PHPMailer (); // 建立邮件发送类
+	//import ( "ORG.Util.PHPMailer" );
+	include_once LIB_PATH.'Org/Util/Phpmailer.class.php';
+    $mail = new PHPMailer (); // 建立邮件发送类
 	$address = C("EMAIL_USER");
 	$mail->IsSMTP (); // 使用SMTP方式发送
 	$mail->CharSet='utf8';
