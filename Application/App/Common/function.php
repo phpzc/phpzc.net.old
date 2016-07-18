@@ -402,7 +402,7 @@ function base_decode($url)
 
 function send_email($toAddress,$toName,$subject='',$body='')
 {
-	import ( "ORG.Util.Phpmailer" );
+	import ( "ORG.Util.PHPMailer" );
 	$mail = new PHPMailer (); // 建立邮件发送类
 	$address = C("EMAIL_USER");
 	$mail->IsSMTP (); // 使用SMTP方式发送
