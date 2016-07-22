@@ -276,9 +276,9 @@ class SocialAction extends CommonAction {
 
 		if($_REQUEST['code']){
 			$url = "https://github.com/login/oauth/access_token";
-			$data['client_id'] = "c1d05cc24f15c5dfb7ce";
+			$data['client_id'] = "553e8a51694f0c2de71f";
 			$data['redirect_uri']=urlencode(NET_NAME."/social/github");
-			$data['client_secret'] = "086b65793c9e409f8d6464fb1e692703dee2c4fa";
+			$data['client_secret'] = "96ea1e3ded83c1cd8107cddf20170f76eb2441a4";
 			$data['code'] = $_REQUEST['code'];
 
 			$curlPost = '';
@@ -348,7 +348,7 @@ class SocialAction extends CommonAction {
 		}
 
 		$url = "https://github.com/login/oauth/authorize?";
-		$data['client_id'] = "c1d05cc24f15c5dfb7ce";
+		$data['client_id'] = "553e8a51694f0c2de71f";
 		$data['redirect_uri']=urlencode(NET_NAME."/social/github");
 		$data['scope'] = "user,user:email,public_repo";
 		$data['state'] = "zc";
