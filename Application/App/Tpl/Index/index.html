@@ -436,9 +436,10 @@
                     alert('Error name');
                     return false;
                 }
+
                 $.ajax({
                     type:"POST",
-                    url:VIP.Base()+"/links/add",
+                    url:'https://www.phpzc.net/links/add',
                     data:"email="+email+"&url="+url+"&name="+name,
                     async:true,
 
