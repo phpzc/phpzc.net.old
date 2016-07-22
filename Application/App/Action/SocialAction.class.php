@@ -37,7 +37,7 @@ class SocialAction extends CommonAction {
 			cookie ( null );
 			session ( null );
 
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 
@@ -85,7 +85,7 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['avatar_img'] = "http://tb.himg.baidu.com/sys/portrait/item/" . $profile ['portrait'];
 
 				$_SESSION ['Auth'] ['Social'] ['type'] = 'baidu';
-				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=baidu" );
+				header ( "location:".NET_NAME . "/social/account.html?ltype=baidu" );
 				exit ();
 			}
 		} else {
@@ -101,7 +101,7 @@ class SocialAction extends CommonAction {
 			cookie ( null );
 			session ( null );
 
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 
@@ -127,7 +127,7 @@ class SocialAction extends CommonAction {
 		$_SESSION ['Auth'] ['Social'] ['type'] = 'qq';
 
 		// 进入统一跳转
-		header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=qq" );
+		header ( "location:".NET_NAME . "/social/account.html?ltype=qq" );
 	}
 	public function sina() {
 		if ($_SESSION ['has_login_by_social'] == 1) {
@@ -136,7 +136,7 @@ class SocialAction extends CommonAction {
 			cookie ( null );
 			session ( null );
 
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 		$_SESSION ['has_login_by_social'] = 0;
@@ -172,11 +172,11 @@ class SocialAction extends CommonAction {
 				$_SESSION ['Auth'] ['Social'] ['access_token'] = $token ['access_token'];
 
 
-				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/account.html?ltype=sina" );
+				header ( "location:". NET_NAME . "/social/account.html?ltype=sina" );
 				// dump($_SESSION);
 			} else {
 				// 授权失败 跳转登录页
-				header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/social/sinalogin.html" );
+				header ( "location:". NET_NAME . "/social/sinalogin.html" );
 			}
 		}
 	}
@@ -250,7 +250,7 @@ class SocialAction extends CommonAction {
 			$_SESSION ['Auth'] ['username'] = $result ['username'];//邮箱
 			$_SESSION ['Auth'] ['login_type'] = $type;
 
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] . "/index/index.html" );
+			header ( "location:".NET_NAME . "/index/index.html" );
 			exit ();
 		}
 
@@ -343,7 +343,7 @@ class SocialAction extends CommonAction {
 
 			cookie ( null );
 			session ( null );
-			header ( "location:http://www." . $_SERVER ["SERVER_NAME"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 
@@ -403,7 +403,7 @@ class SocialAction extends CommonAction {
 			cookie ( null );
 			session ( null );
 
-			header ( "location:https://" . $_SERVER ["HTTP_HOST"] );
+			header ( "location:".NET_NAME );
 			exit ();
 		}
 		//dump($_REQUEST);// code state
