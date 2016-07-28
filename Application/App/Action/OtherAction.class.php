@@ -13,6 +13,7 @@ class OtherAction extends CommonAction {
 		$msg = M('message')->order('id desc')->limit(10)->select();
 
 		$this->assign('msg',$msg);
+		$this->assign('website_title','关于我');
 		$this->display();
 	}
 
