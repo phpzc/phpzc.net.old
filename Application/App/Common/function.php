@@ -426,3 +426,19 @@ function send_email($toAddress,$toName,$subject='',$body='')
 	
 	return $mail->Send();
 }
+
+
+/**
+ * 返回国家省市地区
+ * @param $ip
+ * @return string
+ */
+function getIPLoc_taobao($ip)
+{
+    $result = file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
+
+    $result = json_decode($result,true);
+
+    $ipInfo = $result['data'];
+    return $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];//国家省市
+}
