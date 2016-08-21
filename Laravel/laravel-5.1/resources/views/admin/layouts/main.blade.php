@@ -24,6 +24,7 @@
 
 <body>
 <div id="loading"><img src="{{ WIN8('img/ajax-loader.gif') }}"></div>
+<!--
 <div id="responsive_part">
     <div class="logo"> <a href="/"><span>Start</span><span class="icon"></span></a> </div>
     <ul class="nav responsive">
@@ -32,7 +33,7 @@
         </li>
     </ul>
 </div>
-
+-->
 @include('admin.layouts.menu')
 
 <div id="main">

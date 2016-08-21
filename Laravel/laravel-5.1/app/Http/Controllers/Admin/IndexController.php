@@ -40,6 +40,8 @@ class IndexController extends CommonController
         if($res->password == md5($pwd)){
             $request->session()->put('id',1);
             echo 1;
+        }else{
+            echo 2;
         }
     }
 }
