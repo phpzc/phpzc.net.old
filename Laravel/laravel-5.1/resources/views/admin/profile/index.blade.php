@@ -4,26 +4,12 @@
     <link rel="stylesheet" href="{{ CUBE('/css/libs/lightbox.css') }}" media="screen"/>
     <!-- 表单验证样式文件 -->
     <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/bootstrapValidator.min.css') }}">
-    <!-- 提醒框样式 -->
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-default.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-bar.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-theme.css') }}"/>
+
     <!--select 样式-->
     <link rel="stylesheet" href="{{ CUBE('/css/libs/select2.css') }}" type="text/css" />
     <!-- 图片预览 -->
     <link rel="stylesheet" href="{{ CUBE('/css/libs/lightbox.css') }}" media="screen"/>
-    <!-- 提示 -->
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-default.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-growl.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-bar.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-attached.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-other.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/ns-style-theme.css') }}"/>
 
-
-    <link rel="stylesheet" href="{{ KINDEDITOR('/themes/default/default.css') }}" />
-    <script src="{{ KINDEDITOR('/kindeditor-all-min.js') }}"></script>
-    <script charset="utf-8" src="{{ KINDEDITOR('/lang/zh-CN.js') }}"></script>
 @endsection
 
 @section('content')
