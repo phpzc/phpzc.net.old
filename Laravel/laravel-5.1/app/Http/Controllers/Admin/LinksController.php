@@ -10,38 +10,59 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Model\Link;
+
 class LinksController extends CommonController
 {
 
     public function getIndex(Request $request)
     {
 
-        $res = DB::table('links')->paginate(10);;
+        $res = DB::table('links')->paginate(4);;
 
         return view('admin.links.index',['links'=>$res]);
 
     }
 
-    public function getDel()
+    public function getDel(Request $request)
     {
+        $id =  $request->input('id');
 
-    }
-
-    public function getEdit(Request $request)
-    {
-        $id = $request->input('id',0);
-        $res = DB::table('links')->where('id',$id)->first();
-
+        $res = Link::where('id',$id)->delete();
         if(empty($res)){
-            echo 1;
+            return $this->jump('delete error','/admin/links/index');
         }else{
-            echo 2;
+            return $this->jump('delete success','/admin/links/index');
         }
+
+
+
     }
 
-    public function postEdit()
-    {
 
+
+    public function getActive(Request $request)
+    {
+        $id =  $request->input('id');
+
+        $res = Link::where('id',$id)->first();
+        if(empty($res)){
+            return $this->jump('no link data','/admin/links/index');
+        }
+
+        if($res->status == 0){
+            $res->status = 1;
+        }else{
+            $res->status = 0;
+        }
+
+        $save = $res->save();
+
+        if($save){
+            return $this->jump('update success','/admin/links/index');
+        }else{
+            return $this->jump('update error','/admin/links/index');
+        }
     }
 
 }
