@@ -376,6 +376,7 @@ class SocialAction extends CommonAction {
 		}
 
 		$url = "https://www.battlenet.com.cn/oauth/authorize?";
+        $url = "https://us.battle.net/oauth/authorize?";
 		$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
 		$data['redirect_uri']=urlencode(NET_NAME."/social/battle_callback");
 		$data['scope'] = "wow.profile";
@@ -411,6 +412,7 @@ class SocialAction extends CommonAction {
 
 		if($_REQUEST['code']){
 			$url = "https://www.battlenet.com.cn/oauth/token";
+            $url = "https://us.battle.net/oauth/token";
 			$data['client_id'] = "qj64g7amth6m79kzax8tf76kuq35tfzn";
 			$data['redirect_uri']= NET_NAME."/social/battle_callback";
 			$data['client_secret'] = "EWUYUzp2hCFDtXqUHmFAbGMZ6rEbaMyV";
