@@ -444,20 +444,15 @@ class SocialAction extends CommonAction {
 			curl_close($ch);
 			dump($info);
 			dump(json_decode($data,true));
-            //qj64g7amth6m79kzax8tf76kuq35tfzn
-			exit;
-			if(empty($data)){
-				exit;
-			}
-			$responseData = explode('&',$data);
-			$access_token = explode('=', $responseData[0]);
+            $tokenArray = json_decode($data,true);
 
-			$url = "https://api.github.com/user?access_token=".$access_token[1];
+
+            $url = "https://us.api.battle.net/wow/user/characters?access_token=".$tokenArray['access_token'];
 
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
+
 			$data = curl_exec($ch);
 			//echo $data;
             //test api
@@ -465,6 +460,9 @@ class SocialAction extends CommonAction {
 			curl_close($ch);
 
 			$response = json_decode($data,true);
+
+            dump($response);
+            exit;
 
 			if($response['error'] != false){
 				$this->formErrorReferer('请清除cookie再登陆');
