@@ -233,7 +233,10 @@ class SocialAction extends CommonAction {
 				break;
 			case 'github':
 				$type = "github";
-				break;
+                break;
+            case 'battle-us':
+                $type = "battle_us";
+                break;
 		}
 
 		// 查询是否已经绑定过帐号
@@ -440,13 +443,13 @@ class SocialAction extends CommonAction {
 			$data = curl_exec($ch);
 			$info = curl_getinfo($ch);
 
-
 			curl_close($ch);
-			dump($info);
-			dump(json_decode($data,true));
+			//dump($info);
+			//dump(json_decode($data,true));
             $tokenArray = json_decode($data,true);
 
 
+            //根据token请求魔兽世界信息
             $url = "https://us.api.battle.net/wow/user/characters?access_token=".$tokenArray['access_token'];
 
 			$ch = curl_init();
@@ -461,24 +464,89 @@ class SocialAction extends CommonAction {
 
 			$response = json_decode($data,true);
 
-            dump($response);
-            exit;
+            if(!is_array($response) || empty($response))
+            {
+                $this->formError('获取战网信息失败','/');
+            }
+            //$response['characters'] 最后一个为第一个人物
+            /*
+             *
+             * array(1) {
+  ["characters"] => array(2) {
+    [0] => array(11) {
+      ["name"] => string(11) "Bigpowerman"
+      ["realm"] => string(7) "Illidan"
+      ["battlegroup"] => string(7) "Rampage"
+      ["class"] => int(12)
+      ["race"] => int(4)
+      ["gender"] => int(0)
+      ["level"] => int(100)
+      ["achievementPoints"] => int(1200)
+      ["thumbnail"] => string(31) "illidan/62/157846078-avatar.jpg"
+      ["spec"] => array(6) {
+        ["name"] => string(5) "Havoc"
+        ["role"] => string(3) "DPS"
+        ["backgroundImage"] => string(17) "bg-rogue-subtlety"
+        ["icon"] => string(27) "ability_demonhunter_specdps"
+        ["description"] => string(71) "A brooding master of warglaives and the destructive power of Fel magic."
+        ["order"] => int(0)
+      }
+      ["lastModified"] => int(1471355798000)
+    }
+    [1] => array(13) {
+      ["name"] => string(11) "Peakpointer"
+      ["realm"] => string(7) "Illidan"
+      ["battlegroup"] => string(7) "Rampage"
+      ["class"] => int(1)
+      ["race"] => int(4)
+      ["gender"] => int(0)
+      ["level"] => int(100)
+      ["achievementPoints"] => int(1200)
+      ["thumbnail"] => string(30) "illidan/5/154268677-avatar.jpg"
+      ["spec"] => array(6) {
+        ["name"] => string(4) "Fury"
+        ["role"] => string(3) "DPS"
+        ["backgroundImage"] => string(15) "bg-warrior-fury"
+        ["icon"] => string(25) "ability_warrior_innerrage"
+        ["description"] => string(116) "A furious berserker wielding a weapon in each hand, unleashing a flurry of attacks to carve her opponents to pieces."
+        ["order"] => int(1)
+      }
+      ["guild"] => string(19) "Flying Pastafarians"
+      ["guildRealm"] => string(7) "Illidan"
+      ["lastModified"] => int(1472488028000)
+    }
+  }
+}
+             *
+             *
+             */
+//http://us.battle.net/wow/en/character/illidan/Peakpointer/simple  美服战网英雄榜链接
+
+            //魔兽世界小头像图标 前缀
+            // https://render-api-us.worldofwarcraft.com/static-render/us/
+            //英雄榜背景图片前缀
+            //http://render-api-us.worldofwarcraft.com/static-render/us
+
+            if( ($count = count($response['characters'])) == 0)
+            {
+                $this->formError('战网角色不存在','/');
+            }
 
 			if($response['error'] != false){
-				$this->formErrorReferer('请清除cookie再登陆');
-				exit;
+				$this->formError('access_token获取失败','/');
 			}
-			// 进入统一
-			$_SESSION ['Auth'] ['Social'] ['avatar_img'] = $response ['avatar_url'];
 
-			$_SESSION ['Auth'] ['Social'] ['type'] = 'github';
-			$_SESSION ['Auth'] ['Social'] ['username'] = $response ['login'];
-			$_SESSION ['Auth'] ['Social'] ['email'] = $response ['email'];
-			$_SESSION ['Auth'] ['Social'] ['userid'] = $response ['id'];
-			$_SESSION ['Auth'] ['Social'] ['access_token'] = $access_token[1];
+			// 进入统一
+			$_SESSION ['Auth'] ['Social'] ['avatar_img'] ='http://render-api-us.worldofwarcraft.com/static-render/us/'. $response['characters'][$count-1]['thumbnail'];
+
+			$_SESSION ['Auth'] ['Social'] ['type'] = 'battle-us';
+			$_SESSION ['Auth'] ['Social'] ['username'] = $response['characters'][$count-1]['name'] ;
+			$_SESSION ['Auth'] ['Social'] ['email'] = '';
+			$_SESSION ['Auth'] ['Social'] ['userid'] =$response['characters'][$count-1]['name'] ;
+			$_SESSION ['Auth'] ['Social'] ['access_token'] = $tokenArray['access_token'];
 			$_SESSION ['Auth'] ['Social'] ['code'] = $_REQUEST['code'];
 
-			header ( "location:".NET_NAME. "/social/account.html?ltype=github" );
+			header ( "location:".NET_NAME. "/social/account.html?ltype=battle-us" );
 
 			exit;
 		}
