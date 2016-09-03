@@ -32,6 +32,13 @@ class OtherAction extends CommonAction {
 		$data = I('post.');
 		$data['add_time'] = time();
 		$model = M('message');
+
+		if(empty($data['email']) or empty($data['name']))
+		{
+			$this->actionReturn(ACTION_ERROR,'你是傻逼吗');
+		}
+
+
 		$res = $model->add($data);
 
 		if($res){
