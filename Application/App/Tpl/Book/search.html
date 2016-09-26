@@ -44,7 +44,7 @@
                             <ul class="contact-details">
                                 <li><button class="btn btn-danger" onclick="addBook()">加入书架</button></li>
 
-                                <li><button class="btn btn-warning">阅读最新章节</button></li>
+                                <li><a href="/book/search/word/{$StoryDetail->title}"><button class="btn btn-warning">阅读最新章节</button></a></li>
 
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                                     <ul class="contact-details">
                                         <li><button class="btn btn-danger" onclick="addBook2('{$bv.value.title}',this)" >删除书架</button></li>
 
-                                        <li><button class="btn btn-warning">阅读最新章节</button></li>
+                                        <li><a href="/book/search/word/{$bv.value.title}"><button class="btn btn-warning">阅读最新章节</button></a></li>
 
                                     </ul>
                                 </div>
