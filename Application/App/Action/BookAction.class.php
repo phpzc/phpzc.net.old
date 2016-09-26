@@ -1,5 +1,8 @@
 <?php
 namespace App\Action;
+
+include './vendor/autoload.php';
+
 class BookAction extends CommonAction {
 	/*
 	 * @brief 设置每一页标题
@@ -105,9 +108,35 @@ class BookAction extends CommonAction {
 
 			session('book_' . $searchword, $totalArray);
 		}
-		
-show:		
+
+show:
+        //
+        if( session('?book_' . $searchword))
+        {
+
+            $free = new \FreeStory\FreeStory();
+
+            if(session('?book_detail_'.$searchword))
+            {
+
+            }else{
+                $desc = $free->search($searchword);
+                if(!empty($desc)){
+                    session('book_detail_'.$searchword,get_object_vars($desc));
+                }
+            }
+
+
+            $this->assign('StoryDetail',(object) session('book_detail_'.$searchword) );
+
+            $this->assign('StoryDetail2',json_encode(['book_detail'=>session('book_detail_'.$searchword)]) );
+
+
+        }
+
+
 		$this->assign('book',session('book_'.$searchword));
+        $this->assign('book_cookie',$this->getBook());
 		$this->display();
 		
 	}
@@ -130,11 +159,15 @@ show:
 
 		$content = iconv("GB2312//IGNORE","UTF-8",$match[1]) ;
 
-		echo "<style>div{font-size:3em;}</style><div>";
+        $menu = $this->getOtherChap($bid,$word,$ourl);
+        echo '<title>'.urldecode(I('request.title')).'</title>';
+        echo $menu.'<br/>';
+        echo "<style>div{font-size:3em;}</style><div><a href='/book/search'>Search</a><br/>";
+
 		echo $content;
 		echo "</div>";
 
-		echo $this->getOtherChap($bid,$word,$ourl);
+		echo $menu;
 	}
 
 	/**
@@ -166,7 +199,7 @@ show:
 		}
 
 
-		return '<p style="font-size: 3em"><a href="/book/search/word/'.urlencode($word).'">首页</a> | <a href="/book/getContent/bid/'.$bid.'/url/'.$prev.'/word/'.urlencode($word).'">'.$prev_title.'</a> |'.$title.'| <a href="/book/getContent/bid/'.$bid.'/url/'.$next.'/word/'.urlencode($word).'">'.$next_title.'</a></p>';
+		return '<p style="font-size: 3em"><a href="/book/search/word/'.urlencode($word).'">首页</a> | <a href="/book/getContent/bid/'.$bid.'/url/'.$prev.'/word/'.urlencode($word).'/title/'.urlencode($prev_title).'">'.$prev_title.'</a> |'.$title.'| <a href="/book/getContent/bid/'.$bid.'/url/'.$next.'/word/'.urlencode($word).'/title/'.urlencode($next_title).'">'.$next_title.'</a></p>';
 	}
 
 
@@ -200,5 +233,72 @@ show:
 
 		return $menu;
 	}
+
+	//加入书架
+	public function addBook()
+    {
+        //小说的信息
+        //detail
+        //
+
+        if($_SESSION ['Auth'] ['id'])
+        {
+
+            $data = I('request.book_detail');
+            $model = M('book_cookie');
+            $find = $model->where(['uid'=>$_SESSION ['Auth'] ['id'],'book_name'=>$data['title']])->find();
+            if(!$find){
+                M('book_cookie')->add([
+                    'uid'=>$_SESSION ['Auth'] ['id'],
+                    'book_name'=>$data['title'],
+                    'value'=>json_encode($data,true),
+                ]);
+
+                session('book_cookies_'.$_SESSION ['Auth'] ['id'],null);
+            }
+
+        }
+
+    }
+
+    //删除书架
+    public function delBook()
+    {
+        if($_SESSION ['Auth'] ['id'])
+        {
+
+            $title = I('request.book_title');
+            $model = M('book_cookie');
+            $find = $model->where(['uid'=>$_SESSION ['Auth'] ['id'],'book_name'=>$title])->find();
+            if($find) {
+                $model->where(['id'=>$find['id']])->delete();
+                session('book_cookies_'.$_SESSION ['Auth'] ['id'],null);
+            }
+        }
+    }
+
+    //取得书架信息
+    public function getBook()
+    {
+        if($_SESSION ['Auth'] ['id'])
+        {
+            if(session('?book_cookies_'.$_SESSION ['Auth'] ['id'])){
+                return session('book_cookies_'.$_SESSION ['Auth'] ['id']);
+            }else{
+                $model = M('book_cookie');
+                $find = $model->where(['uid'=>$_SESSION ['Auth']['id']])->select();
+                foreach ($find as $k=>$v)
+                {
+                    $find[$k]['value'] = json_decode($v['value'],true);
+                }
+                session('book_cookies_'.$_SESSION ['Auth'] ['id'],$find);
+                return session('book_cookies_'.$_SESSION ['Auth'] ['id']);
+            }
+
+        }else{
+            return [];
+        }
+    }
+
 }
 

@@ -442,3 +442,20 @@ function getIPLoc_taobao($ip)
     $ipInfo = $result['data'];
     return $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];//国家省市
 }
+
+
+/**
+ * redis实例
+ */
+function RC()
+{
+    static $obj = null;
+
+    if($obj == null) {
+        $obj = new \Redis();
+        $obj->auth('');
+        $obj->select(0);
+    }
+
+    return $obj;
+}
