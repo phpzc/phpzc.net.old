@@ -20,6 +20,9 @@ class BookAction extends CommonAction {
 			case 'update' :
 				$this->assign ( "website_title", "修改读书感" );
 				break;
+            case 'search' :
+                $this->assign ( "website_title", "FreeStory[小说免费阅读]" );
+                break;
 		}
 	}
 	
