@@ -3,7 +3,7 @@ namespace App\Action;
 
 class IndexAction extends CommonAction {
 	public function index() {
-		
+
 		$c = M ( 'Category' );
 		$r = $c->where ( "pid=0" )->select ();
 		

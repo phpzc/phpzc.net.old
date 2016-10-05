@@ -174,6 +174,9 @@ class CommonAction extends EmptyAction {
 		//分配一些变量
 
 		$this->assignSomeDatas();
+
+        //添加ip记录
+        add_ip_record();
 	}
 	
 	// 跳转函数

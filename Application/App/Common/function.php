@@ -459,3 +459,21 @@ function RC()
 
     return $obj;
 }
+
+
+/**
+ * 添加ip记录
+ */
+function add_ip_record()
+{
+    $ip = get_client_ip(0,true);
+    $date = date('Ymd');
+    $model = M('visit');
+    $find = $model->where(['day'=>$date,'ip'=>$ip])->find();
+    if($find) {
+        $model->where(['id'=>$find['id']])->setInc('num');
+    }else{
+        $model->add(['ip'=>$ip,'day'=>$date,'num'=>1]);
+    }
+}
+
