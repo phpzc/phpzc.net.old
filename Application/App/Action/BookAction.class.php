@@ -61,14 +61,14 @@ class BookAction extends CommonAction {
 		if(!session('book_'.$searchword)) {
 
 
-			$url = 'http://so.biquge.la/cse/search?s=7138806708853866527&q=' . $searchword;
+			$url = 'http://zhannei.baidu.com/cse/search?s=920895234054625192&q=' . $searchword;
 			$data = $this->request($url);
 			if (empty($data)) {
 				goto show;
 			}
 			$searchword = urldecode($searchword);
 			//搜索记录是否存在
-			$preg = "/<a cpos=\"title\" href=\"http:\/\/www.biquge.la\/book\/(\d+)\/\" title=\"{$searchword}\" class=\"result-game-item-title-link\" target=\"_blank\">/s";
+			$preg = "/<a cpos=\"title\" href=\"http:\/\/www.qu.la\/book\/(\d+)\/\" title=\"{$searchword}\" class=\"result-game-item-title-link\" target=\"_blank\">/s";
 
 			$matchResult = preg_match($preg, $data, $match);
 
@@ -78,7 +78,7 @@ class BookAction extends CommonAction {
 
 			//提取目录id 获得目录页数据
 			$id = $match[1];
-			$url = 'http://www.biquge.la/book/' . $id . '/';
+			$url = 'http://www.qu.la/book/' . $id . '/';
 			$data = $this->request($url);
 
 			if (empty($data)) {
@@ -90,7 +90,7 @@ class BookAction extends CommonAction {
 			if (empty($matchResult)) {
 				goto show;
 			}
-			$mulu = iconv("GB2312//IGNORE", "UTF-8", $match[1]);
+			$mulu = iconv("GB2312//IGNORE", "UTF-8//IGNORE", $match[1]);
 			//提取具体章节数据
 			//匹配出 章节对应页面
 			$preg = '/<a href="(.*?)">(.*?)<\/a>/s';
@@ -153,14 +153,14 @@ show:
 		$bid =  I('request.bid');//书的id
 		$ourl = I('request.url');//章节的id
 		$word = urldecode(I('request.word'));
-		$url = 'http://www.biquge.la/book/'.$bid.'/'.$ourl.'.html';
+		$url = 'http://www.qu.la/book/'.$bid.'/'.$ourl.'.html';
 
 		$data = $this->request($url);
 
 		$preg = '/<div id="content"><script>readx\(\);<\/script>(.*?)<\/div>/s';
 		preg_match($preg,$data,$match);
 
-		$content = iconv("GB2312//IGNORE","UTF-8",$match[1]) ;
+		$content = iconv("GB2312//IGNORE","UTF-8//IGNORE",$match[1]) ;
 
         $menu = $this->getOtherChap($bid,$word,$ourl);
         echo '<title>'.urldecode(I('request.title')).'</title>';
