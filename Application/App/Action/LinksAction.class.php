@@ -22,6 +22,11 @@ class LinksAction extends CommonAction
 
         $links = M('Links');
 
+        if(empty($data['email']) or empty($data['url'])  or empty($data['name']) )
+        {
+            echo 0;
+        }
+
         if(!$links->create($data)){
             echo 0;
         }else{
