@@ -131,14 +131,6 @@
 </block>
 <block name="content">
     <div class="row">
-        <div class="main-box clearfix">
-
-            <header class="main-box-header clearfix">
-                <h2>All Gui-[Graphical User Interface] Programs</h2>
-            </header>
-        </div>
-
-
 
         <div class="row">
             <div class="col-lg-12">
@@ -151,14 +143,7 @@
                         <p class="lead">
                             {$data.description_simple}
                         </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
-                            Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                            lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                            placerat. Vivamus suscipit vulputate lacinia. Vestibulum et nisi vel odio dignissim sagittis ut suscipit
-                            felis. Vestibulum convallis turpis lectus, a porta est facilisis id
-                            <abbr title="attribute">ends</abbr>.
-                        </p>
+
 
                         <h5>程序截图</h5>
 
@@ -181,12 +166,7 @@
 
 
                         <p>
-
-                                SMALL - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet odio.
-                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                                placerat. Vivamus suscipit vulputate lacinia.
-
+                            {$data.description}
                         </p>
 
                         <h3><span>开发日志</span></h3>
@@ -194,38 +174,25 @@
                         <p>
                             {$data.develop_log}
                         </p>
-                        <!--
-                        <blockquote>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut porta massa, sit amet maximus odio.
-                                Nulla vel sagittis tellus. Nulla tristique nisi vitae blandit vehicula. Sed nunc ex, auctor id semper a,
-                                lacinia eu turpis. Maecenas eu mauris vehicula, blandit mauris nec, commodo magna. Nam commodo ultrices
-                                placerat. Vivamus suscipit vulputate lacinia.
-                            </p>
-                            <small>
-                                <cite title="Source Title">Source Samuel L Ipsum</cite>
-                            </small>
-                        </blockquote>
-                        -->
 
-                        <h3><span>功能支持</span></h3>
+                        <h3><span>系统支持</span></h3>
 
                         <dl class="dl-horizontal">
-                            <dt>系统支持</dt>
-                            <dd>Windows,Linux,Mac</dd>
+                            <dt>系统</dt>
+                            <dd>Windows,Linux,Mac,Ios,Android</dd>
 
                         </dl>
 
                         {//评论功能}
 
                         <!-- 多说评论框 start -->
-                        <div class="ds-thread" data-thread-key="{$data.id}" data-title="{$data.title}" data-url="<?php echo $_SERVER['HTTP_HOST'];?>/software/guidetail/id/{$data.id}.html">
+                        <div class="ds-thread" data-thread-key="{$data.id}" data-title="{$data.title}" data-url="<?php echo get_site_url();?>/software/guidetail/id/{$data.id}.html">
 
                         </div>
                         <!-- 多说评论框 end -->
                         <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
                         <script type="text/javascript">
-                            var duoshuoQuery = {short_name:"peakpointer"};
+                            var duoshuoQuery = {short_name:"张成的官方网站"};
                             (function() {
                                 var ds = document.createElement('script');
                                 ds.type = 'text/javascript';ds.async = true;

@@ -89,13 +89,13 @@
 			{//评论功能}
 
 			<!-- 多说评论框 start -->
-			<div class="ds-thread" data-thread-key="{$article.id}" data-title="{$article.title}" data-url="http://www.vipmhxy.com/article/detail/id/{$article.id}.html">
+			<div class="ds-thread" data-thread-key="{$article.id|encodeId}" data-title="{$article.title}" data-url="<?php echo get_site_url();?>/article/detail/id/{$article.id|encodeId}.html">
 
 			</div>
 			<!-- 多说评论框 end -->
 			<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 			<script type="text/javascript">
-				var duoshuoQuery = {short_name:"peakpointer"};
+				var duoshuoQuery = {short_name:"张成的官方网站"};
 				(function() {
 					var ds = document.createElement('script');
 					ds.type = 'text/javascript';ds.async = true;
