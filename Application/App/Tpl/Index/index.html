@@ -444,6 +444,12 @@
     </div>
 
     <div class="md-overlay"></div><!-- the overlay element -->
+
+    <div style="display: none;">
+        <audio controls="controls" autoplay="autoplay" loop="loop" preload="auto">
+            <source src="/sound.mp3" />
+        </audio>
+    </div>
 </block>
 <block name="after">
     <script src="__CUBE__/js/jquery.easypiechart.min.js"></script>
@@ -541,6 +547,10 @@
                     }
                 });
             })
+
+
+            // Audio
+
         });
 
 
