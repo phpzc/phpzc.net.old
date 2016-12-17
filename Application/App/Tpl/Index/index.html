@@ -79,8 +79,14 @@
     <div class="row" style="margin-bottom:3em;">
             <div class="main-box-body clearfix" id="ip-alert">
                 <div class="alert alert-info">
+
+                    
                     <i class="fa fa-info-circle fa-fw fa-lg"></i>
-                    <strong>Welcome You!</strong> 来自 <?php echo getIPLoc_taobao(get_client_ip(0,true));?> 的网友.
+
+                    <strong>Welcome You!</strong> 来自 <?php echo getIPLoc_taobao(get_client_ip(0,true));?> 的网友. <strong>Default Music:<audio controls="controls" autoplay="autoplay" loop="loop" preload="auto">
+                    <source src="/sound2.mp3" />
+                </audio>
+                </strong>
                 </div>
             </div>
             <div id="cuteslider_3_wrapper" class="cs-circleslight">
@@ -446,9 +452,7 @@
     <div class="md-overlay"></div><!-- the overlay element -->
 
     <div style="display: none;">
-        <audio controls="controls" autoplay="autoplay" loop="loop" preload="auto">
-            <source src="/sound2.mp3" />
-        </audio>
+
     </div>
 </block>
 <block name="after">
