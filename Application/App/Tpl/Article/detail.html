@@ -9,7 +9,7 @@
 	<?php } ?>
 	<link rel="stylesheet" href="__MD__/css/editormd.preview.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.15/css/share.min.css" />
-	<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.15/js/social-share.min.js"></script>
+
 
 
 </block>
@@ -51,9 +51,7 @@
 						{$article.content}
 					<?php }?>
 				</div>
-				<div class="row" >
-					<div class="social-share" style="margin-left: 4em;margin-top: 4em;"></div>
-				</div>
+
 
 
 				<div class="row" style="text-align:right;min-height:30px;">
@@ -70,7 +68,13 @@
                     <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
                     <!-- JiaThis Button END -->
                 </div>
+
+
+
 				<div class="main-box-body ">
+					<div class="row" >
+						<div class="social-share" style="margin-left: 4em;margin-top: 4em;"></div>
+					</div>
 					<hr>
 					<div class="pre_page">上一篇：
 						<if condition="$article_pre.id eq ''">
@@ -162,4 +166,6 @@
 	</script>
 
 	<?php } ?>
+
+	<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.15/js/social-share.min.js"></script>
 </block>
