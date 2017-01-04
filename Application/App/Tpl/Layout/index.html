@@ -336,18 +336,14 @@
                         </if>
                         <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                             <li class="nav nav-pills nav-stacked">
-                                <!--
-                                <li class="nav-header nav-header-first hidden-sm hidden-xs">
-                                    Navigation
-                                </li>
-                                -->
+
                                 <li <eq name="THIS_CONTROLLER" value="Index">class="active"</eq> >
                                     <a href="/">
                                         <i class="fa fa-dashboard"></i>
                                         <span>Index</span>
-                                        <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                     </a>
                                 </li>
+
                                 <li <eq name="THIS_CONTROLLER" value="Article">class="active"</eq> >
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-file-text-o"></i>
@@ -391,9 +387,11 @@
                                             }else{
                                                 if($get_file == $v['file']){
 
-                                                    echo '<li class="active"><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>';
+                                                    echo '<li class="active"><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>
+                            ';
                                                 }else{
-                                                    echo '<li><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>';
+                                                    echo '<li><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>
+                            ';
                                                 }
                                             }
                                         }
@@ -401,7 +399,7 @@
                                 ?>
                                 <!-- nginx源码注释 -->
                                 <volist name="WebsiteCacheNginx" id="cache_nginx_code">
-                                    <li <eq name="THIS_CONTROLLER" value="File">class="active"</eq>>
+                                    <li <eq name="THIS_CONTROLLER" value="File">class="active"</eq> >
                                         <a href="#" class="dropdown-toggle" >
                                             <i class="fa fa-file-text"></i>
                                             <span>{$cache_nginx_code.name}</span>
@@ -410,7 +408,7 @@
                                         </a>
                                         <ul class="submenu">
                                         <?php
-                                            fetch_nginx_code_menu($cache_nginx_code['next']);
+                                            //fetch_nginx_code_menu($cache_nginx_code['next']);
                                         ?>
 
                                         </ul>
@@ -457,7 +455,6 @@
                                 <a href="/document">
                                     <i class="fa fa-copy"></i>
                                     <span>Documents</span>
-                                    <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                 </a>
                                 </li>
 
@@ -470,28 +467,6 @@
                                 </a>
                                 </li>
 
-                                <!--
-                                <li <eq name="THIS_CONTROLLER" value="Software">class="active"</eq> >
-
-                                <a href="#" class="dropdown-toggle">
-                                    <i class="fa fa-desktop"></i>
-                                    <span>My Software</span>
-                                    <i class="fa fa-angle-right drop-icon"></i>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="/software/gui" <eq name="soft_type" value="gui">class="active"</eq>>
-                                                GUI
-                                            </a>
-
-                                            <a href="/software/game" <eq name="soft_type" value="game">class="active"</eq>>
-                                                Game
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </a>
-                                </li>
-                                -->
-
                                 <li>
                                     <a href="http://project.phpzc.net" target="_blank" title="Projects on GitHub">
                                         <i class="fa fa-file-text"></i>
@@ -503,9 +478,9 @@
                                 <a href="/Other/about">
                                     <i class="fa fa-copy"></i>
                                     <span>About Me</span>
-                                    <!--<span class="label label-primary label-circle pull-right">28</span>-->
                                 </a>
                                 </li>
+
                                 <li <eq name="THIS_CONTROLLER" value="Book">class="active"</eq> >
                                 <a href="/Book/search">
                                     <i class="fa fa-copy"></i>
@@ -515,6 +490,7 @@
 
 
                             </li>
+
                         </div>
                     </div>
                 </section>
