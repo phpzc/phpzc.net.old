@@ -335,7 +335,7 @@
                         </div>
                         </if>
                         <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
-                            <ul class="nav nav-pills nav-stacked">
+                            <li class="nav nav-pills nav-stacked">
                                 <!--
                                 <li class="nav-header nav-header-first hidden-sm hidden-xs">
                                     Navigation
@@ -381,9 +381,11 @@
 
 
                                             if($v['is_file'] == 0){
+                                                echo '<li><a href="#" class="dropdown-toggle" >'.$v['name'].'<i class="fa fa-angle-right drop-icon"></i></a>';
+
                                                 echo '<ul class="submenu"><li><a href="#" class="dropdown-toggle">'.$v['name'].'<i class="fa fa-angle-right drop-icon"></i></a>';
                                                 fetch_nginx_code_menu($v['next']);
-                                                echo '</li></ul>';
+                                echo '</li></ul></li>';
                                             }else{
                                                 if($get_file == $v['file']){
 
