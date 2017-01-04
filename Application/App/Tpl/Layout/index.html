@@ -406,10 +406,14 @@
                                             <i class="fa fa-file-text"></i>
                                             <span>{$cache_nginx_code.name}</span>
                                             <i class="fa fa-angle-right drop-icon"></i>
-                                            <?php
-                                                fetch_nginx_code_menu($cache_nginx_code['next']);
-                                            ?>
+
                                         </a>
+                                        <ul class="submenu">
+                                        <?php
+                                            fetch_nginx_code_menu($cache_nginx_code['next']);
+                                        ?>
+
+                                        </ul>
                                     </li>
                                 </volist>
                                 <!--添加project文章 -->
