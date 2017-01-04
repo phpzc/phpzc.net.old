@@ -335,14 +335,14 @@
                         </div>
                         </if>
                         <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
-                            <li class="nav nav-pills nav-stacked">
+                            <ul class="nav nav-pills nav-stacked">
 
                                 <li <eq name="THIS_CONTROLLER" value="Index">class="active"</eq> >
                                     <a href="/">
                                         <i class="fa fa-dashboard"></i>
                                         <span>Index</span>
                                     </a>
-                                </li>
+                                </ul>
 
                                 <li <eq name="THIS_CONTROLLER" value="Article">class="active"</eq> >
                                     <a href="#" class="dropdown-toggle">
@@ -408,7 +408,7 @@
                                         </a>
                                         <ul class="submenu">
                                         <?php
-                                            //fetch_nginx_code_menu($cache_nginx_code['next']);
+                                            fetch_nginx_code_menu($cache_nginx_code['next']);
                                         ?>
 
                                         </ul>
@@ -489,7 +489,7 @@
                                 </li>
 
 
-                            </li>
+                            </ul>
 
                         </div>
                     </div>
