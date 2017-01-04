@@ -171,6 +171,33 @@ class CommonAction extends EmptyAction {
 			$this->_userId = $_SESSION ["Auth"] ["id"];
 		}
 
+
+		//分配nginx源码目录变量
+        if(!isset($_SESSION ["website"]['nginx_source_code'])) {
+            //如果存在
+            $tmpArr= $this->getCacheArray("common", "nginx_source_code");
+            if($tmpArr != false){
+                $_SESSION["website"]["cache"]["nginx_source_code"] = $tmpArr;
+            }else {
+                //实时生成数据到数组 保存入文件
+                $res = [];
+
+                $prefix = '/project/';
+                $dir = 'nginx';
+
+                $this->fetchDirSetData($res,$prefix.$dir,$dir);
+
+                $flag = $this->saveCacheArray("common", "document_rank", $res);
+                if($flag){
+                    $_SESSION["website"]["cache"]["nginx_source_code"] = $res;
+                }
+            }
+		}
+
+		dump($_SESSION["website"]["cache"]["nginx_source_code"]);
+
+		$this->assign('WebsiteCacheNginx',$_SESSION["website"]["cache"]["nginx_source_code"]);
+
 		//分配一些变量
 
 		$this->assignSomeDatas();
@@ -385,4 +412,32 @@ class CommonAction extends EmptyAction {
 			exit ();
 		}
 	}
+
+
+	protected function fetchDirSetData(&$res,$dirName,$name)
+    {
+
+        $len = count($res);
+        if ( is_dir($dirName) && ($handle = opendir( "$dirName" )) ) {
+            $tmp['is_file'] = 0;
+            $tmp['name'] = $name;
+            $tmp['file'] = '';
+            $tmp['next'] = [];
+
+            $res[$len] = $tmp;
+            while ( false !== ( $item = readdir( $handle ) ) ) {
+                if ( $item != "." && $item != ".." ) {
+                    $this->fetchDirSetData( $res[$len]['next'],"$dirName/$item", $item);
+                }
+            }
+            closedir( $handle );
+        }else{
+            $tmp['is_file'] = 1;
+            $tmp['name'] = $name;
+            $tmp['file'] = substr($dirName,9);
+            $tmp['next'] = [];
+
+            $res[$len] = $tmp;
+        }
+    }
 }
