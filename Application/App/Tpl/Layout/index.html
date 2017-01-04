@@ -372,6 +372,42 @@
 
                                 </li>
 
+                                <?php
+                                    $get_file = I('get.file');
+
+                                    function fetch_nginx_code_menu(&$data){
+
+                                        foreach($data as &$v){
+
+
+                                            if($v['is_file'] == 0){
+                                                echo '<ul class="submenu"><li><a href="#" class="dropdown-toggle">'.$v['name'].'<i class="fa fa-angle-right drop-icon"></i></a>';
+                                                fetch_nginx_code_menu($v['next']);
+                                                echo '</li></ul>';
+                                            }else{
+                                                if($get_file == $v['file']){
+
+                                                    echo '<li class="active"><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>';
+                                                }else{
+                                                    echo '<li><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>';
+                                                }
+                                            }
+                                        }
+                                    }
+                                ?>
+                                <!-- nginx源码注释 -->
+                                <volist name="WebsiteCacheNginx" id="cache_nginx_code">
+                                    <li <eq name="THIS_CONTROLLER" value="File">class="active"</eq>>
+                                        <a href="#" class="dropdown-toggle" >
+                                            <i class="fa fa-file-text"></i>
+                                            <span>{$cache_nginx_code.name}</span>
+                                            <i class="fa fa-angle-right drop-icon"></i>
+                                            <?php
+                                                fetch_nginx_code_menu($cache_nginx_code['next']);
+                                            ?>
+                                        </a>
+                                    </li>
+                                </volist>
                                 <!--添加project文章 -->
 
                                 <volist name="MENU_PROJECT" id="project_data">

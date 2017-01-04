@@ -194,7 +194,6 @@ class CommonAction extends EmptyAction {
             }
 		}
 
-		dump($_SESSION["website"]["cache"]["nginx_source_code"]);
 
 		$this->assign('WebsiteCacheNginx',$_SESSION["website"]["cache"]["nginx_source_code"]);
 
