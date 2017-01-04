@@ -13,7 +13,7 @@ class FileAction extends CommonAction
 {
     public function index()
     {
-
+        dump($_GET);
     }
 
 
