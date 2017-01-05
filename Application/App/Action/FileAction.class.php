@@ -31,7 +31,7 @@ class FileAction extends CommonAction
 
             $this->assign('title',$file);
             $this->assign('content',$content);
-
+            $this->assign ( "website_title", "源码分析:". $file);
             $this->display();
         }else{
             $this->_empty();
