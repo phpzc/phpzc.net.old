@@ -47,5 +47,12 @@ class OtherAction extends CommonAction {
 			$this->actionReturn(ACTION_ERROR);
 		}
 	}
+
+
+	public function projects()
+	{
+        $this->assign('website_title','开源项目');
+		$this->display();
+	}
 }
 ?>
