@@ -440,7 +440,12 @@ function getIPLoc_taobao($ip)
     $result = json_decode($result,true);
 
     $ipInfo = $result['data'];
-    return $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];//国家省市
+
+    $data = $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];////国家省市
+    if(empty($data)){
+        $data = '地球';
+    }
+    return $data;
 }
 
 
