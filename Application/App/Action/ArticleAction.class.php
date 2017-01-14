@@ -213,6 +213,7 @@ class ArticleAction extends CommonAction {
 
 		$this->fieldLengthCheck ( $data ["title"], "标题", 100 );
 
+
 		$pid = $_REQUEST ["form_category"];
 		$category = M ( 'Category' );
 		$info = $category->where ( array (
@@ -224,8 +225,9 @@ class ArticleAction extends CommonAction {
 		$data ['bpath'] = $info ['path'] . '-' . $pid;
 
 		$res = $article->data ( $data )->save ();
-		
-		if ($res) {
+
+
+		if ($res !== false) {
 			// 标签管理添加
 			$key = A ( 'Keyword' );
 			$key->updateCategory ( "article", $id, $_REQUEST ["form_tag"] );
@@ -241,12 +243,15 @@ class ArticleAction extends CommonAction {
 		// 删除标签数量
 		// 删除文章
 		
-		$id = I('get.id','integer');
+		$id = I('get.id');
 		$id = $this->decodeId ( $id );
 		
 		$article = M ( 'Article' );
-		$res = $article->where ( "id={$id} and uid={$_SESSION["Auth"]["id"]}" )->field ( "id" )->find ();
-		
+		$res = $article->where ( [
+		    'id'=>$id,
+            'uid'=>$_SESSION["Auth"]["id"]
+        ] )->field ( "id" )->find ();
+
 		if ($res) {
 			$data ["isdel"] = 1;
 			$data ["id"] = $id;
@@ -453,8 +458,9 @@ class ArticleAction extends CommonAction {
 		
 		$article = M ( "Article" );
 		$all = $article->where ( "uid={$_SESSION["Auth"]["id"]} and isdel = 0" )->count ();
-		import ( "ORG.Util.Page" ); // 导入分页类
-		$page = new Page ( $all, 15 );
+		//import ( "ORG.Util.Page" ); // 导入分页类
+		//$page = new Page ( $all, 15 );
+        $page = new \Think\Page( $all, 8);
 		$page->setConfig ( 'header', '篇文章' );
 		$page->setConfig ( 'prev', 'Prev Page' );
 		$page->setConfig ( 'next', 'Next Page' );
@@ -472,7 +478,7 @@ class ArticleAction extends CommonAction {
 		}
 		$this->assign ( "article_list", $res );
 		$this->assign ( "article_page", $show );
-		$this->assign ( "website_title", "我的文章" );
+		$this->assign ( "website_title", "My Article" );
 		$this->display ();
 	}
 	

@@ -212,6 +212,7 @@
 -->
                         <empty name="Think.session.Auth.id" >
                             <else/>
+                            <?php if($_SESSION['Auth']['id'] == 1){ ?>
                         <li class="dropdown hidden-xs">
                             <a class="btn dropdown-toggle" data-toggle="dropdown">
                                 UserCenter
@@ -219,7 +220,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="item">
-                                    <a href="#">My Articles</a>
+                                    <a href="/article/mylist">My Articles</a>
                                 </li>
                                 <li class="item">
                                     <a href="/article/create" >Add Article - Use Baidu Editor</a>
@@ -243,6 +244,7 @@
                                 </if>
                             </ul>
                         </li>
+                            <?php } ?>
                         </empty>
                     </ul>
                 </div>

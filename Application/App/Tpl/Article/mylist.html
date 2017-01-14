@@ -1,69 +1,78 @@
-<include file="Public:doct" />
- {//文章的css}
-	<import type="css" file="css.article.index" />
-	
-    <include file="Public:head" />{// 头部公共文件 }
+<extend name="Layout/index" />
+<block name="head">
+	<link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/timeline.css">
+</block>
+<block name="content">
 
-    <div id="container" class="box_shadow box_shadow_inset .border_radius">
-        
-        <include file="Article:article_head" />
-
-        <div id="article_show">
-            <div id="article_list">
-            		<script>
-							function tmpJump(data)
-							{
-								VIP.MessageBox.createBoxConfirmCancle("确定删除?",{callback:VIP.Jump,data:"/article/del.html?id="+data});
-							}
-					</script>
-					<volist name="article_list" id="article_list">
-					<div class="article_foreach_item G_border_radius G_box_shadow">
-					 							 		<div class="article_foreach_item_left">
-					 			<a href="/article/detail/id/{$article_list.id}.html"  target="_blank">
-					 				<if condition="$article_list.imgurl neq ''">
-					 				<img src="{$article_list.imgurl}" width=250 height=165 alt="article_img" />
-					 				<else/>
-					 				
-					 				<div class="article_foreach_item_left_bg c_category {$article_list.imgurl_class}">
-					 					
-					 				</div>
-					 				</if>
-					 			</a>
-							 </div>
-							
-							 <div class= "article_foreach_item_right">
-							 		<div class="article_foreach_item_right_title">
-								 		<a href="/article/detail/id/{$article_list.id}.html" 
-								 		title="{$article_list.title | htmlspecialchars_decode}" target="_blank">
-										{$article_list.title| htmlspecialchars_decode| cut_str=###,20} 
-										</a>
-							 		</div>
-							 		<div class="article_foreach_item_right_simple">
-							 			{$article_list.content| cut_str=###,70} 
-							 		</div>
-							 		
-							 		<div class="article_foreach_item_right_category">
-										<span><a href="__ROOT__/article/search.html?category={$article_list.bpath| getCategoryId}"  title="查看该分类下文章">{$article_list.bpath| getCategoryName}</a></span>
-							 			<span class="sp1 sp4"><i></i><a href='javascript:;' onclick="tmpJump('{$article_list.id}')">删除</a></span>
-										<span class="sp1 sp4"><i></i><a href="/article/edit.html?id={$article_list.id}"  target=_blank>修改</a></span>
-										<span class="sp1"><i></i>{$article_list.name}</span>
-							 		</div>
-							 </div>
-							 
+	<script>
+        function tmpJump(data)
+        {
+            if( confirm('是否删除?')){
+                location.href = "/article/del/id/"+data;
+			}
+        }
+	</script>
 
 
+	<div class="row">
 
+		<div class="col-lg-12">
+			<div class="main-box clearfix">
+				<header class="main-box-header clearfix">
+					<h2>All Articles</h2>
+				</header>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<section id="cd-timeline" class="cd-container">
+
+							<volist name="article_list" id="article_list">
+								<div class="cd-timeline-block">
+									<div class="cd-timeline-img cd-location">
+										<i class="fa fa-map-marker fa-2x"></i>
+									</div>
+
+									<div class="cd-timeline-content">
+										<h2><a href="/article/detail/id/{$article_list.id}.html">{$article_list.title| htmlspecialchars_decode| cut_str=###,40}</a></h2>
+										<p style="word-break:break-all;word-wrap:break-word ;">{$article_list.content| cut_str=###,300} </p>
+										<div class="clearfix">
+											<a class="btn btn-primary pull-right"
+											   href="/article/detail/id/{$article_list.id}.html"
+											   target="_blank">
+												Read more
+											</a>
+
+											<a class="btn btn-primary pull-left"
+											   href="/article/edit/id/{$article_list.id}"
+											   >Edit
+											</a>
+
+
+											<a class="btn btn-primary pull-left" style="margin-left: 1em;"
+											   href="javascript:;" onclick="tmpJump('{$article_list.id}')"
+											   >
+												Delete
+											</a>
+										</div>
+										<span class="cd-date">
+										{$article_list.time|date="Y/m/d",###}
+									</span>
+									</div>
+								</div>
+							</volist>
+						</section>
 					</div>
-					</volist>
-                    <div class="common_page">{$article_page}</div>
-            </div>
-			
-		    <include file="Article:article_category" />	
-        </div>
-       
-    </div>
+				</div>
+				<div class="main-box-body clearfix">
+					<div style="float:right">{$article_page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    
-    <include file="Public:footer" />{// 底部公共文件 }
-</body>
-</html>
+</block>
+<block name="after">
+	<!-- this page specific scripts -->
+	<script src="__CUBE__/js/modernizr.js"></script>
+	<script src="__CUBE__/js/timeline.js"></script>
+</block>
