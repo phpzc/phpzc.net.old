@@ -383,6 +383,7 @@ class CommonAction extends EmptyAction {
 	{
 		//dump(CONTROLLER_NAME);
 		$this->assign('THIS_CONTROLLER',CONTROLLER_NAME);
+		$this->assign('THIS_ACTION',CONTROLLER_NAME.'/'.ACTION_NAME);
 	}
 
 

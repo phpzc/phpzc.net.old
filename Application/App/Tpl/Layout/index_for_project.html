@@ -340,10 +340,17 @@
 
                                 </li>
 
+                                <li <eq name="THIS_ACTION" value="Other/projects">class="active"</eq> >
+                                <a href="/Other/projects" title="Projects on GitHub">
+                                    <i class="fa fa-file-text"></i>
+                                    <span>Open-Source</span>
+                                </a>
+                                </li>
+
                                 <!--添加project文章 -->
 
                                 <volist name="menu_project" id="project_data">
-                                <li <eq name="THIS_PROJECT_ID" value="$project_data.project_id">class="active"</eq>>
+                                    <li <eq name="THIS_PROJECT_ID" value="$project_data.project_id">class="active"</eq>>
                                     <a href="#" class="dropdown-toggle" >
                                         <i class="fa fa-file-text"></i>
                                         <span>{$project_data.name}</span>
@@ -360,11 +367,11 @@
 
                                             <ul class="submenu">
                                                 <volist name="summary_data.sub_data" id="article_data">
-                                                <li >
-                                                    <a href="/project/detail/id/{$article_data.id}" class='  <eq name="this_id" value="$article_data.id">active</eq>' >
-                                                        {$article_data.title}
-                                                    </a>
-                                                </li>
+                                                    <li >
+                                                        <a href="/project/detail/id/{$article_data.id}" class='  <eq name="this_id" value="$article_data.id">active</eq>' >
+                                                            {$article_data.title}
+                                                        </a>
+                                                    </li>
                                                 </volist>
                                             </ul>
                                             </li>
@@ -372,8 +379,58 @@
 
                                     </ul>
 
-                                </li>
+                                    </li>
                                 </volist>
+
+
+                                <?php
+                                    $get_file = I('get.file');
+
+                                    function fetch_nginx_code_menu(&$data){
+
+                                        foreach($data as &$v){
+
+
+                                            if($v['is_file'] == 0){
+                                                echo '<li><a href="#" class="dropdown-toggle" >'.$v['name'].'<i class="fa fa-angle-right drop-icon"></i></a>';
+                                if(!empty($v['next'])){
+                                echo '<ul class="submenu">';
+                                fetch_nginx_code_menu($v['next']);
+                                echo '</ul>';
+                                }
+                                echo '</li>';
+                                }else{
+                                if($get_file == $v['file']){
+
+                                echo '<li class="active"><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>
+                                ';
+                                }else{
+                                echo '<li><a href="/file/cat?file='.$v['file'].'">'.$v['name'].'</a></li>
+                                ';
+                                }
+                                }
+                                }
+                                }
+                                ?>
+                                <!-- nginx源码注释 -->
+                                <volist name="WebsiteCacheNginx" id="cache_nginx_code">
+                                    <li <eq name="THIS_CONTROLLER" value="File">class="active"</eq> >
+                                    <a href="#" class="dropdown-toggle" >
+                                        <i class="fa fa-file-text"></i>
+                                        <span>{$cache_nginx_code.name}</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+
+                                    </a>
+                                    <ul class="submenu">
+                                        <?php
+                                            fetch_nginx_code_menu($cache_nginx_code['next']);
+                                        ?>
+
+                                    </ul>
+                                    </li>
+                                </volist>
+
+
 
                                 <li <eq name="THIS_CONTROLLER" value="Document">class="active"</eq> >
                                 <a href="/document">
@@ -413,14 +470,9 @@
                                 </a>
                                 </li>
                                 -->
-                            <li>
-                                <a href="/Other/projects" title="Projects on GitHub">
-                                    <i class="fa fa-file-text"></i>
-                                    <span>Open-Source</span>
-                                </a>
-                            </li>
 
-                                <li <eq name="THIS_CONTROLLER" value="Other">class="active"</eq> >
+
+                                <li <eq name="THIS_ACTION" value="Other/about">class="active"</eq> >
                                 <a href="/Other/about">
                                     <i class="fa fa-copy"></i>
                                     <span>About Me</span>

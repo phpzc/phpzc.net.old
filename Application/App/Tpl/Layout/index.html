@@ -372,6 +372,49 @@
 
                                 </li>
 
+                                <li <eq name="THIS_ACTION" value="Other/projects">class="active"</eq> >
+                                <a href="/Other/projects" title="Projects on GitHub">
+                                    <i class="fa fa-file-text"></i>
+                                    <span>Open-Source</span>
+                                </a>
+                                </li>
+
+                                <!--添加project文章 -->
+
+                                <volist name="MENU_PROJECT" id="project_data">
+                                    <li <eq name="THIS_PROJECT_ID" value="$project_data.project_id">class="active"</eq>>
+                                    <a href="#" class="dropdown-toggle" >
+                                        <i class="fa fa-file-text"></i>
+                                        <span>{$project_data.name}</span>
+                                        <i class="fa fa-angle-right drop-icon"></i>
+                                    </a>
+                                    <ul class="submenu">
+
+                                        <volist name="project_data.summary" id="summary_data">
+                                            <li <eq name="summary_data.class_active" value="1">class="active"</eq> >
+                                            <a href="#" class="dropdown-toggle">
+                                                {$summary_data.chap_name}
+                                                <i class="fa fa-angle-right drop-icon"></i>
+                                            </a>
+
+                                            <ul class="submenu">
+                                                <volist name="summary_data.sub_data" id="article_data">
+                                                    <li >
+                                                        <a href="/project/detail/id/{$article_data.id}" class='  <eq name="this_id" value="$article_data.id">active</eq>' >
+                                                            {$article_data.title}
+                                                        </a>
+                                                    </li>
+                                                </volist>
+                                            </ul>
+                                            </li>
+                                        </volist>
+
+                                    </ul>
+
+                                    </li>
+                                </volist>
+
+
                                 <?php
                                     $get_file = I('get.file');
 
@@ -418,40 +461,6 @@
                                         </ul>
                                     </li>
                                 </volist>
-                                <!--添加project文章 -->
-
-                                <volist name="MENU_PROJECT" id="project_data">
-                                    <li <eq name="THIS_PROJECT_ID" value="$project_data.project_id">class="active"</eq>>
-                                    <a href="#" class="dropdown-toggle" >
-                                        <i class="fa fa-file-text"></i>
-                                        <span>{$project_data.name}</span>
-                                        <i class="fa fa-angle-right drop-icon"></i>
-                                    </a>
-                                    <ul class="submenu">
-
-                                        <volist name="project_data.summary" id="summary_data">
-                                            <li <eq name="summary_data.class_active" value="1">class="active"</eq> >
-                                            <a href="#" class="dropdown-toggle">
-                                                {$summary_data.chap_name}
-                                                <i class="fa fa-angle-right drop-icon"></i>
-                                            </a>
-
-                                            <ul class="submenu">
-                                                <volist name="summary_data.sub_data" id="article_data">
-                                                    <li >
-                                                        <a href="/project/detail/id/{$article_data.id}" class='  <eq name="this_id" value="$article_data.id">active</eq>' >
-                                                            {$article_data.title}
-                                                        </a>
-                                                    </li>
-                                                </volist>
-                                            </ul>
-                                            </li>
-                                        </volist>
-
-                                    </ul>
-
-                                    </li>
-                                </volist>
 
 
 
@@ -471,14 +480,9 @@
                                 </a>
                                 </li>
 
-                                <li>
-                                    <a href="/Other/projects" title="Projects on GitHub">
-                                        <i class="fa fa-file-text"></i>
-                                        <span>Open-Source</span>
-                                    </a>
-                                </li>
 
-                                <li <eq name="THIS_CONTROLLER" value="Other">class="active"</eq> >
+
+                                <li <eq name="THIS_ACTION" value="Other/about">class="active"</eq> >
                                 <a href="/Other/about">
                                     <i class="fa fa-copy"></i>
                                     <span>About Me</span>
