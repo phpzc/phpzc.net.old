@@ -40,7 +40,7 @@ class IndexController extends CommonController
 
         if($res->password == md5($pwd)){
             $request->session()->put('id',1);
-
+            $request->session()->put('name',$res->name);
 
             $response = new Response();
             $response->withCookie(cookie()->forever('username', $request->input('username','')));
