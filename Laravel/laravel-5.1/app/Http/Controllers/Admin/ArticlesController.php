@@ -17,7 +17,7 @@ class ArticlesController extends AuthController
     {
         view()->share('MENU_ELEMENT',true);
         $articles = Article::where('isdel','!=',1)
-            ->orderBy('id','desc')->paginate(10);
+            ->orderBy('id','desc')->paginate(10000);
 
         return view('admin.articles.index',['articles'=>$articles,
         'active'=>'articles']);
@@ -32,7 +32,8 @@ class ArticlesController extends AuthController
         );
 
         if($del){
-            return redirect('/admin/articles/index');
+            return $this->jump('Article del success!', '/admin/articles/index');
+
         }else{
             return back();
         }

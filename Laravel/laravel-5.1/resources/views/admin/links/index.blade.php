@@ -1,87 +1,110 @@
 @extends('admin.layouts.main')
 
-@section('before_head')
-
+@section('head')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ ADMIN('plugins/datatables/dataTables.bootstrap.css') }}">
 @endsection
+
+
 @section('content')
 
-    <div class="row-fluid ">
-        <div class="span12">
-            <div class="box paint color_18">
-                <div class="title">
-                    <h4> <i class=" icon-bar-chart"></i><span>Complex table </span> </h4>
-                </div>
-                <!-- End .title -->
-                <div class="content top">
-                    <table id="datatable_example" class="responsive table table-striped table-bordered" style="width:100%;margin-bottom:0; ">
-                        <thead>
-                        <tr>
-                            <th class="no_sort"> Id
-                            </th>
-                            <th class="no_sort to_hide_phone"> Url </th>
-                            <th class="no_sort to_hide_phone"> Name </th>
-                            <th class="no_sort"> Email </th>
-                            <th class="no_sort"> Status </th>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
 
-                            <th class="ms no_sort "> Actions </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach ($links as $link)
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Links
+                <small>advanced tables</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Links</li>
+            </ol>
+        </section>
 
 
-                        <tr>
-                            <td>{{ $link->id }}</td>
-                            <td > <a href="{{  $link->url }}" title="{{  $link->url }}" target="_blank">{{ mb_substr($link->url,0,50) }} </a></td>
-                            <td > {{ $link->name }} </td>
-                            <td> {{ $link->email }} </td>
-                            <td class="to_hide_phone"> {{ $link->status }} </td>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
 
-                            <td class="ms"><div class="btn-group">
-                                    <a class="btn btn-small links-edit" rel="tooltip" data-id="{{ $link->id }}" data-placement="left" data-original-title=" edit " href="javascript:;"><i class="gicon-edit"></i></a>
-                                    <a class="btn  btn-small delete_article" rel="tooltip" data-placement="bottom" data-original-title="Remove" data-id="{{ $link->id }}"><i class="gicon-remove "></i></a> </div></td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    <div class="row-fluid  control-group mt15">
-
-                        <div class="pull-left span6 visible-desktop" action="#">
-                            <div class="row-fluid fluid ">
-                                <div class="controls inline input-large pull-left ">
-                                    <select data-placeholder="Bulk actions: " class="chzn-select " id="default-select">
-                                        <option value=""></option>
-                                        <option value="Bender">Edit</option>
-                                        <option value="Zoidberg">Regenerate thumbnails</option>
-                                        <option value="Kif Kroker">Delete Permanently</option>
-                                    </select>
-                                </div>
-                                <button type="button" class="btn btn-inverse inline">Apply</button>
-                            </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Links</h3>
                         </div>
-                        <div class="span4">
-                            <div class="pagination pull-right ">
-                                <ul>
-                                    <li><a href="{!! $links->previousPageUrl() !!}">Prev</a></li>
-                                    <li><a href="#">{!! $links->currentPage() !!}</a></li>
-                                    <li><a href="{!! $links->nextPageUrl() !!}">Next</a></li>
-                                    <li><a href="#">Total {!! $links->count() !!}</a></li>
-                                </ul>
-                            </div >
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th >Id</th>
+                                    <th > Url </th>
+                                    <th > Name </th>
+                                    <th > Email </th>
+                                    <th > Status </th>
+                                    <th> Actions </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($links as $link)
+
+
+                                    <tr>
+                                        <td>{{ $link->id }}</td>
+                                        <td > <a href="{{  $link->url }}" title="{{  $link->url }}" target="_blank">{{ mb_substr($link->url,0,50) }} </a></td>
+                                        <td > {{ $link->name }} </td>
+                                        <td> {{ $link->email }} </td>
+                                        <td > {{ $link->status }} </td>
+
+                                        <td>
+
+
+                                            <a class="btn btn-app links-edit"  data-id="{{ $link->id }}">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+
+                                            <a class="btn btn-app delete_article"  data-id="{{ $link->id }}" >
+                                                <i class="fa fa-remove"></i> Remove
+                                            </a>
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th >Id</th>
+                                    <th > Url </th>
+                                    <th > Name </th>
+                                    <th > Email </th>
+                                    <th > Status </th>
+                                    <th> Actions </th>
+                                </tr>
+                                </tfoot>
+                            </table>
                         </div>
-
-
+                        <!-- /.box-body -->
                     </div>
+
                 </div>
-                <!-- End row-fluid -->
             </div>
-            <!-- End .content -->
-        </div>
-        <!-- End box -->
+
+        </section>
+
     </div>
+
 @endsection
 
 @section('after')
+
+    <!-- DataTables -->
+    <script src="{{ ADMIN('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ ADMIN('plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+
     <script>
         $(function(){
 

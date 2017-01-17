@@ -1,146 +1,354 @@
 <!DOCTYPE html>
-<html class="sidebar_default  no-js" lang="en">
+<html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@section('title','Admin-title')</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
     @yield('before_head')
-    <link rel="shortcut icon" href="{{ WIN8('css/images/favicon.png') }}">
-    <!-- Le styles -->
-    <link href="{{ WIN8('css/twitter/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/base.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/twitter/responsive.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/jquery-ui-1.8.23.custom.css') }}" rel="stylesheet">
-    <script src="{{ WIN8('js/plugins/modernizr.custom.32549.js') }}"></script>
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{{ ADMIN('bootstrap/css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+
+    @yield('head')
+
+
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ ADMIN('dist/css/AdminLTE.min.css') }}">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="{{ ADMIN('dist/css/skins/_all-skins.min.css') }}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="{{ WIN8('js/google/html5.js') }}"></script>
+
+        <!-- Scripts -->
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+
+    <!--
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    -->
+    <script src="{{ ADMIN('html5shiv.min.js') }}"></script>
+    <script src="{{ ADMIN('respond.min.js') }}"></script>
     <![endif]-->
 
+    <!--vue.js -->
+    <script src="/Public/js/vue.min.js"></script>
     @yield('before_tail')
 </head>
 
-<body>
-<div id="loading"><img src="{{ WIN8('img/ajax-loader.gif') }}"></div>
-<!--
-<div id="responsive_part">
-    <div class="logo"> <a href="/"><span>Start</span><span class="icon"></span></a> </div>
-    <ul class="nav responsive">
-        <li>
-            <button class="btn responsive_menu icon_item" data-toggle="collapse" data-target=".overview"> <i class="icon-reorder"></i> </button>
-        </li>
-    </ul>
-</div>
--->
-@include('admin.layouts.menu')
 
-<div id="main">
-    <div class="container" style="min-height: 30em;">
-        <div class="header row-fluid">
-            <div class="logo"> <a href="/"><span>Start</span><span class="icon"></span></a> </div>
-            <div class="top_right">
-                <ul class="nav nav_menu">
-                    <li class="dropdown"> <a class="dropdown-toggle administrator" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
-                            <div class="title"><span class="name">PeakPointer</span><span class="subtitle">Administrator</span></div>
-                            <span class="icon"><img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=73" /></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="javascript:;"><i class=" icon-user"></i> My Profile</a></li>
-                            <li><a href="javascript:;"><i class=" icon-cog"></i>Settings</a></li>
-                            <li><a href="/admin/index/logout"><i class=" icon-unlock"></i>Log Out</a></li>
-                            <li><a href="javascript:;"><i class=" icon-flag"></i>Help</a></li>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="/" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>PHP</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>PHPZC</b>.net</span>
+        </a>
+
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 4 messages</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li><!-- start message -->
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="{{ ADMIN('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Support Team
+                                                <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <!-- end message -->
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="{{ ADMIN('dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                AdminLTE Design Team
+                                                <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="{{ ADMIN('dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Developers
+                                                <small><i class="fa fa-clock-o"></i> Today</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="{{ ADMIN('dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Sales Department
+                                                <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="pull-left">
+                                                <img src="{{ ADMIN('dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                                            </div>
+                                            <h4>
+                                                Reviewers
+                                                <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                            </h4>
+                                            <p>Why not buy a new awesome theme?</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">See All Messages</a></li>
                         </ul>
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label label-warning">10</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 10 notifications</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                                            page and may cause design problems
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-red"></i> 5 new members joined
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user text-red"></i> You changed your username
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="footer"><a href="#">View all</a></li>
+                        </ul>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+                    <li class="dropdown tasks-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">9</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- inner menu: contains the actual data -->
+                                <ul class="menu">
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Create a nice theme
+                                                <small class="pull-right">40%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">40% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Some task I need to do
+                                                <small class="pull-right">60%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">60% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <h3>
+                                                Make beautiful transitions
+                                                <small class="pull-right">80%</small>
+                                            </h3>
+                                            <div class="progress xs">
+                                                <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">80% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="{{ ADMIN('dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <img src="{{ ADMIN('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+
+                                <p>
+                                    Alexander Pierce - Web Developer
+                                    <small>Member since Nov. 2012</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/admin/index/logout" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
+                    <li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                     </li>
                 </ul>
             </div>
-            <!-- End top-right -->
-        </div>
 
-        <div id="main_container">
+        </nav>
+    </header>
 
-            @yield('content')
+@include('admin.layouts.menu')
 
-            <div style="with:100%;height:100px;"></div>
-        </div>
-        <div class="background_changer dropdown">
-            <div class="dropdown" id="colors_pallete"> <a data-toggle="dropdown" data-target="drop4" class="change_color"></a>
-                <ul  class="dropdown-menu pull-left" role="menu" aria-labelledby="drop4">
-                    <li><a data-color="color_0" class="color_0" tabindex="-1">1</a></li>
-                    <li><a data-color="color_1" class="color_1" tabindex="-1">1</a></li>
-                    <li><a data-color="color_2" class="color_2" tabindex="-1">2</a></li>
-                    <li><a data-color="color_3" class="color_3" tabindex="-1">3</a></li>
-                    <li><a data-color="color_4" class="color_4" tabindex="-1">4</a></li>
-                    <li><a data-color="color_5" class="color_5" tabindex="-1">5</a></li>
-                    <li><a data-color="color_6" class="color_6" tabindex="-1">6</a></li>
-                    <li><a data-color="color_7" class="color_7" tabindex="-1">7</a></li>
-                    <li><a data-color="color_8" class="color_8" tabindex="-1">8</a></li>
-                    <li><a data-color="color_9" class="color_9" tabindex="-1">9</a></li>
-                    <li><a data-color="color_10" class="color_10" tabindex="-1">10</a></li>
-                    <li><a data-color="color_11" class="color_11" tabindex="-1">10</a></li>
-                    <li><a data-color="color_12" class="color_12" tabindex="-1">12</a></li>
-                    <li><a data-color="color_13" class="color_13" tabindex="-1">13</a></li>
-                    <li><a data-color="color_14" class="color_14" tabindex="-1">14</a></li>
-                    <li><a data-color="color_15" class="color_15" tabindex="-1">15</a></li>
-                    <li><a data-color="color_16" class="color_16" tabindex="-1">16</a></li>
-                    <li><a data-color="color_17" class="color_17" tabindex="-1">17</a></li>
-                    <li><a data-color="color_18" class="color_18" tabindex="-1">18</a></li>
-                    <li><a data-color="color_19" class="color_19" tabindex="-1">19</a></li>
-                    <li><a data-color="color_20" class="color_20" tabindex="-1">20</a></li>
-                    <li><a data-color="color_21" class="color_21" tabindex="-1">21</a></li>
-                    <li><a data-color="color_22" class="color_22" tabindex="-1">22</a></li>
-                    <li><a data-color="color_23" class="color_23" tabindex="-1">23</a></li>
-                    <li><a data-color="color_24" class="color_24" tabindex="-1">24</a></li>
-                    <li><a data-color="color_25" class="color_25" tabindex="-1">25</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- End .background_changer -->
-    </div>
-    @include('admin.layouts.footer')
+    @yield('content')
+
+@include('admin.layouts.footer')
+
+
+
 </div>
 
+<!-- jQuery 2.2.3 -->
+<script src="{{ ADMIN('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ ADMIN('bootstrap/js/bootstrap.min.js') }}"></script>
 
-<!-- Le javascript
-    ================================================== -->
-<!-- General scripts -->
-<script src="{{ WIN8('js/jquery.js') }}" type="text/javascript"> </script>
-<!--[if !IE]> -->
-<!--[if !IE]> -->
-<script src="{{ WIN8('js/plugins/enquire.min.js') }}" type="text/javascript"></script>
-<!-- <![endif]-->
-<!-- <![endif]-->
-<!--[if lt IE 7]>
-<script src="{{ WIN8('js/google/IE7.js')}}"></script>
-<![endif]-->
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/jquery.sparkline.min.js') }}"></script>
-<script src="{{ WIN8('js/plugins/excanvas.compiled.js') }}"></script>
-<script src="{{ WIN8('js/bootstrap-transition.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-alert.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-modal.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-dropdown.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-scrollspy.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-tab.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-tooltip.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-popover.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-button.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-collapse.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-carousel.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-typeahead.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/bootstrap-affix.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/fileinput.jquery.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/jquery-ui-1.8.23.custom.min.js') }}" type="text/javascript"></script>
-<script src="{{ WIN8('js/jquery.touchdown.js') }}" type="text/javascript"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/jquery.uniform.min.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/jquery.tinyscrollbar.min.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/jnavigate.jquery.min.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/jquery.touchSwipe.min.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/jquery.peity.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ ADMIN('plugins/fastclick/fastclick.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ ADMIN('dist/js/app.min.js') }}"></script>
+<!-- SlimScroll 1.3.0 -->
+<script src="{{ ADMIN('plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{ ADMIN('dist/js/demo.js') }}"></script>
 
 
-<!-- Custom made scripts for this template -->
-<script src="{{ WIN8('js/scripts.js') }}" type="text/javascript"></script>
-
+<script src="/Public/js/vue.min.js"></script>
 @yield('after')
 
 </body>

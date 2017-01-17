@@ -16,7 +16,7 @@ class ProfileController extends AuthController
     {
         $user = Profile::find(1);
 
-        return view('admin.profile.index',['user'=>$user]);
+        return view('admin.profile.index',['user'=>$user,'active'=>'profile']);
     }
 
     public function postIndex(Request $request)
@@ -29,6 +29,10 @@ class ProfileController extends AuthController
 
         foreach ($all as $k=>$v){
             $user->$k = $v;
+
+            if($k == 'begin_time'){
+                $user->$k = strtotime($v);
+            }
         }
 
         if($user->save()){

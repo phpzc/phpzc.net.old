@@ -3,83 +3,100 @@
 
 @endsection
 @section('content')
-    <div class="row-fluid">
-        <div class="row">
-            <div class="box paint color_7">
-                <div class="title">
-                    <h4> <i class="icon-book"></i><span>Add Carousel</span>
 
-                    </h4>
-                </div>
-                <div class="content">
-                    <form class="form-horizontal row-fluid" action="/admin/carousel/update" method="post" enctype="multipart/form-data" >
 
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3" for="with-placeholder">Title</label>
-                            <div class="controls span9">
-                                <input type="hidden" name="id" value="{{ $data->id }}" />
-                                <input type="text" id="with-placeholder" name="title" placeholder="Title" class="row-fluid" value="{{ $data->title }}" />
-                            </div>
-                        </div>
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3" for="with-placeholder2">Href</label>
-                            <div class="controls span9">
-                                <input type="text" id="with-placeholder2" name="href" placeholder="Href" class="row-fluid" value="{{ $data->href }}">
-                            </div>
-                        </div>
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3">type</label>
-                            <div class="controls span9">
-                                <input type="text" name="type" placeholder="Href" class="row-fluid" value="{{ $data->type }}"/>
-                            </div>
-                        </div>
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3" for="with-placeholder3">Description</label>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Update Carousel
+                <small>Preview</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Update Carousel</li>
+            </ol>
+        </section>
 
-                            <div class="controls span9">
-                                <textarea rows="3" class="row-fluid" id="with-placeholder3" name="description" placeholder="Description">{{ $data->description }}</textarea>
-                            </div>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Horizontal Form -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Update Carousel</h3>
                         </div>
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3" for="search-input">File upload</label>
-                            <div class="controls span9">
-                                <div class="input-append row-fluid">
-                                    <input type="text" name="imgurl" placeholder="imgurl" class="row-fluid" value="{{ $data->imgurl }}"/>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" action="/admin/carousel/update" method="post" enctype="multipart/form-data">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">Title</label>
+
+                                    <div class="col-sm-10">
+
+                                        <input type="hidden" name="id" value="{{ $data->id }}" />
+                                        <input type="text" id="with-placeholder" name="title" placeholder="Title" class="form-control" value="{{ $data->title }}" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">Href</label>
+
+                                    <div class="col-sm-10">
+
+                                        <input type="text" id="with-placeholder2" name="href" placeholder="Href" class="form-control" value="{{ $data->href }}">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="type" placeholder="Href" class="form-control" value="{{ $data->type }}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea rows="3" class="form-control" id="with-placeholder3" name="description" placeholder="Description">{{ $data->description }}</textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">File Upload</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="imgurl" placeholder="imgurl" class="form-control" value="{{ $data->imgurl }}"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2 control-label">Sort</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="sort" placeholder="sort num" class="form-control" value="{{ $data->sort }}"/>
+                                    </div>
                                 </div>
 
                             </div>
-                        </div>
-
-                        <div class="form-row control-group row-fluid">
-                            <label class="control-label span3">Sort</label>
-                            <div class="controls span9">
-                                <input type="text" name="sort" placeholder="sort num" class="row-fluid" value="{{ $data->sort }}"/>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-info pull-right">Save</button>
                             </div>
-                        </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
 
-                        <div class="form-actions row-fluid">
-                            <div class="span3 visible-desktop"></div>
-                            <div class="span7 ">
-                                <button type="submit" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-secondary">Cancel</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
+
+        </section>
     </div>
 
-
-    <div class="hidden" id="hidden">
-        <div>
-            <a class="example-image-link" href="" title=""> <img class="example-image" src="" alt="plants: image 1 0f 4 thumb" width="150px" height="100px"/></a><input name="" type="text" class="hidden" value="">
-            <div class="">
-                <i class="fa fa-eye"></i>
-                <i class="fa fa-trash-o"></i>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('after')

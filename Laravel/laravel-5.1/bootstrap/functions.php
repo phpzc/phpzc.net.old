@@ -5,6 +5,16 @@
  * Date: 2016/4/28
  * Time: 16:31
  */
+
+if (! function_exists('ADMIN')) {
+
+    function ADMIN($file)
+    {
+        return '/Public/AdminLTE/'.$file;
+    }
+}
+
+
 if(! function_exists('CSS')){
     function CSS($file)
     {

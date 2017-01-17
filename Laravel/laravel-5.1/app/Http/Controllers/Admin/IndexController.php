@@ -10,18 +10,19 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Http\Response;
+
 class IndexController extends CommonController
 {
     public function getIndex(Request $request)
     {
-        //$request->session()->set('id',1);
         if($request->session()->has('id') ){
             $id = $request->session()->get('id');
             if($id == 1)
                 return view('admin.index.index');
         }
 
-        return view('admin.index.login');
+        return view('admin.index.login',['username'=>$request->cookie('username'),'password'=>$request->cookie('password')]);
 
     }
 
@@ -32,16 +33,23 @@ class IndexController extends CommonController
         return redirect('/');
     }
 
-    public function getCheck(Request $request)
+    public function postCheck(Request $request)
     {
         $res = DB::table('user')->where('id',1)->first();
         $pwd = $request->input('password','');
 
         if($res->password == md5($pwd)){
             $request->session()->put('id',1);
-            echo 1;
+
+
+            $response = new Response();
+            $response->withCookie(cookie()->forever('username', $request->input('username','')));
+            $response->withCookie(cookie()->forever('password', $request->input('password','')));
+            $response->setContent('<script>location.href="/"</script>');
+
+            return $response;
         }else{
-            echo 2;
+            return redirect('/');
         }
     }
 }

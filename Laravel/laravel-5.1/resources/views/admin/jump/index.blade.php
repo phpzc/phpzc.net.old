@@ -1,34 +1,42 @@
 @extends('admin.layouts.main')
 
 @section('content')
-    <div class="span12">
-        <div class="box color_2 ">
-            <div class="title row-fluid">
-                <h4 class="pull-left"><span>Messages</span></h4>
-                <div class="btn-toolbar pull-right ">
-                    <div class="btn-group"> <a class="btn">Message Tip</a> <a class="btn change_color_outside"><i class="paint_bucket"></i></a> </div>
-                </div>
-            </div>
-            <!-- End .title -->
-            <div class="content row-fluid">
-                <ul class="messages_layout">
 
-                    <li class="from_user left">
-                        <a href="#" class="avatar"><img src="{{ WIN8('img/message_avatar2.png') }}"/></a>
-                        <div class="message_wrap"> <span class="arrow"></span>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
 
-                            <div class="text"> {{ $message }} </div>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Message
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Message</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="box box-default">
+                        <div class="box-body">
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="icon fa fa-check"></i> Message!</h4>
+                                {{ $message }}
+                            </div>
 
                         </div>
-                    </li>
-
-                </ul>
+                    </div>
+                </div>
             </div>
-            <!-- End .content -->
-        </div>
-        <!-- End .box -->
-    </div>
 
+        </section>
+    </div>
 @endsection
 
 

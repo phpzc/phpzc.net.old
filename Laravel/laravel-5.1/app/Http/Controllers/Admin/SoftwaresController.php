@@ -14,7 +14,7 @@ class SoftwaresController extends AuthController
     public function getIndex()
     {
         view()->share('MENU_ELEMENT',true);
-        $softwares = Software::where('isdel','!=',1)->paginate(10);
+        $softwares = Software::where('isdel','!=',1)->paginate(10000);
         //dump($softwares);
         return view('admin.softwares.index',['softwares'=>$softwares,'active'=>'softwares']);
     }
@@ -28,7 +28,7 @@ class SoftwaresController extends AuthController
         );
 
         if($del){
-            return redirect('/admin/softwares/index');
+            return $this->jump('Delete Software Success','/admin/softwares/index');
         }else{
             return back();
         }

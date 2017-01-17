@@ -1,169 +1,100 @@
 <!DOCTYPE html>
-<html class="no-js login" lang="en">
+<html>
 <head>
     <meta charset="utf-8">
-    <title>Admin-Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="{{ WIN8('css/images/favicon.png') }}">
-    <!-- Le styles -->
-    <link href="{{ WIN8('css/twitter/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/base.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/twitter/responsive.css') }}" rel="stylesheet">
-    <link href="{{ WIN8('css/jquery-ui-1.8.23.custom.css') }}" rel="stylesheet">
-    <script src="{{ WIN8('js/plugins/modernizr.custom.32549.js') }}"></script>
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="{{ ADMIN('bootstrap/css/bootstrap.min.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ ADMIN('dist/css/AdminLTE.min.css') }}">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="{{ ADMIN('plugins/iCheck/square/blue.css') }}">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
-
-<body>
-<div id="login_page">
-    <!-- Login page -->
-    <div id="login">
-        <div class="row-fluid fluid">
-            <div class="span5"> <img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" /> </div>
-            <div class="span7">
-                <div class="title">
-                    <span class="name">PeakPointer</span>
-                    <span class="subtitle">Locked</span>
-                </div>
-                <form class="form-search row-fluid " action="" method="post">
-                    <div class="input-append row-fluid fluid">
-                        <input type="text" id="login_pwd" class="row-fluid search-query" placeholder="Password" name="password">
-                        <a href="javascript:;" class="btn color_4" id="login_a">Go</a> </div>
-                </form>
-            </div>
-        </div>
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href=""><b>PHPZC</b>.net</a>
     </div>
-    <!-- End #login -->
-    <!-- <img src="img/ajax-loader.gif"> -->
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+
+        <form action="/admin/index/check" method="post">
+            {{ csrf_field() }}
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" name="username" value="{{ $username }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" placeholder="Password" name="password" value="{{ $password }}">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck" id="vue_app">
+                        <label>
+                            <input type="checkbox"    name="remember"  v-model="remember" checked/> Remember Me
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+
+    </div>
+    <!-- /.login-box-body -->
 </div>
-<!-- End #loading -->
+<!-- /.login-box -->
 
-<!-- Le javascript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- jQuery 2.2.3 -->
+<script src="{{ ADMIN('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{{ ADMIN('bootstrap/js/bootstrap.min.js') }}"></script>
+<!-- iCheck -->
+<script src="{{ ADMIN('plugins/iCheck/icheck.min.js') }}"></script>
 
-<!-- Flip effect on login screen -->
-<script type="text/javascript" src="{{ WIN8('js/google/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ WIN8('js/plugins/jquerypp.custom.js') }}"></script>
-<script type="text/javascript" src="{{ WIN8('js/plugins/jquery.bookblock.js') }}"></script>
-<script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/jquery.uniform.min.js') }}"></script>
+<script src="/Public/js/vue.min.js"></script>
 
-<script type="text/javascript">
-    $(function() {
-//        var Page = (function() {
-//
-//            var config = {
-//                        $bookBlock: $( '#bb-bookblock' ),
-//                        $navNext  : $( '#bb-nav-next' ),
-//                        $navPrev  : $( '#bb-nav-prev' ),
-//                        $navJump  : $( '#bb-nav-jump' ),
-//                        bb        : $( '#bb-bookblock' ).bookblock( {
-//                            speed       : 800,
-//                            shadowSides : 0.8,
-//                            shadowFlip  : 0.7
-//                        } )
-//                    },
-//                    init = function() {
-//
-//                        initEvents();
-//
-//                    },
-//                    initEvents = function() {
-//
-//                        var $slides = config.$bookBlock.children(),
-//                                totalSlides = $slides.length;
-//
-//                        // add navigation events
-//                        config.$navNext.on( 'click', function() {
-//                            $("#arrow_register").fadeOut();
-//                            $(".not-member").slideUp();
-//                            $(".already-member").slideDown();
-//                            config.bb.next();
-//                            return false;
-//
-//                        } );
-//
-//                        config.$navPrev.on( 'click', function() {
-//
-//                            $(".not-member").slideDown();
-//                            $(".already-member").slideUp();
-//                            config.bb.prev();
-//                            return false;
-//
-//                        } );
-//
-//                        config.$navJump.on( 'click', function() {
-//
-//                            config.bb.jump( totalSlides );
-//                            return false;
-//
-//                        } );
-//
-//                        // add swipe events
-//                        $slides.on( {
-//
-//                            'swipeleft'   : function( event ) {
-//
-//                                config.bb.next();
-//                                return false;
-//
-//                            },
-//                            'swiperight'  : function( event ) {
-//
-//                                config.bb.prev();
-//                                return false;
-//
-//                            }
-//
-//                        } );
-//
-//                    };
-//
-//            return { init : init };
-//
-//        })();
-//
-//        Page.init();
-
-        $('#login_a').click(function(){
-            $.get('/admin/index/check',{password:$('#login_pwd').val()},function(data){
-                if(data == 1){
-                    window.location = '/';
-                }
-            })
-        })
-    });
-</script>
-<script type='text/javascript'>
-
-    $(window).load(function() {
-        $('#loading1').fadeOut();
-    });
-    $(document).ready(function() {
-        $("input:checkbox, input:radio, input:file").uniform();
-
-
-        $('[rel=tooltip]').tooltip();
-        $('body').css('display', 'none');
-        $('body').fadeIn(500);
-
-        $("#logo a, #sidebar_menu a:not(.accordion-toggle), a.ajx").click(function() {
-            event.preventDefault();
-            newLocation = this.href;
-            $('body').fadeOut(500, newpage);
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
         });
-        function newpage() {
-            window.location = newLocation;
-        }
+
+        //$('input[name=username]').val($.cookie('username'));
+        //$('input[name=password]').val($.cookie('password'));
+
+
+
     });
 
-
+    var vue_app = new Vue({
+        el: '#vue_app',
+        data:{
+            remember: true
+        },
+    });
 </script>
 </body>
 </html>

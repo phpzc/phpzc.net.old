@@ -19,6 +19,7 @@ if(defined('ROUTE_MODE_ENV') &&  ROUTE_MODE_ENV== 2){
     Route::get('/','Admin\IndexController@getIndex');
 }
 
+Route::any('/vue','VueController@index');
 
 //命名路由 可使用名称 生产URL
 Route::any('/test/any','IndexController@index')->name('testroute');

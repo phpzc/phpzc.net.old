@@ -15,7 +15,6 @@ class CommonController extends AhcCommonController
     function __construct()
     {
         parent::__construct();
-        
     }
 
 

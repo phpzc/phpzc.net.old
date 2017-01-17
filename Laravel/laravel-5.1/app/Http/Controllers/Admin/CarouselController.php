@@ -23,7 +23,7 @@ class CarouselController extends AuthController
     public function getIndex()
     {
         $carousels = Index::where('id', '>', 0)
-            ->orderBy('id','desc')->paginate(10);
+            ->orderBy('id','desc')->paginate(10000);
 
         return view('admin.carousel.index', ['carousels' => $carousels, 'active' => 'carousels']);
     }

@@ -18,9 +18,9 @@ class LinksController extends CommonController
     public function getIndex(Request $request)
     {
 
-        $res = DB::table('links')->paginate(4);;
+        $res = DB::table('links')->orderBy('id', 'desc')->paginate(10000);;
 
-        return view('admin.links.index',['links'=>$res]);
+        return view('admin.links.index',['links'=>$res,'active'=>'links']);
 
     }
 

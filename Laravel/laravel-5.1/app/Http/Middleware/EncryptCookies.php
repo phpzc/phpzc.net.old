@@ -13,6 +13,7 @@ class EncryptCookies extends BaseEncrypter
      */
     protected $except = [
         //添加不加密的cookie
-        'test'
+        'password',
+        'username',
     ];
 }

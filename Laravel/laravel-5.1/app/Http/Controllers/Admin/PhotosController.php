@@ -14,7 +14,7 @@ class PhotosController extends AuthController
     public function getIndex()
     {
         view()->share('MENU_ELEMENT',true);
-        $photos = Photo::where('isdel','!=',1)->paginate(10);
+        $photos = Photo::where('isdel','!=',1)->paginate(10000);
 
         return view('admin.photos.index',['photos'=>$photos,'active'=>'photos']);
     }
@@ -28,7 +28,7 @@ class PhotosController extends AuthController
         );
 
         if($del){
-            return redirect('/admin/photos/index');
+            return $this->jump('Delete Photos Success','/admin/photos/index');
         }else{
             return back();
         }

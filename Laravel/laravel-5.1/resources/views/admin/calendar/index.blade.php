@@ -1,41 +1,60 @@
 @extends('admin.layouts.main')
 
-@section('before_tail')
-    <!--
-    <link rel="stylesheet" href="{{ CUBE('css/libs/fullcalendar.css') }}" type="text/css" />
-    <link rel="stylesheet" href="{{ CUBE('css/libs/fullcalendar.print.css') }}" type="text/css" media="print" />
-    <link rel="stylesheet" href="{{ CUBE('css/compiled/calendar.css') }}" type="text/css" media="screen" />
-    -->
+@section('head')
+
+    <!-- fullCalendar 2.2.5-->
+    <link rel="stylesheet" href="{{ ADMIN('plugins/fullcalendar/fullcalendar.min.css') }}">
+    <link rel="stylesheet" href="{{ ADMIN('plugins/fullcalendar/fullcalendar.print.css') }}" media="print">
+
 @endsection
 
 
 
 @section('content')
-    <div class="row-fluid">
-        <div class="span8">
-            <div class="box color_13 paint_hover">
-                <div class="title">
-                    <h4> <span>Calendar</span> </h4>
-                </div>
-                <div class="content top ">
-                    <div id='calendar'> </div>
-                </div>
-            </div>
-            <!-- End .box -->
 
-        </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Calendar
+                <small>Control panel</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Calendar</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-body no-padding">
+                        <!-- THE CALENDAR -->
+                        <div id="calendar"></div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+            </div>
+            </div>
+
+        </section>
+
     </div>
 
 @endsection
 
 @section('after')
-        <!-- Full Calendar -->
-    <script language="javascript" type="text/javascript" src="{{ WIN8('js/plugins/full-calendar/fullcalendar.min.js') }}"></script>
 
-    <!--
-    <script src="{{ CUBE('js/jquery-ui.custom.min.js') }}"></script>
-    <script src="{{ CUBE('js/fullcalendar.min.js') }}"></script>
-    -->
+    <!-- fullCalendar 2.2.5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script src="{{ ADMIN('plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+
+
 <script>
     $(document).ready(function() {
 
@@ -69,12 +88,15 @@
             editable: false,
             droppable:false,
             buttonText: {
-                prev: '<i class="fa fa-chevron-left"></i>',
-                next: '<i class="fa fa-chevron-right"></i>'
+                prev: 'prev',
+                next: 'next'
             },
 
             //ajax 设置数据来源
-            events:function(start,end,callback){
+            events:function(start,end,timezone, callback){
+
+                start = new Date(start);
+                end = new Date(end);
 
                 $.get('/admin/articles/month',{start:start.getTime(),end:end.getTime()},function(data){
 

@@ -28,7 +28,7 @@ class AlbumsController extends AuthController
         );
 
         if($del){
-            return redirect('/admin/albums/index');
+            return $this->jump('Delete Albums Success','/admin/albums/index');
         }else{
             return back();
         }
