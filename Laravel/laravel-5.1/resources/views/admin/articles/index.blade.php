@@ -37,6 +37,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
+                                    <th> Id </th>
                                     <th> Title </th>
 
                                     <th> Time </th>
@@ -50,6 +51,7 @@
                                 @foreach ($articles as $article)
 
                                     <tr>
+                                        <td> {{ $article->id }}</td>
                                         <td> {{ $article->title }} </td>
                                         <td> {{ date('Y-m-d H:i:s',$article->time) }}  </td>
                                         <td > {{ $article->visit }} </td>
@@ -73,6 +75,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th> Id</th>
                                     <th> Title </th>
 
                                     <th> Time </th>
