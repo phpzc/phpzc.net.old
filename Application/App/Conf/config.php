@@ -34,9 +34,13 @@ return array(
 			'__KINDEDITOR__'=>'/Public/kindeditor',
 			'__MD__' => '/Public/editor.md-master',
 		),
-	'EMAIL_USER'=>'zhang5474jj@163.com',
+	'EMAIL_USER'=>'admin@phpzc.net',
 	'EMAIL_PWD'=>'',
-	'EMAIL_HOST'=>'smtp.163.com',
+	'EMAIL_HOST'=>'mail.phpzc.net',
 	'EMAIL_PORT'=>25,
 	'EMAIL_USERNAME'=>$_SERVER['HTTP_HOST'].'站长张成',
+
+    'SESSION_TYPE' => 'Redis', //
+    'SESSION_EXPIRE' => 7200, // session在redis中存在的有效期 秒数
+
 );

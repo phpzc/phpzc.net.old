@@ -141,7 +141,7 @@ show:
 		$this->assign('book',session('book_'.$searchword));
         $this->assign('book_cookie',$this->getBook());
 		$this->display();
-		
+
 	}
 
 

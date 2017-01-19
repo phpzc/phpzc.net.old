@@ -486,3 +486,5 @@ function get_site_url()
 {
     return NET_NAME;
 }
+
+
