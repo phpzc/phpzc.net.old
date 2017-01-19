@@ -458,6 +458,7 @@ function RC()
 
     if($obj == null) {
         $obj = new \Redis();
+        $obj->connect('127.0.0.1');
         $obj->auth('');
         $obj->select(0);
     }
