@@ -17,17 +17,18 @@
 
 
     <div class="row" style="margin-bottom:3em;">
-            <div class="main-box-body clearfix" id="ip-alert">
-                <div class="alert alert-info">
+            <div class="main-box-body clearfix" >
+                <div class="alert alert-info" id="ip-alert">
 
 
                     <i class="fa fa-info-circle fa-fw fa-lg"></i>
 
-                    <strong>Welcome You!</strong> 来自 <?php echo getIPLoc_taobao(get_client_ip(0,true));?> 的网友. <!--<strong>Default Music:<audio controls="controls" autoplay="autoplay" loop="loop" preload="auto">
+                    <strong>Welcome You!</strong> 来自 <?php echo getIPLoc_taobao(get_client_ip(0,true));?> 的网友.  <!--<strong>Default Music:<audio controls="controls" autoplay="autoplay" loop="loop" preload="auto">
                     <source src="/sound2.mp3" />
                 </audio>
                 </strong>-->
                 </div>
+
             </div>
             <div id="cuteslider_3_wrapper" class="cs-circleslight">
 
@@ -440,10 +441,10 @@
                 animate: 1500
             });
 
-            //var sTimeOut = setTimeout(function () {
-            //    $('#ip-alert').hide();
-            //    sTimeOut = null;
-            //},5000);
+//            var sTimeOut = setTimeout(function () {
+//                $('#ip-alert').hide();
+//                sTimeOut = null;
+//            },5000);
 
             //links
             $('#links_submit').click(function() {

@@ -45,7 +45,7 @@
 		<div class="md-overlay"></div><!-- the overlay element -->
 
 
-		<div class="col-lg-5 col-md-4 col-sm-4">
+		<div class="col-lg-3 col-md-4 col-sm-4">
 			<div class="main-box clearfix">
 				<header class="main-box-header clearfix">
 					<h2>About Me</h2>
@@ -69,12 +69,13 @@
 
 					<div class="profile-details">
 						<ul class="fa-ul">
-							<li><i class="fa-li fa fa-qq"></i>QQ: <span>{$info.qq}</span></li>
-							<li><i class="fa-li fa fa-envelope"></i>Email: <span>{$info.mail}</span></li>
-							<li><i class="fa-li fa fa-github"></i>GitHub: <span><a href="{$info.github}" target="_blank">{$info.github}</a></span></li>
-							<li><i class="fa-li fa fa-weibo"></i>Weibo: <span><a href="{$info.weibo}" target="_blank">{$info.weibo}</a></span></li>
+							<li><i class="fa-li fa fa-qq"></i> <span>{$info.qq}</span></li>
+							<li><i class="fa-li fa fa-envelope"></i> <span><a href="Mailto:{$info.mail}">{$info.mail}</a></span></li>
+							<li><i class="fa-li fa fa-github"></i> <span><a href="{$info.github}" target="_blank">{$info.github}</a></span></li>
+							<li><i class="fa-li fa fa-weibo"></i> <span><a href="{$info.weibo}" target="_blank">{$info.weibo}</a></span></li>
 						</ul>
 					</div>
+
 
 					<div class="profile-message-btn center-block text-center">
 						<a href="javascript:;" data-modal="modal-11" class="btn btn-success md-trigger btn btn-primary mrg-b-lg send_message_me" id="send_message_me">
@@ -87,19 +88,56 @@
 			</div>
 		</div>
 
-		<div class="col-lg-7 col-md-8 col-sm-8">
+		<div class="col-lg-9 col-md-8 col-sm-8">
 			<div class="main-box clearfix">
 				<div class="tabs-wrapper profile-tabs">
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#tab-newsfeed" data-toggle="tab">Descriotion</a></li>
-						<!--<li><a href="#tab-activity" data-toggle="tab">Activity</a></li>
-						<li><a href="#tab-friends" data-toggle="tab">Friends</a></li>
-						<li id="send_message_me2"><a href="#tab-chat" data-toggle="tab">Chat</a></li>-->
+						<li><a href="#tab-activity" data-toggle="tab">Newsfeed</a></li>
+
 					</ul>
 
 					<div class="tab-content">
 						<div class="tab-pane fade in active" id="tab-newsfeed">
 
+                            <div class="story">
+
+								<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+
+								<p class="text-muted">
+									江苏建筑职业技术学院 - 电子信息工程
+								</p>
+
+								<hr>
+
+								<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+
+								<p class="text-muted">北京, 泰州</p>
+
+								<hr>
+
+								<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+
+								<p>
+									<span class="label label-danger">PHP</span>
+									<span class="label label-success">C/C++</span>
+									<span class="label label-info">Lua</span>
+									<span class="label label-warning">Java</span>
+									<span class="label label-success">Javascript</span>
+                                    <span class="label label-info">Markdown</span>
+                                    <span class="label label-primary">HTML</span>
+                                    <span class="label label-warning">CSS</span>
+
+								</p>
+
+								<hr>
+
+								<strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+								<p>{$info.description|htmlspecialchars_decode=###}</p>
+
+							</div>
+                            <!--
 							<div id="newsfeed">
 								<div class="story">
 									<div class="story-user">
@@ -126,6 +164,9 @@
 								</div>
 
 							</div>
+
+
+
 							<div class="conversation-wrapper">
 								<div class="conversation-content">
 									<div class="conversation-inner">
@@ -168,10 +209,12 @@
 
 								</div>
 							</div>
+
+							-->
 						</div>
 
 						<div class="tab-pane fade" id="tab-activity">
-
+                            <!--
 							<div class="table-responsive">
 								<table class="table">
 									<tbody>
@@ -190,36 +233,9 @@
 									</tbody>
 								</table>
 							</div>
-
+                            -->
 						</div>
 
-						<div class="tab-pane clearfix fade" id="tab-friends">
-							<ul class="widget-users row">
-								<li class="col-md-6">
-									<div class="img">
-										<img src="img/samples/scarlet.png" alt=""/>
-									</div>
-									<div class="details">
-										<div class="name">
-											<a href="#">Scarlett Johansson</a>
-										</div>
-										<div class="time">
-											<i class="fa fa-clock-o"></i> Last online: 5 minutes ago
-										</div>
-										<div class="type">
-											<span class="label label-danger">Admin</span>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-							<br/>
-							<a href="#" class="btn btn-success pull-right">View all users</a>
-						</div>
-
-						<div class="tab-pane fade" id="tab-chat">
-
-						</div>
 					</div>
 				</div>
 
@@ -278,27 +294,3 @@
 		})
 	</script>
 </block>
-
-
-
-<include file="Public:doct" />
-	
-    <include file="Public:head" />{// 头部公共文件 }
-
-    <div id="container" class="box_shadow box_shadow_inset .border_radius">
-		<div style="width:960px;margin-left:32px">
-			<h2>关于我（站长）</h2>
-			<table>
-			      <tr><td><img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=230"></td></tr>
-			      <tr><td><font color=green>张 成 </font></td></tr>
-			      <tr><td><font color=green>擅长语言：</font>C/C++/PHP/Lua </td></tr>
-			      <tr><td><font color=green>GitHub: </font><a href="https://github.com/AceKillerZc" target="_blank" style="text-decoration:underline;color:red" >https://github.com/AceKillerZc</a> </td></tr>
-                  <tr><td><font color=green>qq: </font>1091796360</td></tr>
-                  <tr><td>自由软件</td></tr>
-			</table>
-		</div>
-    </div>
-    <include file="Public:footer" />{// 底部公共文件 }  
-
-</body>
-</html>
