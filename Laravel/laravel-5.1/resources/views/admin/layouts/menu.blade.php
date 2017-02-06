@@ -40,6 +40,7 @@
                     <li @if ($active == 'photos') class="active" @endif><a href="/admin/photos/index"><i class="fa fa-circle-o"></i>Photo</a></li>
                     <li @if ($active == 'softwares') class="active" @endif><a href="/admin/softwares/index"><i class="fa fa-circle-o"></i>Software</a></li>
 
+                    <li @if ($active == 'keys') class="active" @endif ><a href="/admin/keys/index"><i class="fa fa-circle-o"></i>Key</a></li>
                 </ul>
             </li>
 

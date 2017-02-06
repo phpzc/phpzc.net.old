@@ -36,9 +36,11 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin/'],function(){
     Route::controller('carousel','CarouselController');
     Route::controller('calendar','CalendarController');
     Route::controller('charts','ChartsController');
+    Route::controller('keys','KeysController');
 
     Route::controller('links','LinksController');
     Route::controller('profile','ProfileController');
+
 });
 
 //前台

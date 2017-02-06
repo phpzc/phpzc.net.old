@@ -139,6 +139,8 @@ return [
 
         /*
          * Application Service Providers...
+         *
+         * 项目自定义服务提供者
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
