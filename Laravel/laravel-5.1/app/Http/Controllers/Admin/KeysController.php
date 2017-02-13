@@ -41,7 +41,7 @@ class KeysController extends AuthController
         if(empty($data['password'])){
             $data['password'] = Key::generatePassword(6,16);
         }
-        if($data['id'] != '') {
+        if(isset($data['id']) && $data['id'] != '') {
             $key = Key::find($data['id']);
         }else{
             $key = new Key();
@@ -52,7 +52,7 @@ class KeysController extends AuthController
         $key->email = $data['email'];
         $key->url = $data['url'];
 
-        if($data['id'] != ''){
+        if(isset($data['id']) && $data['id'] != ''){
             $key->id = $data['id'];
         }
         if( $key->save()){
