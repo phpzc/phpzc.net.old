@@ -12,5 +12,14 @@ use App\Http\Controllers\Controller;
 
 class CommonController extends Controller
 {
+    public function __construct()
+    {
+        $this->_init();
+    }
+
+    public function _init()
+    {
+        //子类实现自身方法
+    }
 
 }

@@ -12,7 +12,7 @@ namespace App\Http\Controllers\Web;
 class IndexController extends CommonController
 {
 
-    public function index()
+    public final function index()
     {
         return 'index';
     }
