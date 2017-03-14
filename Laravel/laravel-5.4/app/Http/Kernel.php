@@ -18,6 +18,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
+
+        //添加session自动启动 这里不添加 会报session store错误
+        \Illuminate\Session\Middleware\StartSession::class,
+
     ];
 
     /**
@@ -27,9 +32,12 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \App\Http\Middleware\EncryptCookies::class,
-            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+            //\App\Http\Middleware\EncryptCookies::class,
+
+            // 这里不使用 有BUG 会每次生成新会话id
+            //\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            //不使用 这里
+            //\Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,

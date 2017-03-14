@@ -791,17 +791,56 @@ function add_ip_record()
 {
     $ip = get_client_ip(0,true);
     $date = date('Ymd');
-    $model = M('visit');
-    $find = $model->where(['day'=>$date,'ip'=>$ip])->find();
+
+    $find = \App\Model\Visit::where(['day'=>$date,'ip'=>$ip])->first();
     if($find) {
-        $model->where(['id'=>$find['id']])->setInc('num');
+        \App\Model\Visit::where(['id'=>$find['id']])->increment('num');
     }else{
-        $model->add(['ip'=>$ip,'day'=>$date,'num'=>1]);
+        \App\Model\Visit::insert(['ip'=>$ip,'day'=>$date,'num'=>1]);
     }
 }
 
 function get_site_url()
 {
     return NET_NAME;
+}
+
+
+/**
+ *
+ * 获取当前请求的控制器名称 不带Controller
+ *
+ *
+ *
+ * @return mixed|string
+ */
+function getCurrentController()
+{
+
+    $url = Route::current()->getActionName();
+
+    $arr1 = explode('@',$url);
+    $arr2 = explode('\\',$arr1[0]);
+
+    $controller = (array_pop($arr2));
+    $controller = substr($controller,0,-10);
+
+    return $controller;
+
+}
+
+
+/**
+ * 获取当前请求的控制器方法名
+ *
+ * @return mixed
+ */
+function getCurrentMethod()
+{
+    $url = Route::current()->getActionName();
+
+    $arr1 = explode('@',$url);
+
+    return $arr1[1];
 }
 

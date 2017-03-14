@@ -56,7 +56,7 @@ class UserService extends Service {
 
             if($user->password != $this->change_password($password))
             {
-                session(['error'=>'账号或密码错误']);
+                session(['error'=>__('msg.login_error')]);
                 return false;
             }
 
