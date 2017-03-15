@@ -18,7 +18,7 @@ class UserController extends CommonController
     public $user_service;
 
 
-    public final function login(Request $request)
+    public final function login_page(Request $request)
     {
 
         if( 'GET' == request()->method())

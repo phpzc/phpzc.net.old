@@ -49,7 +49,7 @@
                                     </div>
                                 </header>
                                 <div id="login-box-inner">
-                                    <form role="form" action="/user/login" method="post">
+                                    <form role="form" action="/user/login_page" method="post">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                                             <input class="form-control" type="email" placeholder="Email address" name="username" value="{{ Cookie::get('email') }}"/>

@@ -63,6 +63,13 @@ if(! function_exists('WIN8')){
     }
 }
 
+if( !function_exists('PUBLICS'))
+{
+    function PUBLICS($file)
+    {
+        return '/Public/'.ltrim($file,'/');
+    }
+}
 
 if (! function_exists('S')) {
 
@@ -776,7 +783,7 @@ function RC()
     if($obj == null) {
         $obj = new \Redis();
         $obj->connect('127.0.0.1');
-        $obj->auth('');
+        $obj->auth(env('REDIS_PASSWORD',''));
         $obj->select(0);
     }
 

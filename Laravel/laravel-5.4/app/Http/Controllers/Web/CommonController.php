@@ -69,11 +69,6 @@ class CommonController extends Controller
 
         $this->assign("WEBSITE", $_WEBSITE);
 
-//        if (!request()->session()->has('form.code')) {
-//            request()->session()->put('form.code', md5(time()));
-//        }
-
-
         if( !request()->session()->has('website.category'))
         {
             //如果存在
@@ -374,6 +369,9 @@ class CommonController extends Controller
 
         $this->assign('THIS_CONTROLLER', getCurrentController() );
         $this->assign('THIS_ACTION', getCurrentController() . '/' . getCurrentMethod() );
+        $this->assign('this_category','');
+        $this->assign('THIS_PROJECT_ID','');
+        $this->assign('this_id','');
     }
 
 
