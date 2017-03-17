@@ -71,6 +71,23 @@ if( !function_exists('PUBLICS'))
     }
 }
 
+
+if( !function_exists('UEDITOR'))
+{
+    function UEDITOR($file)
+    {
+        return '/Public/baidu/UEditor/'.ltrim($file,'/');
+    }
+}
+
+if( !function_exists('MD'))
+{
+    function MD($file = '')
+    {
+        return '/Public/editor.md-master/'.ltrim($file,'/');
+    }
+}
+
 if (! function_exists('S')) {
 
     function S($service_name)
@@ -823,6 +840,10 @@ function get_site_url()
  */
 function getCurrentController()
 {
+    if(defined('CONTROLLER_NAME')){
+        return CONTROLLER_NAME;
+    }
+
 
     $url = Route::current()->getActionName();
 
@@ -831,6 +852,8 @@ function getCurrentController()
 
     $controller = (array_pop($arr2));
     $controller = substr($controller,0,-10);
+
+    define('CONTROLLER_NAME',$controller);
 
     return $controller;
 
@@ -844,9 +867,16 @@ function getCurrentController()
  */
 function getCurrentMethod()
 {
+
+    if(defined('ACTION_NAME')){
+        return ACTION_NAME;
+    }
+
     $url = Route::current()->getActionName();
 
     $arr1 = explode('@',$url);
+
+    define('ACTION_NAME',$arr1[1]);
 
     return $arr1[1];
 }

@@ -3,6 +3,8 @@ namespace App\Service;
 
 use App\Model\User;
 
+use Illuminate\Support\Facades\Session;
+
 class UserService extends Service {
 
 
@@ -60,9 +62,11 @@ class UserService extends Service {
                 return false;
             }
 
+
             session(['name'=>$user->name]);
             session(['id'=>$user->id]);
             session(['username'=>$user->username]);
+
 
             return true;
         }

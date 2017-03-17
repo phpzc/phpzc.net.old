@@ -131,7 +131,7 @@
 
                                         <img src="{{ CUBE('img/samples/scarlet-159.png') }}">
                                         @endif
-                                    <span class="hidden-xs">{{ session('name') or '游客' }}</span> <b class="caret"></b>
+                                    <span class="hidden-xs">{{ session('name') }}</span> <b class="caret"></b>
                                 </a>
 
                             @endif
@@ -173,7 +173,7 @@
                                 @endif
                                 <div class="user-box">
 									<span class="name">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ session('name') or '游客' }}
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ session('name') }}
                                             <i class="fa fa-angle-down"></i>
                                         </a>
 										<ul class="dropdown-menu">
@@ -216,12 +216,12 @@
                                         </a>
 
                                         @foreach($WebsiteCategory as $v)
-                                            <a href="/Article/search/category/{{ $v['id'] or '' }}" title="Articles——{{ $v['name'] or '' }}"
+                                            <a href="/article/search?category={{ $v['id'] or '' }}" title="Articles——{{ $v['name'] or '' }}"
                                             @if ($v['id'] == $this_category)
                                                 class="active"
                                             @endif
                                             >
-                                            <b>{$WebCategory.name}</b>
+                                            <b>{{ $v['name'] }}</b>
                                             </a>
                                         @endforeach
                                     </li>
@@ -235,7 +235,7 @@
                                         class="active"
                                     @endif
                                 >
-                                <a href="/Other/projects" title="Projects on GitHub">
+                                <a href="/other/projects" title="Projects on GitHub">
                                     <i class="fa fa-file-text"></i>
                                     <span>Open-Source</span>
                                 </a>
@@ -273,7 +273,7 @@
                                                 @foreach ($summary_data['sub_data'] as $article_data)
                                                     <li >
                                                         <a href="/project/detail?id={{ $article_data['id'] or '' }}" class='@if ($this_id == $article_data['id']) active @endif' >
-                                                            {$article_data.title}
+                                                            {{ $article_data['title'] }}
                                                         </a>
                                                     </li>
                                                  @endforeach
@@ -344,7 +344,7 @@
                                 <li @if ($THIS_CONTROLLER == 'Document')
                                         class='active'
                                     @endif >
-                                <a href="/document">
+                                <a href="/document/index">
                                     <i class="fa fa-copy"></i>
                                     <span>Documents</span>
                                 </a>
@@ -354,7 +354,7 @@
                                 <li @if ($THIS_CONTROLLER == 'Album')
                                     class='active'
                                         @endif >
-                                <a href="/album">
+                                <a href="/album/index">
                                     <i class="fa fa-image"></i>
                                     <span>Pictures</span>
 
@@ -368,7 +368,7 @@
                                     class='active'
                                 @endif
                                 >
-                                <a href="/Other/about">
+                                <a href="/other/about">
                                     <i class="fa fa-copy"></i>
                                     <span>About Me</span>
                                 </a>
@@ -379,7 +379,7 @@
                                     class='active'
                                 @endif
                                 >
-                                <a href="/Book/search">
+                                <a href="/book/search">
                                     <i class="fa fa-copy"></i>
                                     <span>FreeStory</span>
                                 </a>

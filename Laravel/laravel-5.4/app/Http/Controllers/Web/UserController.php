@@ -35,7 +35,7 @@ class UserController extends CommonController
 
             if($loginResult)
             {
-                redirect('/');
+                return redirect('/');
             }else{
 
                 return view('user.login');

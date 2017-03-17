@@ -51,7 +51,10 @@ Route::group(['namespace'=>'Web'],function(){
     //定义web项目路由
     setRouteMap('user');
     setRouteMap('index');
-
+    setRouteMap('article');
+    setRouteMap('other');
+    setRouteMap('document');
+    setRouteMap('project');
 });
 
 
