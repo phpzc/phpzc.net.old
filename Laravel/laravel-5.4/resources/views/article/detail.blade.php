@@ -69,7 +69,7 @@
                         @if (!isset($article_pre['id']))
                             没有了
                         @else
-                            <a href="/article/detail?id={{ $article_pre['id}'] }}"><button type="button" class="btn btn-success">{{ $article_pre['title'] }}</button></a>
+                            <a href="/article/detail?id={{ $article_pre['id'] }}"><button type="button" class="btn btn-success">{{ $article_pre['title'] }}</button></a>
                         @endif
                     </div>
                     <hr>

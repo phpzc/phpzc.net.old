@@ -30,7 +30,7 @@ if(! function_exists('JS')){
 }
 
 if(! function_exists('CUBE')){
-    function CUBE($file)
+    function CUBE($file = '')
     {
         return '/Public/cube/'.ltrim($file,'/');
     }
@@ -43,7 +43,7 @@ if(! function_exists('IMG')){
     }
 }
 if(! function_exists('KINDEDITOR')){
-    function KINDEDITOR($file)
+    function KINDEDITOR($file = '')
     {
         return '/Public/kindeditor/'.ltrim($file,'/');
     }
@@ -362,9 +362,9 @@ if( !function_exists('is_ajax'))
 
 
 if(is_ssl()){
-    define("NET_NAME","https://" . $_SERVER ["HTTP_HOST"] );
+    define("NET_NAME","https://" . (isset($_SERVER ["HTTP_HOST"])?$_SERVER ["HTTP_HOST"]:'laravel.com') );
 }else{
-    define("NET_NAME","http://" . $_SERVER ["HTTP_HOST"] );
+    define("NET_NAME","http://" . (isset($_SERVER ["HTTP_HOST"])?$_SERVER ["HTTP_HOST"]:'laravel.com') );
 }
 
 define('ACTION_SUCCESS',1);

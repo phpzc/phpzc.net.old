@@ -22,7 +22,7 @@ class OtherController extends CommonController
         return view('other.about');
     }
 
-    public function send_message()
+    public final function send_message()
     {
         $number = (int) session('send_message_number');
         $time = (int) session('send_message_time');
@@ -32,9 +32,9 @@ class OtherController extends CommonController
         if($time > 0 && time() - $time  < 60){
             $this->actionReturn(ACTION_ERROR,' One minute one message');
         }
-        session('send_message_number',$number + 1);
-        session('send_message_time',time());
-        $data = I('post.');
+        session(['send_message_number'=>$number + 1]);
+        session(['send_message_time'=>time()]);
+        $data = $_POST;
         $data['add_time'] = time();
         $model = M('message');
 
@@ -54,7 +54,7 @@ class OtherController extends CommonController
     }
 
 
-    public function projects()
+    public final function projects()
     {
         $this->assign('website_title','开源项目');
         return view('other.projects');

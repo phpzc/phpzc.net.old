@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Login</title>
+    <title>Login-{{ $WEBSITE['name'] }}</title>
 
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/bootstrap/bootstrap.min.css') }}" />
@@ -52,12 +52,12 @@
                                     <form role="form" action="/user/login_page" method="post">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input class="form-control" type="email" placeholder="Email address" name="username" value="{{ Cookie::get('email') }}"/>
+                                            <input class="form-control" type="email" placeholder="Email address" name="username" value="{{ $username }}"/>
                                             {{ csrf_field() }}
                                         </div>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password" name="password" value="{{ Cookie::get('password') }}"/>
+                                            <input type="password" class="form-control" placeholder="Password" name="password" value="{{ $password }}"/>
                                         </div>
 
                                         <div class="row">{{ request()->session()->pull('error') }}</div>

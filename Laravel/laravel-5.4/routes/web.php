@@ -55,6 +55,13 @@ Route::group(['namespace'=>'Web'],function(){
     setRouteMap('other');
     setRouteMap('document');
     setRouteMap('project');
+    setRouteMap('form');
+    setRouteMap('file');
+    setRouteMap('category');
+    setRouteMap('download');
+    setRouteMap('album');
+    setRouteMap('book');
+    setRouteMap('social');
 });
 
 

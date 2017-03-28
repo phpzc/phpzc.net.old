@@ -78,7 +78,7 @@
                                     <li class="item">
                                         <a href="/article/create_markdown" >Add Article - Use Markdown</a>
                                     </li>
-                                    <if condition="$Think.session.Auth.id == 1">
+
                                         <li class="item">
                                             <a href="/software/create" >Add software</a>
                                         </li>
@@ -91,7 +91,7 @@
                                             <a href="/album/create_page" >Add Photo</a>
                                         </li>
 
-                                    </if>
+
                                 </ul>
                             </li>
 
@@ -270,13 +270,14 @@
 
                                             <ul class="submenu">
 
-                                                @foreach ($summary_data['sub_data'] as $article_data)
+                                                <?php foreach ($summary_data['sub_data'] as $article_data){ ?>
+
                                                     <li >
                                                         <a href="/project/detail?id={{ $article_data['id'] or '' }}" class='@if ($this_id == $article_data['id']) active @endif' >
                                                             {{ $article_data['title'] }}
                                                         </a>
                                                     </li>
-                                                 @endforeach
+                                                 <?php } ?>
                                             </ul>
                                             </li>
                                         @endforeach

@@ -136,7 +136,7 @@
 
                                 <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
 
-                                <p>{{ htmlspecialchars_decode($info['description']) }}</p>
+                                <p>{!! htmlspecialchars_decode($info['description']) !!} </p>
 
                             </div>
 

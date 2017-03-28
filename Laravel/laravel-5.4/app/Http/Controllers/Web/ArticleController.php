@@ -43,8 +43,16 @@ class ArticleController extends CommonController
             ->join('user', 'article.uid', '=', 'user.id')
             ->select('article.*', 'user.name')
             ->paginate(8);
+        $res1 = $page->toArray();
+        if(empty($res1)){
+            $res = [];
+        }else{
+            $res = $res1['data'];
+        }
 
-        $res = ($page->toArray())['data'];
+
+
+
 
         foreach ($res as $k => $v) {
             $res [ $k ] ['content'] = strip_tags(htmlspecialchars_decode($v ['content']));
@@ -59,6 +67,215 @@ class ArticleController extends CommonController
 
 
         return view('article.index');
+    }
+
+
+    // 创建文章
+    public final function create() {
+        // 登录检测
+        $this->formLoginCheck ();
+
+        $this->assign('website_title','添加文章');
+
+        return view('article.create');
+    }
+
+    // 处理新增
+    public final function dealCreate() {
+        $this->formLoginCheck ();
+        // 组织数据
+
+
+        $data ['title'] = htmlspecialchars ( request()->input('form_title') );
+        $data ['content'] = htmlspecialchars ( request()->input('form_article') );
+
+        $this->fieldLengthCheck ( $data ['title'], '文章标题', 100 );
+
+        $data ['time'] = time ();
+        $data ['uid'] = session('id');
+        $pid = request()->input('form_category');
+
+        $info = Category::where(['id'=>$pid])->select('path')->first();
+        if (! $info) {
+            $this->formErrorReferer ( "非法操作" );
+        }
+        $info = $info->toArray();
+
+        $data ['bpath'] = $info ['path'] . '-' . $pid;
+        $data ['year'] = date ( 'Y', $data ['time'] );
+        $data ['month'] = date ( 'm', $data ['time'] );
+        $data ['ip'] = ip2long ( $_SERVER ["REMOTE_ADDR"] );
+
+
+        $res = Article::insertGetId($data);
+
+        if ($res) {
+            $key = new KeywordController();
+            $key->automake ( $res, $_REQUEST ["form_tag"], 'article' );
+            $this->formSuccess ( "创建文章", "/article/create" );
+        } else {
+            $this->formErrorReferer ( "创建文章" );
+        }
+    }
+
+    public final function create_markdown()
+    {
+        $this->formLoginCheck();
+        $this->assign('website_title','添加文章');
+
+        return view('article.create_markdown');
+
+    }
+
+    public final function dealCreateMarkdown()
+    {
+
+        $this->formLoginCheck ();
+
+        $data['title'] = htmlspecialchars ( request()->input('form_title') );
+        $data['content'] = request()->input('id-html-code');
+        $data['markdown'] = request()->input('id-markdown-doc');
+        $data['type'] = 1;
+
+        $this->fieldLengthCheck ( $data['title'], "文章标题", 100 );
+
+        $data ['time'] = time ();
+        $data ['uid'] = session('id');
+        $pid = request()->input('form_category');
+
+
+        $info = Category::where(['id'=>$pid])->select('path')->first();
+        if (! $info) {
+            $this->formErrorReferer ( "非法操作" );
+        }
+        $info = $info->toArray();
+
+        $data ['bpath'] = $info ['path'] . '-' . $pid;
+        $data ['year'] = date ( 'Y', $data ['time'] );
+        $data ['month'] = date ( 'm', $data ['time'] );
+        $data ['ip'] = ip2long ( $_SERVER ["REMOTE_ADDR"] );
+
+
+        $res = Article::insertGetId($data);
+
+        if ($res) {
+            $key = new KeywordController();
+            $key->automake ( $res, $_REQUEST ["form_tag"], 'article' );
+            $this->formSuccess ( "创建文章", "/article/create" );
+        } else {
+            $this->formErrorReferer ( "创建文章" );
+        }
+    }
+
+
+    public final function edit() {
+        $this->formLoginCheck ();
+
+
+        $id = request()->input('id');
+        $id = $this->decodeId ( $id );
+
+        $res = Article::where(['id'=>$id])->first();
+
+        if (! $res) {
+
+            $this->formError ( "文章不存在", "/" );
+        }
+
+        $res = $res->toArray();
+
+
+        // category id
+        $category = explode ( '-', $res ['bpath'] );
+        $category = $category [1];
+        // dump($category);
+        $this->assign ( 'categoryid', $category );
+        // 标签
+        $key = new KeywordController();
+        $this->assign ( 'keyword', $key->getCategoryString ( 'article', $res ['id'] ) );
+
+
+        $this->assign('website_title','修改文章');
+        //根据文章类型 输出2种修改界面
+        if($res['type'] == 1){
+
+            $this->assign ( 'article', $res );
+
+
+            return view('article.edit_markdown');
+        }else{
+            $res ['content'] = htmlspecialchars_decode ( $res ['content'] );
+            $this->assign ( 'article', $res );
+
+            return view('article.edit');
+        }
+
+
+    }
+
+
+    /**
+     * 更新文章 无法更新标签
+     */
+    public final function update() {
+
+        $this->formLoginCheck ();
+
+        // 组织数据
+        $data ["uid"] = session('id');
+
+        $id = $this->decodeId( request()->input('article_id'));
+
+
+
+        $res1 = Article::where(['id'=>$id])->first();
+
+        if (! $res1 ) {
+            $this->formError ( "非法操作", '/' );
+        }
+        $res1 = $res1->toArray();
+
+        $data ['id'] = $id;
+
+        if($res1['type'] == 1){
+
+            $data ["title"] = htmlspecialchars ( request()->input('form_title') );
+            $data["content"] = request()->input('id-html-code');
+            $data['markdown'] = request()->input('id-markdown-doc');
+        }else{
+
+            $data ["title"] = htmlspecialchars ( request()->input('form_title'));
+            $data ["content"] = htmlspecialchars ( request()->input('form_article'));
+
+        }
+
+
+        $this->fieldLengthCheck ( $data ["title"], "标题", 100 );
+
+
+        $pid = request()->input('form_category');
+
+        $info = Category::where(['id'=>$pid])->first();
+
+        if (! $info) {
+            $this->formErrorReferer ( "非法操作" );
+        }
+        $info = $info->toArray();
+
+        $data ['bpath'] = $info ['path'] . '-' . $pid;
+
+
+        $res = Article::where(['id'=>$id])->update($data);
+
+        if ($res) {
+            // 标签管理添加
+
+            $key = new KeywordController();
+            $key->updateCategory ( "article", $id, $_REQUEST ["form_tag"] );
+            $this->formSuccess ( "修改文章", "/article/index" );
+        } else {
+            $this->formErrorReferer ( "修改文章" );
+        }
     }
 
     // 详情页
@@ -106,7 +323,7 @@ class ArticleController extends CommonController
 
         $begin = microtime(true);
 
-        $category = $_GET['category'] ?? '';
+        $category = request()->input('category','');
 
         if ( preg_match('/^\d(.*?)/',$category)!=false and $category > 0) {
 

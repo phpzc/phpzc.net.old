@@ -108,19 +108,21 @@ class CommonController extends Controller
 
             $allProject = Project::all()->toArray();
 
-            foreach ($allProject as $k=>&$v2) {
+            foreach ($allProject as $k=>$v2) {
 
                 $summary = ProjectSummary::where('project_id',$v2['project_id'])->get()->toArray();
-                foreach ($summary as &$v) {
+
+                foreach ($summary as $k2=>$v) {
 
                     if(!$v['article_id_data'])
                     {
-                        $v['sub_data'] = [];
+
+                        $summary[$k2]['sub_data'] = [];
                         continue;
                     }
 
-                    $subData = Article::whereIn('id', explode(',',$v['article_id_data']))->get()->toArray();
-                    $v['sub_data'] = $subData;
+                    $subData = Article::whereIn('id', explode(',',$v['article_id_data']))->select('title','id')->get()->toArray();
+                    $summary[$k2]['sub_data'] = $subData;
                 }
 
                 $allProject[$k]['summary'] = $summary;
@@ -174,7 +176,7 @@ class CommonController extends Controller
     }
 
     // 跳转函数
-    public function formSuccess($title, $url, $sec = 3)
+    public function formSuccess($title, $url = '/', $sec = 3)
     {
         $url = trim($url, '/');
         $url = '/' . $url;
@@ -184,10 +186,12 @@ class CommonController extends Controller
     }
 
 
-    public function formError($title, $url, $sec = 3)
+    public function formError($title, $url = '/', $sec = 3)
     {
+
         $url = trim($url, '/');
         $url = '/' . $url;
+
         $string = '?title=' . $title . '&url=' . base_encode(get_site_url() . $url) . '&sec=' . $sec;
         header('location:'.get_site_url() . '/form/error' . $string);
         exit ();
@@ -391,11 +395,18 @@ class CommonController extends Controller
     }
 
 
+    public function ajaxReturn($data)
+    {
+        echo json_encode($data,true);
+        exit();
+    }
+
+
     public function formRootLoginCheck($sec = 3)
     {
-        if (empty ($_SESSION ["Auth"] ["id"]) || $_SESSION ["Auth"] ["id"] != 1) {
-            $string = "/title/请管理员登录后操作/url/" . base_encode("http://" . $_SERVER ["HTTP_HOST"]) . "/sec/" . $sec;
-            header("location:http://" . $_SERVER ["HTTP_HOST"] . '/form/error/' . $string);
+        if (!request()->session()->has('id') or session('id') !=1 ) {
+            $string = "title=请管理员登录后操作&url=" . base_encode("http://" . $_SERVER ["HTTP_HOST"]) . "&sec=" . $sec;
+            header("location:".NET_NAME . '/form/error?' . $string);
             exit ();
         }
     }

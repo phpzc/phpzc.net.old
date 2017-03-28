@@ -32,7 +32,7 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
-            //\App\Http\Middleware\EncryptCookies::class,
+            \App\Http\Middleware\EncryptCookies::class,
 
             // 这里不使用 有BUG 会每次生成新会话id
             //\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
