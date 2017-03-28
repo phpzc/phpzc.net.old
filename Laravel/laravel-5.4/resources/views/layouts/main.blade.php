@@ -417,8 +417,7 @@
 
                 <footer id="footer-bar" class="row" style="height:50px">
                     <p id="footer-copyright" class="col-xs-12">
-                        Powered by ZhangCheng - 前台 Use Laravel&nbsp; &nbsp;|&nbsp;
-                        后台 Use Laravel&nbsp;<img src="{{ PUBLICS('img/laravel.png') }}" style="height:30px;"/> - 京ICP备14007760-3号
+                        Powered by ZhangCheng - Use PHP Framework Laravel&nbsp;<img src="{{ PUBLICS('img/laravel.png') }}" style="height:30px;"/> - 京ICP备14007760-3号
 
                         <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=b311b1762c5bb3cd033bbb3683ca1fbc8a4f66627d7dcb08e73242db391172b6"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="C++/PHP开源交流群" title="C++/PHP开源交流群"></a>
                     </p>
