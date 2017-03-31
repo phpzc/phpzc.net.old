@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 use App\Model\Profile;
 use App\Model\Message;
 
+use App\Service\SmsService;
+
 class OtherController extends CommonController
 {
     public final function about()
@@ -58,5 +60,10 @@ class OtherController extends CommonController
     {
         $this->assign('website_title','开源项目');
         return view('other.projects');
+    }
+
+    public final function test()
+    {
+        SmsService::run(18013460339,1234);
     }
 }

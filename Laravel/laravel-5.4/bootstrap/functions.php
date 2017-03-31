@@ -362,9 +362,9 @@ if( !function_exists('is_ajax'))
 
 
 if(is_ssl()){
-    define("NET_NAME","https://" . (isset($_SERVER ["HTTP_HOST"])?$_SERVER ["HTTP_HOST"]:'laravel.com') );
+    define("NET_NAME","https://" . isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'');
 }else{
-    define("NET_NAME","http://" . (isset($_SERVER ["HTTP_HOST"])?$_SERVER ["HTTP_HOST"]:'laravel.com') );
+    define("NET_NAME","http://" . isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'' );
 }
 
 define('ACTION_SUCCESS',1);

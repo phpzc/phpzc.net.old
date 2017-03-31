@@ -331,7 +331,7 @@
 
                 $.ajax({
                     type:"POST",
-                    url:'{{ get_site_url() }}/links/add',
+                    url:'/links/add',
                     data:"email="+email+"&url="+url+"&name="+name,
                     async:true,
 

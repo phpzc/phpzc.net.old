@@ -1,0 +1,249 @@
+<extend name="Layout/index" />
+<block name="head">
+    <style>
+        .form-control{width:300px !important;}
+        #autoreqmark{display:none;}
+        .form-group{margin-bottom:0px;padding-top:20px;}
+        .input-group{line-height:30px;}
+        .input-group-addon{word-break:normal;width:250px;}
+        .form-group .btn-info{margin-left:20px;}
+        .img1,.img2{visibility:hidden !important;}
+        .fa-eye,.fa-pencil,.fa-trash-o{cursor:pointer;}
+        .project-img-div,.mortgaged-img-div{position:absolute;width:100%;height:100%;top:0;display:none;background:#eee;}
+        .fa-eye{position:absolute;top:48%;left:27%;}
+        .fa-trash-o{position:absolute;top:48%;left:67%;}
+        .project-img-list,.mortgaged-img-list{display:inline-block;position:relative;margin:5px;}
+        #project-img-list,#mortgaged-img-list{display:inline-block;}
+        label{width:120px;text-align:right;}
+        .radio input[type=radio] + label:before, .radio input[type=radio]:hover + label:before{border-color:#03a9f4;}
+        .radio label{text-align:center;}
+    </style>
+    <link rel="stylesheet" href="__CUBE__/css/libs/lightbox.css" media="screen"/>
+    <!-- 表单验证样式文件 -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/bootstrapValidator.min.css">
+    <!-- 提醒框样式 -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-default.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-bar.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-theme.css"/>
+    <!--select 样式-->
+    <link rel="stylesheet" href="__CUBE__/css/libs/select2.css" type="text/css" />
+    <!-- 图片预览 -->
+    <link rel="stylesheet" href="__CUBE__/css/libs/lightbox.css" media="screen"/>
+    <!-- 提示 -->
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-default.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/Cube/css/libs/ns-style-growl.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-bar.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-attached.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-other.css"/>
+    <link rel="stylesheet" type="text/css" href="__CUBE__/css/libs/ns-style-theme.css"/>
+
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="__UEDITOR__/lang/zh-cn/zh-cn.js"></script>
+
+</block>
+<block name="content">
+    <div class="row">
+        <div class="main-box">
+            <div class="main-box-body clearfix">
+                <header class="main-box-header clearfix">
+                    <h3>create software</h3>
+                </header>
+                <form action="/software/create" method="post">
+                    <div class="form-group form-inline">
+                        <label for="title">title：</label>
+                        <input type="text" placeholder="title" class="form-control" value="{$list.username}" name="title" id="title">
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="description—simple">description simple-软件简单说明</label>
+                        <script id="myEditor3" name="description_simple" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="description—simple" rows="5" name="description_simple" class="form-control"></textarea>-->
+                    </div>
+                    <div class="form-group form-inline">
+                        <label for="description">description 软件详细说明</label>
+                        <script id="myEditor2" name="description" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="description" rows="5" name="description" class="form-control"></textarea>-->
+                    </div>
+                    <div class="form-group form-inline">
+                        <label >develop - 开发日志</label>
+                        <script id="myEditor" name="develop_log" type="text/plain" style="width:99%;height:200px;"></script>
+
+                        <!--<textarea id="develop" rows="5" name="develop_log" class="form-control"></textarea>-->
+                    </div>
+                    <div class="form-group form-inline">
+                        <div id="mortgaged-img-list"></div>
+                        <button type="button" class="btn btn-primary up-mortgaged" style="margin-left:50px;">
+                            <span class=""></span> upload image
+                        </button>
+                        {:w('kindeditor/uploadoneimgmode',array('mortgaged-img','up-mortgaged','mortgaged'))}
+                    </div>
+                    <div class="form-group form-inline">
+                        <label >type：</label>
+                        <div class="radio">
+                            <input id="borrow_status_1" type="radio" name="type" checked value="0">
+                            <label for="borrow_status_1">gui</label>
+                        </div>
+                        <div class="radio">
+                            <input id="borrow_status_2" type="radio" name="type" value="1">
+                            <label for="borrow_status_2">game</label>
+                        </div>
+
+                    </div>
+                    <div class="form-actions" style="text-align:center;margin-top:10px;">
+                        <button type="submit" class="btn btn-info" id="plugin_submit_button">submit</button>
+                    </div>
+                    <input id="notification-trigger-slide-on-top" class="hidden">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden" id="hidden">
+        <div>
+            <a class="example-image-link" href="" title=""> <img class="example-image" src="" alt="plants: image 1 0f 4 thumb" width="150px" height="100px"/></a><input name="" type="text" class="hidden" value="">
+            <div class="">
+                <i class="fa fa-eye"></i>
+                <i class="fa fa-trash-o"></i>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="after">
+    <!-- 预览 -->
+    <script src="__CUBE__/js/lightbox-2.6.min.js"></script>
+    <!-- 表单验证文件 -->
+    <script src="__CUBE__/js/bootstrapValidator.min.js"></script>
+    <!-- 提醒框js -->
+    <script src="__CUBE__/js/modernizr.custom.js"></script>
+    <script src="__CUBE__/js/classie.js"></script>
+    <script src="__CUBE__/js/notificationFx.js"></script>
+    <!-- this page specific scripts -->
+    <script src="__CUBE__/js/select2.min.js"></script>
+    <!-- 公共 -->
+    <script src="__CUBE__/js/modernizr.custom.js"></script>
+    <script src="__CUBE__/js/classie.js"></script>
+    <!-- 提示 -->
+    <script src="__CUBE__/js/snap.svg-min.js"></script>
+    <script src="__CUBE__/js/notificationFx.js"></script>
+
+    <script>
+        $(document).on("mouseover",".project-img-list",function(){
+            $(this).find(".project-img-div").show();
+        })
+
+        $(document).on("mouseout",".project-img-list",function(){
+            $(this).find(".project-img-div").hide();
+        })
+
+        $(document).on("mouseover",".mortgaged-img-list",function(){
+            $(this).find(".mortgaged-img-div").show();
+        })
+
+        $(document).on("mouseout",".mortgaged-img-list",function(){
+            $(this).find(".mortgaged-img-div").hide();
+        })
+
+
+        function tipmsg(status,content,url){
+
+            // create the notification
+            var notification = new NotificationFx({
+                message : '<span class="icon fa fa-bullhorn fa-2x"></span><p>'+content+'</p>',
+                layout : 'bar',
+                effect : 'slidetop',
+                type : 'error', // notice, warning or error
+                ttl:2000,
+                onClose : function() {
+                    //bttnSlideOnTop.disabled = false;
+                    if(status==1){
+                        window.location.href=url;
+                    }
+                }
+            });
+
+            // show the notification
+            notification.show();
+
+            // disable the button (for demo purposes only)
+            this.disabled = true;
+        }
+
+        //预览
+        function eye(thi){
+            var parent = thi.parentNode;
+            var prev = parent.parentNode;
+            var previous = prev.children[0];
+            previous.click();
+        }
+
+        //表单
+        var type = '';
+        $(document).on("blur",".form-control",function(){
+            var val = $(this).val();
+            var content = $(this).attr("placeholder");
+            if(val == ''){
+                $(this).parent().addClass("has-error");
+                $(this).parent().removeClass("has-success");
+                type = 'false';
+                return type;
+            }else{
+                $(this).parent().removeClass("has-error");
+                $(this).parent().addClass("has-success");
+            }
+        })
+
+        //图片验证
+        function jude(){
+            var mortgaged = $("#mortgaged-img-list").children("div[class='mortgaged-img-list']").length;
+            if(parseInt(mortgaged) == 0){
+                tipmsg("0","请上传图片","");
+                $("#project-img").val("1");
+                $("#mortgaged-img").val("");
+                return false;
+            }else{
+                $("#project-img").val("1");
+                $("#mortgaged-img").val("1");
+                return true;
+            }
+        }
+
+        //删除相关资料
+        function mortgageddel(thi){
+            var mortgaged = document.getElementById("mortgaged-img-list").getElementsByClassName("mortgaged-img-list").length;
+            if(parseInt(mortgaged) > 1){
+                if(confirm("是否删除该图片？") == true){
+                    thi.parentNode.parentNode.remove();
+                }else{
+                    tipmsg("0","取消删除","");
+                }
+            }else{
+                tipmsg("0","图片数需要大于1张","");
+            }
+        }
+
+        var ue = UE.getEditor('myEditor',{
+            autoClearinitialContent:true,
+            elementPathEnabled:false
+
+        });
+        var ue2 = UE.getEditor('myEditor2',{
+            wordCount:true,          //是否开启字数统计
+            maximumWords:65535,      //允许的最大字符数
+            autoClearinitialContent:true,
+            elementPathEnabled:false
+
+        });
+        var ue3 = UE.getEditor('myEditor3',{
+            wordCount:true,          //是否开启字数统计
+            maximumWords:255,      //允许的最大字符数
+            autoClearinitialContent:true,
+            elementPathEnabled:false
+
+        });
+
+    </script>
+</block>

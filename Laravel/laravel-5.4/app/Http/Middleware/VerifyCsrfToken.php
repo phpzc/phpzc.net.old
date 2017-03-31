@@ -13,5 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         //
+        '/links/add',
+        '/other/send_message',
     ];
 }

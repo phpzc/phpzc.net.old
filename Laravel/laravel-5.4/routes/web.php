@@ -62,6 +62,7 @@ Route::group(['namespace'=>'Web'],function(){
     setRouteMap('album');
     setRouteMap('book');
     setRouteMap('social');
+    setRouteMap('links');
 });
 
 
