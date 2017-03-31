@@ -15,5 +15,6 @@ class VerifyCsrfToken extends BaseVerifier
         //
         '/links/add',
         '/other/send_message',
+        '/wechat/index',
     ];
 }

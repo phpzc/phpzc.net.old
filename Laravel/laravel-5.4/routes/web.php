@@ -63,6 +63,7 @@ Route::group(['namespace'=>'Web'],function(){
     setRouteMap('book');
     setRouteMap('social');
     setRouteMap('links');
+    setRouteMap('wechat');
 });
 
 
