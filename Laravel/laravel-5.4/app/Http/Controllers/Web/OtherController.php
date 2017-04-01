@@ -46,7 +46,7 @@ class OtherController extends CommonController
         }
 
 
-        $res = $model->add($data);
+        $res = Message::insertGetId($data);
 
         if($res){
             $this->actionReturn(ACTION_SUCCESS);
