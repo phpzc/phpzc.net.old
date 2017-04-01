@@ -768,7 +768,7 @@ function send_email($toAddress,$toName,$subject='',$body='')
  */
 function getIPLoc_taobao($ip)
 {
-    $result = file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
+    $result = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
 
     $result = json_decode($result,true);
 
