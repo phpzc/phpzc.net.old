@@ -394,14 +394,6 @@ function percent_func($all,$view)
 
 }
 
-function replace_str($source)
-{
-    $str = str_replace("http://www.vipmhxy.com", NET_NAME, $source);
-    $str = str_replace("http://www.localhost.com", NET_NAME, $str);
-
-    return $str;
-
-}
 
 /**
  *  截取指定的中英文字符的长度code支持utf-8 和gb2312 两种格式
