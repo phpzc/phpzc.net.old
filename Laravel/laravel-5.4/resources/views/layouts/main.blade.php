@@ -319,7 +319,7 @@
                             }
                             ?>
                             <!-- nginx源码注释 -->
-
+                                <?php if(session('uid') == 1){ ?>
                                 @foreach($WebsiteCacheNginx as $cache_nginx_code)
                                     <li @if($THIS_CONTROLLER == 'File')
                                         class="active"
@@ -340,6 +340,7 @@
                                     </li>
                                 @endforeach
 
+                                <?php } ?>
 
 
                                 <li @if ($THIS_CONTROLLER == 'Document')
