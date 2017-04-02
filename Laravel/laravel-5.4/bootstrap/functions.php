@@ -706,11 +706,13 @@ function jsonError($data)
 }
 
 function encodeId($id) {
-    $mid = md5 ( $id );
-    $str = substr ( $mid, 0, 16 );
-    $str .= $id;
-    $str .= substr ( $mid, 16, 16 );
-    return $str;
+//    $mid = md5 ( $id );
+//    $str = substr ( $mid, 0, 16 );
+//    $str .= $id;
+//    $str .= substr ( $mid, 16, 16 );
+//    return $str;
+//    return base_encode($id);
+    return $id;
 }
 
 function base_encode($url)
@@ -818,6 +820,7 @@ function add_ip_record()
 
 function get_site_url()
 {
+
     return 'https://www.phpzc.net';
 }
 

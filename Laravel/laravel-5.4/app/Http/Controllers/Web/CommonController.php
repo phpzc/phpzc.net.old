@@ -266,12 +266,14 @@ class CommonController extends Controller
      */
     public function encodeId($id)
     {
-        $mid = md5($id);
-        $str = substr($mid, 0, 16);
-        $str .= $id;
-        $str .= substr($mid, 16, 16);
-
-        return $str;
+//        $mid = md5($id);
+//        $str = substr($mid, 0, 16);
+//        $str .= $id;
+//        $str .= substr($mid, 16, 16);
+//
+//        return $str;
+//        return base_encode($id);
+        return $id;
     }
 
     /*
@@ -279,10 +281,12 @@ class CommonController extends Controller
      */
     public function decodeId($id)
     {
-        $len = strlen($id);
-        $str = substr($id, 16, $len - 32);
-
-        return $str;
+//        $len = strlen($id);
+//        $str = substr($id, 16, $len - 32);
+//
+//        return $str;
+//        return base_decode($id);
+        return $id;
     }
 
     /**

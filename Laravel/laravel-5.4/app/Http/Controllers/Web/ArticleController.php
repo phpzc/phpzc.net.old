@@ -173,10 +173,14 @@ class ArticleController extends CommonController
 
 
         $id = request()->input('id');
+        dump($id);
         $id = $this->decodeId ( $id );
 
         $res = Article::where(['id'=>$id])->first();
 
+        dump($id);
+        dump($res);
+        exit;
         if (! $res) {
 
             $this->formError ( "文章不存在", "/" );
