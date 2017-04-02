@@ -818,7 +818,7 @@ function add_ip_record()
 
 function get_site_url()
 {
-    return NET_NAME;
+    return 'https://www.phpzc.net';
 }
 
 
