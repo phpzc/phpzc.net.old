@@ -361,10 +361,11 @@ if( !function_exists('is_ajax'))
 
 
 
+
 if(is_ssl()){
-    define("NET_NAME","https://" . isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'');
+    define("NET_NAME","https://" . (isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'www.phpzc.net'));
 }else{
-    define("NET_NAME","http://" . isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'' );
+    define("NET_NAME","http://" . (isset($_SERVER ["HTTP_HOST"])? $_SERVER ["HTTP_HOST"]:'www.phpzc.net') );
 }
 
 define('ACTION_SUCCESS',1);
@@ -821,7 +822,7 @@ function add_ip_record()
 function get_site_url()
 {
 
-    return 'https://www.phpzc.net';
+    return NET_NAME;
 }
 
 
