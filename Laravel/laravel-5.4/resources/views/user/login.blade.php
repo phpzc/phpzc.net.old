@@ -88,12 +88,16 @@
                                                 <button type="submit" class="btn btn-success col-xs-12">Login</button>
                                             </div>
                                         </div>
+
+                                        <!--
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <p class="social-text">Or login with</p>
 
                                             </div>
                                         </div>
+
+
                                         <div class="row">
                                             <div class="col-xs-12 col-sm-6">
                                                 <a href="/social/github2">
@@ -135,6 +139,8 @@
                                                 </center>
                                             </div>
                                         </div>
+
+                                        -->
                                     </form>
                                 </div>
                             </div>
