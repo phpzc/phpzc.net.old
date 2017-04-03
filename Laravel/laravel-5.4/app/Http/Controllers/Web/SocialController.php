@@ -55,7 +55,7 @@ class SocialController extends CommonController
 
         // 查询是否已经绑定过帐号
         $where = array($type=>session('userid'));
-        $result = User::where($where)->first()->toArray();
+        $result = User::where($where)->first();
 
 
         if ($result) {
