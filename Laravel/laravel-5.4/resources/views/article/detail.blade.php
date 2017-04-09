@@ -33,7 +33,7 @@
 
                     @if (session('id') == $article['uid'])
                     <div class="story-time" style="float:right;padding-right:20px">
-                        <a href="/article/edit?id={{ encodeId($article['id']) }}">修改</a>
+                        <a href="/article/edit?id={{ $article['id'] }}">修改</a>
                     </div>
                     @endif
 
