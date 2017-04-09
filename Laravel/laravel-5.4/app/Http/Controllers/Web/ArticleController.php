@@ -294,6 +294,7 @@ class ArticleController extends CommonController
         // 搜索文章
         $res = Article::where(['article.id'=>$id])
             ->join('user', 'article.uid', '=', 'user.id')
+            ->select('article.*')
             ->first();
 
         if ($res) {
