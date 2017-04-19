@@ -169,7 +169,7 @@
                                     </div>
 
                                     <div class="profile-message-btn center-block text-center">
-                                        <a href="/download/index?url={{ urlencode($v['url']) or '' }}&type=document&id={{ $v['id'] or '' }}" class="btn btn-success" target="_blank">
+                                        <a href="/download/index?url=<?php echo urlencode($v['url']);?>&type=document&id={{ $v['id'] or '' }}" class="btn btn-success" target="_blank">
                                             <i class="fa fa-download"></i>
                                             Download
                                         </a>

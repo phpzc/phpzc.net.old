@@ -328,6 +328,14 @@ class ArticleController extends CommonController
 
         $category = request()->input('category','');
 
+        if(empty($category))
+        {
+            $category = session('article.search.word');
+        }else{
+            session(['article.search.word'=>$category]);
+
+        }
+
         if ( preg_match('/^\d(.*?)/',$category)!=false and $category > 0) {
 
             $result = Category::where(['id'=>$category])->first();
