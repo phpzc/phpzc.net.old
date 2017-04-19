@@ -163,31 +163,6 @@
                 <section id="col-left" class="col-left-nano">
                     <div id="col-left-inner" class="col-left-nano-content">
 
-                         @if (session('id') != null )
-                            <div id="user-left-box" class="clearfix hidden-sm hidden-xs dropdown profile2-dropdown">
-
-                                @if (session('id') == 1)
-                                    <img src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460" alt=""/>
-                                @else
-                                    <img src="{{ CUBE('img/samples/scarlett-300.jpg') }}">
-                                @endif
-                                <div class="user-box">
-									<span class="name">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ session('name') }}
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-										<ul class="dropdown-menu">
-
-                                            <li><a href="/user/logout"><i class="fa fa-power-off"></i>Logout</a></li>
-                                        </ul>
-									</span>
-                                    <span class="status">
-										<i class="fa fa-circle"></i> Online
-									</span>
-                                </div>
-                            </div>
-
-                        @endif
                         <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                             <ul class="nav nav-pills nav-stacked">
 
