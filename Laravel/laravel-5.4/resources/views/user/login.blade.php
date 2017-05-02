@@ -71,18 +71,20 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                                {{--
                                                 <a href="/user/forgot_password_page" id="login-forget-link" class="col-xs-6">
                                                     Forgot password?
                                                 </a>
-
+                                                --}}
                                             </div>
                                         </div>
+                                        {{--
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <center><a href="/user/register_page" class="social-text">Or register?</a></center>
                                             </div>
                                         </div>
-
+                                        --}}
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <button type="submit" class="btn btn-success col-xs-12">Login</button>
