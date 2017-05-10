@@ -96,7 +96,7 @@ class KeywordController
 
             //$where = 'id = ' . $kres [0] ['kid'];
 
-            $where = ['id'=> ((($kres->toArray())[0])->toArray())['kid']];
+            $where = ['id'=> ((($kres->toArray())[0]))->kid];
 
             $conn = Keyword::where($where);
         } else {
