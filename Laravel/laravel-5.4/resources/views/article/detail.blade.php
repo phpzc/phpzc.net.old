@@ -91,7 +91,7 @@
 
             <!-- UY BEGIN -->
             <div id="uyan_frame"></div>
-            <script type="text/javascript" src="/article/youyan"></script>
+            <script type="text/javascript" src="/js/youyan.js"></script>
             <!-- UY END -->
 
 
