@@ -459,4 +459,11 @@ search_fail:
         }
         return $array;
     }
+
+
+    public function youyan()
+    {
+        $content = file_get_content('http://v2.uyan.cc/code/uyan.js?uid=2141182');
+        echo $content;
+    }
 }
