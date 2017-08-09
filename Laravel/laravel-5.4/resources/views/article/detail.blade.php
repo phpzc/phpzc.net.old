@@ -89,11 +89,15 @@
                 SyntaxHighlighter.highlight();
             </script>
 
-            <!-- UY BEGIN -->
-            <div id="uyan_frame"></div>
-            <script type="text/javascript" src="/js/youyan.js"></script>
-            <!-- UY END -->
-
+            <!--PC版-->
+            <div id="SOHUCS" sid="{{ $article['id'] }}"></div>
+            <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+            <script type="text/javascript">
+                window.changyan.api.config({
+                    appid: 'cyt9FQgps',
+                    conf: 'prod_e3220b887fd745b0f30b968992ed5a02'
+                });
+            </script>
 
         </div>
 
