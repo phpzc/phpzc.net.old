@@ -48,6 +48,13 @@ Route::get('/','Web\IndexController@index');
 
 Route::group(['namespace'=>'Web'],function(){
 
+    Route::get('/article/youyan',function(){
+
+        $content = file_get_contents('http://v2.uyan.cc/code/uyan.js?uid=2141182');
+        return $content;
+
+    });
+
     //定义web项目路由
     setRouteMap('user');
     setRouteMap('index');
@@ -64,6 +71,8 @@ Route::group(['namespace'=>'Web'],function(){
     setRouteMap('social');
     setRouteMap('links');
     setRouteMap('wechat');
+
+
 });
 
 
