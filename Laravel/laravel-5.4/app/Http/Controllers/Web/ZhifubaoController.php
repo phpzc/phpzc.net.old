@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Web;
 
 
-class Zhifubao extends CommonController
+class ZhifubaoController extends CommonController
 {
     public final function callback()
     {
