@@ -171,6 +171,10 @@ class ProjectController extends CommonController
 
         if(request()->isMethod('post')) {
             $data = $_POST;
+            if(isset($data['_token'])){
+                unset($data['_token']);
+            }
+
 
             $project = Project::where(['project_id'=>$data['project_id']])->first();
 
