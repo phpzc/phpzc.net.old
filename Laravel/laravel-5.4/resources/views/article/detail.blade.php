@@ -89,25 +89,15 @@
                 SyntaxHighlighter.highlight();
             </script>
 
-
-            <!-- 多说评论框 start -->
-            <div class="ds-thread" data-thread-key="{{ encodeId($article['id']) }}" data-title="{{ $article['title'] }}" data-url="<?php echo get_site_url();?>/article/detail?id={{ encodeId($article['id']) }}">
-
-            </div>
-            <!-- 多说评论框 end -->
-            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <!--PC版-->
+            <div id="SOHUCS" sid="{{ $article['id'] }}"></div>
+            <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
             <script type="text/javascript">
-                var duoshuoQuery = {short_name:"peakpointer"};
-                (function() {
-                    var ds = document.createElement('script');
-                    ds.type = 'text/javascript';ds.async = true;
-                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-                    ds.charset = 'UTF-8';
-                    (document.getElementsByTagName('head')[0]
-                    || document.getElementsByTagName('body')[0]).appendChild(ds);
-                })();
+                window.changyan.api.config({
+                    appid: 'cyt9FQgps',
+                    conf: 'prod_e3220b887fd745b0f30b968992ed5a02'
+                });
             </script>
-            <!-- 多说公共JS代码 end -->
 
         </div>
 

@@ -64,6 +64,8 @@ Route::group(['namespace'=>'Web'],function(){
     setRouteMap('social');
     setRouteMap('links');
     setRouteMap('wechat');
+
+    setRouteMap('zhifubao');
 });
 
 

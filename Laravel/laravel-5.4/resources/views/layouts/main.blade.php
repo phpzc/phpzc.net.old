@@ -351,14 +351,10 @@
                                 </a>
                                 </li>
 
-                                <li
-                                @if ($THIS_CONTROLLER == 'Book')
-                                    class='active'
-                                @endif
-                                >
-                                <a href="/book/search">
+                                <li>
+                                <a href="https://freestory.phpzc.net/" target="_blank">
                                     <i class="fa fa-copy"></i>
-                                    <span>FreeStory</span>
+                                    <span>FreeStory免费小说</span>
                                 </a>
                                 </li>
 
