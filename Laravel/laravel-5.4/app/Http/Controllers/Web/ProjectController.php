@@ -172,7 +172,7 @@ class ProjectController extends CommonController
         if(request()->isMethod('post')) {
             $data = $_POST;
 
-            $project = Project::where(['project'=>$data['project_id']])->first();
+            $project = Project::where(['project_id'=>$data['project_id']])->first();
 
             if(empty($project))
             {
