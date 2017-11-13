@@ -3,6 +3,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Model\Album;
 use App\Model\Photo;
+use Image;
+
 
 class AlbumController extends CommonController
 {
@@ -142,6 +144,10 @@ class AlbumController extends CommonController
                 $newdata[$k]['year'] = $y;
                 $newdata[$k]['month'] = $m;
                 $newdata[$k]['ip'] = $ip;
+                $subNameArr = explode('.',$v);
+                $subName = $subNameArr[0].'_100x100.'.$subNameArr[1];
+                $newdata[$k]['thumb_url'] = Image::make('.'.$v)->resize(100, 100)->save('.'.$subName);
+
             }
 
             $res = Photo::insert($newdata);

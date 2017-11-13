@@ -230,6 +230,8 @@ return [
 
         //添加微信alias
         'EasyWeChat' => Overtrue\LaravelWechat\Facade::class,
+
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];
