@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Model\Album;
 use App\Model\Photo;
-use Image;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class AlbumController extends CommonController
