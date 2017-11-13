@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Model\Album;
 use App\Model\Photo;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic as Image2;
 
 
 class AlbumController extends CommonController
@@ -146,7 +146,7 @@ class AlbumController extends CommonController
                 $newdata[$k]['ip'] = $ip;
                 $subNameArr = explode('.',$v);
                 $subName = $subNameArr[0].'_100x100.'.$subNameArr[1];
-                $newdata[$k]['thumb_url'] = Image::make('.'.$v)->resize(100, 100)->save('.'.$subName);
+                $newdata[$k]['thumb_url'] = Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
 
             }
 
