@@ -1,8 +1,16 @@
 @extends('layouts.main')
 
 @section('head')
+
+    <!--
+
     <link rel="stylesheet" type="text/css" href="{{ CUBE('css/libs/dropzone.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ CUBE('css/libs/magnific-popup.css') }}">
+
+    -->
+
+    <link rel="stylesheet" href="/Public/css/baguetteBox.min.css">
+    <link rel="stylesheet" href="/Public/css/gallery-grid.css">
 @endsection
 
 
@@ -15,6 +23,9 @@
                 </header>
 
                 <div class="main-box-body">
+
+                    <!--
+
                     <div id="gallery-photos-lightbox">
                         <ul class=" clearfix gallery-photos">
 
@@ -31,6 +42,28 @@
                             <?php } ?>
                         </ul>
                     </div>
+
+                    -->
+
+                        <div class="tz-gallery">
+
+                            <div class="row">
+
+                                <?php if(!empty($photo)){ ?>
+                                @foreach($photo as $v)
+
+                                <div class="col-sm-6 col-md-4">
+                                    <a class="lightbox" href="{{ $v['imgurl'] }}">
+                                        <img src="{{ $v['imgurl'] }}" alt="Park">
+                                    </a>
+                                </div>
+
+                                @endforeach
+                                <?php } ?>
+                            </div>
+
+                        </div>
+
                 </div>
 
 
@@ -52,18 +85,24 @@
             $("img.lazy").lazyload({effect: "fadeIn"});
         });
     </script>
+    <script type="text/javascript" src="/Public/js/baguetteBox.min.js"></script>
+    <script type="text/javascript">
+        baguetteBox.run('.tz-gallery');
+    </script>
+
     <script>
         $(function() {
 
-            $(document).ready(function() {
-                $('#gallery-photos-lightbox').magnificPopup({
-                    type: 'image',
-                    delegate: 'a',
-                    gallery: {
-                        enabled: true
-                    }
-                });
-            });
+//            $(document).ready(function() {
+//                $('#gallery-photos-lightbox').magnificPopup({
+//                    type: 'image',
+//                    delegate: 'a',
+//                    gallery: {
+//                        enabled: true
+//                    }
+//                });
+//            });
+
         });
     </script>
 @endsection
