@@ -146,7 +146,8 @@ class AlbumController extends CommonController
                 $newdata[$k]['ip'] = $ip;
                 $subNameArr = explode('.',$v);
                 $subName = $subNameArr[0].'_100x100.'.$subNameArr[1];
-                $newdata[$k]['thumb_url'] = Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
+                Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
+                $newdata[$k]['thumb_url'] = NET_NAME.$subName;
 
             }
 
