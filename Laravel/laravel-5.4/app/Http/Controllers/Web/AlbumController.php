@@ -5,6 +5,8 @@ use App\Model\Album;
 use App\Model\Photo;
 use Intervention\Image\ImageManagerStatic as Image2;
 
+include_once __DIR__.'/../../../../../../oss.php';
+use \Common;
 
 class AlbumController extends CommonController
 {
@@ -137,6 +139,13 @@ class AlbumController extends CommonController
             $y=date ( 'Y', $time );
             $m=date ( 'm', $time );
             $ip =ip2long ( $_SERVER ["REMOTE_ADDR"] );
+
+            $bucket = Common::getBucketName();
+            $ossClient = Common::getOssClient();
+            if (is_null($ossClient)) {
+                $this->actionReturn(0, '上传失败');
+            }
+
             foreach ($data['images'] as $k=>$v){
                 $newdata[$k]['imgurl'] = NET_NAME.$v;
                 $newdata[$k]['uid'] = $data['uid'];
@@ -148,6 +157,12 @@ class AlbumController extends CommonController
                 $subName = $subNameArr[0].'_100x100.'.$subNameArr[1];
                 Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
                 $newdata[$k]['thumb_url'] = NET_NAME.$subName;
+                //upload to oss
+                $result = $ossClient->uploadFile($bucket, substr($v,1), '.'.$v);
+                $newdata[$k]['imgurl'] = preg_replace('http','https',$result['info']['url']);
+                $result = $ossClient->uploadFile($bucket, substr($subName,1), '.'.$subName);
+                $newdata[$k]['thumb_url'] = preg_replace('http','https',$result['info']['url']);
+
 
             }
 
