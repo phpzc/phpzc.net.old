@@ -371,7 +371,7 @@ if(is_ssl()){
 define('ACTION_SUCCESS',1);
 define('ACTION_ERROR',0);
 
-
+define('OSS_PATH','https://phpzc.oss-cn-beijing.aliyuncs.com');
 
 function percent_func($all,$view)
 {
@@ -771,17 +771,50 @@ function send_email($toAddress,$toName,$subject='',$body='')
  */
 function getIPLoc_taobao($ip)
 {
-    $result = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
+//    $result = @file_get_contents("http://ip.taobao.com/service/getIpInfo.php?ip=$ip");
+//
+//    $result = json_decode($result,true);
+//
+//    $ipInfo = $result['data'];
+//
+//    $data = $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];////国家省市
+//    if(empty($data)){
+//        $data = '地球';
+//    }
+//    return $data;
 
-    $result = json_decode($result,true);
+    $ci = curl_init();
 
-    $ipInfo = $result['data'];
+    /* Curl settings */
+    curl_setopt($ci, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
+    curl_setopt($ci, 5);
+    curl_setopt($ci, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ci, CURLOPT_ENCODING, "");
+    curl_setopt($ci, CURLOPT_HEADER, FALSE);
 
-    $data = $ipInfo['country'].$ipInfo['region'].$ipInfo['city'];////国家省市
-    if(empty($data)){
-        $data = '地球';
+    curl_setopt($ci, CURLOPT_URL, 'http://api.map.baidu.com/location/ip' );
+    curl_setopt($ci, CURLINFO_HEADER_OUT, TRUE );
+    curl_setopt($ci, CURLOPT_POST, TRUE);
+    curl_setopt($ci, CURLOPT_POSTFIELDS, [
+        'ip'=>$ip,
+        'ak'=>env('BAIDU_API_AK',''),
+    ]);
+
+    $response = curl_exec($ci);
+
+    $result = json_decode($response,true);
+
+    if(is_array($result) && $result['status'] == 0)
+    {
+        return $result['content']['address_detail']['province'].
+            $result['content']['address_detail']['city'].
+            $result['content']['address_detail']['district'].
+            $result['content']['address_detail']['street'].$result['content']['address_detail']['street_number'];
+    }else{
+        return '地球';
     }
-    return $data;
+
 }
 
 
