@@ -787,7 +787,7 @@ function getIPLoc_taobao($ip)
 
     /* Curl settings */
     curl_setopt($ci, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0);
-    curl_setopt($ci, 5);
+    curl_setopt($ci, CURLOPT_CONNECTTIMEOUT,5);
     curl_setopt($ci, CURLOPT_TIMEOUT, 5);
     curl_setopt($ci, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ci, CURLOPT_ENCODING, "");
