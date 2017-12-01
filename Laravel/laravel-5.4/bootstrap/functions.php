@@ -802,7 +802,7 @@ function getIPLoc_taobao($ip)
     ]);
 
     $response = curl_exec($ci);
-
+    curl_close($ci);
     $result = json_decode($response,true);
 
     if(is_array($result) && $result['status'] == 0)
