@@ -356,9 +356,9 @@ class CommonController extends Controller
         $str = serialize($data);
 
 
-        if (!is_writable($target)) {
-            chmod($fpath, 0777);
-        }
+//        if (!is_writable($target)) {
+//            chmod($fpath, 0777);
+//        }
 
         if (file_put_contents($target, $str)) {
             return true;
