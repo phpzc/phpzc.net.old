@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="{{ MD('/css/editormd.preview.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.15/css/share.min.css" />
 
+    <!--公式插件 -->
+    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/addKityFormulaDialog.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/getKfContent.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/defaultFilterFix.js"></script>
+
 @endsection
 
 
