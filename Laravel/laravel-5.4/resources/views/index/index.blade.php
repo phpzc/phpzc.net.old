@@ -92,7 +92,8 @@
 
                                 <div class="main-box-body clearfix">
 
-                                    <img src="{{ $v['imgurl'] }}" style="cursor: pointer" title="{{ $v['title'] }}" alt="" class=" img-responsive center-block" />
+                                    <img src="{{ $v['imgurl'] }}" style="cursor: pointer" title="{{ $v['title'] }}" alt="" class="center-block" style="display: block;
+    width: 100%;max-height:208px;width:208px;height:208px;" width="208" height="208" />
 
                                     <div class="profile-label" >
                                         <span  class="label label-danger" style="display:inline-block;max-width:80%;cursor: pointer" title="{{ $v['author'] }}">{{ $v['author'] }}</span>
