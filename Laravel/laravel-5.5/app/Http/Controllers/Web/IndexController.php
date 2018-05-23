@@ -27,7 +27,7 @@ class IndexController extends CommonController
 
             $category = session('website.category');
 
-            $res = Article::where('isdel',0)->orderBy('id','desc')->limit(5)->get()->toArray();
+            $res = Article::where('isdel',0)->orderBy('id','desc')->limit(6)->get()->toArray();
 
             foreach ( $res as $k => $v ) {
                 $res [$k] ["content"] = strip_tags ( htmlspecialchars_decode ( $v ['content'] ) );
@@ -35,7 +35,7 @@ class IndexController extends CommonController
                 $res [$k] ["id"] = encodeId ( $v ['id'] );
             }
 
-            $all = Document::where('isdel','0')->orderBy('id','desc')->limit(4)->get()->toArray();
+            $all = Document::where('isdel','0')->orderBy('id','desc') ->limit(6)->get()->toArray();
 
             $lunbo = Index::where('status',1)->orderBy('sort','desc')->orderBy('id','desc')->limit(3)->get()->toArray();
 

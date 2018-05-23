@@ -1,57 +1,28 @@
-<extend name="Layout/index" />
-@extends('layouts.main')
-@section('head')
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('libs/magnific-popup.css') }}">
-@endsection
+@extends('layouts.layout')
+
 
 @section('content')
-    <div class="row" id="user-profile">
-        <style>
-            img:hover{opacity:0.75;}
-        </style>
+    <div class="row row-cards">
 
-        @foreach($documents as $document)
-            <div class="col-lg-3 col-md-4 col-sm-4">
-                <div class="main-box clearfix">
-                    <header class="main-box-header clearfix">
-                        <div class="row" style="height:2em;">{{ $document['title'] }}</div>
-                    </header>
+        @foreach($documents as $v)
+            <div class="col-sm-6 col-lg-4">
+                <div class="card p-3">
+                    <a href="javascript:void(0)" class="mb-3">
+                        <img src="{{ $v['imgurl'] }}" alt="Photo by Nathan Guerrero" class="rounded" title="{{ $v['title'] }}" style="max-height: 180px">
+                    </a>
+                    <div class="d-flex align-items-center px-2">
+                        <div >
 
-                    <div class="main-box-body clearfix">
-
-                        <img src="{{ $document['imgurl'] }}" style="cursor: pointer" title="{{ $document['title'] }}" alt="img" class="center-block" style="display: block;
-    width: 100%;max-height:208px;width:208px;height:208px;" width="208" height="208"/>
-
-                        <div class="profile-label" >
-                            <span  class="label label-danger" style="display:inline-block;max-width:80%;cursor: pointer" title="{{ $document['author'] }}">{{ $document['author'] }}</span>
+                            <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-download mr-1"></i> {{ $v['visit'] }}</a>
                         </div>
 
-                        <div class="profile-stars">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <span>4 Star</span>
-                        </div>
-
-                        <div class="profile-since">
-                            Publish Time: {{ $document['year'] }}/{{ $document['month'] }}
-                        </div>
-
-                        <div class="profile-details">
-                            <ul class="fa-ul">
-                                <li><i class="fa-li fa fa-download"></i>Downloads: <span>{{ $document['visit'] }}</span></li>
-                                <li><i class="fa-li fa fa-smile-o"></i>Views: <span>{{ $document['visit'] }}</span></li>
-                            </ul>
-                        </div>
-
-                        <div class="profile-message-btn center-block text-center">
-                            <a href="/download/index?url={{ urlencode($document['url']) }}&type=document&id={{ $document['id'] }}" class="btn btn-success" target="_blank">
+                        <div class="ml-auto text-muted">
+                            <a href="/download/index?url=<?php echo urlencode($v['url']);?>&type=document&id={{ $v['id'] or '' }}" class="btn btn-success" target="_blank">
                                 <i class="fa fa-download"></i>
                                 Download
                             </a>
                         </div>
+
                     </div>
 
                 </div>
@@ -60,6 +31,7 @@
 
 
     </div>
+    <link rel="stylesheet" href="{{ tabler_assets('css/bootstrap_pagination.css') }}">
     <div class="row">
         <div class="common_page">{{ $page }}</div>
     </div>

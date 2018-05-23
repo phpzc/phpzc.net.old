@@ -6,6 +6,23 @@
  * Time: 16:31
  */
 
+if (! function_exists('tabler_assets'))
+{
+    function tabler_assets($file)
+    {
+        return '/Public/tabler/assets/'.$file;
+    }
+}
+
+if (! function_exists('tabler_demo'))
+{
+    function tabler_demo($file)
+    {
+        return '/Public/tabler/demo/'.$file;
+    }
+}
+
+
 if (! function_exists('ADMIN')) {
 
     function ADMIN($file)

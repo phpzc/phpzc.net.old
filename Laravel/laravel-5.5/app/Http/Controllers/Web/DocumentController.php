@@ -32,7 +32,7 @@ class DocumentController extends CommonController
 
         $result = Document::where(['isdel'=>0])
             ->orderBy('id','desc')
-            ->paginate(8);
+            ->paginate(9);
 
         $this->assign('documents',($result->toArray())['data']);
         $this->assign('page',$result->links());

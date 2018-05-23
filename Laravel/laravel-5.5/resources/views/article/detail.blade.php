@@ -1,6 +1,9 @@
-@extends('layouts.main')
+@extends('layouts.layout')
 
-@section('head')
+@section('content_title')
+@endsection
+
+@section('content')
     <script type="text/javascript" charset="utf-8" src="{{ UEDITOR('/third-party/SyntaxHighlighter/shCore.js') }}"></script>
 
     @if ($article['type'] == 0)
@@ -18,100 +21,106 @@
     <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/getKfContent.js"></script>
     <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/defaultFilterFix.js"></script>
 
-@endsection
 
 
-
-@section('content')
     <div class="row" id="article_show">
-        <div class="col-lg-12" id="article_list" >
-            <div class="main-box clearfix">
 
-                <header class="main-box-header" >
-                    <h2>{{ $article['title'] }}</h2>
-                </header>
-                <div class="story-content clearfix">
-                    <div class="story-author" style="float:left;padding-left:20px">
-                        <a href="#">{{ $article['name'] }}</a>
+        @component('article.right',['top'=>$top,'links'=>$links])
+
+        @endcomponent
+
+        <div class="col-lg-8" id="article_list" >
+            <div class="card">
+                <div class="card-body">
+
+
+                    <div class="main-box clearfix">
+
+
+                            <h3>{{ $article['title'] }}</h3>
+
+                        <div class="d-flex align-items-center px-2">
+                            <div class="avatar avatar-md mr-3" style="background-image: url(https://avatars0.githubusercontent.com/u/3666436?v=3&s=460)"></div>
+                            <div>
+                                <div>{{ $article['name'] }}</div>
+                                <small class="d-block text-muted"> {{ $article['year'] }}/{{ $article['month'] }}</small>
+                            </div>
+                            <div class="ml-auto text-muted">
+                                <a href="javascript:void(0)" class="icon"><i class="fe fe-eye mr-1"></i>  {{ $article['visit'] }}</a>
+
+                            </div>
+
+                            @if (session('id') == $article['uid'])
+                                <div class="story-time" style="float:right;padding-right:20px">
+                                    <a href="/article/edit?id={{ $article['id'] }}">修改</a>
+                                </div>
+                            @endif
+
+                        </div>
+
+                        <style>
+                            .main-box-body img{
+                                max-width: 100%;
+                            }
+
+                        </style>
+                        <hr>
+                        <div class="main-box-body " id="test-editormd">
+                            @if ($article['type'] == 1)
+
+                            <textarea id="append-test" style="display:none;">{!! $article['markdown']  !!}</textarea>
+                            @else
+                            {!! $article['content'] !!}
+                            @endif
+                        </div>
+
+
+                        <div class="main-box-body ">
+                            <div class="row" >
+                                <div class="social-share" style="margin-left: 4em;margin-top: 4em;"></div>
+                            </div>
+                            <hr>
+                            <div class="pre_page">上一篇：
+
+                                @if (!isset($article_pre['id']))
+                                    没有了
+                                @else
+                                    <a href="/article/detail?id={{ $article_pre['id'] }}"><button type="button" class="btn btn-success">{{ $article_pre['title'] }}</button></a>
+                                @endif
+                            </div>
+                            <hr>
+                            <div class="next_page">下一篇：
+
+                                @if (!isset($article_next['id']))
+                                    没有了
+                                @else
+                                    <a href="/article/detail?id={{ $article_next['id'] }}"><button type="button" class="btn btn-success">{{ $article_next['title'] }}</button></a>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
 
+                    <script>
+                        SyntaxHighlighter.highlight();
+                    </script>
 
-                    @if (session('id') == $article['uid'])
-                    <div class="story-time" style="float:right;padding-right:20px">
-                        <a href="/article/edit?id={{ $article['id'] }}">修改</a>
-                    </div>
-                    @endif
-
-                    <div class="story-time" style="float:right;padding-right:20px">
-                        <i class="fa fa-clock-o"></i> {{ $article['year'] }}/{{ $article['month'] }}
-                    </div>
-
+                    <!--PC版-->
+                    <div id="SOHUCS" sid="{{ $article['id'] }}"></div>
+                    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+                    <script type="text/javascript">
+                        window.changyan.api.config({
+                            appid: 'cyt9FQgps',
+                            conf: 'prod_e3220b887fd745b0f30b968992ed5a02'
+                        });
+                    </script>
                 </div>
-                <style>
-                    .main-box-body img{
-                        max-width: 100%;
-                    }
-
-                </style>
-                <hr>
-                <div class="main-box-body " id="test-editormd">
-                    @if ($article['type'] == 1)
-
-                    <textarea id="append-test" style="display:none;">{!! $article['markdown']  !!}</textarea>
-                    @else
-                    {!! $article['content'] !!}
-                    @endif
-                </div>
-
-
-                <div class="main-box-body ">
-                    <div class="row" >
-                        <div class="social-share" style="margin-left: 4em;margin-top: 4em;"></div>
-                    </div>
-                    <hr>
-                    <div class="pre_page">上一篇：
-
-                        @if (!isset($article_pre['id']))
-                            没有了
-                        @else
-                            <a href="/article/detail?id={{ $article_pre['id'] }}"><button type="button" class="btn btn-success">{{ $article_pre['title'] }}</button></a>
-                        @endif
-                    </div>
-                    <hr>
-                    <div class="next_page">下一篇：
-
-                        @if (!isset($article_next['id']))
-                            没有了
-                        @else
-                            <a href="/article/detail?id={{ $article_next['id'] }}"><button type="button" class="btn btn-success">{{ $article_next['title'] }}</button></a>
-                        @endif
-                    </div>
-                </div>
-
             </div>
-
-            <script>
-                SyntaxHighlighter.highlight();
-            </script>
-
-            <!--PC版-->
-            <div id="SOHUCS" sid="{{ $article['id'] }}"></div>
-            <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
-            <script type="text/javascript">
-                window.changyan.api.config({
-                    appid: 'cyt9FQgps',
-                    conf: 'prod_e3220b887fd745b0f30b968992ed5a02'
-                });
-            </script>
-
         </div>
 
 
     </div>
-@endsection
 
-
-@section('after')
 
     @if ($article['type'] == 1)
 

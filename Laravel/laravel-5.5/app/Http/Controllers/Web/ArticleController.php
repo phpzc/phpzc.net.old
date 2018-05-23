@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\Links;
 
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +33,25 @@ class ArticleController extends CommonController
                 $this->assign('website_title', '搜索文章结果');
                 break;
         }
+
+
+
+        $links = Links::where('status','!=',0)->get()->toArray();
+        $this->assign('links',$links);
+
+
+        $top = Article::where(['isdel' => 0, 'uid' => 1])
+            ->orderBy('visit', 'desc')
+            ->join('user', 'article.uid', '=', 'user.id')
+            ->select('article.id','article.title', 'user.name')
+            ->limit(10)
+            ->get();
+        $this->assign('top',$top);
+
+
+        //$tag = DB::select('select count(vip_articlekeyword.id) as article_count,vip_keyword.name from vip_articlekeyword left join vip_keyword on vip_articlekeyword.realid = vip_keyword.id  group by vip_articlekeyword.realid');
+
+        //$this->assign('tag',$tag);
     }
 
     // 遍历列表 前20个文章
@@ -42,15 +62,13 @@ class ArticleController extends CommonController
             ->orderBy('id', 'desc')
             ->join('user', 'article.uid', '=', 'user.id')
             ->select('article.*', 'user.name')
-            ->paginate(8);
+            ->paginate(9);
         $res1 = $page->toArray();
         if(empty($res1)){
             $res = [];
         }else{
             $res = $res1['data'];
         }
-
-
 
 
 
