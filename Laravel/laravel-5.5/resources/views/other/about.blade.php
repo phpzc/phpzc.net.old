@@ -14,8 +14,8 @@
                     <h3 class="mb-3">张成</h3>
                     <p class="mb-4">
                     </p>
-                    <button class="btn btn-outline-primary btn-sm">
-                        <span class="fa fa-twitter"></span> Follow
+                    <button class="btn btn-outline-primary btn-sm" onclick="window.location.href='https://weibo.com/lampzhangcheng';">
+                        <span class="fa fa-weibo"></span> Follow
                     </button>
                 </div>
             </div>
