@@ -13,7 +13,6 @@
                     <img class="card-profile-img" src="https://avatars0.githubusercontent.com/u/3666436?v=3&s=460">
                     <h3 class="mb-3">张成</h3>
                     <p class="mb-4">
-                        Big belly rude boy, million dollar hustler. Unemployed.
                     </p>
                     <button class="btn btn-outline-primary btn-sm">
                         <span class="fa fa-twitter"></span> Follow
