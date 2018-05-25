@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.layout2')
 
 @section('content_title')
 @endsection
@@ -8,18 +8,28 @@
 
     @if ($article['type'] == 0)
 
-    <link rel="stylesheet" type="text/css" href="{{ UEDITOR('/third-party/SyntaxHighlighter/shCoreDefault.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/magnific-popup.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ UEDITOR('/third-party/SyntaxHighlighter/shCoreDefault.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ CUBE('/css/libs/magnific-popup.css') }}">
 
-   @endif
+        <script type="text/javascript" charset="utf-8" src="{{ UEDITOR('ueditor.config.js')  }}"></script>
+        <script type="text/javascript" charset="utf-8" src="{{ UEDITOR('ueditor.all.min.js') }}"> </script>
+        <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+        <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+        <script type="text/javascript" charset="utf-8" src="{{ UEDITOR('lang/zh-cn/zh-cn.js') }}"></script>
+        
+
+        <!--公式插件 -->
+        <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/addKityFormulaDialog.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/getKfContent.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/defaultFilterFix.js"></script>
+
+
+    @endif
 
     <link rel="stylesheet" href="{{ MD('/css/editormd.preview.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.15/css/share.min.css" />
 
-    <!--公式插件 -->
-    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/addKityFormulaDialog.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/getKfContent.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/Public/baidu/UEditor/kityformula-plugin/defaultFilterFix.js"></script>
+
 
 
 
@@ -101,9 +111,12 @@
 
                     </div>
 
+                    @if ($article['type'] == 0)
                     <script>
                         SyntaxHighlighter.highlight();
                     </script>
+
+                    @endif
 
                     <!--PC版-->
                     <div id="SOHUCS" sid="{{ $article['id'] }}"></div>
@@ -124,18 +137,19 @@
 
     @if ($article['type'] == 1)
 
-    <script src="{{ MD() }}examples/js/jquery.min.js"></script>
 
-    <script src="{{ MD() }}lib/marked.min.js"></script>
-    <script src="{{ MD() }}lib/prettify.min.js"></script>
+        <script src="{{ MD() }}examples/js/jquery.min.js"></script>
 
-    <script src="{{ MD() }}lib/raphael.min.js"></script>
-    <script src="{{ MD() }}lib/underscore.min.js"></script>
-    <script src="{{ MD() }}lib/sequence-diagram.min.js"></script>
-    <script src="{{ MD() }}lib/flowchart.min.js"></script>
-    <script src="{{ MD() }}lib/jquery.flowchart.min.js"></script>
+        <script src="{{ MD() }}lib/marked.min.js"></script>
+        <script src="{{ MD() }}lib/prettify.min.js"></script>
 
-    <script src="{{ MD() }}editormd.js"></script>
+        <script src="{{ MD() }}lib/raphael.min.js"></script>
+        <script src="{{ MD() }}lib/underscore.min.js"></script>
+        <script src="{{ MD() }}lib/sequence-diagram.min.js"></script>
+        <script src="{{ MD() }}lib/flowchart.min.js"></script>
+        <script src="{{ MD() }}lib/jquery.flowchart.min.js"></script>
+
+        <script src="{{ MD() }}editormd.js"></script>
     <script>
 
         var  testEditormdView2;

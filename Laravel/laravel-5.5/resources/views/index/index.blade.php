@@ -11,7 +11,7 @@
             <div class="card">
 
                 <div class="card-body d-flex flex-column">
-                    <h4><a href="#">{{ cut_str( htmlspecialchars_decode($v['title']),40) }}</a></h4>
+                    <h4><a href="/article/detail?id={{ $v['id'] }}">{{ cut_str( htmlspecialchars_decode($v['title']),40) }}</a></h4>
                     <div class="text-muted">{{ cut_str($v['content'],300) }}</div>
                     <div class="d-flex align-items-center pt-5 mt-auto">
                         <div class="avatar avatar-md mr-3" style="background-image: url(https://avatars0.githubusercontent.com/u/3666436?v=3&s=460)"></div>
