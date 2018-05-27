@@ -71,6 +71,18 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
 
+                                @if ( session('id') ==  1 )
+                                    <a class="dropdown-item" href="/article/crete_markdown">
+                                        Create Article
+                                    </a>
+
+                                    <a class="dropdown-item" href="/article/crete_markdown">
+                                       Create MarkDown Article
+                                    </a>
+                                @else
+
+                                @endif
+
                                 <a class="dropdown-item" href="/user/logout">
                                     <i class="dropdown-icon fe fe-log-out"></i> Sign out
                                 </a>
