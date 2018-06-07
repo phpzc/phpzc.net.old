@@ -12,6 +12,8 @@ namespace App\Http\Controllers\Web;
 use App\Model\Article;
 use App\Model\Project;
 use App\Model\ProjectSummary;
+use App\Model\Links;
+
 
 class ProjectController extends CommonController
 {
@@ -51,6 +53,12 @@ class ProjectController extends CommonController
 
     public final function detail()
     {
+
+
+
+
+
+
 
         $article_id = request()->input('id');
 
@@ -118,6 +126,22 @@ class ProjectController extends CommonController
             ->first();
 
         if ($res) {
+
+
+            $links = Links::where('status','!=',0)->get()->toArray();
+            $this->assign('links',$links);
+
+
+            $top = Article::where(['isdel' => 0, 'uid' => 1])
+                ->orderBy('visit', 'desc')
+                ->join('user', 'article.uid', '=', 'user.id')
+                ->select('article.id','article.title', 'user.name')
+                ->limit(10)
+                ->get();
+            $this->assign('top',$top);
+
+
+
 
             $res = $res->toArray();
 
