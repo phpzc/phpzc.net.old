@@ -22,26 +22,12 @@
     <link rel="stylesheet" href="{{ tabler_assets('css/googleapis-css-family.css') }}">
 
 
-    <script src="{{ tabler_assets('js/require.min.js') }}"></script>
-    <script>
-        requirejs.config({
-            baseUrl: '/Public/tabler'
-        });
-    </script>
     <!-- Dashboard Core -->
     <link href="{{ tabler_assets('css/dashboard.css') }}" rel="stylesheet" />
-    <script src="{{ tabler_assets('js/dashboard.js') }}"></script>
-    <!-- c3.js Charts Plugin -->
-    <link href="{{ tabler_assets('plugins/charts-c3/plugin.css') }}" rel="stylesheet" />
-    <script src="{{ tabler_assets('plugins/charts-c3/plugin.js') }}"></script>
-    <!-- Google Maps Plugin -->
-    <link href="{{ tabler_assets('plugins/maps-google/plugin.css') }}" rel="stylesheet" />
-    <script src="{{ tabler_assets('plugins/maps-google/plugin.js') }}"></script>
-    <!-- Input Mask Plugin -->
-    <script src="{{ tabler_assets('plugins/input-mask/plugin.js') }}"></script>
 
 
     <script src="{{ MD() }}examples/js/jquery.min.js"></script>
+
 </head>
 <body class="">
 <div class="page">
@@ -242,6 +228,24 @@
 </div>
 </body>
 <script>
+    $(function(){
+        $('.dropdown').click(function(){
+
+            if( $(this).children('div').hasClass('show'))
+            {
+                $('.dropdown-menu').removeClass('show');
+            }else{
+
+
+                $('.dropdown-menu').removeClass('show');
+                $(this).children('div').addClass('show');
+            }
+
+        })
+    })
+
+
+
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -249,6 +253,9 @@
 
     ga('create', 'UA-89595309-2', 'auto');
     ga('send', 'pageview');
+
+
+
 
 </script>
 </html>

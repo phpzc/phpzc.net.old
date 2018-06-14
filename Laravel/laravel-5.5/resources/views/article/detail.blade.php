@@ -138,8 +138,6 @@
     @if ($article['type'] == 1)
 
 
-        <script src="{{ MD() }}examples/js/jquery.min.js"></script>
-
         <script src="{{ MD() }}lib/marked.min.js"></script>
         <script src="{{ MD() }}lib/prettify.min.js"></script>
 
