@@ -479,5 +479,55 @@ search_fail:
     }
 
 
+    /**
+     * 分页接口数据
+     * @author zhangcheng
+     * @Date   2018/6/17
+     * @Time   下午4:12
+     *
+     */
+    public final function page()
+    {
+
+        $page = Article::where(['isdel' => 0, 'uid' => 1])
+            ->orderBy('id', 'desc')
+            ->join('user', 'article.uid', '=', 'user.id')
+            ->select('article.id','article.title', 'user.name')
+            ->paginate(9);
+
+
+        return $page->toArray();
+
+    }
+
+    /**
+     * 单个文章详情
+     * @author zhangcheng
+     * @Date   2018/6/17
+     * @Time   下午4:44
+     *
+     */
+    public final function show()
+    {
+        $id = $id = request()->input('id');
+
+        // 搜索文章
+        $res = Article::where(['article.id'=>$id])
+            ->join('user', 'article.uid', '=', 'user.id')
+            ->select('article.*','user.name')
+            ->first();
+
+        if($res)
+        {
+            $res = $res->toArray();
+
+            $res ["title"] = htmlspecialchars_decode ( $res ["title"] );
+            $res ["content"] = htmlspecialchars_decode ( $res ["content"] );
+
+            return $res;
+        }else{
+            return [];
+        }
+    }
 
 }
