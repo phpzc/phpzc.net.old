@@ -59,7 +59,7 @@ class CacheService extends Service
         if(empty($data)){
 
             $data = $function();
-            self::getCacheObject()->setex($cacheKey,self::CACHE_TTL,json_encode($data,true));
+            self::getCacheObject()->setex($cacheKey,self::CACHE_TTL,json_encode($data,JSON_UNESCAPED_UNICODE));
             return $data;
         }
         $dataArr = json_decode($data,true);
@@ -86,7 +86,7 @@ class CacheService extends Service
         if(empty($data)){
 
             $data = $arguments[0]();
-            self::getCacheObject()->setex($cacheKey,self::CACHE_TTL,json_encode($data,true));
+            self::getCacheObject()->setex($cacheKey,self::CACHE_TTL,json_encode($data,JSON_UNESCAPED_UNICODE));
 
             return $data;
         }
