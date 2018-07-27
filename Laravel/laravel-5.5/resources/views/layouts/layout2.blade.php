@@ -27,6 +27,7 @@
 
 
     <script src="{{ MD() }}examples/js/jquery.min.js"></script>
+
 </head>
 <body class="">
 <div class="page">
@@ -56,11 +57,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                 @if ( session('id') ==  1 )
-                                    <a class="dropdown-item" href="/article/crete_markdown">
+                                    <a class="dropdown-item" href="/article/create">
                                         Create Article
                                     </a>
 
-                                    <a class="dropdown-item" href="/article/crete_markdown">
+                                    <a class="dropdown-item" href="/article/create_markdown">
                                         Create MarkDown Article
                                     </a>
                                 @else
@@ -86,16 +87,9 @@
         <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-3 ml-auto">
-                        <form class="input-icon my-3 my-lg-0">
-                            <input type="search" class="form-control header-search" placeholder="Search&hellip;" tabindex="1">
-                            <div class="input-icon-addon">
-                                <i class="fe fe-search"></i>
-                            </div>
-                        </form>
-                    </div>
+
                     <div class="col-lg order-lg-first">
-                        <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                        <div class="nav nav-tabs border-0 flex-column flex-lg-row">
                             <li class="nav-item">
                                 <a href="/" class="nav-link
                                         @if ($THIS_CONTROLLER == 'Index')
@@ -127,20 +121,51 @@
                                 --}}
                             </li>
 
-                            <li class="nav-item dropdown">
+
+                            <!--添加project文章 -->
+                            @foreach ($MENU_PROJECT as $project_data)
+
+                                <li class="nav-item dropdown"  >
+                                    <a href="javascript:void(0)" class="nav-link @if ($THIS_PROJECT_ID == $project_data['project_id'])
+                                            active
+                                    @endif" data-toggle="dropdown"><i class="fe  fe-file-text"></i>{{ $project_data['name'] or '' }} </a>
+                                    <div class="dropdown-menu dropdown-menu-arrow">
+
+                                        @foreach($project_data['summary'] as $summary_data)
+
+
+                                            <?php foreach ($summary_data['sub_data'] as $article_data){ ?>
+
+
+                                            <a href="/project/detail?id={{ $article_data['id'] or '' }}" class='@if ($this_id == $article_data['id']) active @endif dropdown-item' >
+                                                <b>{{ $article_data['title'] }}</b>
+                                            </a>
+
+                                            <?php } ?>
+
+                                        @endforeach
+
+                                    </div>
+
+                                </li>
+                            @endforeach
+
+
+                            <li class="nav-item">
                                 <a href="/other/projects" class="nav-link
                                 @if ($THIS_ACTION == 'Other/projects')
                                         active
                                 @endif
-"><i class="fe  fe-box"></i>Open-Source</a>
+                                        "><i class="fe  fe-box"></i>Open-Source</a>
                             </li>
 
 
-                            <li class="nav-item dropdown">
+
+                            <li class="nav-item ">
                                 <a href="/album/index" class="nav-link
                                         @if ($THIS_CONTROLLER == 'Album')
-                                                active
-                                        @endif
+                                        active
+@endif
                                         "><i class="fe fe-check-square"></i> Pictures</a>
                             </li>
                             <li class="nav-item">
@@ -148,16 +173,16 @@
                                 @if ($THIS_ACTION == 'Other/about')
                                         active
                                 @endif
-                                    "><i class="fe fe-image"></i> About Me</a>
+                                        "><i class="fe fe-image"></i> About Me</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/document/index" class="nav-link
                                         @if ($THIS_CONTROLLER == 'Document')
-                                            active
-                                        @endif
+                                        active
+@endif
                                         "><i class="fe fe-file-text"></i> Documents</a>
                             </li>
-                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,6 +228,24 @@
 </div>
 </body>
 <script>
+    $(function(){
+        $('.dropdown').click(function(){
+
+            if( $(this).children('div').hasClass('show'))
+            {
+                $('.dropdown-menu').removeClass('show');
+            }else{
+
+
+                $('.dropdown-menu').removeClass('show');
+                $(this).children('div').addClass('show');
+            }
+
+        })
+    })
+
+
+
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -210,6 +253,9 @@
 
     ga('create', 'UA-89595309-2', 'auto');
     ga('send', 'pageview');
+
+
+
 
 </script>
 </html>
