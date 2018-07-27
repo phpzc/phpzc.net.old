@@ -81,7 +81,11 @@
                             <div class="form-group mb-0">
                                 <label class="form-label">About Me</label>
                                 <p>{!! htmlspecialchars_decode($info['description']) !!}</p>
+
+                                <p>接外包:联系qq1091796360</p>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
