@@ -6,9 +6,7 @@
 
     <div class="row">
 
-        @component('article.right',['top'=>$top,'links'=>$links])
 
-        @endcomponent
 
         <div class="col-lg-8">
                 <div class="row">
@@ -53,6 +51,9 @@
                 </div>
         </div>
 
+        @component('article.right',['top'=>$top,'links'=>$links])
+
+        @endcomponent
     </div>
 
 @endsection
