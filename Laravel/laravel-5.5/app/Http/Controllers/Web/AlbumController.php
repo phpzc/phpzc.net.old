@@ -155,13 +155,13 @@ class AlbumController extends CommonController
                 $newdata[$k]['ip'] = $ip;
                 $subNameArr = explode('.',$v);
                 $subName = $subNameArr[0].'_100x100.'.$subNameArr[1];
-                Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
-                $newdata[$k]['thumb_url'] = NET_NAME.$subName;
+                //Image2::make('.'.$v)->resize(100, 100)->save('.'.$subName);
+                $newdata[$k]['thumb_url'] = '';//NET_NAME.$subName;
                 //upload to oss
                 $result = $ossClient->uploadFile($bucket, substr($v,1), '.'.$v);
                 $newdata[$k]['imgurl'] = str_replace('http','https',$result['info']['url']);
-                $result = $ossClient->uploadFile($bucket, substr($subName,1), '.'.$subName);
-                $newdata[$k]['thumb_url'] = str_replace('http','https',$result['info']['url']);
+                //$result = $ossClient->uploadFile($bucket, substr($subName,1), '.'.$subName);
+                //$newdata[$k]['thumb_url'] = str_replace('http','https',$result['info']['url']);
 
 
             }
