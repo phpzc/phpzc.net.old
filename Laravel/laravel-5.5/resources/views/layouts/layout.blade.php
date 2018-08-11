@@ -79,6 +79,16 @@
                                     <a class="dropdown-item" href="/article/create_markdown">
                                        Create MarkDown Article
                                     </a>
+
+                                    <a class="dropdown-item" href="/album/create_album">Create Album</a>
+                                    <a class="dropdown-item" href="/album/create_page">Add Photo</a>
+
+                                    <a class="dropdown-item" href="/project/index">Project index</a>
+
+                                    <a class="dropdown-item" href="/project/create">Add Project</a>
+
+
+
                                 @else
 
                                 @endif
