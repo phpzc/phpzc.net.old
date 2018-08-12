@@ -295,8 +295,12 @@ class CsdnOAuthV2 {
 				}
 		}
 
-		if ( isset($this->access_token) && $this->access_token )
-			$headers[] = "Authorization: OAuth2 ".$this->access_token;
+		if ( isset($this->access_token) && $this->access_token ){
+		    var_dump(1);
+            $headers[] = "Authorization: OAuth2 ".$this->access_token;
+            var_dump(2);
+        }
+
 
 		if ( !empty($this->remote_ip) ) {
 			if ( defined('SAE_ACCESSKEY') ) {
