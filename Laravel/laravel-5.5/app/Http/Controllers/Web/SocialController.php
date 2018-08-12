@@ -284,12 +284,17 @@ class SocialController extends CommonController
         $token = CsdnService::getAccessToken();
 
         if($token != false && $token['access_token']){
-            var_dump($token);
-            //判断是否为我的帐号  不是我的 不能使用
-            $client = CsdnService::getClient($token['access_token']);
 
-            var_dump($client->user_getinfo());
+            if($token['username'] != 'zhang5474jj'){
+                die('只能博主登录<script>setTimeout(function(){location.href="/";},3000)</script>');
+            }
+            session(['csdn_token'=>$token]);
 
+            session(['username'=>$token['username']]);
+            session(['id'=>1]);
+            session(['name'=>'张成']);
+
+            header ( 'location:' . NET_NAME);
         }
     }
 

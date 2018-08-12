@@ -50,7 +50,7 @@ class CsdnService extends Service
     }
 
 
-    public static function getClient($accessToken)
+    public static function getClient($accessToken = '')
     {
         $c = new \CsdnClientV2( WB_AKEY , WB_SKEY , $accessToken);
         return $c;

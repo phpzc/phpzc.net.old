@@ -13,6 +13,7 @@ use App\Model\Category;
 use App\Model\Links;
 
 use Illuminate\Support\Facades\DB;
+use App\Service\CsdnService;
 
 class ArticleController extends CommonController
 {
@@ -130,7 +131,22 @@ class ArticleController extends CommonController
         if ($res) {
             $key = new KeywordController();
             $key->automake ( $res, $_REQUEST ["form_tag"], 'article' );
-            $this->formSuccess ( "创建文章", "/article/create" );
+
+            $token = session('csdn_token');
+            $csdnReturnStr = '';
+            if($token){
+                $client = CsdnService::getClient($token['access_token']);
+                $data = array('title'=>$data ['title'],'content'=>$data ['content']);
+                $ret = $client->blog_savearticle($data);	//发表文章
+                if ( isset($ret['error_code']) && $ret['error_code'] > 0 ) {
+                    $csdnReturnStr = 'csdn add error '.$ret['error_code'];
+                } else {
+                    $csdnReturnStr = "发送成功url:{$ret['url']}";
+                }
+            }
+
+
+            $this->formSuccess ( "创建文章".$csdnReturnStr, "/article/create" );
         } else {
             $this->formErrorReferer ( "创建文章" );
         }
