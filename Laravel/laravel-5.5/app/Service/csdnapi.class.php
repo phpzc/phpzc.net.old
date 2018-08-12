@@ -297,6 +297,7 @@ class CsdnOAuthV2 {
 
 		if ( isset($this->access_token) && $this->access_token ){
 		    var_dump(1);
+		    var_dump($this->access_token);
             $headers[] = "Authorization: OAuth2 ".$this->access_token;
             var_dump(2);
         }
