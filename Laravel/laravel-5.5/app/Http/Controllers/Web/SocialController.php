@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Model\User;
+use App\Service\CsdnService;
 
 class SocialController extends CommonController
 {
@@ -270,4 +271,19 @@ class SocialController extends CommonController
         $qc = new \QC ();
         $qc->qq_login ();
     }
+
+
+    public final function csdn()
+    {
+        $url = CsdnService::getLoginUrl();
+        header ( 'location:' . $url);
+    }
+
+    public final function csdn_callback()
+    {
+        var_dump($_REQUEST);
+
+    }
+
+
 }
