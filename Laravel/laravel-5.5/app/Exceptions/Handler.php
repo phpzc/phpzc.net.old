@@ -9,7 +9,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class Handler extends ExceptionHandler
 {
     /**
-     * A list of the exception types that should not be reported.
+     * A list of the exception types that should not be reported.  不会被计入日志
      *
      * @var array
      */
@@ -32,6 +32,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+
+
+
         parent::report($exception);
     }
 

@@ -281,8 +281,15 @@ class SocialController extends CommonController
 
     public final function csdn_callback()
     {
-        var_dump($_REQUEST);
+        $accessToken = CsdnService::getAccessToken();
 
+        if($accessToken){
+            //判断是否为我的帐号  不是我的 不能使用
+            $client = CsdnService::getClient($accessToken);
+
+            var_dump($client->user_getinfo());
+
+        }
     }
 
 

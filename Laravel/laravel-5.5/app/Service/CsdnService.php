@@ -28,4 +28,32 @@ class CsdnService extends Service
         return $code_url;
     }
 
+
+    public static function getAccessToken()
+    {
+        $o = new \CsdnOAuthV2( WB_AKEY , WB_SKEY );
+
+        if (isset($_REQUEST['code'])) {
+            $keys = array();
+            $keys['code'] = $_REQUEST['code'];
+            $keys['redirect_uri'] = WB_CALLBACK_URL;
+            try {
+                $token = $o->getAccessToken( 'code', $keys ) ;
+
+                return $token;
+            } catch (\OAuthException $e) {
+
+            }
+        }
+
+        return false;
+    }
+
+
+    public static function getClient($accessToken)
+    {
+        $c = new \CsdnClientV2( WB_AKEY , WB_SKEY , $accessToken);
+        return $c;
+    }
+
 }
