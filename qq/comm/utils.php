@@ -28,8 +28,8 @@ function do_post($url, $data)
 
 function get_url_contents($url)
 {
-    if (ini_get("allow_url_fopen") == "1")
-        return file_get_contents($url);
+//    if (ini_get("allow_url_fopen") == "1")
+//        return file_get_contents($url);
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
