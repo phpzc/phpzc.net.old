@@ -67,7 +67,7 @@ class Oauth{
             "client_id" => $this->recorder->readInc("appid"),
             "redirect_uri" => urlencode($this->recorder->readInc("callback")),
             "client_secret" => $this->recorder->readInc("appkey"),
-            "code" => $_GET['code']
+            "code" => $getCode
         );
 
         //------构造请求access_token的url
