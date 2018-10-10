@@ -56,7 +56,7 @@
 
                         @if ( session('id') ==  null )
                             <div class="nav-item d-none d-md-flex">
-                                <a href="/social/csdn" class="btn btn-sm btn-outline-primary" target="_blank">Login</a>
+                                <a href="/user/login_page" class="btn btn-sm btn-outline-primary" target="_blank">Login</a>
                             </div>
                         @else
 
